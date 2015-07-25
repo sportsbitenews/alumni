@@ -83,8 +83,6 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise-i18n (0.12.1)
-    devise-i18n-views (0.3.4)
     erubis (2.7.0)
     execjs (2.5.2)
     figaro (1.1.1)
@@ -134,6 +132,8 @@ GEM
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     puma (2.12.2)
+    pundit (1.0.0)
+      activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -218,8 +218,6 @@ DEPENDENCIES
   bootstrap-sass
   country_select
   devise
-  devise-i18n
-  devise-i18n-views
   figaro
   font-awesome-sass
   high_voltage
@@ -230,6 +228,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  pundit
   quiet_assets
   rack-timeout
   rails (= 4.2.3)
