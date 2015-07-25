@@ -21,6 +21,7 @@ gem "uglifier"
 gem "bootstrap-sass"
 gem "font-awesome-rails"
 gem "react-rails", "~> 1.0"
+gem "jbuilder"
 
 gem "rails-i18n"
 

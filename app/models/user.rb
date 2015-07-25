@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   validates :github_nickname, uniqueness: { allow_nil: false }
   validate :belongs_to_lewagon_github_org
 
+  has_many :resources
+
   def self.find_for_github_oauth(auth)
     user = where(provider: 'github', uid: auth[:uid]).first || User.new
     store_github_info(user, auth)
