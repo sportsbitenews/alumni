@@ -1,18 +1,22 @@
+require "omniauth-github"
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  # Github SSO:
+  # Scopes: https://developer.github.com/v3/oauth/#scopes
+  config.omniauth :github, ENV["GITHUB_APP_ID"], ENV["GITHUB_APP_SECRET"], scope: "user:email,read:org"
+
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
-  # by default. You can change it below and use your own secret key.
-  # config.secret_key = '3f6230a9462bdc9e10737c736b999194e12b1ab01a39f65be7950fc664fe2e03e88f686b2ae32088a6cab5f3617b23e32ebee8def344d1b6ce40cb4ebd59569c'
+  config.secret_key = ENV['DEVISE_SECRET_KEY']
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'contact@lewagon.org'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
