@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
 
   has_many :resources
 
+  acts_as_voter
+
   def self.find_for_github_oauth(auth)
     user = where(provider: 'github', uid: auth[:uid]).first || User.new
     store_github_info(user, auth)
