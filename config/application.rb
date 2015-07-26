@@ -47,5 +47,11 @@ module Alumni
     config.active_record.raise_in_transactional_callbacks = true
 
     config.react.addons = true
+
+    # https://babeljs.io/docs/advanced/transformers/
+    config.react.jsx_transform_options = {
+      blacklist: ['spec.functionName', 'validation.react'],
+      optional: ["es6.arrowFunctions"]
+    }
   end
 end

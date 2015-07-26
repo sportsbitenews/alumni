@@ -2,11 +2,7 @@ var ResourceList = React.createClass({
   render: function() {
     return (
       <div>
-        {this.props.resources.map(function(resource) {
-          return (
-            <ResourceListElement key={resource.id} {...resource}/>
-          );
-        })}
+        {this.props.resources.map(r => <ResourceListElement key={r.id} {...r} />)}
       </div>
     );
   }
