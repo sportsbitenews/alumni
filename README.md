@@ -1,11 +1,15 @@
-# Alumni
+# Le Wagon Alumni
 
-## Configuration
+## Figaro
 
-The app configuration lies in `config/application.yml` and is **not**
-versionned by git (for security reasons). If you've just cloned this
-repo, ask a colleague for his `application.yml` file over a secure channel.
+You need to `touch config/application.yml` after your `git clone`. Here are the keys you need:
 
-## Credits
+```
+GITHUB_APP_ID: ""
+GITHUB_APP_SECRET: ""
+DEVISE_SECRET_KEY: ""
+```
 
-The first commit of this app has been generated thanks to [lewagon/wagon_rails](https://github.com/lewagon/wagon_rails)'s rails app generator.
+## Schema
+
+You can load [db/schema.xml](db/schema.xml) into [db.lewagon.org](http://db.lewagon.org).
