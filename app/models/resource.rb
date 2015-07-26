@@ -19,7 +19,7 @@ class Resource < ActiveRecord::Base
   belongs_to :user
   validates :title, presence: true, length: { maximum: 255 }
   validates :content, presence: true
-  validates :url, presence: true, url: true
+  validates :url, presence: true, url: true, uniqueness: true
   validates :user, presence: true
   acts_as_votable
 end

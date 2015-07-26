@@ -1,6 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require js-routes
+//= require lodash
 
 //= require react
 //= require react_ujs

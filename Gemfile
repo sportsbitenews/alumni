@@ -22,10 +22,13 @@ gem "sass-rails", "~> 5.0"
 gem "uglifier"
 gem "bootstrap-sass"
 gem "font-awesome-rails"
+gem "lodash-rails"
 gem "react-rails", "~> 1.0"
 gem "jbuilder"
 
 gem "rails-i18n"
+gem "link_thumbnailer"
+gem "js-routes"
 
 group :development, :test do
   gem "spring"

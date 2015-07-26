@@ -4,4 +4,12 @@ class ResourcePolicy < ApplicationPolicy
       scope
     end
   end
+
+  def create?
+    !user.nil?
+  end
+
+  def preview?
+    !user.nil?
+  end
 end
