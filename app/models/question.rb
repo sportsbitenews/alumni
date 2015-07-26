@@ -15,11 +15,6 @@
 #
 
 class Question < ActiveRecord::Base
-  belongs_to :user
-  validates :title, presence: true, length: { maximum: 255 }
+  include Post
   validates :content, presence: true
-  validates :user, presence: true
-  acts_as_votable
-
-  has_many :answers, as: :answerable
 end

@@ -16,17 +16,7 @@
 #
 
 class Resource < ActiveRecord::Base
-  belongs_to :user
-  validates :title, presence: true, length: { maximum: 255 }
+  include Post
   validates :content, presence: true
   validates :url, presence: true, url: true, uniqueness: true
-  validates :user, presence: true
-  acts_as_votable
-
-  has_many :answers, as: :answerable
-
-  # TODO(ssaunier): compute on-the-fly score for a resource
-  # score = function(x is days passed since created_at, votes) {
-  #  return votes / (1 + ln(x/2 + 1))
-  # }
 end

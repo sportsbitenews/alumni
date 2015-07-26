@@ -1,10 +1,6 @@
 class ResourcesController < ApplicationController
   skip_after_action :verify_authorized, only: :preview
 
-  def index
-    @resources = policy_scope(Resource).all
-  end
-
   def new
     @resource = Resource.new
     authorize @resource
