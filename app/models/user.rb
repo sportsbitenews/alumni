@@ -15,7 +15,6 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  provider               :string
 #  uid                    :string
 #  github_nickname        :string
 #  gravatar_url           :string
@@ -42,13 +41,12 @@ class User < ActiveRecord::Base
   acts_as_voter
 
   def self.find_for_github_oauth(auth)
-    user = where(provider: 'github', uid: auth[:uid]).first || User.new
+    user = where(uid: auth[:uid]).first || User.new
     store_github_info(user, auth)
     user
   end
 
   def self.store_github_info(user, auth)
-    user.provider = 'github'
     user.uid = auth.uid
     user.email = auth.info.email
     user.github_token = auth.credentials.token
