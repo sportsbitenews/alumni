@@ -22,4 +22,6 @@ class Resource < ActiveRecord::Base
   validates :url, presence: true, url: true, uniqueness: true
   validates :user, presence: true
   acts_as_votable
+
+  has_many :answers, as: :answerable
 end

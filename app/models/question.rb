@@ -20,4 +20,6 @@ class Question < ActiveRecord::Base
   validates :content, presence: true
   validates :user, presence: true
   acts_as_votable
+
+  has_many :answers, as: :answerable
 end
