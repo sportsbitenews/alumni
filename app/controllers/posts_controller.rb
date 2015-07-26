@@ -3,7 +3,10 @@ class PostsController < ApplicationController
   before_action :set_post, only: :up_vote
 
   def index
-    @posts = Resource.all + Question.all
+    # TODO(ssaunier): sort by score
+    # TODO(ssaunier): paginate
+    # TODO(ssaunier): search
+    @posts = (Resource.all + Question.all).sort_by(&:created_at).reverse
   end
 
   def up_vote
