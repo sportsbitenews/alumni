@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   validate :belongs_to_lewagon_github_org
 
   has_many :resources
+  has_many :questions
 
   acts_as_voter
 
