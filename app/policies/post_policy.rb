@@ -4,4 +4,8 @@ class PostPolicy < ApplicationPolicy
       scope
     end
   end
+
+  def up_vote?
+    record.user == user
+  end
 end

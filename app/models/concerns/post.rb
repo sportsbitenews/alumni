@@ -1,6 +1,9 @@
 module Post
   extend ActiveSupport::Concern
 
+  POST_TYPES = %w(Resource Question)
+  class UnauthorizedPostTypeException < Exception; end
+
   included do
     belongs_to :user
     validates :title, presence: true, length: { maximum: 255 }

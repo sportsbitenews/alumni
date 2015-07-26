@@ -1,4 +1,4 @@
-class ResourcePolicy < ApplicationPolicy
+class ResourcePolicy < PostPolicy
   class Scope < Scope
     def resolve
       scope

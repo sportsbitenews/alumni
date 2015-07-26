@@ -1,9 +1,10 @@
-var ResourceListElement = React.createClass({
-  render: function() {
-    return (
-      <div>
-        RESOURCE - ({this.props.up_votes.length}) {this.props.title} - {this.props.user.github_nickname}
-      </div>
-    )
+class ResourceListElement extends PostListElement {
+  constructor(props) {
+    super(props);
+    // this.state = _.merge(this.state, {});  // Uncomment to add specific state
   }
-});
+
+  color() {
+    return "orange";
+  }
+}

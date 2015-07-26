@@ -5,6 +5,7 @@ JsRoutes.setup do |config|
   #                 $ rake tmp:cache:clear
   #                 before restarting your `rails s`.
   config.include = [
+    /up_vote/,
     /resources/
   ]
 end
