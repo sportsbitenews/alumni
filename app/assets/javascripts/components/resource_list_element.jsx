@@ -1,4 +1,4 @@
-var Resource = React.createClass({
+var ResourceListElement = React.createClass({
   render: function() {
     return (
       <div>

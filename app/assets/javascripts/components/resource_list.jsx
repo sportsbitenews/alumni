@@ -4,7 +4,7 @@ var ResourceList = React.createClass({
       <div>
         {this.props.resources.map(function(resource) {
           return (
-            <Resource key={resource.id} {...resource}/>
+            <ResourceListElement key={resource.id} {...resource}/>
           );
         })}
       </div>
