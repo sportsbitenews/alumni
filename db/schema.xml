@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, http://code.google.com/p/wwwsqldesigner/ -->
+<!-- Active URL: http://db.lewagon.org/ -->
+<sql>
+  <datatypes db="mysql">
+    <group color="rgb(238,238,170)" label="Numeric">
+      <type label="TINYINT" length="0" quote="" sql="TINYINT"/>
+      <type label="SMALLINT" length="0" quote="" sql="SMALLINT"/>
+      <type label="MEDIUMINT" length="0" quote="" sql="MEDIUMINT"/>
+      <type label="INT" length="0" quote="" sql="INT"/>
+      <type label="Integer" length="0" quote="" sql="INTEGER"/>
+      <type label="BIGINT" length="0" quote="" sql="BIGINT"/>
+      <type label="Decimal" length="1" quote="" re="DEC" sql="DECIMAL"/>
+      <type label="Single precision" length="0" quote="" sql="FLOAT"/>
+      <type label="Double precision" length="0" quote="" re="DOUBLE" sql="DOUBLE"/>
+    </group>
+    <group color="rgb(255,200,200)" label="Character">
+      <type label="Char" length="1" quote="'" sql="CHAR"/>
+      <type label="Varchar" length="1" quote="'" sql="VARCHAR"/>
+      <type label="Text" length="0" quote="'" re="TEXT" sql="MEDIUMTEXT"/>
+      <type label="Binary" length="1" quote="'" sql="BINARY"/>
+      <type label="Varbinary" length="1" quote="'" sql="VARBINARY"/>
+      <type label="BLOB" length="0" quote="'" re="BLOB" sql="BLOB"/>
+    </group>
+    <group color="rgb(200,255,200)" label="Date &amp; Time">
+      <type label="Date" length="0" quote="'" sql="DATE"/>
+      <type label="Time" length="0" quote="'" sql="TIME"/>
+      <type label="Datetime" length="0" quote="'" sql="DATETIME"/>
+      <type label="Year" length="0" quote="" sql="YEAR"/>
+      <type label="Timestamp" length="0" quote="'" sql="TIMESTAMP"/>
+    </group>
+    <group color="rgb(200,200,255)" label="Miscellaneous">
+      <type label="ENUM" length="1" quote="" sql="ENUM"/>
+      <type label="SET" length="1" quote="" sql="SET"/>
+      <type label="Bit" length="0" quote="" sql="bit"/>
+    </group>
+  </datatypes>
+  <table name="users" x="573" y="217">
+    <row autoincrement="1" name="id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <row autoincrement="0" name="batch_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="batches"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table name="batches" x="365" y="133">
+    <row autoincrement="1" name="id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <row autoincrement="0" name="city_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="cities"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table name="cities" x="151" y="100">
+    <row autoincrement="1" name="id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table name="projects" x="138" y="435">
+    <row autoincrement="1" name="id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <row autoincrement="0" name="batch_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="batches"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table name="project_users" x="374" y="327">
+    <row autoincrement="1" name="id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <row autoincrement="0" name="project_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="projects"/>
+    </row>
+    <row autoincrement="0" name="user_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="users"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table name="questions" x="583" y="517">
+    <row autoincrement="1" name="id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <row autoincrement="0" name="user_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="users"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table name="resources" x="750" y="522">
+    <row autoincrement="1" name="id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <row autoincrement="0" name="user_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="users"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table name="milestones" x="401" y="516">
+    <row autoincrement="1" name="id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <row autoincrement="0" name="user_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="users"/>
+    </row>
+    <row autoincrement="0" name="project_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="projects"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table name="jobs" x="929" y="522">
+    <row autoincrement="1" name="id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <row autoincrement="0" name="user_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="users"/>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+  <table name="answers" x="897" y="244">
+    <row autoincrement="1" name="id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <row autoincrement="0" name="user_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+      <relation row="id" table="users"/>
+    </row>
+    <row autoincrement="0" name="answerable_id" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <row autoincrement="0" name="answerable_type" null="1">
+      <datatype>TINYINT</datatype>
+      <default>NULL</default>
+    </row>
+    <key name="" type="PRIMARY">
+      <part>id</part>
+    </key>
+  </table>
+</sql>
