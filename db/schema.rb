@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726105559) do
+ActiveRecord::Schema.define(version: 20150727093512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,23 @@ ActiveRecord::Schema.define(version: 20150726105559) do
   end
 
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
+
+  create_table "batches", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "city_id"
+    t.date     "starts_at"
+    t.date     "ends_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "batches", ["city_id"], name: "index_batches_on_city_id", using: :btree
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "questions", force: :cascade do |t|
     t.string   "title"
@@ -49,25 +66,33 @@ ActiveRecord::Schema.define(version: 20150726105559) do
   add_index "resources", ["user_id"], name: "index_resources_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "uid"
     t.string   "github_nickname"
     t.string   "gravatar_url"
     t.string   "name"
     t.string   "github_token"
+    t.string   "fist_name"
+    t.string   "last_name"
+    t.boolean  "alumni",                 default: false, null: false
+    t.boolean  "admin",                  default: false, null: false
+    t.boolean  "teacher_assistant",      default: false, null: false
+    t.boolean  "teacher",                default: false, null: false
+    t.integer  "batch_id"
   end
 
+  add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
@@ -87,6 +112,8 @@ ActiveRecord::Schema.define(version: 20150726105559) do
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
   add_foreign_key "answers", "users"
+  add_foreign_key "batches", "cities"
   add_foreign_key "questions", "users"
   add_foreign_key "resources", "users"
+  add_foreign_key "users", "batches"
 end

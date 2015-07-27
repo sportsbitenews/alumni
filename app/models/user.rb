@@ -20,9 +20,17 @@
 #  gravatar_url           :string
 #  name                   :string
 #  github_token           :string
+#  fist_name              :string
+#  last_name              :string
+#  alumni                 :boolean          default(FALSE), not null
+#  admin                  :boolean          default(FALSE), not null
+#  teacher_assistant      :boolean          default(FALSE), not null
+#  teacher                :boolean          default(FALSE), not null
+#  batch_id               :integer
 #
 # Indexes
 #
+#  index_users_on_batch_id              (batch_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
@@ -36,6 +44,7 @@ class User < ActiveRecord::Base
   validates :github_nickname, uniqueness: { allow_nil: false }
   validate :belongs_to_lewagon_github_org
 
+  belongs_to :batch
   has_many :resources
   has_many :questions
 
