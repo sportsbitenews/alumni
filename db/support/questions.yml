@@ -1,4 +1,31 @@
 - title: 'How do I get the current absolute URL in Ruby on Rails?'
+  content: |
+    How can I get the current **absolute URL** in my Ruby on Rails view?
+    \
+    The `request.request_uri` only returns the relative URL.
+
 - title: 'Rails DB Migration - How To Drop a Table?'
+  content: |
+  I added a table that I thought I was going to need, but now no longer plan on using it. How should I remove that table?
+  \
+  I've already ran migrations, so the table is in my database. I figure `rails generate migration` should be able to handle this, but I haven't figured out how yet.
+  \
+  I've tried
+  `rails generate migration drop_tablename`, but that just generated an empty migration.
+
+
 - title: 'Rails, How to roll back a Migration file?'
+  content: |
+    I have the following Rails 3 migration file `db\migrate\20100905201547_create_blocks.rb`
+    \
+    How can I specifically roll back that migration file?
+
 - title: 'The react-select module cannot find react'
+  content: |
+    React-select cannot find React:
+    TypeError: React is undefined1 react-select.js:826:4
+    \
+    React-select.js is getting react through
+    \
+        var React = (window.React);
+    It lookes like i have to include React in the html to make this work, but i would like to avoid this. Is there something i am missing?
