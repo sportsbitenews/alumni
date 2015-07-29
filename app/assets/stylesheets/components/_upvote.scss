@@ -1,0 +1,41 @@
+.upvote {
+  transition: 0.3s ease transform;
+  cursor: pointer;
+
+  &:hover {
+    color: $brand-color;
+    .upvote-item {border-color: $brand-color;}
+    .upvote-item figure {
+      transform: scale(1.8);
+      background: $brand-color;
+    }
+  }
+}
+
+.upvote-item {
+  height: 18px;
+  border: 2px solid black;
+  width: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  figure {
+    background: black;
+    border-radius: 50%;
+    height: 6px;
+    width: 6px;
+    transition: 0.1s ease transform;
+
+  }
+}
+
+.upvote-count {
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.5;
+  position: relative;
+  top: 2px;
+  font-size: 14px;
+}

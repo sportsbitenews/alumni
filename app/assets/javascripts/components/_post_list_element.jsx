@@ -6,11 +6,32 @@ class PostListElement extends React.Component {
 
   render() {
     return (
-      <div>
-        <span style={{ color: this.color() }}>{this.props.type}</span>
-        ({this.state.up_votes.length})
-        <a href="#" onClick={this.up_vote.bind(this)}>Vote</a>
-        {this.props.title} - {this.props.user.github_nickname}
+      <div className='post-item'>
+        <div className='post-item-upvote'>
+          <div onClick={this.up_vote.bind(this)} className='upvote'>
+            <div className='upvote-item'>
+              <figure />
+            </div>
+            <div className='upvote-count'>
+              {this.state.up_votes.length}
+            </div>
+          </div>
+        </div>
+
+        <div className='post-item-thumbnail' />
+        <div className='post-item-text'>
+          <div className='post-item-text-name'>
+            {this.props.title}
+          </div>
+          <div className='post-item-text-tagline'>
+            {this.props.tagline}
+          </div>
+        </div>
+        <div className='post-item-menu'>
+          <div>
+            <img src={this.props.user.gravatar_url} />
+          </div>
+        </div>
       </div>
     )
   }
