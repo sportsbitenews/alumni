@@ -6,12 +6,12 @@
 
 - title: 'Rails DB Migration - How To Drop a Table?'
   content: |
-  I added a table that I thought I was going to need, but now no longer plan on using it. How should I remove that table?
-  \
-  I've already ran migrations, so the table is in my database. I figure `rails generate migration` should be able to handle this, but I haven't figured out how yet.
-  \
-  I've tried
-  `rails generate migration drop_tablename`, but that just generated an empty migration.
+    I added a table that I thought I was going to need, but now no longer plan on using it. How should I remove that table?
+    \
+    I've already ran migrations, so the table is in my database. I figure `rails generate migration` should be able to handle this, but I haven't figured out how yet.
+    \
+    I've tried
+    `rails generate migration drop_tablename`, but that just generated an empty migration.
 
 
 - title: 'Rails, How to roll back a Migration file?'
