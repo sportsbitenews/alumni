@@ -5,7 +5,7 @@
 
 // Typography and background
 $font-family-sans-serif:  $base-font;
-$body-bg:                 lighten(#000, 93.5%);
+$body-bg:                 white;
 $font-size-base:          $base-size;
 $line-height-base:        $base-height;
 $headings-font-family:    $header-font;
@@ -30,3 +30,5 @@ $link-color: $green;
 // Grid padding
 $grid-gutter-width: 0 ;
 
+// Container
+$container-large-desktop: 900px;

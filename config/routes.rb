@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  root 'posts#index'
 
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :posts, only: :index do
     member do
       post :up_vote
