@@ -1,11 +1,14 @@
 var PostList = React.createClass({
   render: function() {
+    var posts = this.props.posts;
     return (
       <div>
-        {this.props.posts.map(post => {
-          var props = _.merge(post, { key: `${post.type}-${post.id}` });
-          return React.createElement(window[post.type + "ListElement"], props);
-        })}
+        <div className='container'>
+          {posts.map(post => {
+            var props = _.merge(post, { key: `${post.type}-${post.id}` });
+            return React.createElement(window[post.type + "ListElement"], props);
+          })}
+        </div>
       </div>
     );
   }
