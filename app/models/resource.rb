@@ -4,11 +4,11 @@
 #
 #  id         :integer          not null, primary key
 #  title      :string
-#  content    :text
 #  url        :string
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  tagline    :string
 #
 # Indexes
 #
@@ -17,6 +17,6 @@
 
 class Resource < ActiveRecord::Base
   include Post
-  validates :content, presence: true
+  validates :tagline, presence: true
   validates :url, presence: true, url: true, uniqueness: true
 end
