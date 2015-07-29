@@ -17,6 +17,6 @@
 
 class Resource < ActiveRecord::Base
   include Post
-  validates :content, presence: true
+  validates :tagline, presence: true
   validates :url, presence: true, url: true, uniqueness: true
 end
