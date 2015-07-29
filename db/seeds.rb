@@ -24,7 +24,7 @@ questions = YAML.load_file('db/support/questions.yml')
 questions.each do |q|
   question = Question.new
   question.title = q['title']
-  user_id = Random.rand(User.all.size)
+  question.user_id = Random.rand(User.all.size)
   question.save(validate: false)
   puts "Question ##{question.id} created"
 end
