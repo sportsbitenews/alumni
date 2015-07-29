@@ -24,6 +24,7 @@ questions.each do |q|
   question = Question.new
   question.title = q['title']
   question.user_id = Random.rand(User.all.size)
+  question.content = q['content']
   question.save
   puts "Question ##{question.id} created"
 end
