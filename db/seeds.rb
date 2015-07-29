@@ -34,6 +34,7 @@ resources['posts'].each do |r|
   resource = Resource.new
   resource.title = r['name']
   resource.url = r['redirect_url']
+  resource.tagline = r['tagline']
   resource.user_id = Random.rand(User.all.size)
   resource.save(validate: false)
 
