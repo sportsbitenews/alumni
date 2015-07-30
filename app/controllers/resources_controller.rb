@@ -1,5 +1,6 @@
 class ResourcesController < ApplicationController
   skip_after_action :verify_authorized, only: :preview
+  before_action :set_resource, only: :show
 
   def new
     @resource = Resource.new
@@ -11,6 +12,10 @@ class ResourcesController < ApplicationController
     render json: website
   rescue Exception => e
     render json: { error: e.message }
+  end
+
+  def show
+    authorize @resource
   end
 
   def create
@@ -25,6 +30,10 @@ class ResourcesController < ApplicationController
   end
 
   private
+
+  def set_resource
+    @resource = Resource.find(params[:id])
+  end
 
   def resource_params
     params.require(:resource).permit(:url, :title, :content)

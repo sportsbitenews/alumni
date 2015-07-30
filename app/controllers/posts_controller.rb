@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_after_action :verify_policy_scoped, only: :index
-  before_action :set_post, only: :up_vote
+  before_action :set_post, only: [:up_vote, :show]
 
   def index
     # TODO(ssaunier): sort by score

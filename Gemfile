@@ -16,6 +16,7 @@ gem "paperclip"
 gem "aws-sdk", "< 2.0"
 gem 'acts_as_votable', '~> 0.10.0'
 gem "validate_url"
+gem "autoprefixer-rails"
 
 gem "jquery-rails"
 gem "sass-rails", "~> 5.0"
@@ -29,6 +30,10 @@ gem "jbuilder"
 gem "rails-i18n"
 gem "link_thumbnailer"
 gem "js-routes"
+
+source "https://rails-assets.org" do
+  gem "rails-assets-classnames"
+end
 
 group :development, :test do
   gem "spring"

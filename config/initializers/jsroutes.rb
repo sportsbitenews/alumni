@@ -6,6 +6,7 @@ JsRoutes.setup do |config|
   #                 before restarting your `rails s`.
   config.include = [
     /up_vote/,
-    /resources/
+    /resource/,
+    /question/
   ]
 end
