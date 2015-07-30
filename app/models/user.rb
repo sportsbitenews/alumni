@@ -18,7 +18,6 @@
 #  uid                    :string
 #  github_nickname        :string
 #  gravatar_url           :string
-#  name                   :string
 #  github_token           :string
 #  fist_name              :string
 #  last_name              :string
@@ -28,6 +27,8 @@
 #  teacher                :boolean          default(FALSE), not null
 #  batch_id               :integer
 #  slack_uid              :string
+#  phone                  :string
+#  slack_token            :string
 #
 # Indexes
 #
