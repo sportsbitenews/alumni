@@ -9,13 +9,27 @@ class SlackService
   end
 
   def connected_to_slack?(user)
-    from_cache('connected', user.id) do
-      if user.slack_uid.present?
+    if user.slack_uid.present?
+      from_cache('connected', user.id) do
         response = @client.users_getPresence(user: user.slack_uid)
         response["presence"] == "active"
-      else
-        false
+      end
+    else
+      false
+    end
+  end
+
+  def slack_username(user)
+    if user.slack_uid.present?
+      from_cache('username', user.id, expire: 1.day) do
+        response = @client.users_info(user: user.slack_uid)
+        response["user"]["name"]
       end
     end
+  end
+
+  def user_messages_slack_url(user)
+    username = slack_username(user)
+    "https://lewagon-alumni.slack.com/messages/@#{username}" if username
   end
 end

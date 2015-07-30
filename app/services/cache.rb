@@ -1,5 +1,10 @@
 module Cache
   def from_cache(*args, &block)
+    expire = default_expire
+    if args.last.is_a?(Hash)
+      options = args.pop
+      expire = options.fetch(:expire, expire)
+    end
     the_key = key(*args)
     if (value = redis.get(the_key)).nil?
       value = yield(self)
@@ -21,7 +26,7 @@ module Cache
     $redis
   end
 
-  def expire
+  def default_expire
     30.seconds
   end
 end
