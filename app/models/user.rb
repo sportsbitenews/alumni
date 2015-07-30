@@ -27,6 +27,7 @@
 #  teacher_assistant      :boolean          default(FALSE), not null
 #  teacher                :boolean          default(FALSE), not null
 #  batch_id               :integer
+#  slack_uid              :string
 #
 # Indexes
 #

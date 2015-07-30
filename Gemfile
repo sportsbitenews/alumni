@@ -17,6 +17,8 @@ gem "aws-sdk", "< 2.0"
 gem 'acts_as_votable', '~> 0.10.0'
 gem "validate_url"
 gem "autoprefixer-rails"
+gem "redis"
+gem "slack-api"
 
 gem "jquery-rails"
 gem "sass-rails", "~> 5.0"
