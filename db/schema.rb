@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729130001) do
+ActiveRecord::Schema.define(version: 20150730121321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20150729130001) do
     t.boolean  "teacher_assistant",      default: false, null: false
     t.boolean  "teacher",                default: false, null: false
     t.integer  "batch_id"
+    t.string   "slack_uid"
   end
 
   add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree
