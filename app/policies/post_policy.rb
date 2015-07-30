@@ -6,6 +6,6 @@ class PostPolicy < ApplicationPolicy
   end
 
   def up_vote?
-    record.user == user
+    !user.nil?
   end
 end
