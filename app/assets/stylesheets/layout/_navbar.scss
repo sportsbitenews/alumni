@@ -1,8 +1,11 @@
-.resources-show .nav-bar{
-  position: absolute;
-  left: 0;
-  right: 0;
-  background: none;
+.resources-show,
+.questions-show {
+  .nav-bar{
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: none;
+  }
 }
 
 .nav-bar {background: rgba(0, 0, 0, 0.05);}
