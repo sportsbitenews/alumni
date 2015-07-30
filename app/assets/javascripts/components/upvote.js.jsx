@@ -3,13 +3,13 @@ class Upvote extends React.Component {
     super(props);
     this.state = {
       up_votes: props.up_votes,
-      upvoted: props.upvoted
+      up_voted: props.up_voted
     };
   }
   render() {
     var upvoteClasses = classNames({
       'upvote': true,
-      'is-upvoted': this.state.upvoted
+      'is-upvoted': this.state.up_voted
     });
     return(
       <div onClick={this.up_vote.bind(this)} className={upvoteClasses}>
@@ -30,7 +30,7 @@ class Upvote extends React.Component {
       (data) => {
         this.setState({
           up_votes: data.up_votes,
-          upvoted: data.upvoted
+          up_voted: data.up_voted
         });
       }
     );
