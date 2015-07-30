@@ -5,7 +5,7 @@
 While developing, you shall go faster by disabling back-end React rendering:
 
 ```bash
-$ NO_PRERENDER=true rails s
+$ PRERENDER=false rails s
 ```
 
 ## Figaro
