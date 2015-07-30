@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
     flash[:error] = I18n.t('controllers.application.user_not_authorized', default: "You can't access this page.")
     redirect_to(root_path)
   end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end
