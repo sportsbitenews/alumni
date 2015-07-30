@@ -1,7 +1,9 @@
 <div class='nav-bar'>
   <div class="container">
     <div class="navbar-logo">
+    <%= link_to root_path do %>
       <%= render 'shared/logo' %>
+    <% end %>
     </div>
     <div class='navbar-right'>
       <% if user_signed_in? %>

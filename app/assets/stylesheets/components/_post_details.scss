@@ -1,0 +1,83 @@
+
+.post-detail-header {
+  background-image: linear-gradient(90deg, #43cea2 10%, #185a9d 90%);
+  background-color: #3D7EAA;
+  padding: 60px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &-action {
+    flex-direction: row;
+    display: flex;
+    margin-top: 40px;
+
+    a {display: flex}
+  }
+}
+
+.post-detail {
+  &-name {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-weight: 600;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  &-tagline {
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    opacity: 0.5;
+    line-height: 2;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.post-detail-upvote {
+  .upvote {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 7px 12px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    color: white;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+
+      figure {background: white}
+    }
+    .upvote-item {border-color: white}
+    figure {background: white}
+
+    &.is-upvoted {
+      color: $brand-color;
+      background-color: white;
+
+      &:hover {
+        figure {background: $brand-color}
+      }
+      .upvote-item{border-color: $brand-color}
+    }
+  }
+}
+
+.post-detail-url {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  display: flex;
+  border-radius: 3px;
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  margin-left: 20px;
+  font-size: 16px;
+
+  &:hover {
+    background:  rgba(255, 255, 255, 0.2);
+  }
+}

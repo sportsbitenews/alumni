@@ -9,6 +9,7 @@ class ResourcePolicy < PostPolicy
     !user.nil?
   end
 
+
   def preview?
     !user.nil?
   end
