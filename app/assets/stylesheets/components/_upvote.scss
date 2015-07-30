@@ -5,6 +5,12 @@
   &:hover {
     color: $brand-color;
     .upvote-item {border-color: $brand-color;}
+    .upvote-item figure {background: $brand-color;}
+  }
+
+  &.is-upvoted {
+    color: $brand-color;
+    .upvote-item {border-color: $brand-color}
     .upvote-item figure {
       transform: scale(1.8);
       background: $brand-color;
@@ -26,7 +32,7 @@
     border-radius: 50%;
     height: 6px;
     width: 6px;
-    transition: 0.1s ease transform;
+    transition: 0.2s ease transform;
 
   }
 }
