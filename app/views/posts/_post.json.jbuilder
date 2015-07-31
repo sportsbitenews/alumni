@@ -6,7 +6,7 @@ json.user do
 end
 
 json.up_votes do
-  json.array! post.votes_for do |vote|
+  json.array! post.votes_for.includes(:voter) do |vote|
     json.extract! vote.voter, :id, :gravatar_url
   end
 end
