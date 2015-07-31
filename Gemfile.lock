@@ -352,6 +352,3 @@ DEPENDENCIES
   spring
   uglifier
   validate_url
-
-BUNDLED WITH
-   1.10.5

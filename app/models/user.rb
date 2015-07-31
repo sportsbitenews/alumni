@@ -73,11 +73,11 @@ class User < ActiveRecord::Base
   end
 
   def connected_to_slack?
-    SlackService.new.connected_to_slack?(self)
+    @connected_to_slack ||= SlackService.new.connected_to_slack?(self)
   end
 
   def user_messages_slack_url
-    SlackService.new.user_messages_slack_url(self)
+    @user_messages_slack_url ||= SlackService.new.user_messages_slack_url(self)
   end
 
   private
@@ -93,12 +93,9 @@ class User < ActiveRecord::Base
   end
 
   def <=>(other)
-    slack_service = SlackService.new
-    self_connected = slack_service.connected_to_slack?(self)
-    other_connected = slack_service.connected_to_slack?(other)
-    if self_connected == other_connected
+    if connected_to_slack? == other.connected_to_slack?
       other.github_nickname.downcase <=> github_nickname.downcase
-    elsif self_connected && !other_connected
+    elsif connected_to_slack? && !other.connected_to_slack?
       1
     else
       -1
