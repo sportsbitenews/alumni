@@ -3,7 +3,6 @@
 //= require bootstrap-sprockets
 //= require react
 //= require react_ujs
-//= require classnames
 //= require components
 //= require_tree ./app
 
