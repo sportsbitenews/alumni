@@ -16,4 +16,13 @@ module Post
     #  return votes / (1 + ln(x/2 + 1))
     # }
   end
+
+  def mass_upvotes(count = 1)
+    upvotes = 0
+    (User.all - votes_for.voters).sample(count).each do |user|
+      user.up_votes self
+      upvotes += 1
+    end
+    upvotes
+  end
 end

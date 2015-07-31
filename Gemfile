@@ -45,6 +45,7 @@ group :development, :test do
   gem "quiet_assets"
   gem "pry-byebug"
   gem "pry-rails"
+  gem "bullet"
   gem "letter_opener"
 end
 

@@ -1,5 +1,13 @@
 # Le Wagon Alumni
 
+## React prerendering
+
+While developing, you shall go faster by disabling back-end React rendering:
+
+```bash
+$ PRERENDER=false rails s
+```
+
 ## Figaro
 
 You need to `touch config/application.yml` after your `git clone`. Here are the keys you need:
