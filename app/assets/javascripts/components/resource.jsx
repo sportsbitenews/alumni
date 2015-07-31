@@ -21,8 +21,10 @@ class Resource extends React.Component {
         </div>
        <PostDetailBody {...this.props} />
        <div className='post-detail-footer'>
-         <div className='post-detail-'>
-         </div>
+         <main>
+         </main>
+         <aside>
+         </aside>
        </div>
       </div>
     )
