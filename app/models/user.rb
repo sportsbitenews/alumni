@@ -72,6 +72,14 @@ class User < ActiveRecord::Base
     User.find(rand(count))
   end
 
+  def connected_to_slack?
+    SlackService.new.connected_to_slack?(self)
+  end
+
+  def user_messages_slack_url
+    SlackService.new.user_messages_slack_url(self)
+  end
+
   private
 
   def octokit_client

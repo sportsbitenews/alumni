@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       post :preview
     end
   end
+
+  get '/:github_nickname', to: 'users#show', as: :user
 end
