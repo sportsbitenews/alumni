@@ -35,6 +35,7 @@ gem "js-routes"
 
 source "https://rails-assets.org" do
   gem "rails-assets-classnames"
+  gem 'rails-assets-mdi' # material design icons
 end
 
 group :development, :test do

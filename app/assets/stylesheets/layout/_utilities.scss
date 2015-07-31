@@ -10,3 +10,27 @@ a {
     outline: 0;
   }
 }
+
+.section-title {
+  font-weight: bold;
+  padding-bottom: 0;
+  color: #bbb;
+  align-items: center;
+  display: flex;
+
+  padding: 10px;
+  padding-top: 20px;
+
+  &-h {
+    margin-left: auto;
+  }
+
+  i {
+    font-size: 23px;
+  }
+
+  span {
+    padding-left: 2px;
+    font-size: 14px;
+  }
+}

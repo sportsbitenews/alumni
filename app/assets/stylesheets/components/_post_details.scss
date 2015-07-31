@@ -1,10 +1,13 @@
-
-.post-detail-header {
+.post-details-header {
   padding: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
 
   &-action {
     flex-direction: row;
@@ -15,7 +18,7 @@
   }
 }
 
-.post-detail {
+.post-details {
   &-name {
     text-align: center;
     color: white;
@@ -34,7 +37,7 @@
   }
 }
 
-.post-detail-upvote {
+.post-details-upvote {
   .upvote {
     background-color: rgba(255, 255, 255, 0.15);
     padding: 7px 12px;
@@ -61,7 +64,7 @@
   }
 }
 
-.post-detail-url {
+.post-details-url {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.15);
   display: flex;
@@ -77,4 +80,63 @@
   &:hover {
     background:  rgba(255, 255, 255, 0.2);
   }
+}
+
+.post-details-body {
+  display: flex;
+
+  main {
+    flex: 1;
+  }
+
+  aside {
+    flex: 0 0 350px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+  }
+}
+
+.post-details-participant {
+  display: flex;
+  align-items: center;
+  padding: 9px;
+
+  &:hover {
+    .post-details-participant-avatar {
+      opacity: 1;
+    }
+  }
+  &-avatar {
+    opacity: 0.8;
+    img {
+      width: 30px;
+      border-radius: 50%;
+    }
+  }
+
+  &-name {
+    padding-left: 9px;
+  }
+
+  &-status {
+    background: rgb(149, 203, 149);
+    width: 8px;
+    height: 8px;
+    margin-left: auto;
+    border-radius: 50%;
+  }
+
+  &.is-offline {
+    opacity: 0.5;
+    .post-details-participant-status {
+      background: #CBCBCC;
+    }
+  }
+}
+
+.section-title {
+  font-weight: bold;
+  padding: 20px 10px;
+  padding-bottom: 0;
+  color: #bbb;
 }
