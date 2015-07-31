@@ -1,5 +1,6 @@
 class Resource extends React.Component {
   render() {
+    var upVotes = this.props.up_votes
     return (
       <div>
         <div className='post-detail-header resource-details'>
@@ -15,6 +16,15 @@ class Resource extends React.Component {
               </div>
             </a>
           </div>
+        </div>
+        <div className='post-detail-body'>
+          <main>
+          </main>
+          <aside>
+            <div className='post-detail-participants'>
+              {upVotes.map(upVote =>)}
+            </div>
+          </aside>
         </div>
       </div>
     )

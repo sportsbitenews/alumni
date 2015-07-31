@@ -7,7 +7,7 @@ end
 
 json.up_votes do
   json.array! post.votes_for.includes(:voter) do |vote|
-    json.extract! vote.voter, :id, :gravatar_url
+    json.extract! vote.voter, :id, :gravatar_url, :github_nickname
   end
 end
 
