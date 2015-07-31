@@ -17,12 +17,21 @@ module Post
     # }
   end
 
-  def mass_upvotes(count = 1)
+  def add_upvotes(count = 1)
     upvotes = 0
     (User.all - votes_for.voters).sample(count).each do |user|
       user.up_votes self
       upvotes += 1
     end
     upvotes
+  end
+
+  def add_answers(count = 1)
+    count.times do
+      answer = self.answers.build
+      answer.user = User.random
+      answer.content = open("http://jaspervdj.be/lorem-markdownum/markdown.txt?num-blocks=#{rand(1..4)}"){|io| io.read }
+      answer.save
+    end
   end
 end

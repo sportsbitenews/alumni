@@ -66,6 +66,10 @@ class User < ActiveRecord::Base
     user.github_nickname = auth.info.nickname
   end
 
+  def self.random
+    User.find(rand(count))
+  end
+
   private
 
   def octokit_client
