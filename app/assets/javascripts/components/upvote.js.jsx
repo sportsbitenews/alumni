@@ -2,38 +2,52 @@ class Upvote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      up_votes: props.up_votes,
-      up_voted: props.up_voted
+      upVotes: props.up_votes,
+      upVoted: props.up_voted
     };
+
+    // http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
+    this.onStoreChange = this.onStoreChange.bind(this);
+    this.upVote        = this.upVote.bind(this);
   }
+
+  componentDidMount() {
+    PostStore.listen(this.onStoreChange);
+  }
+
+  componentWillUnmount() {
+    PostStore.unlisten(this.onStoreChange);
+  }
+
+  onStoreChange(store) {
+    var post = store.getPost(this.props.type, this.props.id);
+    if (post) {
+      this.setState({
+        upVotes: post.up_votes,
+        upVoted: post.up_voted
+      });
+    }
+  }
+
   render() {
     var upvoteClasses = classNames({
       'upvote': true,
-      'is-upvoted': this.state.up_voted
+      'is-upvoted': this.state.upVoted
     });
     return(
-      <div onClick={this.up_vote.bind(this)} className={upvoteClasses}>
+      <div onClick={this.upVote} className={upvoteClasses}>
         <div className='upvote-item'>
           <figure />
         </div>
         <div className='upvote-count'>
-          {this.state.up_votes.length}
+          {this.state.upVotes.length}
         </div>
       </div>
     )
   }
 
-  up_vote(e) {
-    $.post(
-      Routes.up_vote_post_path(this.props.id),
-      { type: this.props.type },
-      (data) => {
-        this.setState({
-          up_votes: data.up_votes,
-          up_voted: data.up_voted
-        });
-      }
-    );
+  upVote(e) {
+    PostActions.upVote(this.props.type, this.props.id);
     e.preventDefault();
   }
 }
