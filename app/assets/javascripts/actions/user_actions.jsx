@@ -1,10 +1,8 @@
 class UserActionsClass {
-  fetchUser(id) {
+  fetchUsers(ids) {
     $.get(
-      Routes.user_path(id, { format: 'json' }),
-      (user) => {
-        this.dispatch(user);
-      }
+      Routes.users_path({ ids: ids, format: 'json' }),
+      (data) => this.dispatch(data.users)
     );
   }
 }

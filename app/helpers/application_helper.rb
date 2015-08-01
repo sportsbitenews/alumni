@@ -9,4 +9,8 @@ module ApplicationHelper
   def prerender?
     ENV['PRERENDER'] != 'false'
   end
+
+  def user_properties
+    User.properties(user_signed_in?)
+  end
 end

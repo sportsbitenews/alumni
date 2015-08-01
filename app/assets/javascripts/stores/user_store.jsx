@@ -2,12 +2,12 @@ class UserStoreClass {
   constructor() {
     this.users = {};  // id => User
     this.bindListeners({
-      updateUser: UserActions.fetchUser
+      updateUsers: UserActions.fetchUsers
     });
   }
 
-  updateUser(user) {
-    this.users[user.id] = user;
+  updateUsers(users) {
+    _.each(users, (user) => this.users[user.id] = user);
   }
 
   getUser(id) {

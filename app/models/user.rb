@@ -40,6 +40,9 @@
 class User < ActiveRecord::Base
   LEWAGON_GITHUB_ORGANIZATION = 'lewagon'.freeze
 
+  PUBLIC_PROPERTIES = %i(id github_nickname gravatar_url)
+  PRIVATE_PROPERTIES = %i()
+
   devise :trackable, :database_authenticatable
   devise :omniauthable, :omniauth_providers => [:github]
 
@@ -51,6 +54,11 @@ class User < ActiveRecord::Base
   has_many :questions
 
   acts_as_voter
+
+  # include Devise::Controllers::Helpers
+  def self.properties(user_signed_in)
+    PUBLIC_PROPERTIES + (user_signed_in ? PRIVATE_PROPERTIES : [])
+  end
 
   def self.find_for_github_oauth(auth)
     user = where(uid: auth[:uid]).first || User.new

@@ -15,7 +15,7 @@ class PostDetailBody extends React.Component {
     UserStore.listen(this.onUserStoreChange);
 
     // Fetch Slack connection status for everyone
-    _.each(this.props.up_votes, (upVote) => UserActions.fetchUser(upVote.id));
+    UserActions.fetchUsers(_.map(this.props.up_votes, 'id'));
   }
 
   componentWillUnmount() {
