@@ -10,7 +10,7 @@ class SlackService
 
   def connected_to_slack?(user)
     if user.slack_uid.present?
-      from_cache('connected', user.id) do
+      from_cache('connected', user.id, expire: 5.minutes) do
         response = @client.users_getPresence(user: user.slack_uid)
         response["presence"] == "active"
       end

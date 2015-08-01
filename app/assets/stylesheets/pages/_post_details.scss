@@ -1,0 +1,16 @@
+.resources-show, .questions-show {
+  height: 100%;
+  body {height: 100%}
+}
+
+.post-detail {height: 100%}
+
+.post-detail-page {
+  height: 100%;
+}
+
+.post-detail-body {
+  height: 100%;
+
+  main, aside {min-height: 100%}
+}

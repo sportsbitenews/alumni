@@ -1,0 +1,1 @@
+var alt = new Alt();
