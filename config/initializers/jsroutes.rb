@@ -8,6 +8,7 @@ JsRoutes.setup do |config|
     /up_vote/,
     /resource/,
     /question/,
-    /^users$/
+    /^users$/,
+    /^profile$/
   ]
 end

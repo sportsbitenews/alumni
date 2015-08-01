@@ -69,7 +69,7 @@ class PostDetailBody extends React.Component {
               })
 
               return (
-                <div className={participantClasses} key={upVote.id}>
+                <a href={Routes.profile_path(upVote.github_nickname)} className={participantClasses} key={upVote.id}>
                   <div className='post-detail-participant-avatar'>
                     <img src={upVote.gravatar_url} />
                   </div>
@@ -78,7 +78,7 @@ class PostDetailBody extends React.Component {
                   </div>
 
                   <div className='post-detail-participant-status' />
-                </div>
+                </a>
               )
             })}
           </div>
