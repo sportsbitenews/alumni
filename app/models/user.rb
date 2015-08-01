@@ -38,8 +38,6 @@
 #
 
 class User < ActiveRecord::Base
-  include Comparable
-
   LEWAGON_GITHUB_ORGANIZATION = 'lewagon'.freeze
 
   devise :trackable, :database_authenticatable
@@ -89,16 +87,6 @@ class User < ActiveRecord::Base
   def belongs_to_lewagon_github_org
     unless octokit_client.organization_member?(LEWAGON_GITHUB_ORGANIZATION, github_nickname)
       errors.add(:github_nickname, "Sorry, you don't belong to lewagon GitHub organization")
-    end
-  end
-
-  def <=>(other)
-    if connected_to_slack? == other.connected_to_slack?
-      other.github_nickname.downcase <=> github_nickname.downcase
-    elsif connected_to_slack? && !other.connected_to_slack?
-      1
-    else
-      -1
     end
   end
 end
