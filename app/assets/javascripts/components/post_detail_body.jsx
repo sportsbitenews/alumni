@@ -33,15 +33,7 @@ class PostDetailBody extends React.Component {
   }
 
   onUserStoreChange(store) {
-    var newUpVotes = [];
-    _.each(this.state.upVotes, function(upVote) {
-      var user = store.getUser(upVote.id);
-      if (user) {
-        newUpVotes.push(user);
-      } else {
-        newUpVotes.push(upVote);
-      }
-    });
+    var newUpVotes = _.map(this.state.upVotes, (upVote) => store.getUser(upVote.id) || upVote);
     this.setState({ upVotes: newUpVotes });
   }
 
