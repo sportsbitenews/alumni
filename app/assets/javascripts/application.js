@@ -1,8 +1,14 @@
-//= require jquery
-//= require jquery_ujs
-//= require bootstrap-sprockets
+/*
+Not required:
+jquery
+jquery_ujs
+bootstrap-sprockets
+*/
+
 //= require react
 //= require react_ujs
+//= require axios
+//= require ./axios_ujs
 //= require components
 //= require_tree ./app
 

@@ -1,9 +1,7 @@
 class UserActionsClass {
   fetchUsers(ids) {
-    $.get(
-      Routes.users_path({ ids: ids, format: 'json' }),
-      (data) => this.dispatch(data.users)
-    );
+    axios.get(Routes.users_path({ ids: ids, format: 'json' }))
+      .then((response) => this.dispatch(response.data));
   }
 }
 

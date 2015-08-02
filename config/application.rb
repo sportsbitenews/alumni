@@ -17,6 +17,8 @@ Bundler.require(*Rails.groups)
 
 module Alumni
   class Application < Rails::Application
+    config.middleware.use Rack::Deflater
+
     config.i18n.enforce_available_locales = true
     config.embed_authenticity_token_in_remote_forms = true
 
