@@ -5,7 +5,7 @@ json.user do
   json.extract! post.user, *user_properties
 end
 
-json.up_votes do
+json.up_voters do
   json.array! post.votes_for.includes(:voter).map do |vote|
     json.extract! vote.voter, *user_properties
     # Do not fetch Slack connection status here, too expensive

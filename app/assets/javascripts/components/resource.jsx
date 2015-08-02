@@ -1,6 +1,6 @@
 class Resource extends React.Component {
   render() {
-    var upVotes = this.props.up_votes;
+    var upVoters = this.props.up_voters;
     return (
       <div className='post-detail'>
         <div className='post-detail-header resource-detail'>

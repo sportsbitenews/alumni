@@ -14,8 +14,8 @@ class PostStoreClass {
     this.posts[post.type][post.id] = post;
 
     UserActions.fetchUsers(
-      _.chain(post.up_votes)
-       .filter((upVote) => typeof UserStore.state.getUser(upVote.id) === "undefined")
+      _.chain(post.up_voters)
+       .filter((upVoter) => typeof UserStore.state.getUser(upVoter.id) === "undefined")
        .map('id')
        .value());
   }
