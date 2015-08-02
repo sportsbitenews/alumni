@@ -14,5 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/:github_nickname', to: 'users#show', as: :user
+  resources :users, only: %i(index)
+
+  get '/:github_nickname', to: 'users#show', as: :profile
 end

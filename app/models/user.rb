@@ -38,9 +38,10 @@
 #
 
 class User < ActiveRecord::Base
-  include Comparable
-
   LEWAGON_GITHUB_ORGANIZATION = 'lewagon'.freeze
+
+  PUBLIC_PROPERTIES = %i(id github_nickname gravatar_url)
+  PRIVATE_PROPERTIES = %i(slack_uid)
 
   devise :trackable, :database_authenticatable
   devise :omniauthable, :omniauth_providers => [:github]
@@ -53,6 +54,11 @@ class User < ActiveRecord::Base
   has_many :questions
 
   acts_as_voter
+
+  # include Devise::Controllers::Helpers
+  def self.properties(user_signed_in)
+    PUBLIC_PROPERTIES + (user_signed_in ? PRIVATE_PROPERTIES : [])
+  end
 
   def self.find_for_github_oauth(auth)
     user = where(uid: auth[:uid]).first || User.new
@@ -89,16 +95,6 @@ class User < ActiveRecord::Base
   def belongs_to_lewagon_github_org
     unless octokit_client.organization_member?(LEWAGON_GITHUB_ORGANIZATION, github_nickname)
       errors.add(:github_nickname, "Sorry, you don't belong to lewagon GitHub organization")
-    end
-  end
-
-  def <=>(other)
-    if connected_to_slack? == other.connected_to_slack?
-      other.github_nickname.downcase <=> github_nickname.downcase
-    elsif connected_to_slack? && !other.connected_to_slack?
-      1
-    else
-      -1
     end
   end
 end

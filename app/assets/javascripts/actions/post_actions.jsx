@@ -1,12 +1,7 @@
 class PostActionsClass {
   upVote(type, id) {
-    $.post(
-      Routes.up_vote_post_path(id),
-      { type: type },
-      (post) => {
-        this.dispatch(post);
-      }
-    );
+    axios.railsPost(Routes.up_vote_post_path(id, { format: 'json' }), { type: type })
+      .then((response) => this.dispatch(response.data));
   }
 }
 

@@ -7,6 +7,8 @@ JsRoutes.setup do |config|
   config.include = [
     /up_vote/,
     /resource/,
-    /question/
+    /question/,
+    /^users$/,
+    /^profile$/
   ]
 end

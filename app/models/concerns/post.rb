@@ -20,7 +20,7 @@ module Post
   def add_upvotes(count = 1)
     upvotes = 0
     (User.all - votes_for.voters).sample(count).each do |user|
-      user.up_votes self
+      user.up_voters self
       upvotes += 1
     end
     upvotes

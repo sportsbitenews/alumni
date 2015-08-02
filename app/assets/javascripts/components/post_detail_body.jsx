@@ -2,32 +2,48 @@ class PostDetailBody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      upVotes: props.up_votes
+      upVoters: props.up_voters
     };
 
     // http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
     this.onStoreChange = this.onStoreChange.bind(this);
+    this.onUserStoreChange = this.onUserStoreChange.bind(this);
   }
 
   componentDidMount() {
     PostStore.listen(this.onStoreChange);
+    UserStore.listen(this.onUserStoreChange);
+
+    // Fetch Slack connection status for everyone
+    UserActions.fetchUsers(_.map(this.props.up_voters, 'id'));
   }
 
   componentWillUnmount() {
     PostStore.unlisten(this.onStoreChange);
+    UserStore.unlisten(this.onUserStoreChange);
   }
 
   onStoreChange(store) {
     var post = store.getPost(this.props.type, this.props.id);
     if (post) {
       this.setState({
-        upVotes: post.up_votes
+        upVoters: post.up_voters
       });
     }
   }
 
+  onUserStoreChange(store) {
+    var newUpVoters = _.map(this.state.upVoters, (upVoter) => store.getUser(upVoter.id) || upVoter);
+    this.setState({ upVoters: newUpVoters });
+  }
+
   render() {
-    var connectedUsersWhoUpvoted = _.sum(this.state.upVotes, (upVote) => upVote.connected_to_slack ? 1 : 0);
+    var connectedUsersWhoUpvoted = _.sum(this.state.upVoters, (upVoter) => upVoter.connected_to_slack ? 1 : 0);
+    var sortedUpVoters = _.sortByAll(
+      this.state.upVoters,
+      (upVoter) => upVoter.connected_to_slack ? 0 : 1,
+      (upVoter) => upVoter.github_nickname.toLowerCase()
+    );
 
     return (
       <div className='post-detail-body'>
@@ -36,25 +52,25 @@ class PostDetailBody extends React.Component {
         <aside>
           <div className='post-detail-participants'>
             <div className='section-title'>
-              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {this.state.upVotes.length} PARTICIPANTS
+              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {this.state.upVoters.length} PARTICIPANTS
             </div>
-            {this.state.upVotes.map(upVote => {
+            {sortedUpVoters.map(upVoter => {
               var participantClasses = classNames({
                 'post-detail-participant': true,
-                'is-offline': !upVote.connected_to_slack
+                'is-offline': !upVoter.connected_to_slack
               })
 
               return (
-                <div className={participantClasses} key={upVote.id}>
+                <a href={Routes.profile_path(upVoter.github_nickname)} className={participantClasses} key={upVoter.id}>
                   <div className='post-detail-participant-avatar'>
-                    <img src={upVote.gravatar_url} />
+                    <img src={upVoter.gravatar_url} />
                   </div>
                   <div className='post-detail-participant-name'>
-                    {upVote.github_nickname}
+                    {upVoter.github_nickname}
                   </div>
 
                   <div className='post-detail-participant-status' />
-                </div>
+                </a>
               )
             })}
           </div>
