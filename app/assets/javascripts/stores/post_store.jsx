@@ -13,11 +13,11 @@ class PostStoreClass {
   updatePost(post) {
     this.posts[post.type][post.id] = post;
 
-    var missingUsers = _.filter(post.up_votes,
-      (user) => typeof UserStore.state.getUser(user.id) === "undefined");
-    if (missingUsers.length) {
-      UserActions.fetchUsers(_.map(missingUsers, 'id'));
-    }
+    UserActions.fetchUsers(
+      _.chain(post.up_votes)
+       .filter((upVote) => typeof UserStore.state.getUser(upVote.id) === "undefined")
+       .map('id')
+       .value());
   }
 
   getPost(type, id) {
