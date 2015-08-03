@@ -8,7 +8,7 @@ class Upvote extends React.Component {
 
     // http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
     this.onStoreChange = this.onStoreChange.bind(this);
-    this.upVoter        = this.upVoter.bind(this);
+    this.upVote        = this.upVote.bind(this);
   }
 
   componentDidMount() {
