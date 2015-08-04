@@ -21,7 +21,7 @@ class PostListElement extends React.Component {
           </div>
           <div className='post-item-menu'>
             <div>
-              <img src={this.props.user.gravatar_url} />
+              <img src={this.props.user.gravatar_url} className='avatar' />
             </div>
           </div>
         </div>

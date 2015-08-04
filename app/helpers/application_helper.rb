@@ -13,4 +13,29 @@ module ApplicationHelper
   def user_properties
     User.properties(user_signed_in?)
   end
+
+  def render_markdown(text)
+    return "" if text.blank?
+
+    cache = MarkdownCache.new
+    rendered_markdown = cache.rendered_markdown(text) do
+      require 'redcarpet'
+      markdown = Redcarpet::Markdown.new PygmentizeHTML, fenced_code_blocks: true
+      markdown.render text
+    end
+    raw rendered_markdown
+  end
+
+  class PygmentizeHTML < Redcarpet::Render::HTML
+    def initialize(extensions = {})
+      super extensions.merge(link_attributes: { target: "_blank" })
+    end
+
+    def block_code(code, language)
+      language = :javascript if language == "json"
+      language = :bash unless language
+      require 'pygmentize'
+      Pygmentize.process(code, language)
+    end
+  end
 end

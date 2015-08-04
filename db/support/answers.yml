@@ -1,0 +1,70 @@
+- content: |
+    Si quelqu’un pouvait me faire un petit refresh sur le js.erb je suis assez preneur. J’ai une librairie js qui va chercher des infos dans /visits/id.json =>
+    ```
+      url = "/visits/id.json »
+    ```
+    ```
+      $('#calendar_simulations_edit').fullCalendar({
+            editable: true, // enable draggable events
+            scrollTime: '00:00', // undo default 6am scrollTime
+            droppable: true,
+            selectable: true,
+            allDay:true,
+            resourceAreaWidth: "15%",
+            header: {
+              left: 'today prev,next',
+              center: 'title',
+              right: ''
+            },
+            defaultView: 'timelineThreeDays',
+            views: {
+              timelineThreeDays: {
+                type: 'timeline',
+                duration: { days: 365 }
+              }
+            },
+            resourceLabelText: 'Aircrafts',
+            resources: '../aircrafts.json',
+            eventSources: [
+              { url: '../visits/1.json',
+                editable: true,
+                className: ['visits']
+              },
+    ```
+
+    J’aimerai pouvoir dans un fichier edit.js.erb fixer cette variable url selon la valeur de l’id  et y faire appel dans la var js url. j’ai essayé de mettre mon code js dans edit.js.erb et d’utiliser 'escape js’ mais sans succès. Des idées?
+    Thanks
+
+- content: |
+    Hello
+    Est que quelqu’un connait un outil qui permet de suivre les mises à jours de blog? En gros être averti dès qu’un nouveau post a été publié sur tel ou tel blog :wink:
+
+- content: |
+    apparemment le bon vieux + marche, mais il manque le passage à la ligne. Je vais investiguer. Le plus dur est fait !
+    Merci bcp
+
+- content: |
+    \0/ j'ai l'impression que tu peux faire une partial en lisant ça => http://stackoverflow.com/questions/19607462/gmaps4rails-infowindows-ruby-rails
+
+- content: |
+    Alors dans ton controlleur, t'as ça :
+    ``` @markers = Gmaps4rails.build_markers(@pets) do |pet, marker|
+    marker.lat pet.latitude
+    marker.lng pet.longitude
+    marker.title pet.name
+    marker.infowindow pet.description
+    })```
+    et c'est tout normalement puisque dans ta vue, ça fait : `markers = handler.addMarkers(<%= raw @markers.to_json %>);`
+
+- content: |
+    @christopher_lmn:  [@juliendebray](/julienrdebray) devrait pouvoir t'aider, il l'a fait pour [explorizers](http://explorizers.com/)
+
+- content: |
+    Pas forcément non. Si tu cherches à le faire plus simplement, une fonction onclick de ton search button qui call en ajax ta méthode search + une vue js.erb devrait faire l'affaire non ?
+
+- content: |
+    @brice: je pensais qu’on pouvait le faire simplement. Algolia me parait indispensable pour des grosses bases de données.
+
+- content: |
+    chelou j’ai toujours cette erreur
+    ```Redis::CommandError: ERR unknown command ‘visit=‘```

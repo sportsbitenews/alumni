@@ -27,10 +27,9 @@ module Post
   end
 
   def add_answers(count = 1)
-    count.times do
-      answer = self.answers.build
+    YAML.load_file(Rails.root.join('db/support/answers.yml')) .sample(count).each do |attributes|
+      answer = answers.build attributes
       answer.user = User.random
-      answer.content = open("http://jaspervdj.be/lorem-markdownum/markdown.txt?num-blocks=#{rand(1..4)}"){|io| io.read }
       answer.save
     end
   end
