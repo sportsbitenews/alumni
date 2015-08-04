@@ -10,6 +10,8 @@ class AnswersController < ApplicationController
 
   def create
     answer = @post.answers.build user: current_user, content: params[:content]
-    answer.save
+    if !answer.save
+      @post.answers.delete(answer)
+    end
   end
 end

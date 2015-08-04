@@ -110,13 +110,13 @@
   margin-left: auto;
   padding: 10px 20px;
   margin-top: 10px;
-  background-color: #0CE414;
+  background-color: $green;
   cursor: pointer;
-  border-radius: 20em;
+  border-radius: 4px;
   color: white;
   display: none;
 
   &:hover {
-    font-weight: bold;
+
   }
 }
