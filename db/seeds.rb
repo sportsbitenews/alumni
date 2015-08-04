@@ -23,7 +23,7 @@ questions = YAML.load_file('db/support/questions.yml')
 questions.each do |q|
   question = Question.new
   question.title = q['title']
-  question.user_id = Random.rand(User.all.size)
+  question.user = User.random
   question.content = q['content']
   question.save
   puts "Question ##{question.id} created"
@@ -35,8 +35,16 @@ resources['posts'].each do |r|
   resource.title = r['name']
   resource.url = r['redirect_url']
   resource.tagline = r['tagline']
-  resource.user_id = Random.rand(User.all.size)
+  resource.user = User.random
   resource.save
 
   puts "#{resource.title} created"
 end
+
+# answers = YAML.load_file('db/support/answers')
+# answers.each do |answer|
+#   answer = answer.new
+#   answer.content = answer['content']
+#   answer.user = User.random
+#   user.save
+# end

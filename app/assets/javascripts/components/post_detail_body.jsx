@@ -2,7 +2,8 @@ class PostDetailBody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      upVoters: props.up_voters
+      upVoters: props.up_voters,
+      answers: props.answers
     };
 
     // http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
@@ -27,7 +28,8 @@ class PostDetailBody extends React.Component {
     var post = store.getPost(this.props.type, this.props.id);
     if (post) {
       this.setState({
-        upVoters: post.up_voters
+        upVoters: post.up_voters,
+        answers: post.answers
       });
     }
   }
@@ -48,11 +50,15 @@ class PostDetailBody extends React.Component {
     return (
       <div className='post-detail-body'>
         <main>
+          <div className='section-title'><i className='mdi mdi-comment-multiple-outline' /></div>
+          <div className='post-answers-container'>
+            {this.state.answers.map((props) => <AnswerItem {...props}/>)}
+          </div>
         </main>
-        <aside>
+        <aside className='post-detail-sidebar'>
           <div className='post-detail-participants'>
             <div className='section-title'>
-              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {this.state.upVoters.length} PARTICIPANTS
+              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {this.state.upVoters.length}
             </div>
             {sortedUpVoters.map(upVoter => {
               var participantClasses = classNames({
@@ -63,7 +69,7 @@ class PostDetailBody extends React.Component {
               return (
                 <a href={Routes.profile_path(upVoter.github_nickname)} className={participantClasses} key={upVoter.id}>
                   <div className='post-detail-participant-avatar'>
-                    <img src={upVoter.gravatar_url} />
+                    <img src={upVoter.gravatar_url} className='avatar' />
                   </div>
                   <div className='post-detail-participant-name'>
                     {upVoter.github_nickname}

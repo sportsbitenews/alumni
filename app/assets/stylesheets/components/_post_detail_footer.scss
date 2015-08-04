@@ -1,0 +1,25 @@
+.post-detail-footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: none;
+
+}
+
+.post-detail-author {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+  align-self: flex-end;
+
+  &-date {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #BBB;
+    font-size: 14px;
+    margin-left: auto;
+    padding: 10px;
+  }
+}

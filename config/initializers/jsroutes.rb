@@ -9,6 +9,8 @@ JsRoutes.setup do |config|
     /resource/,
     /question/,
     /^users$/,
-    /^profile$/
+    /^profile$/,
+    /^preview_answers$/,
+    /^answers$/
   ]
 end
