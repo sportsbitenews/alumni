@@ -50,7 +50,6 @@ class PostDetailBody extends React.Component {
     return (
       <div className='post-detail-body'>
         <main>
-          <div className='section-title'><i className='mdi mdi-comment-multiple-outline' /></div>
           <div className='post-answers-container'>
             {this.state.answers.map((props) => <AnswerItem {...props}/>)}
           </div>
@@ -74,7 +73,6 @@ class PostDetailBody extends React.Component {
                   <div className='post-detail-participant-name'>
                     {upVoter.github_nickname}
                   </div>
-
                   <div className='post-detail-participant-status' />
                 </a>
               )
