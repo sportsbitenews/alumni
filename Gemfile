@@ -19,6 +19,7 @@ gem "validate_url"
 gem "autoprefixer-rails"
 gem "redis"
 gem "slack-api"
+gem 'octicons-rails'
 
 gem 'redcarpet'
 gem 'pygmentize'

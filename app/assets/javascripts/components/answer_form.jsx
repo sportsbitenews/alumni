@@ -25,19 +25,19 @@ class AnswerForm extends React.Component {
 
     return(
       <div className={formClasses}>
-        <input placeholder="Respond a nice thing" onFocus={this.onFocusInput.bind(this)} ref="content" className='answer-form-input' onKeyUp={this.onKeyUp.bind(this)} onKeyDown={this.onKeyDown.bind(this)} />
-        <div className='answer-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}}></div>
         <div className='answer-form-actions'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="208" height="128" viewBox="0 0 208 128"><rect width="198" height="118" x="5" y="5" ry="10" stroke="#000" stroke-width="10" fill="none"/><path d="M30 98v-68h20l20 25 20-25h20v68h-20v-39l-20 25-20-25v39zM155 98l-30-33h20v-35h20v35h20z"/></svg>
-
-          <menu className="source-tile-menu" onClick={this.handleClick} type="toolbar">
-
-            <div className="toggle-switch"></div>
-            <div className="label-container">
-              <label className='label-on'>on</label>
-              <label className='label-off'>off</label>
-            </div>
-          </menu>
+          <a className='answer-form-action answer-form-action-write' onClick={this.onEditClick.bind(this)}>Write</a>
+          <hr />
+          <a className='answer-form-action answer-form-action-preview' onClick={this.onPreviewClick.bind(this)}>Preview</a>
+          <a className="answer-form-action-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
+            <span className="octicon octicon-markdown"></span>
+            Markdown supported
+          </a>
+        </div>
+        <textarea placeholder="Respond a nice thing" onFocus={this.onFocusInput.bind(this)} ref="content" className='answer-form-input' onKeyUp={this.onKeyUp.bind(this)} onKeyDown={this.onKeyDown.bind(this)} />
+        <div className='answer-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}}></div>
+        <div className='answer-form-submit' onClick={this.postAnswer.bind(this)}>
+          Submit your answer
         </div>
       </div>
     )
@@ -86,20 +86,26 @@ class AnswerForm extends React.Component {
     this.setState({
       preview: true
     })
-    AnswerActions.preview(this.content().value);
+    if (!this.state.blank) {
+      AnswerActions.preview(this.content().value);
+    }
   }
 
   onKeyDown(e) {
     if (e.which == 13 && (e.metaKey || e.ctrlKey)) {
-      AnswerActions.post(this.props.type, this.props.post_id, this.content().value);
-      this.setState({
-        pendingPost: true
-      })
+      this.postAnswer()
     }
-    else if (e.which == 27) {
+    else if (e.which == 27 && this.state.blank) {
       this.resetForm();
       this.content().blur();
     }
+  }
+
+  postAnswer() {
+    AnswerActions.post(this.props.type, this.props.post_id, this.content().value);
+    this.setState({
+      pendingPost: true
+    })
   }
 
   onKeyUp(e) {
@@ -119,7 +125,7 @@ class AnswerForm extends React.Component {
       editing: false,
       preview: false,
       pendingPost: false,
-      renderedContent: null,
+      renderedContent: "Nothing to preview",
       blank: true
     };
   }
