@@ -43,13 +43,14 @@ class PostDetailBody extends React.Component {
 
   render() {
     var usersInDiscussion = _.union(this.state.upVoters, this.state.answerers)
+    var usersInDiscussion = _.uniq(usersInDiscussion, function(item){return JSON.stringify(item);})
+    console.log(usersInDiscussion)
     var connectedUsersWhoUpvoted = _.sum(usersInDiscussion, (upVoter) => upVoter.connected_to_slack ? 1 : 0);
     var sortedUpVoters = _.sortByAll(
       usersInDiscussion,
       (upVoter) => upVoter.connected_to_slack ? 0 : 1,
       (upVoter) => upVoter.github_nickname.toLowerCase()
     );
-    var sortedUpVoters = _.uniq(sortedUpVoters, function(item){return JSON.stringify(item);})
 
     return (
       <div className='post-detail-body'>
@@ -61,7 +62,7 @@ class PostDetailBody extends React.Component {
         <aside className='post-detail-sidebar'>
           <div className='post-detail-participants'>
             <div className='section-title'>
-              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {sortedUpVoters.length}
+              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {usersInDiscussion.length}
             </div>
             {sortedUpVoters.map(upVoter => {
               var participantClasses = classNames({

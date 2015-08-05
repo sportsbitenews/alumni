@@ -23,7 +23,7 @@
     }
 
     .answer-form-action-preview {
-      
+
       &:hover {
         text-decoration: underline;
       }
@@ -126,8 +126,9 @@
   border-radius: 4px;
   color: white;
   display: none;
+  opacity: 0.8;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 1;
   }
 }
