@@ -1,10 +1,12 @@
 .resources-show,
-.questions-show {
+.questions-show,
+.posts-new {
   .nav-bar{
     position: absolute;
     left: 0;
     right: 0;
     background: none;
+    z-index: 10;
   }
 }
 
