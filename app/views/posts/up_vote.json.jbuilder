@@ -5,3 +5,8 @@ json.answers do
     json.partial! "answers/answer", answer: answer
   end
 end
+json.answerers do
+  json.array! @post.answers.map do |post|
+    json.extract! post.user, :id, :gravatar_url, :github_nickname
+  end
+end
