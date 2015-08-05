@@ -27,6 +27,7 @@ class PostDetailBody extends React.Component {
   onStoreChange(store) {
     var post = store.getPost(this.props.type, this.props.id);
     if (post) {
+      console.log(post)
       this.setState({
         upVoters: post.up_voters,
         answers: post.answers
@@ -41,8 +42,7 @@ class PostDetailBody extends React.Component {
 
   render() {
     var connectedUsersWhoUpvoted = _.sum(this.state.upVoters, (upVoter) => upVoter.connected_to_slack ? 1 : 0);
-    var usersInDiscussion = _.union(this.state.upVoters, _.uniq(this.props.answerers))
-    console.log(usersInDiscussion)
+    var usersInDiscussion = _.union(this.state.upVoters, this.props.answerers)
     var sortedUpVoters = _.sortByAll(
       usersInDiscussion,
       (upVoter) => upVoter.connected_to_slack ? 0 : 1,
