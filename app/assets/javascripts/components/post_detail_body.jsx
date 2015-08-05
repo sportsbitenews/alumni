@@ -40,8 +40,8 @@ class PostDetailBody extends React.Component {
   }
 
   render() {
-    var connectedUsersWhoUpvoted = _.sum(this.state.upVoters, (upVoter) => upVoter.connected_to_slack ? 1 : 0);
     var usersInDiscussion = _.union(this.state.upVoters, this.props.answerers)
+    var connectedUsersWhoUpvoted = _.sum(usersInDiscussion, (upVoter) => upVoter.connected_to_slack ? 1 : 0);
     var sortedUpVoters = _.sortByAll(
       usersInDiscussion,
       (upVoter) => upVoter.connected_to_slack ? 0 : 1,
@@ -58,7 +58,7 @@ class PostDetailBody extends React.Component {
         <aside className='post-detail-sidebar'>
           <div className='post-detail-participants'>
             <div className='section-title'>
-              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {this.state.upVoters.length}
+              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {usersInDiscussion.length}
             </div>
             {sortedUpVoters.map(upVoter => {
               var participantClasses = classNames({
