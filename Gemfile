@@ -36,7 +36,6 @@ gem "js-routes"
 source "https://rails-assets.org" do
   gem "rails-assets-axios"
   gem "rails-assets-alt"
-  gem 'rails-assets-formsy-react'
   gem "rails-assets-classnames"
   gem 'rails-assets-mdi' # material design icons
 end
