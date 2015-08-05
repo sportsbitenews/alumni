@@ -9,8 +9,9 @@ json.up_voters do
   json.array! post.votes_for.includes(:voter).map do |vote|
     json.extract! vote.voter, *user_properties
     # Do not fetch Slack connection status here, too expensive
-  end
+  end.zip(post.answers.map {|a| a.user})
 end
+
 
 if user_signed_in?
   json.up_voted current_user.voted_for? post

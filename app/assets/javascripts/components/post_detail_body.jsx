@@ -41,8 +41,10 @@ class PostDetailBody extends React.Component {
 
   render() {
     var connectedUsersWhoUpvoted = _.sum(this.state.upVoters, (upVoter) => upVoter.connected_to_slack ? 1 : 0);
+    var usersInDiscussion = _.union(this.state.upVoters, _.uniq(this.props.answerers))
+    console.log(usersInDiscussion)
     var sortedUpVoters = _.sortByAll(
-      this.state.upVoters,
+      usersInDiscussion,
       (upVoter) => upVoter.connected_to_slack ? 0 : 1,
       (upVoter) => upVoter.github_nickname.toLowerCase()
     );
