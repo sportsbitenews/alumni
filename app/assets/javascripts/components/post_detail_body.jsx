@@ -47,6 +47,7 @@ class PostDetailBody extends React.Component {
       (upVoter) => upVoter.connected_to_slack ? 0 : 1,
       (upVoter) => upVoter.github_nickname.toLowerCase()
     );
+    var sortedUpVoters = _.uniq(sortedUpVoters, function(item){return JSON.stringify(item);})
 
     return (
       <div className='post-detail-body'>
@@ -58,14 +59,13 @@ class PostDetailBody extends React.Component {
         <aside className='post-detail-sidebar'>
           <div className='post-detail-participants'>
             <div className='section-title'>
-              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {usersInDiscussion.length}
+              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {sortedUpVoters.length}
             </div>
             {sortedUpVoters.map(upVoter => {
               var participantClasses = classNames({
                 'post-detail-participant': true,
                 'is-offline': !upVoter.connected_to_slack
               })
-
               return (
                 <a href={Routes.profile_path(upVoter.github_nickname)} className={participantClasses} key={upVoter.id}>
                   <div className='post-detail-participant-avatar'>
