@@ -21,6 +21,14 @@
       opacity: 1;
       font-weight: bold;
     }
+
+    .answer-form-action-preview {
+      
+      &:hover {
+        text-decoration: underline;
+      }
+
+    }
   }
 
   &.is-previewed {
@@ -33,7 +41,10 @@
 
     .answer-form-action-write {
       opacity: 0.4;
-      font-weight: normal;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -81,6 +92,7 @@
   opacity: 0.3;
   padding: 10px;
   display: inline-block;
+  font-weight: bold;
 
   &-write { padding-left: 0 }
 
@@ -101,7 +113,6 @@
     }
   }
   &:hover {
-    font-weight: bold !important;
     color: black;
   }
 }
