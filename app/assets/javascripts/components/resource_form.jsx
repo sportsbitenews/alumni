@@ -1,44 +1,59 @@
-var ResourceForm = React.createClass({
-  getInitialState: function() {
-    return {
-      title: this.props.resource.title,
-      content: this.props.resource.content
-    };
-  },
-
-  render: function() {
-    var titleComponent, contentComponent, buttonComponent, errorsComponent;
-
-    if (_.size(this.props.errors) > 0) {
-      errorsComponent = <div>{JSON.stringify(this.props.errors)}</div>;
+class ResourceForm extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    if (this.props.errors){
+      if (this.props.errors.title != undefined) {var errorTitle = this.props.errors.title}
+      if (this.props.errors.tagline != undefined) {var errorTagline = this.props.errors.tagline}
+      if (this.props.errors.url != undefined) {var errorUrl = this.props.errors.url}
     }
-
-    if (this.props.resource.url || this.state.title) {
-      titleComponent = <input name="resource[title]" defaultValue={this.state.title} />;
-    }
-
-    if (this.props.resource.url || this.state.content) {
-      contentComponent = <textarea name="resource[content]" defaultValue={this.state.content} />;
-    }
-
-    if (this.props.resource.url || titleComponent || contentComponent) {
-      buttonComponent = <input type="submit" value="GO" />
-    }
-
     return (
-      <form action={Routes.resources_path()} method="post">
-        <input type="hidden" value={this.props.authenticity_token} name="authenticity_token" />
-        {errorsComponent}
-        <input name="resource[url]" ref="url" defaultValue={this.props.resource.url}
-               onChange={this.onUrlChange} placeholder="Copy paste the resource url" />
-        {titleComponent}
-        {contentComponent}
-        {buttonComponent}
+      <form action={Routes.resources_path()} method='post'>
+        <div className='container'>
+          <div className='post-submissions-row'>
+            <label htmlFor='tagline'>
+              <i className='mdi mdi-crown'></i>Title
+            </label>
+            <input ref='title' defaultValue={this.props.resource.title} placeholder="The title of the resource" name='title' />
+            <div className='errors'>
+              {errorTitle}
+            </div>
+          </div>
+          <div className='post-submissions-row'>
+            <label htmlFor='url'>
+              <i className='mdi mdi-link-variant'></i>Link
+            </label>
+            <input ref='url' defaultValue={this.props.resource.url} placeholder='http://www...' name='url' />
+            <div className='errors'>
+              {errorUrl}
+            </div>
+          </div>
+          <div className='post-submissions-row'>
+            <label htmlFor='tagline'>
+              <i className='mdi mdi-rocket'></i>Catchline
+            </label>
+            <input ref='tagline' defaultValue={this.props.resource.tagline} placeholder='Describe the resource' name='tagline' />
+            <div className='errors'>
+              {errorTagline}
+            </div>
+          </div>
+        </div>
+        <div className='post-submissions-submit'>
+          <input type='submit' className='button' value='Post it' onClick={this.submitForm.bind(this)} />
+        </div>
       </form>
-      );
-  },
+    );
+  }
 
-  onUrlChange: function(e) {
+  submitForm() {
+    var title = React.findDOMNode(this.refs.title).value
+    var url = React.findDOMNode(this.refs.url).value
+    var tagline = React.findDOMNode(this.refs.tagline).value
+    ResourceActions.submit(title, url, tagline)
+  }
+
+  onUrlChange(e) {
     var url = e.target.value;
     if (url.match(/https?:\/\/[\w-]+(\.[\w-]*)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/i)) {
       $.ajax({
@@ -56,4 +71,4 @@ var ResourceForm = React.createClass({
       })
     }
   }
-});
+};

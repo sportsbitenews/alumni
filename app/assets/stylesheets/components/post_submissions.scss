@@ -14,14 +14,23 @@
 
 .post-submissions-tabs {
   background-color: white;
+  display: flex;
+  align-items: center;
   position: relative;
   transform: translateY(-50%);
   border-radius: 4px;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
   font-weight: bold;
+  hr {
+    margin: 0;
+    height: 14px;
+    width: 1px;
+    background-color: #ECECEC;
+  }
 }
 
 .post-submissions-tab {
+  cursor: pointer;
   padding: 20px;
 }
 
@@ -31,6 +40,13 @@
   justify-content: center;
   border-bottom: 1Px solid rgba(0, 0, 0, 0.06);
   padding: 40px 20px;
+
+  .errors {
+    display: flex;
+    flex-flow: column;
+    color: $red;
+
+  }
 
   &:last-child {
     border-bottom: none;
