@@ -76,9 +76,12 @@ class AnswerForm extends React.Component {
 
   onEditClick(e) {
     e.preventDefault();
-    this.setState({
-      preview: false
-    })
+    if (this.state.preview) {
+      this.setState({
+        preview: false,
+        renderedContent: this.state.blank ? "Nothing to preview" : "Loading preview"
+      })
+    }
   }
 
   onPreviewClick(e) {
