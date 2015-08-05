@@ -1,3 +1,2 @@
 json.partial! "resources/resource", resource: @resource
-
-# TODO: json.answers
+json.partial! 'answers/index', answers: @resource.answers
