@@ -27,7 +27,6 @@ class PostDetailBody extends React.Component {
   onStoreChange(store) {
     var post = store.getPost(this.props.type, this.props.id);
     if (post) {
-      console.log(post)
       this.setState({
         upVoters: post.up_voters,
         answers: post.answers
