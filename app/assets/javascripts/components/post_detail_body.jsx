@@ -3,7 +3,8 @@ class PostDetailBody extends React.Component {
     super(props);
     this.state = {
       upVoters: props.up_voters,
-      answers: props.answers
+      answers: props.answers,
+      answerers: props.answerers
     };
 
     // http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
@@ -29,7 +30,8 @@ class PostDetailBody extends React.Component {
     if (post) {
       this.setState({
         upVoters: post.up_voters,
-        answers: post.answers
+        answers: post.answers,
+        answerers: post.answerers
       });
     }
   }
@@ -40,7 +42,7 @@ class PostDetailBody extends React.Component {
   }
 
   render() {
-    var usersInDiscussion = _.union(this.state.upVoters, this.props.answerers)
+    var usersInDiscussion = _.union(this.state.upVoters, this.state.answerers)
     var connectedUsersWhoUpvoted = _.sum(usersInDiscussion, (upVoter) => upVoter.connected_to_slack ? 1 : 0);
     var sortedUpVoters = _.sortByAll(
       usersInDiscussion,
