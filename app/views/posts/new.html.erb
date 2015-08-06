@@ -1,4 +1,5 @@
 <%= react_component "PostSubmissions", {
   resource: @resource ? @resource.slice(:title, :url, :tagline) : {},
+  question: @question ? @question.slice(:title, :content) : {},
   errors: @resource ? @resource.errors : {}
 } %>

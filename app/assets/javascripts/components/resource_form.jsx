@@ -12,7 +12,7 @@ class ResourceForm extends React.Component {
       <form action={Routes.resources_path()} method='post'>
         <div className='container'>
           <div className='post-submissions-row'>
-            <label htmlFor='tagline'>
+            <label htmlFor='title'>
               <i className='mdi mdi-crown'></i>Title
             </label>
             <input ref='title' defaultValue={this.props.resource.title} placeholder="The title of the resource" name='title' />
