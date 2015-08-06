@@ -1,8 +1,26 @@
+.header-main {
+  position: fixed;
+  left: 0;
+  right: 0;
+  transition: .2s ease;
+  z-index: 11;
+  &:hover {
+    transform: translateY(0);
+  }
+}
+
 .resources-show,
 .questions-show,
 .questions-create,
 .resources-create,
 .posts-new {
+  .header-main {
+    transform: translateY(0);
+
+  }
+  .headers {
+    display: none;
+  }
   .nav-bar{
     position: absolute;
     left: 0;
@@ -21,23 +39,18 @@
     }
   }
 
-  .navbar-logo { 
-    background: rgba(255, 255, 255, 0.15); 
-    overflow: hidden;
-    position: relative;
-
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
-
-  }
-
   svg {
     opacity: 1;
+    circle, path {fill: white !important }
+
   }
 }
 
 .nav-bar {
   background: white;
-  padding: 20px 0;
+  background: white;
+  padding: 2px 10px;
+  display: flex;
 
 }
 
@@ -46,7 +59,6 @@
 .navbar-logo {
   display: flex;
   align-items: center;
-  background-color: #D23333;
   height: 35px;
   width: 35px;
   border-radius: 50%;
@@ -56,14 +68,13 @@
 
   svg {
     opacity: 1;
+    top: 2px;
     position: relative;
     transition: transform 0.2s ease;
-    top: 3Px;
-    width: 53px;
+    width: 35px;
     height: 74px;
-    transform: translate(-30%);
     padding: 4px;
-  circle, path {fill: white;}
+    circle, path {fill: $brand-color }
   }
 }
 
@@ -71,6 +82,7 @@
   margin-left: auto;
   display: flex;
   align-items: center;
+  margin-right: 10px;
 
   a {
     font-size: 14px;

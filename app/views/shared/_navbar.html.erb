@@ -1,28 +1,58 @@
-<div class='nav-bar'>
-  <div class="container">
-    <div class="navbar-logo">
-    <%= link_to root_path do %>
-      <%= render 'shared/logo' %>
-    <% end %>
-    </div>
-    <div class='navbar-right'>
-      <% if user_signed_in? %>
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Sign out" %>
-        <% end %>
-        <hr>
-        <%= link_to new_post_path, class: 'plus' do %>
-        +
-        <% end %>
-
-      <% else %>
-
-        <%= link_to user_omniauth_authorize_path(:github), class: 'btn-github' do %>
-          <%= fa_icon 'github' %> <%= t ".sign_out", default: "Sign in" %>
-        <% end %>
-
+<header class='header-main'>
+  <div class='nav-bar'>
+      <div class="navbar-logo">
+      <%= link_to root_path do %>
+        <%= render 'shared/logo' %>
       <% end %>
+      </div>
+      <div class='navbar-right'>
+        <% if user_signed_in? %>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Sign out" %>
+          <% end %>
+          <hr>
+          <%= link_to new_post_path, class: 'plus' do %>
+          +
+          <% end %>
+
+        <% else %>
+
+          <%= link_to user_omniauth_authorize_path(:github), class: 'btn-github' do %>
+            <%= fa_icon 'github' %> <%= t ".sign_out", default: "Sign in" %>
+          <% end %>
+
+        <% end %>
 
     </div>
   </div>
-</div>
+  <header class='headers'>
+    <div class="col-xs-3">
+      <header class='posts-column-header'>
+        <div>
+          #resources
+        </div>
+      </header>
+    </div>
+    <div class='col-xs-3'>
+      <header class='posts-column-header'>
+        <div>
+          #help
+        </div>
+      </header>
+    </div>
+    <div class='col-xs-3'>
+      <header class='posts-column-header'>
+        <div>
+          #jobs
+        </div>
+      </header>
+    </div>
+    <div class='col-xs-3'>
+      <header class='posts-column-header'>
+        <div>
+          #milestones
+        </div>
+      </header>
+    </div>
+  </header>
+</header>

@@ -7,7 +7,10 @@ class PostsController < ApplicationController
     # TODO(ssaunier): sort by score
     # TODO(ssaunier): paginate
     # TODO(ssaunier): search
-    @posts = (Resource.all.includes(:user) + Question.all.includes(:user)).sort_by(&:created_at).reverse
+    @posts = {
+      resources: Resource.all.includes(:user).sort_by(&:created_at).reverse,
+      questions: Question.all.includes(:user).sort_by(&:created_at).reverse
+    }
   end
 
   def new

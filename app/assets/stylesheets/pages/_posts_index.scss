@@ -1,0 +1,45 @@
+.posts-index {
+  height: 100%;
+
+  body {
+    height: 100%;
+  }
+}
+
+.post-list {
+  height: 100%;
+  &>div {
+    height: 100%
+  }
+}
+
+.posts-column {
+  overflow: scroll;
+  height: 100%;
+  padding-top: 101px;
+}
+
+.posts-column-header {
+  font-size: 30px;
+  text-align: center;
+  padding: 20px 0;
+  background-color: rgba(244, 244, 244, 0.985);
+  color: #DEDEDE;
+}
+
+.posts-column-new {
+  color: #DEDEDE;
+  position: relative;
+  margin: 20px 10px;
+  padding: 26px 10px;
+  border: 2px dashed;
+  background-color: rgba(255, 255, 255, 0.46);
+  border-radius: 4px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+  }
+}

@@ -1,6 +1,11 @@
-json.posts do
-  json.array! @posts do |post|
-    type = post.class.to_s.underscore
-    json.partial! "#{type.pluralize}/#{type}", { type.to_sym => post }
+json.resources do
+  json.array! @posts[:resources] do |resource|
+    json.partial! "resources/resource", resource: resource
+  end
+end
+
+json.questions do
+  json.array! @posts[:questions] do |question|
+    json.partial! "questions/question", question: question
   end
 end

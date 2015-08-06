@@ -1,15 +1,24 @@
+.post-item-header {
+  text-align: center;
+  font-size: 33px;
+  padding: 11px 0;
+}
+
 .post-item {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
   display: flex;
-  padding: 20px 10px;
+  padding: 10px;
+  margin: 20px 10px;
   color: black;
+  background: white;
   border-radius: 3px;
+  height: 80px;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.02);
 
-    .upvote {
-      transform: scale(1.2);
-    }
+    // .upvote {
+    //   transform: scale(1.2);
+    // }
   }
 }
 
@@ -37,14 +46,15 @@
   flex: 1;
 
   &-name {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 500;
     line-height: 1.5;
   }
 
   &-tagline {
-    opacity: 0.4;
-    font-size: 19px;
+    font-size: 13px;
+    color: #B9B9B9;
+    opacity: 0.6;
   }
 }
 
