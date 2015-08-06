@@ -1,19 +1,19 @@
 # USER
   # using ui_face api + randomuser
 
-10.times do
-  random = JSON.load(open('https://randomuser.me/api'))['results'][0]['user']
-  ui_face = JSON.load(open('http://uifaces.com/api/v1/random'))
+# 10.times do
+#   random = JSON.load(open('https://randomuser.me/api'))['results'][0]['user']
+#   ui_face = JSON.load(open('http://uifaces.com/api/v1/random'))
 
-  user = User.new
-  user.gravatar_url = ui_face['image_urls']['epic']
-  user.name = "#{random['name']['first']} #{random['name']['last']}"
-  user.github_nickname = ui_face['username']
-  user.email = random['email']
-  user.alumni = true
-  user.save(validate: false)
-  puts "Welcome #{user.github_nickname}"
-end
+#   user = User.new
+#   user.gravatar_url = ui_face['image_urls']['epic']
+#   user.name = "#{random['name']['first']} #{random['name']['last']}"
+#   user.github_nickname = ui_face['username']
+#   user.email = random['email']
+#   user.alumni = true
+#   user.save(validate: false)
+#   puts "Welcome #{user.github_nickname}"
+# end
 
 # POST
   # question
@@ -23,7 +23,7 @@ questions = YAML.load_file('db/support/questions.yml')
 questions.each do |q|
   question = Question.new
   question.title = q['title']
-  question.user_id = Random.rand(User.all.size)
+  question.user = User.random
   question.content = q['content']
   question.save
   puts "Question ##{question.id} created"
@@ -35,7 +35,7 @@ resources['posts'].each do |r|
   resource.title = r['name']
   resource.url = r['redirect_url']
   resource.tagline = r['tagline']
-  resource.user_id = Random.rand(User.all.size)
+  resource.user = User.random
   resource.save
 
   puts "#{resource.title} created"

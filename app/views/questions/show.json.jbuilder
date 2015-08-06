@@ -1,3 +1,2 @@
 json.partial! "questions/question", question: @question
-
-# TODO: json.answers
+json.partial! 'answers/index', answers: @question.answers
