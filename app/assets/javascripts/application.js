@@ -1,8 +1,8 @@
 /*
-Not required:
-jquery
-jquery_ujs
-bootstrap-sprockets
+  Not required:
+  jquery
+  jquery_ujs
+  bootstrap-sprockets
 */
 
 //= require react

@@ -7,7 +7,13 @@ Rails.application.routes.draw do
       post :up_vote
     end
   end
-  resources :questions, only: %i(new show create)
+
+  resources :answers, only: [:create] do
+    collection do
+      post :preview
+    end
+  end
+ resources :questions, only: %i(new show create)
   resources :resources, only: %i(new create show) do
     collection do
       post :preview

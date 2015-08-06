@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   end
 
   def self.random
-    User.find(rand(count))
+    User.find(rand(1..count))
   end
 
   def connected_to_slack?

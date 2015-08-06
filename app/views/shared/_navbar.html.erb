@@ -10,12 +10,17 @@
         <%= link_to destroy_user_session_path, method: :delete do %>
           <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Sign out" %>
         <% end %>
+        <hr>
+        <%= link_to new_post_path, class: 'plus' do %>
+        +
+        <% end %>
 
       <% else %>
 
         <%= link_to user_omniauth_authorize_path(:github), class: 'btn-github' do %>
           <%= fa_icon 'github' %> <%= t ".sign_out", default: "Sign in" %>
         <% end %>
+
       <% end %>
 
     </div>

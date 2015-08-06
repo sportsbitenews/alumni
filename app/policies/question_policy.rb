@@ -8,4 +8,8 @@ class QuestionPolicy < PostPolicy
   def show?
     true
   end
+
+  def create?
+    !user.nil?
+  end
 end

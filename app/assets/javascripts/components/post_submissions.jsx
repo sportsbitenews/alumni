@@ -3,7 +3,7 @@ class PostSubmissions extends React.Component {
     super(props);
 
     this.state = {
-      form: "Resource"
+      form: this.props.form
     }
   }
 
@@ -16,20 +16,31 @@ class PostSubmissions extends React.Component {
       "resource-details": this.state.form == "Resource",
       "question-detail": this.state.form == "Question"
     })
+
+    var resourceTabClasses = classNames({
+      'post-submissions-tab': true,
+      'is-active': this.state.form == "Resource"
+    })
+
+    var questionTabClasses = classNames({
+      'post-submissions-tab': true,
+      'is-active': this.state.form == "Question"
+    })
+
     return(
       <div>
         <div className={headerClasses}>
           <div className='container'>
-            Post a {this.state.form.toLowerCase()}
+            Post a <span>{this.state.form.toLowerCase()}</span>
           </div>
         </div>
         <div className='post-submissions-tabs-overlay'>
           <div className='post-submissions-tabs'>
-            <div className='post-submissions-tab' onClick={this.resourceClick.bind(this)}>
+            <div className={resourceTabClasses} onClick={this.resourceClick.bind(this)}>
               Ressource
             </div>
             <hr/>
-            <div className='post-submissions-tab' onClick={this.questionClick.bind(this)}>
+            <div className={questionTabClasses} onClick={this.questionClick.bind(this)}>
               Question
             </div>
           </div>

@@ -1,0 +1,36 @@
+.post-detail-footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: none;
+
+}
+
+.post-detail-author {
+  display: flex;
+  align-items: center;
+  position: relative;
+  align-self: flex-end;
+
+  img {
+    width: 53px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &-date {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #BBB;
+    font-size: 14px;
+    margin-left: auto;
+    padding: 10px;
+  }
+}

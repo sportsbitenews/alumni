@@ -6,11 +6,16 @@ class PostStoreClass {
       // TODO: add more types
     };
     this.bindListeners({
-      updatePost: PostActions.upVote
+      updatePost: AnswerActions.post,
+      updatePostWithUsers: PostActions.upVote
     });
   }
 
   updatePost(post) {
+    this.posts[post.type][post.id] = post;
+  }
+
+  updatePostWithUsers(post) {
     this.posts[post.type][post.id] = post;
 
     UserActions.fetchUsers(

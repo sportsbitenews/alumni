@@ -1,3 +1,10 @@
+.posts-new, 
+.post-submissions-submit,
+.resources-create,
+.questions-create {
+  background: #FAFAFA;
+}
+
 .post-submissions-header {
   font-size: 40px;
   font-weight: 900;
@@ -21,6 +28,7 @@
   border-radius: 4px;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
   font-weight: bold;
+
   hr {
     margin: 0;
     height: 14px;
@@ -32,6 +40,11 @@
 .post-submissions-tab {
   cursor: pointer;
   padding: 20px;
+  opacity: 0.2;
+
+  &.is-active {
+    opacity: 1;
+  }
 }
 
 .post-submissions-row {
@@ -45,6 +58,7 @@
     display: flex;
     flex-flow: column;
     color: $red;
+    padding-left: 20px;
   }
 
   &:last-child {
@@ -88,5 +102,6 @@
   display: flex;
   align-items: center;
   padding: 40px;
+  background: rgba(0, 0, 0, 0.02);
   justify-content: center;
 }

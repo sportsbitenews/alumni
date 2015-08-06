@@ -3,17 +3,17 @@ class ResourceForm extends React.Component {
     super(props)
   }
   render() {
-    if (this.props.errors){
-      if (this.props.errors.title != undefined) {var errorTitle = this.props.errors.title}
-      if (this.props.errors.tagline != undefined) {var errorTagline = this.props.errors.tagline}
-      if (this.props.errors.url != undefined) {var errorUrl = this.props.errors.url}
+    if (this.props.resource_errors){
+      if (this.props.resource_errors.title != undefined) {var errorTitle = this.props.resource_errors.title}
+      if (this.props.resource_errors.tagline != undefined) {var errorTagline = this.props.resource_errors.tagline}
+      if (this.props.resource_errors.url != undefined) {var errorUrl = this.props.resource_errors.url}
     }
     return (
       <form action={Routes.resources_path()} method='post'>
         <div className='container'>
           <div className='post-submissions-row'>
             <label htmlFor='title'>
-              <i className='mdi mdi-crown'></i>Title
+              <i className='mdi mdi-format-text'></i>Title
             </label>
             <input ref='title' defaultValue={this.props.resource.title} placeholder="The title of the resource" name='title' />
             <div className='errors'>
@@ -40,7 +40,7 @@ class ResourceForm extends React.Component {
           </div>
         </div>
         <div className='post-submissions-submit'>
-          <input type='submit' className='button' value='Post it' onClick={this.submitForm.bind(this)} />
+          <input type='submit' className='button button-success' value='Post it' onClick={this.submitForm.bind(this)} />
         </div>
       </form>
     );
