@@ -2,7 +2,6 @@
 //= require lodash
 //= require classnames
 //= require alt
-//= require history
 
 
 //= require ./init
