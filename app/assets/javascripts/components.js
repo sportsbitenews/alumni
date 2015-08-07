@@ -2,6 +2,8 @@
 //= require lodash
 //= require classnames
 //= require alt
+//= require history
+
 
 //= require ./init
 //= require_tree ./actions

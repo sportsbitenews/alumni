@@ -63,6 +63,7 @@ class PostSubmissions extends React.Component {
     this.setState({
       form: "Resource"
     })
+    history.replaceState('/', '/', Routes.new_resource_path())
   }
 
 
@@ -70,6 +71,7 @@ class PostSubmissions extends React.Component {
     this.setState({
       form: "Question"
     })
+    history.replaceState('/', '/', Routes.new_question_path())
   }
 
 }
