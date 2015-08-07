@@ -27,6 +27,8 @@ class PostSubmissions extends React.Component {
       'is-active': this.state.form == "Question"
     })
 
+    
+
     return(
       <div>
         <div className={headerClasses}>
@@ -45,7 +47,14 @@ class PostSubmissions extends React.Component {
             </div>
           </div>
         </div>
-      {form}
+        <div className='post-submissions-body'>
+          <div className={resourceTabClasses}>
+            <ResourceForm {...this.props} />
+          </div>
+          <div className={questionTabClasses}>
+            <QuestionForm {...this.props} />
+          </div>
+        </div>
       </div>
     )
   }
