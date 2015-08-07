@@ -19,12 +19,7 @@ class QuestionListElement extends PostListElement {
             {this.props.title}
           </div>
           <div className='post-item-text-tagline'>
-            {this.props.tagline}
-          </div>
-        </div>
-        <div className='post-item-menu'>
-          <div>
-            <img src={this.props.user.gravatar_url} className='avatar' />
+            posted by {this.props.user.github_nickname}
           </div>
         </div>
       </div>

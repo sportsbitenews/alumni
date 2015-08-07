@@ -9,11 +9,11 @@ class ResourceListElement extends PostListElement {
   }
 
   content() {
+    var thumbnailStyle = {
+      backgroundImage: "url('"+ this.props.screenshot_url +"');"
+    }
     return (
       <div className='post-item resource-item'>
-        <div className='resource-thumbnail'>
-
-        </div>
         <div className='flex resource-item-meta'>
           <div className='post-item-upvote'>
             <Upvote {...this.props} />
@@ -23,12 +23,7 @@ class ResourceListElement extends PostListElement {
               {this.props.title}
             </div>
             <div className='post-item-text-tagline'>
-              {this.props.tagline}
-            </div>
-          </div>
-          <div className='post-item-menu'>
-            <div>
-              <img src={this.props.user.gravatar_url} className='avatar' />
+              posted by {this.props.user.github_nickname}
             </div>
           </div>
         </div>

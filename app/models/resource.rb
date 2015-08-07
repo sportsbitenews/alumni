@@ -2,13 +2,14 @@
 #
 # Table name: resources
 #
-#  id         :integer          not null, primary key
-#  title      :string
-#  url        :string
-#  user_id    :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  tagline    :string
+#  id             :integer          not null, primary key
+#  title          :string
+#  url            :string
+#  user_id        :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  tagline        :string
+#  screenshot_url :string
 #
 # Indexes
 #

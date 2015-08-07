@@ -8,17 +8,14 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.07);
   display: flex;
   padding: 10px;
-  margin: 20px 10px;
+  margin: 10px;
   color: black;
   background: white;
   border-radius: 3px;
   height: 80px;
 
   &:hover {
-
-    // .upvote {
-    //   transform: scale(1.2);
-    // }
+    background: -webkit-linear-gradient(top,#FFFFFF,#FBFBFB);
   }
 }
 
@@ -46,15 +43,17 @@
   flex: 1;
 
   &-name {
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.5;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.2;
   }
 
   &-tagline {
-    font-size: 13px;
+    font-size: 12px;
     color: #B9B9B9;
-    opacity: 0.6;
+    opacity: 1;
+    font-weight: 100;
+    padding-top: 5px;
   }
 }
 
