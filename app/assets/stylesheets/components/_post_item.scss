@@ -13,9 +13,11 @@
   background: white;
   border-radius: 3px;
   height: 80px;
+  transition: box-shadow 0.2s ease;
 
   &:hover {
     background: -webkit-linear-gradient(top,#FFFFFF,#FBFBFB);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.08);
   }
 }
 
@@ -27,19 +29,11 @@
   justify-content: center;
 }
 
-.post-item-thumbnail {
-  height: 100px;
-  width: 160px;
-  border-radius: 3px;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
-  margin-right: 20px;
-  background: white;
-}
-
 .post-item-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-right: 10px;
   flex: 1;
 
   &-name {
@@ -54,9 +48,9 @@
     opacity: 1;
     font-weight: 100;
     padding-top: 5px;
-  }
-}
 
-.post-item-menu {
-  align-self: center;
+    strong {
+      font-weight: 500;
+    }
+  }
 }

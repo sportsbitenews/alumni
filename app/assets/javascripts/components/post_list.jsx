@@ -3,9 +3,11 @@ var PostList = React.createClass({
     return (
       <div>
         <div className='col-sm-3 posts-column'>
-        <div className='posts-column-new'>
-          ADD A NEW RESOURCE
-        </div>
+        <a href={Routes.new_resource_path()}>
+          <div className='posts-column-new'>
+            ADD A NEW RESOURCE
+          </div>
+        </a>
           {this.props.resources.map(resource => {
             var props = _.merge(resource, { key: `${resource.type}-${resource.id}` });
             return React.createElement(eval(resource.type + "ListElement"), props);

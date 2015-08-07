@@ -15,16 +15,18 @@ class ResourceListElement extends PostListElement {
     return (
       <div className='post-item resource-item'>
         <div className='flex resource-item-meta'>
-          <div className='post-item-upvote'>
-            <Upvote {...this.props} />
-          </div>
+        
           <div className='post-item-text'>
             <div className='post-item-text-name'>
               {this.props.title}
             </div>
             <div className='post-item-text-tagline'>
-              posted by {this.props.user.github_nickname}
+              posted by
+                <strong> {this.props.user.github_nickname}</strong>
             </div>
+          </div>
+          <div className='post-item-upvote'>
+            <Upvote {...this.props} />
           </div>
         </div>
       </div>

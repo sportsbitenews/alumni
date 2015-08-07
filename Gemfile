@@ -42,6 +42,7 @@ source "https://rails-assets.org" do
   gem "rails-assets-axios"
   gem "rails-assets-alt"
   gem "rails-assets-classnames"
+  gem 'rails-assets-react-bootstrap'
   gem 'rails-assets-mdi' # material design icons
 end
 
