@@ -8,18 +8,14 @@ class ResourceForm extends React.Component {
       if (this.props.resource_errors.tagline != undefined) {var errorTagline = this.props.resource_errors.tagline}
       if (this.props.resource_errors.url != undefined) {var errorUrl = this.props.resource_errors.url}
     }
+
+    var csrfToken = document.querySelector('meta[name=csrf-token]').attributes.content.value;
+    var csrfParam = document.querySelector('meta[name=csrf-param]').attributes.content.value;
+    var inputCsrf = `<input name=${csrfParam} value=${csrfToken} type='hidden'>`;
+  
     return (
       <form action={Routes.resources_path()} method='post'>
         <div className='container'>
-          <div className='post-submissions-row'>
-            <label htmlFor='title'>
-              <i className='mdi mdi-format-text'></i>Title
-            </label>
-            <input ref='title' defaultValue={this.props.resource.title} placeholder="The title of the resource" name='title' />
-            <div className='errors'>
-              {errorTitle}
-            </div>
-          </div>
           <div className='post-submissions-row'>
             <label htmlFor='url'>
               <i className='mdi mdi-link-variant'></i>Link
@@ -27,6 +23,15 @@ class ResourceForm extends React.Component {
             <input ref='url' defaultValue={this.props.resource.url} placeholder='http://www...' name='url' />
             <div className='errors'>
               {errorUrl}
+            </div>
+          </div>
+          <div className='post-submissions-row'>
+            <label htmlFor='title'>
+              <i className='mdi mdi-format-text'></i>Title
+            </label>
+            <input ref='title' defaultValue={this.props.resource.title} placeholder="The title of the resource" name='title' />
+            <div className='errors'>
+              {errorTitle}
             </div>
           </div>
           <div className='post-submissions-row'>
@@ -42,6 +47,7 @@ class ResourceForm extends React.Component {
         <div className='post-submissions-submit'>
           <input type='submit' className='button button-success' value='Post it' onClick={this.submitForm.bind(this)} />
         </div>
+        <div dangerouslySetInnerHTML={{__html: inputCsrf}}></div>
       </form>
     );
   }

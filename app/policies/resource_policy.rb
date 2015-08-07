@@ -9,6 +9,9 @@ class ResourcePolicy < PostPolicy
     !user.nil?
   end
 
+  def new?
+    !user.nil?
+  end
 
   def preview?
     !user.nil?

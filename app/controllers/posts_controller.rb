@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   include PostScope
-  skip_after_action :verify_policy_scoped, only: [:index, :new]
+  skip_after_action :verify_policy_scoped, only: [:index]
   before_action :set_post, only: [:up_vote, :show]
 
   def index
@@ -11,9 +11,6 @@ class PostsController < ApplicationController
       resources: Resource.all.includes(:user).sort_by(&:created_at).reverse,
       questions: Question.all.includes(:user).sort_by(&:created_at).reverse
     }
-  end
-
-  def new
   end
 
   def up_vote

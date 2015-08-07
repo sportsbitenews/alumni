@@ -1,20 +1,24 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show]
-  skip_before_action :verify_authenticity_token, only: [:create]
 
   def show
     authorize @question
   end
 
   def create
-    @question = current_user.questions.build question_params
+    @question = current_user.questions.build question_params.except!(:authenticity_token)
     authorize @question
     if @question.save
       current_user.upvotes @question
       redirect_to question_path(@question)
     else
-      render :'posts/new'
+      render :'new'
     end
+  end
+
+  def new?
+    @question = Question.new
+    authorize @question
   end
 
   private
@@ -24,7 +28,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.permit(:title, :content)
+    params.permit(:title, :content, :authenticity_token)
   end
 end
 
