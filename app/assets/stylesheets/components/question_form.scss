@@ -1,0 +1,32 @@
+.question-form-input {
+  flex: 3 1 auto;
+  textarea {width: 100%}
+
+
+  &.is-previewed {
+    textarea { display: none }
+    .question-form-preview { display: block }
+  }
+}
+
+.question-form-actions {
+  display: block;
+  display: flex;
+  align-items: center;
+
+  .answer-form-actions-extra {
+    align-self: center;
+  }
+
+  .answer-form-action {
+    &.is-active {
+      opacity: 1;
+    }
+  }
+}
+
+.question-form-preview { 
+  min-height: 150px;
+  padding: 10px;
+  display: none;  
+}

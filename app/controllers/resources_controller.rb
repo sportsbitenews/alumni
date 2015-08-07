@@ -19,23 +19,29 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    @resource = current_user.resources.build resource_params
+    @resource = current_user.resources.build resource_params.except!(:authenticity_token) 
     authorize @resource
     if @resource.save
       current_user.upvotes @resource
-      redirect_to resources_path
+      redirect_to resource_path(@resource)
     else
-      render :new
+      render :'new'
     end
   end
 
   private
+
+  def without(*keys)
+    cpy = self.dup
+    keys.each { |key| cpy.delete(key) }
+    cpy
+  end
 
   def set_resource
     @resource = Resource.find(params[:id])
   end
 
   def resource_params
-    params.require(:resource).permit(:url, :title, :content)
+    params.permit(:url, :title, :tagline, :authenticity_token)
   end
 end
