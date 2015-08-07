@@ -25,6 +25,11 @@ class QuestionForm extends React.Component {
       'question-form-input': true,
       'is-previewed': this.state.preview
     })
+
+    var csrfToken = document.querySelector('meta[name=csrf-token]').attributes.content.value;
+    var csrfParam = document.querySelector('meta[name=csrf-param]').attributes.content.value;
+    var inputCsrf = `<input name=${csrfParam} value=${csrfToken} type='hidden'>`;
+
     return(
       <form action={Routes.questions_path()} method='post'>
         <div className='container'>
@@ -62,6 +67,7 @@ class QuestionForm extends React.Component {
         <div className='post-submissions-submit'>
           <input type='submit' className='button button-success' value='Post it' />
         </div>
+        <div dangerouslySetInnerHTML={{__html: inputCsrf}}></div>
       </form>
     )
   }

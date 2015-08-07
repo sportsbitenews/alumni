@@ -1,15 +1,11 @@
 class ResourcesController < ApplicationController
   skip_after_action :verify_authorized, only: :preview
   before_action :set_resource, only: :show
-  skip_before_action :verify_authenticity_token, only: [:create]
-
 
   def new
     @resource = Resource.new
     authorize @resource
   end
-
-
 
   def preview
     website = LinkThumbnailer.generate(params[:url])
@@ -23,23 +19,29 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    @resource = current_user.resources.build resource_params
+    @resource = current_user.resources.build resource_params.except!(:authenticity_token) 
     authorize @resource
     if @resource.save
       current_user.upvotes @resource
       redirect_to resource_path(@resource)
     else
-      render :'posts/new'
+      render :'new'
     end
   end
 
   private
+
+  def without(*keys)
+    cpy = self.dup
+    keys.each { |key| cpy.delete(key) }
+    cpy
+  end
 
   def set_resource
     @resource = Resource.find(params[:id])
   end
 
   def resource_params
-    params.permit(:url, :title, :tagline)
+    params.permit(:url, :title, :tagline, :authenticity_token)
   end
 end

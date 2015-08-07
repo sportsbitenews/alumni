@@ -5,6 +5,10 @@ class QuestionPolicy < PostPolicy
     end
   end
 
+  def new?
+
+  end
+
   def show?
     true
   end

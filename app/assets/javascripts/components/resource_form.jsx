@@ -12,7 +12,6 @@ class ResourceForm extends React.Component {
     var csrfToken = document.querySelector('meta[name=csrf-token]').attributes.content.value;
     var csrfParam = document.querySelector('meta[name=csrf-param]').attributes.content.value;
     var inputCsrf = `<input name=${csrfParam} value=${csrfToken} type='hidden'>`;
-    console.log(inputCsrf)
   
     return (
       <form action={Routes.resources_path()} method='post'>
