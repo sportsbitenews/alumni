@@ -14,9 +14,11 @@ var PostList = React.createClass({
           })}
         </div>
         <div className='col-sm-3 posts-column'>
-        <div className='posts-column-new'>
-          ASK A NEW QUESTION
-        </div>
+        <a href={Routes.new_question_path()}>
+          <div className='posts-column-new'>
+            ASK A NEW QUESTION
+          </div>
+        </a>
           {this.props.questions.map(question => {
             var props = _.merge(question, { key: `${question.type}-${question.id}` });
             return React.createElement(eval(question.type + "ListElement"), props);

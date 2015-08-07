@@ -65,7 +65,7 @@ class QuestionForm extends React.Component {
           </div>
         </div>
         <div className='post-submissions-submit'>
-          <input type='submit' className='button button-success' value='Post it' />
+          <input type='submit' className='button button-question' value='Post it' />
         </div>
         <div dangerouslySetInnerHTML={{__html: inputCsrf}}></div>
       </form>
