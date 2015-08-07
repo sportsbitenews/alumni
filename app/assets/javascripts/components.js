@@ -2,6 +2,7 @@
 //= require lodash
 //= require classnames
 //= require alt
+//= require react_bootstrap
 
 
 //= require ./init

@@ -4,7 +4,7 @@ class PostListElement extends React.Component {
     var link = Routes[path]({ id: this.props.id });
 
     return (
-      <a href={link}>
+      <a>
         {this.content()}
       </a>
     )

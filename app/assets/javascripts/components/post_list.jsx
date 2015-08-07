@@ -1,7 +1,7 @@
 var PostList = React.createClass({
   render: function() {
     return (
-      <div>
+      <div ref='postList'>
         <div className='col-sm-3 posts-column'>
         <a href={Routes.new_resource_path()}>
           <div className='posts-column-new'>

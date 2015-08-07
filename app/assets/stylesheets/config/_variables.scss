@@ -66,7 +66,11 @@ $orange: #E67E22;
 $green: #2ecc71;
 $purple: #6452BD;
 $brand-color: #D23333;
-$resource-gradient: linear-gradient(90deg, #ffb347 10%, #ffcc33 90%);
+
+$resource-from: #ffb347;
+$resource-to: #ffcc33;
+$resource-gradient: linear-gradient(90deg, $resource-from 10%, $resource-to 90%);
+
 $question-gradient: linear-gradient(90deg, #f46b45 10%, #eea849 90%);
 $job-gradient: linear-gradient(90deg, #4776E6 10%, #8E54E9 90%);
 $milestone-gradient: linear-gradient(90deg, #232526 10%, #414345 90%);

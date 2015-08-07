@@ -37,9 +37,11 @@
   flex: 1;
 
   &-name {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 300;
     line-height: 1.2;
+    align-self: flex-start;
+    cursor: pointer;
   }
 
   &-tagline {
