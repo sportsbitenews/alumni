@@ -27,8 +27,6 @@ class PostSubmissions extends React.Component {
       'is-active': this.state.form == "Question"
     })
 
-    
-
     return(
       <div>
         <div className={headerClasses}>
@@ -38,11 +36,11 @@ class PostSubmissions extends React.Component {
         </div>
         <div className='post-submissions-tabs-overlay'>
           <div className='post-submissions-tabs'>
-            <div className={resourceTabClasses} onClick={this.resourceClick.bind(this)}>
+            <div className={resourceTabClasses} onClick={this.onResourceTabClick.bind(this)}>
               Ressource
             </div>
             <hr/>
-            <div className={questionTabClasses} onClick={this.questionClick.bind(this)}>
+            <div className={questionTabClasses} onClick={this.onQuestionTabClick.bind(this)}>
               Question
             </div>
           </div>
@@ -59,19 +57,18 @@ class PostSubmissions extends React.Component {
     )
   }
 
-  resourceClick() {
-    this.setState({
-      form: "Resource"
-    })
-    history.replaceState('/', '/', Routes.new_resource_path())
+  onResourceTabClick() {
+    this.displayForm('Resource')
   }
 
+  onQuestionTabClick() {
+    this.displayForm('Question')
+  }
 
-  questionClick() {
-    this.setState({
-      form: "Question"
-    })
-    history.replaceState('/', '/', Routes.new_question_path())
+  displayForm(type) {
+    this.setState({ form: type });
+    path = `new_${type.toLowerCase()}_path`;
+    history.replaceState('/', '/', Routes[path]);
   }
 
 }
