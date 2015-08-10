@@ -32,11 +32,13 @@ gem "bootstrap-sass"
 gem "font-awesome-rails"
 gem "lodash-rails"
 gem "react-rails", "~> 1.0"
+gem 'react-bootstrap-rails'
 gem "jbuilder"
 
 gem "rails-i18n"
 gem "link_thumbnailer"
 gem "js-routes"
+
 
 source "https://rails-assets.org" do
   gem "rails-assets-axios"

@@ -12,16 +12,16 @@
     color: $brand-color;
     .upvote-item {border-color: $brand-color}
     .upvote-item figure {
-      transform: scale(1.8);
       background: $brand-color;
+      border: 1px solid white;
     }
   }
 }
 
 .upvote-item {
-  height: 18px;
+  height: 16px;
   border: 2px solid black;
-  width: 18px;
+  width: 16px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -30,9 +30,11 @@
   figure {
     background: black;
     border-radius: 50%;
-    height: 6px;
-    width: 6px;
-    transition: 0.2s ease transform;
+
+    transition: 0.2s ease border;
+    height: 12px;
+    width: 12px;
+    border: 4px solid white;
 
   }
 }

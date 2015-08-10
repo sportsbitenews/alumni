@@ -4,7 +4,9 @@
 @import "post_item";
 @import "upvote";
 @import "avatar";
+
 @import "answer_item";
+@import "resource_item";
 
 @import "post_detail_body";
 @import "post_detail_footer";
@@ -15,3 +17,6 @@
 @import "post_submissions";
 @import "answer_form";
 @import "question_form";
+
+@import "tooltip";
+@import "popover";

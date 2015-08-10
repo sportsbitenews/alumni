@@ -45,7 +45,7 @@ class ResourceForm extends React.Component {
           </div>
         </div>
         <div className='post-submissions-submit'>
-          <input type='submit' className='button button-success' value='Post it' onClick={this.submitForm.bind(this)} />
+          <input type='submit' className='button button-resource' value='Post it' onClick={this.submitForm.bind(this)} />
         </div>
         <div dangerouslySetInnerHTML={{__html: inputCsrf}}></div>
       </form>

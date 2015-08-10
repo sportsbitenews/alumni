@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def new?
+  def new
     @question = Question.new
     authorize @question
   end

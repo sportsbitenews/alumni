@@ -6,7 +6,7 @@ class QuestionPolicy < PostPolicy
   end
 
   def new?
-
+    !user.nil?
   end
 
   def show?
