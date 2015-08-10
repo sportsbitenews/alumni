@@ -6,6 +6,18 @@ module ApplicationHelper
     react_component component, props, options
   end
 
+  def post_submissions
+    react_component "PostSubmissions", {
+      resource: @resource ? @resource.slice(:title, :url, :tagline) : {},
+      question: @question ? @question.slice(:title, :content) : {},
+      job: @job ? @job.slice(:position, :company, :ad_url, :city, :remote, :type, :description) : {},
+      resource_errors: @resource ? @resource.errors : {},
+      question_errors: @question ? @question.errors : {},
+      job_errors: @job ? @job.errors : {},
+      form: params[:controller].singularize.capitalize
+    }
+  end
+
   def prerender?
     ENV['PRERENDER'] != 'false'
   end

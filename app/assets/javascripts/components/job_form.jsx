@@ -1,16 +1,17 @@
-class QuestionForm extends React.Component {
+class JobForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       preview: false,
+      remote: false,
       renderedContent: "Nothing to preview."
     }
   }
 
   render() {
-    if (this.props.question_errors){
-      if (this.props.question_errors.title != undefined) {var errorTitle = this.props.question_errors.title}
-      if (this.props.question_errors.content != undefined) {var errorContent = this.props.question_errors.content}
+    if (this.props.job_errors){
+      if (this.props.job_errors.title != undefined) {var errorTitle = this.props.job_errors.title}
+      if (this.props.job_errors.content != undefined) {var errorContent = this.props.job_errors.content}
     }
     var writeClasses = classNames({
       'answer-form-action': true,
@@ -26,25 +27,71 @@ class QuestionForm extends React.Component {
       'is-previewed': this.state.preview
     })
 
+    var remoteTrueClass = classNames({
+      'is-selected': this.state.remote,
+      'remote-selector': true
+    })
+
+    var remoteFalseClass = classNames({
+      'is-selected': !this.state.remote,
+      'remote-selector': true
+    })
+
     var csrfToken = document.querySelector('meta[name=csrf-token]').attributes.content.value;
     var csrfParam = document.querySelector('meta[name=csrf-param]').attributes.content.value;
     var inputCsrf = `<input name=${csrfParam} value=${csrfToken} type='hidden'>`;
 
     return(
-      <form action={Routes.questions_path()} method='post'>
+      <form action={Routes.jobs_path()} method='post'>
         <div className='container'>
           <div className='post-submissions-row'>
-            <label htmlFor='title' className='hidden-xs'>
-              <i className='mdi mdi-format-text'></i>Title
+            <label htmlFor='company' className='hidden-xs'>
+              <i className='mdi mdi-star-outline'></i>Company
             </label>
-            <input ref='title' defaultValue={this.props.question.title} placeholder="What's your question ? Be specific" name='title' />
+            <input ref='company' defaultValue={this.props.job.company} placeholder="eg. Algolia" name='title' />
             <div className='errors'>
               {errorTitle}
             </div>
           </div>
           <div className='post-submissions-row'>
-            <label htmlFor='tagline' className='hidden-xs'>
-              <i className='mdi mdi-message-text-outline'></i>Content
+            <label htmlFor='remote' className='hidden-xs'>
+              <i className='mdi mdi-elevator'></i>Remote
+            </label>
+            <div className='post-submissions-select'>
+              <div className={remoteTrueClass} onClick={this.remoteTrue.bind(this)}>
+                True
+              </div>
+              <hr/>
+              <div className={remoteFalseClass} onClick={this.remoteFalse.bind(this)}>
+                False
+              </div>
+              <input type='hidden' value={this.state.remote.toString()} />
+            </div>
+
+            <div className='errors'>
+              {errorTitle}
+            </div>
+          </div>
+          <div className='post-submissions-row'>
+            <label htmlFor='position' className='hidden-xs'>
+              <i className='mdi mdi-account-outline'></i>Position
+            </label>
+            <input ref='position' defaultValue={this.props.job.position} placeholder="eg. Front-end Developer" name='title' />
+            <div className='errors'>
+              {errorTitle}
+            </div>
+          </div>
+          <div className='post-submissions-row'>
+            <label htmlFor='type' className='hidden-xs'>
+              <i className='mdi mdi-account-outline'></i>Type
+            </label>
+            <div className='errors'>
+              {errorTitle}
+            </div>
+          </div>
+          <div className='post-submissions-row'>
+            <label htmlFor='description' className='hidden-xs'>
+              <i className='mdi mdi-message-text-outline'></i>Description
             </label>
             <div className={contentInputClasses}>
               <div className='answer-form-actions question-form-actions'>
@@ -56,7 +103,7 @@ class QuestionForm extends React.Component {
                   Markdown supported
                 </a>
               </div>
-              <textarea ref='content' defaultValue={this.props.question.tagline} placeholder='Describe your problem' name='content' />
+              <textarea ref='content' defaultValue={this.props.question.tagline} placeholder='Describe the job' name='description' />
               <div className='question-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}} />
             </div>
             <div className='errors'>
@@ -71,6 +118,15 @@ class QuestionForm extends React.Component {
       </form>
     )
   }
+
+  remoteFalse() {
+    this.setState({ remote: false })
+  }
+
+  remoteTrue() {
+    this.setState({ remote: true })
+  }
+
 
   componentDidMount() {
     AnswerStore.listen(this.onStoreChange.bind(this));
