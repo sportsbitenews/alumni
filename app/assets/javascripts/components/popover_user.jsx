@@ -12,7 +12,7 @@ class PopoverUser extends React.Component {
         <strong className='post-item-text-target' ref='target' onClick={this.openProfile.bind(this)} onMouseOut={this.toggle.bind(this)} onMouseOver={this.toggle.bind(this)}> {this.props.user.github_nickname}</strong>
         <ReactBootstrap.Overlay
           placement='bottom'
-          showed={this.state.showed}
+          show={this.state.showed}
           onHide={() => this.setState({ showed: false })}
           delayshowed={200}
           container={this}
@@ -33,7 +33,9 @@ class PopoverUser extends React.Component {
   }
 
   mouseOverhandler() {
-    this.setState({ hovered: true });
+    this.setState({
+      hovered: true
+    })
     this.toggle()
   }
 
@@ -46,15 +48,7 @@ class PopoverUser extends React.Component {
     setTimeout(function(){
       if (that.state.showed) {
         setTimeout(function(){
-          if(that.state.hovered) {
-            that.setState({
-              showed: true
-            })
-          } else {
-            that.setState({
-              showed: false
-            })
-          }
+          that.setState({ showed: that.state.hovered });
         }, 500)
       } else {
         that.setState({
