@@ -33,10 +33,8 @@ class PopoverUser extends React.Component {
   }
 
   mouseOverhandler() {
-    this.setState({
-      hovered: true
-    })
-    this.toggle()
+    this.setState({ hovered: true });
+    this.toggle();
   }
 
   openProfile() {
@@ -59,7 +57,7 @@ class PopoverUser extends React.Component {
   }
 
   mouseOuthandler() {
-    this.setState({ hovered: false })
-    this.toggle()
+    this.setState({ hovered: false });
+    this.toggle();
   }
 }
