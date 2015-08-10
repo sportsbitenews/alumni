@@ -22,9 +22,10 @@ class PopoverUser extends React.Component {
             <div className='user-popover pop' onMouseOver={this.mouseOverhandler.bind(this)} onMouseOut={this.mouseOuthandler.bind(this)}>
               <img src={this.props.user.gravatar_url} />
               <div className='user-popover-name text-center'>
-                {this.props.user.fist_name}
+                @{this.props.user.github_nickname}
               </div>
             </div>
+
 
         </ReactBootstrap.Overlay>
       </div>
@@ -39,28 +40,30 @@ class PopoverUser extends React.Component {
   }
 
   openProfile() {
-    window(Routes.profile_path(this.props.user.github_nickname))
+    window.open(Routes.profile_path(this.props.user.github_nickname), '_self')
   }
 
   toggle() {
-    if (this.state.show) {
-      that = this
-      setTimeout(function(){
-        if(that.state.hovered) {
-          that.setState({
-            show: true
-          })
-        } else {
-          that.setState({
-            show: false
-          })
-        }
-      }, 500)
-    } else {
-      this.setState({
-        show: true
-      })
-    }
+    that = this
+    setTimeout(function(){
+      if (that.state.show) {
+        setTimeout(function(){
+          if(that.state.hovered) {
+            that.setState({
+              show: true
+            })
+          } else {
+            that.setState({
+              show: false
+            })
+          }
+        }, 500)
+      } else {
+        that.setState({
+          show: true
+        })
+      }
+    }, 200)
   }
 
   mouseOuthandler() {
