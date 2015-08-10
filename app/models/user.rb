@@ -40,7 +40,7 @@
 class User < ActiveRecord::Base
   LEWAGON_GITHUB_ORGANIZATION = 'lewagon'.freeze
 
-  PUBLIC_PROPERTIES = %i(id github_nickname gravatar_url)
+  PUBLIC_PROPERTIES = %i(id github_nickname gravatar_url fist_name last_name)
   PRIVATE_PROPERTIES = %i(slack_uid)
 
   devise :trackable, :database_authenticatable

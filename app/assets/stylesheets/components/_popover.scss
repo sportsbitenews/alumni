@@ -1,9 +1,44 @@
-.user-popover.bottom > .arrow {
-  border-bottom-color: rgba(211, 211, 211, 0.78);
+.pop {
+  background-color: white;
+  z-index: 1;
+  padding: 10px;
 }
 
+.user-popover-wrapper {
+  position: relative;
+  display: inline-block;
+
+  noscript+div {
+    position: absolute;
+    left: 0;
+    transform: translateX(-33%);
+    right: 0;
+    z-index: 1;
+    margin: auto;
+    width: 145px;
+    padding-top: 6px;
+
+    &:after {
+      content: " ";
+      height: 10px;
+      width: 10px;
+      transform: rotate(-45deg);
+      position: absolute;
+      top: 1px;
+      left: 0;
+      z-index: 2;
+      background-color: white;
+      right: 0;
+      margin: auto;
+      border-right: 1px solid #E8E8E8;
+      border-top: 1px solid #E8E8E8;
+    }
+  }
+}
 
 .user-popover {
+  width: 145px;
+
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.09);
