@@ -59,9 +59,7 @@ class PopoverUser extends React.Component {
   }
 
   mouseOuthandler() {
-    this.setState({
-      hovered: false
-    })
+    this.setState({ hovered: false })
     this.toggle()
   }
 }
