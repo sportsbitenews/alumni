@@ -82,7 +82,6 @@ class PostSubmissions extends React.Component {
   displayForm(type) {
     this.setState({ form: type });
     path = `new_${type.toLowerCase()}_path`;
-    console.log(path)
     history.replaceState('/', '/', Routes[path]({}));
   }
 
