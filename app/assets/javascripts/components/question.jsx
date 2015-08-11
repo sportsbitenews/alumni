@@ -19,6 +19,7 @@ class Question extends React.Component {
           </div>
         </div>
         <PostDetailBody {...this.props} />
+        <PostDetailFooter {...this.props} />
       </div>
 
     )
