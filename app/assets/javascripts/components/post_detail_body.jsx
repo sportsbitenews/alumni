@@ -51,17 +51,38 @@ class PostDetailBody extends React.Component {
       (upVoter) => upVoter.github_nickname.toLowerCase()
     );
 
+    // job description
+    if (this.props.description != undefined) {
+      var firstAnswer = (
+        <AnswerItem
+          user={this.props.user}
+          content={this.props.description} /
+        >);
+    }
+
+    // question content
+    if (this.props.content != undefined){
+      var firstAnswer = (
+        <AnswerItem
+          user={this.props.user}
+          content={this.props.content} /
+        >
+      );
+    }
+
     return (
       <div className='post-detail-body'>
         <main>
           <div className='post-answers-container'>
-            {this.state.answers.map((props) => <AnswerItem {...props}/>)}
+             {firstAnswer}
+             {this.state.answers.map((props) => <AnswerItem {...props}/>)}
           </div>
         </main>
         <aside className='post-detail-sidebar'>
           <div className='post-detail-participants'>
             <div className='section-title'>
-              <i className="mdi mdi-account-outline"></i> <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {usersInDiscussion.length}
+              <i className="mdi mdi-account-outline"></i>
+              <span className='section-title-h'>{connectedUsersWhoUpvoted}</span> / {usersInDiscussion.length}
             </div>
             {sortedUpVoters.map(upVoter => {
               var participantClasses = classNames({

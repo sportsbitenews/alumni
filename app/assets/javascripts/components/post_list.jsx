@@ -30,6 +30,10 @@ var PostList = React.createClass({
               ADD A NEW JOB
             </div>
           </a>
+          {this.props.jobs.map(job => {
+            var props = _.merge(job, { key: `${job.type}-${job.id}` });
+            return React.createElement(eval(job.type + "ListElement"), props);
+          })}
         </div>
         <div className='col-sm-3 posts-column'>
           <div className='posts-column-new'>

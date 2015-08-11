@@ -9,3 +9,9 @@ json.questions do
     json.partial! "questions/question", question: question
   end
 end
+
+json.jobs do
+  json.array! @posts[:jobs] do |job|
+    json.partial! "jobs/job", job: job
+  end
+end
