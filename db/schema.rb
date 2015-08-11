@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810110904) do
+ActiveRecord::Schema.define(version: 20150811110107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,16 +46,19 @@ ActiveRecord::Schema.define(version: 20150810110904) do
 
   create_table "jobs", force: :cascade do |t|
     t.string   "company"
-    t.string   "position"
+    t.string   "title"
     t.string   "ad_url"
     t.string   "contact_email"
     t.string   "city"
     t.boolean  "remote"
-    t.string   "type"
+    t.string   "contract"
     t.text     "description"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
+
+  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.string   "title"
@@ -129,6 +132,7 @@ ActiveRecord::Schema.define(version: 20150810110904) do
 
   add_foreign_key "answers", "users"
   add_foreign_key "batches", "cities"
+  add_foreign_key "jobs", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "resources", "users"
   add_foreign_key "users", "batches"

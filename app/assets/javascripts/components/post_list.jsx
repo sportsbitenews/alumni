@@ -25,9 +25,11 @@ var PostList = React.createClass({
           })}
         </div>
         <div className='col-sm-3 posts-column'>
-          <div className='posts-column-new'>
-            ADD A NEW JOB
-          </div>
+          <a href={Routes.new_job_path()}>
+            <div className='posts-column-new'>
+              ADD A NEW JOB
+            </div>
+          </a>
         </div>
         <div className='col-sm-3 posts-column'>
           <div className='posts-column-new'>

@@ -12,6 +12,10 @@ JsRoutes.setup do |config|
     /^profile$/,
     /^preview_answers$/,
     /^answers$/,
-    /^jobs$/
+    /^jobs$/,
+    /^job$/,
+    /^new_job$/
+
+
   ]
 end

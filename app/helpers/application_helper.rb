@@ -10,7 +10,7 @@ module ApplicationHelper
     react_component "PostSubmissions", {
       resource: @resource ? @resource.slice(:title, :url, :tagline) : {},
       question: @question ? @question.slice(:title, :content) : {},
-      job: @job ? @job.slice(:position, :company, :ad_url, :city, :remote, :type, :description) : {},
+      job: @job ? @job.slice(:title, :company, :ad_url, :city, :remote, :contract, :description) : {},
       resource_errors: @resource ? @resource.errors : {},
       question_errors: @question ? @question.errors : {},
       job_errors: @job ? @job.errors : {},

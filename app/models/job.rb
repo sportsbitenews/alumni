@@ -4,16 +4,26 @@
 #
 #  id            :integer          not null, primary key
 #  company       :string
-#  position      :string
+#  title         :string
 #  ad_url        :string
 #  contact_email :string
 #  city          :string
 #  remote        :boolean
-#  type          :string
+#  contract      :string
 #  description   :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  user_id       :integer
+#
+# Indexes
+#
+#  index_jobs_on_user_id  (user_id)
 #
 
 class Job < ActiveRecord::Base
+  include Post
+  validates :company, presence: true
+  validates :description, presence: true
+  validates :city, presence: true
+
 end
