@@ -15,6 +15,13 @@ class Question extends React.Component {
                   Not solved
                 </div>
               </a>
+              <div className='post-detail-author'>
+                <a href={Routes.profile_path(this.props.user.github_nickname)}>
+                  <div>
+                    <img src={this.props.user.gravatar_url} />
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>

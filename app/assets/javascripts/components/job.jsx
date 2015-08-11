@@ -1,6 +1,6 @@
 class Job extends React.Component {
   render() {
-    if (this.props.ad_url != undefined) {
+    if (this.props.ad_url != "") {
       var learnMore = (
                         <a href={this.props.ad_url}>
                           <div className='post-detail-url'>
@@ -10,9 +10,9 @@ class Job extends React.Component {
                       )
     }
 
-    if (this.props.contact_email != undefined) {
+    if (this.props.contact_email != "") {
       var contactEmail = (
-                          <a href={`mail_to:${this.props.contact_email}`}>
+                          <a href={`mailto:${this.props.contact_email}`}>
                             <div className='post-detail-url'>
                               {this.props.contact_email}
                             </div>
@@ -30,6 +30,13 @@ class Job extends React.Component {
               </div>
               {contactEmail}
               {learnMore}
+              <div className='post-detail-author'>
+                <a href={Routes.profile_path(this.props.user.github_nickname)}>
+                  <div>
+                    <img src={this.props.user.gravatar_url} />
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
