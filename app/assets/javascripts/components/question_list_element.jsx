@@ -17,7 +17,7 @@ class QuestionListElement extends PostListElement {
           </div>
           <div className='post-item-text-tagline'>
             posted by
-              <strong> {this.props.user.github_nickname}</strong>
+              <PopoverUser user={this.props.user} />
           </div>
         </div>
         <div className='post-item-upvote'>
