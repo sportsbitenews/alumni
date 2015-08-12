@@ -24,6 +24,10 @@ class Job < ActiveRecord::Base
   include Post
   validates :company, presence: true
   validates :description, presence: true
-  validates :city, presence: true
+  validates :city, presence: true, if: :remote_false?
 
+
+  def remote_false?
+    !remote
+  end
 end

@@ -2,7 +2,7 @@ class Job extends React.Component {
   render() {
     if (this.props.ad_url != "") {
       var learnMore = (
-                        <a href={this.props.ad_url}>
+                        <a href={this.props.ad_url} target='_blank'>
                           <div className='post-detail-url'>
                             Learn more
                           </div>
