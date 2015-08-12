@@ -8,9 +8,9 @@ class QuestionForm extends React.Component {
   }
 
   render() {
-    if (this.props.question_errors){
-      if (this.props.question_errors.title != undefined) {var errorTitle = this.props.question_errors.title}
-      if (this.props.question_errors.content != undefined) {var errorContent = this.props.question_errors.content}
+    if (this.props.errors){
+      if (this.props.errors.title != undefined) {var errorTitle = this.props.errors.title}
+      if (this.props.errors.content != undefined) {var errorContent = this.props.errors.content}
     }
     var writeClasses = classNames({
       'answer-form-action': true,

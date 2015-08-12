@@ -51,7 +51,6 @@ class PostDetailBody extends React.Component {
       (upVoter) => upVoter.github_nickname.toLowerCase()
     );
 
-    // job description
     if (this.props.description != undefined) {
       var firstAnswer = (
         <AnswerItem
@@ -60,7 +59,6 @@ class PostDetailBody extends React.Component {
         >);
     }
 
-    // question content
     if (this.props.content != undefined){
       var firstAnswer = (
         <AnswerItem

@@ -3,16 +3,16 @@ class ResourceForm extends React.Component {
     super(props)
   }
   render() {
-    if (this.props.resource_errors){
-      if (this.props.resource_errors.title != undefined) {var errorTitle = this.props.resource_errors.title}
-      if (this.props.resource_errors.tagline != undefined) {var errorTagline = this.props.resource_errors.tagline}
-      if (this.props.resource_errors.url != undefined) {var errorUrl = this.props.resource_errors.url}
+    if (this.props.errors){
+      if (this.props.errors.title != undefined) {var errorTitle = this.props.errors.title}
+      if (this.props.errors.tagline != undefined) {var errorTagline = this.props.errors.tagline}
+      if (this.props.errors.url != undefined) {var errorUrl = this.props.errors.url}
     }
 
     var csrfToken = document.querySelector('meta[name=csrf-token]').attributes.content.value;
     var csrfParam = document.querySelector('meta[name=csrf-param]').attributes.content.value;
     var inputCsrf = `<input name=${csrfParam} value=${csrfToken} type='hidden'>`;
-  
+
     return (
       <form action={Routes.resources_path()} method='post'>
         <div className='container'>

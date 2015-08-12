@@ -11,9 +11,7 @@ module ApplicationHelper
       resource: @resource ? @resource.slice(:title, :url, :tagline) : {},
       question: @question ? @question.slice(:title, :content) : {},
       job: @job ? @job.slice(:title, :company, :ad_url, :city, :remote, :contract, :description) : {},
-      resource_errors: @resource ? @resource.errors : {},
-      question_errors: @question ? @question.errors : {},
-      job_errors: @job ? @job.errors : {},
+      errors: (@resource || @question || @job).errors,
       form: params[:controller].singularize.capitalize
     }
   end

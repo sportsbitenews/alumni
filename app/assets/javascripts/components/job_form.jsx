@@ -10,13 +10,13 @@ class JobForm extends React.Component {
   }
 
   render() {
-    if (this.props.job_errors){
-      if (this.props.job_errors.company != undefined) {var errorCompany = this.props.job_errors.company}
-      if (this.props.job_errors.description != undefined) {var errorDescription = this.props.job_errors.description}
-      if (this.props.job_errors.title != undefined) {var errorTitle = this.props.job_errors.title}
-      if (this.props.job_errors.city != undefined) {var errorCity = this.props.job_errors.city}
-      if (this.props.job_errors.ad_url != undefined) {var errorAdUrl = this.props.job_errors.ad_url}
-      if (this.props.job_errors.contact_email != undefined) {var errorContactEmail = this.props.job_errors.contact_email}
+    if (this.props.errors){
+      if (this.props.errors.company != undefined) {var errorCompany = this.props.errors.company}
+      if (this.props.errors.description != undefined) {var errorDescription = this.props.errors.description}
+      if (this.props.errors.title != undefined) {var errorTitle = this.props.errors.title}
+      if (this.props.errors.city != undefined) {var errorCity = this.props.errors.city}
+      if (this.props.errors.ad_url != undefined) {var errorAdUrl = this.props.errors.ad_url}
+      if (this.props.errors.contact_email != undefined) {var errorContactEmail = this.props.errors.contact_email}
     }
     var writeClasses = classNames({
       'answer-form-action': true,
@@ -126,7 +126,7 @@ class JobForm extends React.Component {
             <label htmlFor='contact_email' className='hidden-xs'>
               <i className='mdi mdi-email-outline'></i>Contact
             </label>
-            <input ref='contactEmail' defaultValue={this.props.job.contact_email} placeholder="tchret@gmail.com" name='contact_email' />
+            <input ref='contactEmail' defaultValue={this.props.job.contact_email} placeholder="jobs@company.com" name='contact_email' />
             <div className='errors'>
               {errorContactEmail}
             </div>
