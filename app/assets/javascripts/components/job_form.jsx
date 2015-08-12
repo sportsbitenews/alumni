@@ -107,9 +107,8 @@ class JobForm extends React.Component {
             <div className='post-submissions-select'>
               <ReactBootstrap.DropdownButton ref='selectType' className={selectTypeClasses} title={this.state.type}>
                   <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Freelance</div>
-                  <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>CDD</div>
-                  <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>CDI</div>
-                  <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Stage</div>
+                  <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Employee</div>
+                  <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Internship</div>
               </ReactBootstrap.DropdownButton>
               <input type='hidden' name='contract' value={this.state.type} />
             </div>
