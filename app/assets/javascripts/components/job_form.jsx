@@ -59,25 +59,25 @@ class JobForm extends React.Component {
       <form action={Routes.jobs_path()} method='post'>
         <div className='container'>
           <div className='post-submissions-row'>
-            <label htmlFor='company' className='hidden-xs'>
+            <label htmlFor='job[company]' className='hidden-xs'>
               <i className='mdi mdi-star-outline'></i>Company
             </label>
-            <input ref='company' defaultValue={this.props.job.company} placeholder="eg. Algolia" name='company' />
+            <input ref='company' defaultValue={this.props.job.company} placeholder="eg. Algolia" name='job[company]' />
             <div className='errors'>
               {errorCompany}
             </div>
           </div>
           <div className='post-submissions-row'>
-            <label htmlFor='title' className='hidden-xs'>
+            <label htmlFor='job[title]' className='hidden-xs'>
               <i className='mdi mdi-account-outline'></i>Title
             </label>
-            <input ref='title' defaultValue={this.props.job.title} placeholder="eg. Front-end Developer" name='title' />
+            <input ref='title' defaultValue={this.props.job.title} placeholder="eg. Front-end Developer" name='job[title]' />
             <div className='errors'>
               {errorTitle}
             </div>
           </div>
           <div className='post-submissions-row'>
-            <label htmlFor='remote' className='hidden-xs'>
+            <label htmlFor='job[remote]' className='hidden-xs'>
               <i className='mdi mdi-elevator'></i>Remote
             </label>
             <div className='post-submissions-select'>
@@ -88,20 +88,20 @@ class JobForm extends React.Component {
               <div className={remoteFalseClass} onClick={this.remoteFalse.bind(this)}>
                 False
               </div>
-              <input type='hidden' name='remote' value={this.state.remote.toString()} />
+              <input type='hidden' name='job[remote]' value={this.state.remote.toString()} />
             </div>
           </div>
           <div className={inputCityClasses}>
-            <label htmlFor='city' className='hidden-xs'>
+            <label htmlFor='job[city]' className='hidden-xs'>
               <i className='mdi mdi-city'></i>City
             </label>
-            <input ref='city' defaultValue={this.props.job.city} placeholder="eg. San Francisco" name='city' />
+            <input ref='city' defaultValue={this.props.job.city} placeholder="eg. San Francisco" name='job[city]' />
             <div className='errors'>
               {errorCity}
             </div>
           </div>
           <div className='post-submissions-row'>
-            <label htmlFor='contract' className='hidden-xs'>
+            <label htmlFor='job[contract]' className='hidden-xs'>
               <i className='mdi mdi-content-paste'></i>Type
             </label>
             <div className='post-submissions-select'>
@@ -110,29 +110,29 @@ class JobForm extends React.Component {
                   <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Employee</div>
                   <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Internship</div>
               </ReactBootstrap.DropdownButton>
-              <input type='hidden' name='contract' value={this.state.type} />
+              <input type='hidden' name='job[contract]' value={this.state.type} />
             </div>
           </div>
           <div className="post-submissions-row">
-            <label htmlFor='link' className='hidden-xs'>
+            <label htmlFor='job[link]' className='hidden-xs'>
               <i className='mdi mdi-link-variant'></i>Link
             </label>
-            <input ref='adUrl' defaultValue={this.props.job.ad_url} placeholder="http://wwww..." name='ad_url' />
+            <input ref='adUrl' defaultValue={this.props.job.ad_url} placeholder="http://wwww..." name='job[ad_url]' />
             <div className='errors'>
               {errorAdUrl}
             </div>
           </div>
           <div className="post-submissions-row">
-            <label htmlFor='contact_email' className='hidden-xs'>
+            <label htmlFor='job[contact_email]' className='hidden-xs'>
               <i className='mdi mdi-email-outline'></i>Contact
             </label>
-            <input ref='contactEmail' defaultValue={this.props.job.contact_email} placeholder="jobs@company.com" name='contact_email' />
+            <input ref='contactEmail' defaultValue={this.props.job.contact_email} placeholder="jobs@company.com" name='job[contact_email]' />
             <div className='errors'>
               {errorContactEmail}
             </div>
           </div>
           <div className='post-submissions-row'>
-            <label htmlFor='description' className='hidden-xs'>
+            <label htmlFor='job[description]' className='hidden-xs'>
               <i className='mdi mdi-message-text-outline'></i>Description
             </label>
             <div className={contentInputClasses}>
@@ -145,7 +145,7 @@ class JobForm extends React.Component {
                   Markdown supported
                 </a>
               </div>
-              <textarea ref='content' defaultValue={this.props.question.tagline} placeholder='Describe the job' name='description' />
+              <textarea ref='content' defaultValue={this.props.question.tagline} placeholder='Describe the job' name='job[description]' />
               <div className='question-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}} />
             </div>
             <div className='errors'>

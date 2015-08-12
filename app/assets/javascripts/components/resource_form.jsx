@@ -17,28 +17,28 @@ class ResourceForm extends React.Component {
       <form action={Routes.resources_path()} method='post'>
         <div className='container'>
           <div className='post-submissions-row'>
-            <label htmlFor='url'>
+            <label htmlFor='resource[url]'>
               <i className='mdi mdi-link-variant'></i>Link
             </label>
-            <input ref='url' defaultValue={this.props.resource.url} placeholder='http://www...' name='url' />
+            <input ref='url' defaultValue={this.props.resource.url} placeholder='http://www...' name='resource[url]' />
             <div className='errors'>
               {errorUrl}
             </div>
           </div>
           <div className='post-submissions-row'>
-            <label htmlFor='title'>
+            <label htmlFor='resource[title]'>
               <i className='mdi mdi-format-text'></i>Title
             </label>
-            <input ref='title' defaultValue={this.props.resource.title} placeholder="The title of the resource" name='title' />
+            <input ref='title' defaultValue={this.props.resource.title} placeholder="The title of the resource" name='resource[title]' />
             <div className='errors'>
               {errorTitle}
             </div>
           </div>
           <div className='post-submissions-row'>
-            <label htmlFor='tagline'>
+            <label htmlFor='resource[tagline]'>
               <i className='mdi mdi-rocket'></i>Catchline
             </label>
-            <input ref='tagline' defaultValue={this.props.resource.tagline} placeholder='Describe the resource' name='tagline' />
+            <input ref='tagline' defaultValue={this.props.resource.tagline} placeholder='Describe the resource' name='resource[tagline]' />
             <div className='errors'>
               {errorTagline}
             </div>

@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.permit(:title, :content, :authenticity_token)
+    params.require(:question).permit(:title, :content)
   end
 end
 

@@ -19,7 +19,7 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    @resource = current_user.resources.build resource_params.except!(:authenticity_token) 
+    @resource = current_user.resources.build resource_params.except!(:authenticity_token)
     authorize @resource
     if @resource.save
       current_user.upvotes @resource
@@ -42,6 +42,6 @@ class ResourcesController < ApplicationController
   end
 
   def resource_params
-    params.permit(:url, :title, :tagline, :authenticity_token)
+    params.require(:resource).permit(:url, :title, :tagline)
   end
 end

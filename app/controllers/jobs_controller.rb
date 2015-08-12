@@ -27,7 +27,7 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.permit(
+    params.require(:job).permit(
       :company,
       :description,
       :contract,
@@ -35,8 +35,7 @@ class JobsController < ApplicationController
       :title,
       :ad_url,
       :city,
-      :contact_email,
-      :authenticity_token
+      :contact_email
     )
   end
 end
