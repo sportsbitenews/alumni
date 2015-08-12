@@ -1,9 +1,9 @@
 .post-detail-header {
   background-image: $resource-gradient;
   background-color: #3D7EAA;
-  padding: 60px;
   z-index: 9;
   position: relative;
+  padding: 20px;
 
   .container {
     display: flex;
@@ -16,10 +16,15 @@
   &-action {
     flex-direction: row;
     display: flex;
+    justify-content: center;
     margin-top: 40px;
 
     a {display: flex}
   }
+}
+
+.post-detail-header-main {
+  padding: 60px;
 }
 
 .post-detail {

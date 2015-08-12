@@ -19,11 +19,20 @@ class Job extends React.Component {
                           </a>
                          )
     }
+
+    if (this.props.city != "") {
+      var inCity = (
+        <span><span className='text-readable'>in</span> {this.props.city}</span>
+      );
+
+      var remote = 'remote';
+
+    }
     return (
       <div className='post-detail'>
         <div className='post-detail-header job-detail'>
-          <div className='container'>
-            <div className='post-detail-name post-detail-name-reduce'>{this.props.company} <span className='text-readable'>is hiring a</span> {this.props.title} <span className='text-readable'>in</span> {this.props.city}</div>
+          <div className='post-detail-header-main'>
+            <div className='post-detail-name post-detail-name-reduce'>{this.props.company} <span className='text-readable'>is hiring a {remote}</span> {this.props.title} {inCity} </div>
             <div className='post-detail-header-action'>
               <div className='post-detail-upvote'>
                 <Upvote {...this.props} />
