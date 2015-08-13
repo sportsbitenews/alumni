@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:github]
 
   validates :github_nickname, uniqueness: { allow_nil: false }
-  validate :belongs_to_lewagon_github_org
+  # validate :belongs_to_lewagon_github_org
 
   belongs_to :batch
   has_many :resources
