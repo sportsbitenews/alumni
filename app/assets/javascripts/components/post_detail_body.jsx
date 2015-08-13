@@ -55,7 +55,9 @@ class PostDetailBody extends React.Component {
       var firstAnswer = (
         <AnswerItem
           user={this.props.user}
-          content={this.props.description} /
+          content={this.props.description}
+          type="FirstItem"
+          time_ago={this.props.time_ago_in_words}  /
         >);
     }
 
@@ -63,7 +65,9 @@ class PostDetailBody extends React.Component {
       var firstAnswer = (
         <AnswerItem
           user={this.props.user}
-          content={this.props.content} /
+          content={this.props.content}
+          type="FirstItem"
+          time_ago={this.props.time_ago_in_words} /
         >
       );
     }

@@ -43,7 +43,17 @@ resources['posts'].each do |r|
   puts "#{resource.title} created"
 end
 
+paris = City.new
+paris.name = "Paris"
+paris.save
+
 batch = Batch.new
+batch.starts_at = Date.new(2014,07,4)
+batch.starts_at = Date.new(2014,09,4)
+batch.city = paris
+batch.save
+
 User.all.sample(25).each do |user|
-  batch.user =
+  user.batch = batch
+  user.save
 end

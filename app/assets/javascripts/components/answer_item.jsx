@@ -7,9 +7,10 @@ class AnswerItem extends React.Component {
   }
 
   render() {
-    answerItemId = classNames({
+    console.log(this.props)
+    var answerItemId = classNames({
       'highlighted': this.state.highlighted
-    })
+    });
     return(
       <div className="answer-item" id={answerItemId}>
         <div className='answer-avatar'>
@@ -55,9 +56,14 @@ class AnswerItem extends React.Component {
   }
 
   displaySharingUrl() {
-    var path = `${this.props.answerable_type.toLowerCase()}_path`;
-    var link = `${window.location.origin}${Routes[path]({ id: this.props.answerable_id })}#answer-${this.props.id}`
+    if (this.props.type == 'FirstItem') {
+      var link = window.location.href
+    } else {
+      var path = `${this.props.answerable_type.toLowerCase()}_path`;
+      var link = `${window.location.origin}${Routes[path]({ id: this.props.answerable_id })}#answer-${this.props.id}`
+    }
     window.prompt("Copy to clipboard", link);
+
   }
 
 
