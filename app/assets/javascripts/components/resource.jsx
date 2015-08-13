@@ -4,7 +4,7 @@ class Resource extends React.Component {
     return (
       <div className='post-detail'>
         <div className='post-detail-header resource-detail'>
-          <div className='container'>
+          <div className='post-detail-header-main'>
             <a href={this.props.url} >
               <div className='post-detail-name'>{this.props.title}</div>
             </a>

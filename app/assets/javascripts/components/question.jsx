@@ -3,7 +3,7 @@ class Question extends React.Component {
     return (
       <div className='post-detail'>
         <div className='post-detail-header question-detail'>
-          <div className='container'>
+          <div className='post-detail-header-main'>
             <div className='post-detail-name post-detail-name-reduce'>{this.props.title}</div>
             <div className='post-detail-tagline'>{this.props.tagline}</div>
             <div className='post-detail-header-action'>

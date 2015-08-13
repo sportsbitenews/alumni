@@ -4,7 +4,6 @@
 //= require alt
 //= require react_bootstrap
 
-
 //= require ./init
 //= require_tree ./actions
 //= require_tree ./stores
