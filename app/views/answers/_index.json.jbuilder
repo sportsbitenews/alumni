@@ -1,9 +1,5 @@
 json.answers do
   json.array! answers.map do |answer|
-    json.extract! answer, :id, :content
-    json.content render_markdown(answer.content)
-    json.user do
-      json.extract! answer.user, :id, :github_nickname, :gravatar_url
-    end
+    json.partial! 'answers/answer', answer: answer
   end
 end

@@ -51,6 +51,7 @@ class User < ActiveRecord::Base
 
   belongs_to :batch
   has_many :resources
+  has_many :jobs
   has_many :questions
 
   acts_as_voter

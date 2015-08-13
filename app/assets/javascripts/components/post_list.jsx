@@ -10,7 +10,7 @@ var PostList = React.createClass({
         </a>
           {this.props.resources.map(resource => {
             var props = _.merge(resource, { key: `${resource.type}-${resource.id}` });
-            return React.createElement(eval(resource.type + "ListElement"), props);
+            return React.createElement(ResourceListElement, props);
           })}
         </div>
         <div className='col-sm-3 posts-column'>
@@ -21,13 +21,19 @@ var PostList = React.createClass({
         </a>
           {this.props.questions.map(question => {
             var props = _.merge(question, { key: `${question.type}-${question.id}` });
-            return React.createElement(eval(question.type + "ListElement"), props);
+            return React.createElement(QuestionListElement, props);
           })}
         </div>
         <div className='col-sm-3 posts-column'>
-          <div className='posts-column-new'>
-            ADD A NEW JOB
-          </div>
+          <a href={Routes.new_job_path()}>
+            <div className='posts-column-new'>
+              ADD A NEW JOB
+            </div>
+          </a>
+          {this.props.jobs.map(job => {
+            var props = _.merge(job, { key: `${job.type}-${job.id}` });
+            return React.createElement(JobListElement, props);
+          })}
         </div>
         <div className='col-sm-3 posts-column'>
           <div className='posts-column-new'>

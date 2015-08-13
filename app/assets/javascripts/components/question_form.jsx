@@ -8,9 +8,9 @@ class QuestionForm extends React.Component {
   }
 
   render() {
-    if (this.props.question_errors){
-      if (this.props.question_errors.title != undefined) {var errorTitle = this.props.question_errors.title}
-      if (this.props.question_errors.content != undefined) {var errorContent = this.props.question_errors.content}
+    if (this.props.errors){
+      if (this.props.errors.title != undefined) {var errorTitle = this.props.errors.title}
+      if (this.props.errors.content != undefined) {var errorContent = this.props.errors.content}
     }
     var writeClasses = classNames({
       'answer-form-action': true,
@@ -34,16 +34,16 @@ class QuestionForm extends React.Component {
       <form action={Routes.questions_path()} method='post'>
         <div className='container'>
           <div className='post-submissions-row'>
-            <label htmlFor='title' className='hidden-xs'>
+            <label htmlFor='question[title]' className='hidden-xs'>
               <i className='mdi mdi-format-text'></i>Title
             </label>
-            <input ref='title' defaultValue={this.props.question.title} placeholder="What's your question ? Be specific" name='title' />
+            <input ref='title' defaultValue={this.props.question.title} placeholder="What's your question ? Be specific" name='question[title]' />
             <div className='errors'>
               {errorTitle}
             </div>
           </div>
           <div className='post-submissions-row'>
-            <label htmlFor='tagline' className='hidden-xs'>
+            <label htmlFor='question[tagline]' className='hidden-xs'>
               <i className='mdi mdi-message-text-outline'></i>Content
             </label>
             <div className={contentInputClasses}>
@@ -56,7 +56,7 @@ class QuestionForm extends React.Component {
                   Markdown supported
                 </a>
               </div>
-              <textarea ref='content' defaultValue={this.props.question.tagline} placeholder='Describe your problem' name='content' />
+              <textarea ref='content' defaultValue={this.props.question.tagline} placeholder='Describe your problem' name='question[content]' />
               <div className='question-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}} />
             </div>
             <div className='errors'>
@@ -82,7 +82,6 @@ class QuestionForm extends React.Component {
 
   onStoreChange(store) {
     if (this.state.preview) {
-      console.log(store)
       this.setState({
         renderedContent: store.new_answer.rendered_content == "" ? "Nothing to preview." : store.new_answer.rendered_content
       })

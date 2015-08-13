@@ -1,2 +1,2 @@
 json.partial! "posts/post", post: question
-json.content question.content
+json.content render_markdown(question.content)

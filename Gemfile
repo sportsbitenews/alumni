@@ -21,6 +21,7 @@ gem "redis"
 gem "slack-api"
 gem 'octicons-rails'
 
+
 gem 'redcarpet'
 gem 'pygmentize'
 gem 'sass-pygments-rails'

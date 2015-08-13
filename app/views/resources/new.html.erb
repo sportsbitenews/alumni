@@ -1,8 +1,2 @@
-<%= react_component "PostSubmissions", {
-  resource: @resource ? @resource.slice(:title, :url, :tagline) : {},
-  question: @question ? @question.slice(:title, :content) : {},
-  resource_errors: @resource ? @resource.errors : {},
-  question_errors: @question ? @question.errors : {},
-  form: params[:controller].singularize.capitalize
-} %>
+<%= post_submissions %>
 

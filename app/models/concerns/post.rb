@@ -27,7 +27,7 @@ module Post
   end
 
   def add_answers(count = 1)
-    YAML.load_file(Rails.root.join('db/support/answers.yml')) .sample(count).each do |attributes|
+    YAML.load_file(Rails.root.join('db/support/answers.yml')).sample(count).each do |attributes|
       answer = answers.build attributes
       answer.user = User.random
       answer.save
