@@ -42,3 +42,8 @@ resources['posts'].each do |r|
 
   puts "#{resource.title} created"
 end
+
+batch = Batch.new
+User.all.sample(25).each do |user|
+  batch.user =
+end
