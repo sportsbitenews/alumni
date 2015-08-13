@@ -225,12 +225,7 @@ GEM
     rails-assets-alt (0.17.1)
     rails-assets-axios (0.5.4)
     rails-assets-classnames (2.1.3)
-    rails-assets-jquery (2.1.4)
     rails-assets-mdi (1.1.70)
-    rails-assets-react-slick (0.6.6)
-      rails-assets-slick-carousel (~> 1.3.15)
-    rails-assets-slick-carousel (1.3.15)
-      rails-assets-jquery (>= 1.7)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -361,7 +356,6 @@ DEPENDENCIES
   rails-assets-axios!
   rails-assets-classnames!
   rails-assets-mdi!
-  rails-assets-react-slick!
   rails-i18n
   rails_12factor
   react-bootstrap-rails
