@@ -57,7 +57,7 @@ class AnswerItem extends React.Component {
   displaySharingUrl() {
     var path = `${this.props.answerable_type.toLowerCase()}_path`;
     var link = `${window.location.origin}${Routes[path]({ id: this.props.answerable_id })}#answer-${this.props.id}`
-    window.prompt("Copy to clipboard: Ctrl+C / C@md+c, Enter", link);
+    window.prompt("Copy to clipboard", link);
   }
 
 
