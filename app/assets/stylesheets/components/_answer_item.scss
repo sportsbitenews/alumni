@@ -1,6 +1,26 @@
 .answer-item {
   display: flex;
-  margin-top: 20px;
+  padding: 20px;
+
+  &:hover {
+    .answer-item-menu {
+      visibility: visible;
+    }
+  }
+
+  &#highlighted {
+    animation: highlighted 5s ease forwards;
+  }
+}
+
+@keyframes highlighted {
+  0% {
+    background: #FFF8E6;
+  }
+
+  100% {
+    background: white;
+  }
 }
 
 .answer-content {
@@ -11,12 +31,38 @@
 
 .answer-header {
   font-weight: bold;
+  display: flex;
+  align-items: center;
   font-size: 15px;
+
+  .answer-time-ago {
+    margin-left: auto;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #CACACA;
+    font-weight: 300;
+  }
 }
 
 .answer-body {
   padding-left: 10px;
   flex: 1;
-
-
 }
+
+.answer-item-menu {
+  display: flex;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  visibility: hidden;
+
+  .answer-item-share {
+    margin-left: auto;
+    color: #CECECE;
+
+    &:hover {
+      color: #999999;
+    }
+  }
+}
+
