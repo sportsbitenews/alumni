@@ -7,7 +7,6 @@ class AnswerItem extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     var answerItemId = classNames({
       'highlighted': this.state.highlighted
     });
