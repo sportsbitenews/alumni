@@ -13,8 +13,9 @@ Rails.application.routes.draw do
       post :preview
     end
   end
- resources :questions, only: %i(new show create)
- resources :jobs, only: %i(new show create)
+  resources :batches, only: %i(show)
+  resources :questions, only: %i(new show create)
+  resources :jobs, only: %i(new show create)
   resources :resources, only: %i(new create show) do
     collection do
       post :preview

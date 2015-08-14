@@ -16,9 +16,6 @@
   puts "Welcome #{user.github_nickname}"
 end
 
-# POST
-  # question
-  # resource (using product hunt api)
 
 questions = YAML.load_file('db/support/questions.yml')
 questions.each do |q|
@@ -41,4 +38,21 @@ resources['posts'].each do |r|
   resource.save
 
   puts "#{resource.title} created"
+end
+
+paris = City.new
+paris.name = "Paris"
+paris.save
+
+batch = Batch.new
+batch.starts_at = Date.new(2014,7,4)
+batch.starts_at = Date.new(2014,9,4)
+batch.city = paris
+batch.name = "Promo #3"
+batch.save
+
+User.all.sample(25).each do |user|
+  u = user
+  u.batch = batch
+  u.save
 end

@@ -11,3 +11,4 @@
 /tmp/*
 /config/application.yml
 /db/*_dump.yml
+/node_modules
