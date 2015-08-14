@@ -103,7 +103,7 @@
 .post-detail-participant {
   display: flex;
   align-items: center;
-  padding: 9px;
+  padding: 10px 20px;
   color: black;
 
   &:hover {
@@ -134,12 +134,6 @@
       background: #CBCBCC;
     }
   }
-}
-
-.section-title {
-  font-weight: bold;
-  padding: 20px 10px;
-  color: #bbb;
 }
 
 .post-answers-container {

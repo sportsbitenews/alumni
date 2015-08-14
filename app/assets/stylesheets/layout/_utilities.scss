@@ -15,20 +15,26 @@ a {
 
 .section-title {
   font-weight: bold;
-  padding-bottom: 0;
   color: #bbb;
   align-items: center;
   display: flex;
-
-  padding: 10px;
-  padding-top: 20px;
+  font-weight: bold;
+  padding: 20px;
 
   &-h {
     margin-left: auto;
   }
 
   i {
-    font-size: 23px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    color: #8E8E8E;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.15);
   }
 
   span {

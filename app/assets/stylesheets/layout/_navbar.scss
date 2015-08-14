@@ -62,28 +62,6 @@
   }
 }
 
-.posts-index {
-  .header-main {
-    position: fixed;
-    transition: .2s ease;
-    &:hover {
-      transform: translateY(0);
-    }
-  }
-  .headers {
-    margin-top: 39px;
-    display: block;
-  }
-
-  .nav-bar {
-    background: white;
-  }
-
-  .nav-bar-right {
-    a { color: white; }
-  }
-}
-
 .nav-bar .container {display: flex}
 
 .navbar-logo {
@@ -104,7 +82,31 @@
     width: 35px;
     height: 74px;
     padding: 4px;
-    circle, path {fill: $brand-color }
   }
 }
 
+.posts-index {
+  .header-main {
+    position: fixed;
+    transition: .2s ease;
+    &:hover {
+      transform: translateY(0);
+    }
+  }
+  .headers {
+    margin-top: 39px;
+    display: block;
+  }
+
+  .nav-bar {
+    background: white;
+  }
+
+  .navbar-right {
+    a { color: black }
+  }
+
+  .navbar-logo svg {
+    circle, path {fill: $brand-color }
+  }
+}

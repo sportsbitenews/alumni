@@ -1,0 +1,71 @@
+.batch-detail-header {
+  background: linear-gradient(90deg, rgba(8, 80, 120, 0.8) 10%, rgba(133, 216, 206, 0.8) 90%), url(https://pbs.twimg.com/media/BuhAJEICAAAActx.jpg:large);
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 340px;
+}
+
+.batch-detail-name {
+  font-size: 54px;
+  padding: 100px 0;
+  color: white;
+  text-align: center;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+
+.batch-detail-header-footer {
+  display: flex;
+  position: absolute;
+  left: 0;
+  align-items: center;
+  bottom: 0;
+  padding: 20px;
+  width: 100%;
+}
+
+.batch-detail-footer-item {
+  font-size: 12px;
+  padding: 0px 15px;
+  opacity: 1;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.batch-detail-city {
+  margin-left: auto;
+  span {
+    &:last-child {
+      padding-left: 5px;
+    }
+  }
+}
+
+.batch-detail-main {
+  background-color: white;
+  flex: 1;
+}
+
+.batch-detail-side-bar {
+  flex: 0 0 350px;
+  max-width: 100%;
+  background-color: #f3f3f3;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.batch-detail-body {
+  display: flex;
+  @media (max-width: $screen-sm) {
+    flex-flow: column;
+  }
+}
