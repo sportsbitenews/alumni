@@ -15,3 +15,10 @@ json.posts do
     json.partial! "posts/post", post: post
   end
 end
+
+json.posts_answered do
+  posts = user.resources + user.questions + user.jobs
+  json.array! posts.each do |post|
+    json.partial! "posts/post", post: post
+  end
+end

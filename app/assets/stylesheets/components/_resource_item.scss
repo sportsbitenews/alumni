@@ -15,14 +15,14 @@
   .resource-item,
   .question-item {
     position: relative;
-    overflow: hidden;
-    padding-left: 15px !important;
+    padding-left: 12px !important;
     &:after {
       content: " ";
       height: 100%;
       position: absolute;
       left: 0;
-      width: 5px;
+      width: 2px;
+      border-radius: 3px 0px 0 3px;
       top: 0;
     }
   }
