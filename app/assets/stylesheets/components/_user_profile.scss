@@ -1,0 +1,16 @@
+.user-profile-header {
+  background: linear-gradient(180deg, #606c88 10%, #3f4c6b 90%);
+  padding: 60px 0;
+}
+
+.user-profile-avatar {
+  width: 150px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+  margin: auto;
+  display: block;
+}
+
+.user-profile-username {
+  color: white;
+  text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+}
