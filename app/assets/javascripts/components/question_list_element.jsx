@@ -10,7 +10,7 @@ class QuestionListElement extends PostListElement {
 
   content() {
     return (
-      <div className='post-item'>
+      <div className='post-item question-item'>
         <div className='post-item-text'>
           <div className='post-item-text-name'>
             {this.props.title}

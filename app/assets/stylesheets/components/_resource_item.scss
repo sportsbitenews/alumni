@@ -10,3 +10,24 @@
   background-position: center top;
   background-size: cover;
 }
+
+.users-show {
+  .resource-item,
+  .question-item {
+    position: relative;
+    overflow: hidden;
+    padding-left: 15px !important;
+    &:after {
+      content: " ";
+      height: 100%;
+      position: absolute;
+      left: 0;
+      width: 5px;
+      top: 0;
+    }
+  }
+
+  .resource-item:after { background: $resource-gradient }
+  .question-item:after { background: $question-gradient }
+  .job-item:after { background: $job-gradient }
+}
