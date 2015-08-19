@@ -16,13 +16,13 @@
   .question-item,
   .job-item {
     position: relative;
-    padding-left: 12px !important;
+    padding-left: 14px !important;
     &:after {
       content: " ";
       height: 100%;
       position: absolute;
       left: 0;
-      width: 2px;
+      width: 4px;
       border-radius: 3px 0px 0 3px;
       top: 0;
     }

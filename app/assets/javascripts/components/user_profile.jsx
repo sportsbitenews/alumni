@@ -41,6 +41,18 @@ class UserProfile extends React.Component {
               @{this.props.github_nickname}
               <span className={badgeConnectedClasses} />
             </h1>
+            <div className='user-profile-header-footer'>
+              <a href={Routes.batch_path(this.props.batch.id)}>
+                <div className='batch-detail-footer-item is-hoverable'>
+                  {this.props.batch.name}
+                </div>
+              </a>
+              <a href={"http://github.com/" + this.props.github_nickname} target='_blank'>
+                <div className='batch-detail-footer-item is-hoverable'>
+                  GITHUB
+                </div>
+              </a>
+            </div>
             <a href={this.props.user_messages_slack_url}>
               {this.props.user_messages_slack_url}
             </a>
