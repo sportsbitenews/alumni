@@ -1,25 +1,27 @@
-@import "button";
-@import "form";
-@import "alert";
-@import "post_item";
-@import "upvote";
-@import "avatar";
+@import 'button';
+@import 'form';
+@import 'alert';
+@import 'post_item';
+@import 'upvote';
+@import 'avatar';
 
-@import "answer_item";
-@import "resource_item";
+@import 'answer_item';
+@import 'resource_item';
 
-@import "post_detail_body";
-@import "post_detail_footer";
+@import 'post_detail_body';
+@import 'post_detail_footer';
 
-@import "question_detail";
-@import "resource_detail";
-@import "job_detail";
+@import 'question_detail';
+@import 'resource_detail';
+@import 'job_detail';
 
-@import "post_submissions";
-@import "answer_form";
-@import "question_form";
+@import 'post_submissions';
+@import 'answer_form';
+@import 'question_form';
 
-@import "tooltip";
-@import "popover";
+@import 'tooltip';
+@import 'popover';
 
-@import "user_profile";
+@import 'user_profile';
+
+@import 'badge';
