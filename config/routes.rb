@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
   resources :batches, only: %i(show)
   resources :questions, only: %i(new show create)
+  resources :milestones, only: %i(new show create)
   resources :jobs, only: %i(new show create)
   resources :resources, only: %i(new create show) do
     collection do

@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   has_many :resources
   has_many :jobs
   has_many :questions
+  has_many :milestones
 
   acts_as_voter
 
