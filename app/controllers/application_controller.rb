@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   private
 
   def devise_or_pages_or_admin_controller?
-    devise_controller? || pages_controller? || params[:controller] =~ /^admin/
+    devise_controller? || pages_controller? || (self.kind_of? RailsAdmin::ApplicationController)
   end
 
   def pages_controller?

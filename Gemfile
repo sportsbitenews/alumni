@@ -20,6 +20,7 @@ gem "autoprefixer-rails"
 gem "redis"
 gem "slack-api"
 gem 'octicons-rails'
+gem 'rails_admin'
 
 
 gem 'redcarpet'
