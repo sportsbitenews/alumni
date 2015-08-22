@@ -14,8 +14,7 @@ JsRoutes.setup do |config|
     /^answers$/,
     /^jobs$/,
     /^job$/,
-    /^new_job$/
-
-
+    /^new_job$/,
+    /^batch$/
   ]
 end

@@ -44,6 +44,12 @@
 
   &.is-active {
     opacity: 1;
+    .post-submissions-tab-item { opacity: .4 }
+  }
+
+  &-item {
+    font-size: 13px;
+    text-transform: uppercase;
   }
 }
 
