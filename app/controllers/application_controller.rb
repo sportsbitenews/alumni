@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  # before_action :authenticate_user!, unless: :pages_controller?
+  before_action :authenticate_user!, unless: :pages_controller?
 
   include Pundit
   after_action :verify_authorized, except:  [:index], unless: :devise_or_pages_or_admin_controller?
