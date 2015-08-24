@@ -10,7 +10,7 @@ class JobListElement extends PostListElement {
 
   content() {
     return (
-      <div className='post-item'>
+      <div className='post-item job-item'>
         <div className='post-item-text'>
           <div className='post-item-text-name'>
             {this.props.title}
