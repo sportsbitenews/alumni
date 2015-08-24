@@ -15,6 +15,8 @@ JsRoutes.setup do |config|
     /^jobs$/,
     /^job$/,
     /^new_job$/,
+    /^milestones$/,
+    /^new_milestone$/,
     /^batch$/
   ]
 end

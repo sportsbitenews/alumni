@@ -1,4 +1,4 @@
-class QuestionForm extends React.Component {
+class MilestoneForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,6 +12,7 @@ class QuestionForm extends React.Component {
       if (this.props.errors.title != undefined) {var errorTitle = this.props.errors.title}
       if (this.props.errors.content != undefined) {var errorContent = this.props.errors.content}
     }
+
     var writeClasses = classNames({
       'answer-form-action': true,
       'is-active': !this.state.preview
@@ -27,19 +28,19 @@ class QuestionForm extends React.Component {
     })
 
     return(
-      <form action={Routes.questions_path()} method='post'>
+      <form action={Routes.milestones_path()} method='post'>
         <div className='container'>
           <div className='post-submissions-row'>
-            <label htmlFor='question[title]' className='hidden-xs'>
+            <label htmlFor='milestone[title]' className='hidden-xs'>
               <i className='mdi mdi-format-text'></i>Title
             </label>
-            <input ref='title' defaultValue={this.props.question.title} placeholder="What's your question ? Be specific" name='question[title]' />
+            <input ref='title' defaultValue={this.props.milestone.title} placeholder="What's news bro ?" name='milestone[title]' />
             <div className='errors'>
               {errorTitle}
             </div>
           </div>
           <div className='post-submissions-row'>
-            <label htmlFor='question[tagline]' className='hidden-xs'>
+            <label htmlFor='milestone[tagline]' className='hidden-xs'>
               <i className='mdi mdi-message-text-outline'></i>Content
             </label>
             <div className={contentInputClasses}>
@@ -52,7 +53,7 @@ class QuestionForm extends React.Component {
                   Markdown supported
                 </a>
               </div>
-              <textarea ref='content' defaultValue={this.props.question.content} placeholder='Describe your problem' name='question[content]' />
+              <textarea ref='content' defaultValue={this.props.milestone.content} placeholder='Give us crispy details :)' name='milestone[content]' />
               <div className='question-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}} />
             </div>
             <div className='errors'>
@@ -61,7 +62,7 @@ class QuestionForm extends React.Component {
           </div>
         </div>
         <div className='post-submissions-submit'>
-          <input type='submit' className='button button-question' value='Post it' />
+          <input type='submit' className='button button-milestone' value='Post it' />
         </div>
         <div dangerouslySetInnerHTML={{__html: Csrf.getInput()}}></div>
       </form>

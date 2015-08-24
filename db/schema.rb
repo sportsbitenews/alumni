@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820134450) do
-
+ActiveRecord::Schema.define(version: 20150821113104) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +59,21 @@ ActiveRecord::Schema.define(version: 20150820134450) do
 
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
+<<<<<<< HEAD
+  create_table "milestones", force: :cascade do |t|
+    t.integer  "project_id"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "milestones", ["project_id"], name: "index_milestones_on_project_id", using: :btree
+  add_index "milestones", ["user_id"], name: "index_milestones_on_user_id", using: :btree
+
+=======
+>>>>>>> master
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
@@ -148,6 +162,11 @@ ActiveRecord::Schema.define(version: 20150820134450) do
   add_foreign_key "answers", "users"
   add_foreign_key "batches", "cities"
   add_foreign_key "jobs", "users"
+<<<<<<< HEAD
+  add_foreign_key "milestones", "projects"
+  add_foreign_key "milestones", "users"
+=======
+>>>>>>> master
   add_foreign_key "projects", "batches"
   add_foreign_key "questions", "users"
   add_foreign_key "resources", "users"

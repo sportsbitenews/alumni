@@ -6,6 +6,7 @@
 //= require react-swipe-views
 
 //= require ./init
+//= require_tree ./helpers
 //= require_tree ./actions
 //= require_tree ./stores
 //= require_tree ./components

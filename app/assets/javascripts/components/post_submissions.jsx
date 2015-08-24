@@ -12,7 +12,8 @@ class PostSubmissions extends React.Component {
       "post-submissions-header": true,
       "resource-details": this.state.form == "Resource",
       "question-detail": this.state.form == "Question",
-      "job-detail": this.state.form == "Job"
+      "job-detail": this.state.form == "Job",
+      "milestone-detail": this.state.form == "Milestone"
     })
 
     var resourceTabClasses = classNames({
@@ -28,6 +29,11 @@ class PostSubmissions extends React.Component {
     var jobTabClasses = classNames({
       'post-submissions-tab': true,
       'is-active': this.state.form == "Job"
+    })
+
+    var milestoneTabClasses = classNames({
+      'post-submissions-tab': true,
+      'is-active': this.state.form == "Milestone"
     })
 
     return(
@@ -50,6 +56,10 @@ class PostSubmissions extends React.Component {
             <div className={jobTabClasses} onClick={this.onJobTabClick.bind(this)}>
               Job
             </div>
+            <hr />
+            <div className={milestoneTabClasses} onClick={this.onMilestoneTabClick.bind(this)}>
+              Milestone
+            </div>
           </div>
         </div>
         <div className='post-submissions-body'>
@@ -62,6 +72,9 @@ class PostSubmissions extends React.Component {
           <div className={jobTabClasses}>
             <JobForm {...this.props} />
           </div>
+          <div className={milestoneTabClasses}>
+            <MilestoneForm {...this.props} />
+          </div>
         </div>
       </div>
     )
@@ -69,6 +82,10 @@ class PostSubmissions extends React.Component {
 
   onResourceTabClick() {
     this.displayForm('Resource')
+  }
+
+  onMilestoneTabClick() {
+    this.displayForm('Milestone')
   }
 
   onQuestionTabClick() {
@@ -80,6 +97,7 @@ class PostSubmissions extends React.Component {
   }
 
   displayForm(type) {
+
     this.setState({ form: type });
     path = `new_${type.toLowerCase()}_path`;
     history.replaceState('/', '/', Routes[path]({}));

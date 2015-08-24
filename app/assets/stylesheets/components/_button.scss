@@ -22,18 +22,8 @@
   }
 }
 
-.button-success {
-  background: $green;
-}
-
-.button-resource {
-  background: $resource-gradient;
-}
-
-.button-question {
-  background: $question-gradient;
-}
-
-.button-job {
-  background: $job-gradient;
-}
+.button-success { background: $green }
+.button-resource { background: $resource-gradient }
+.button-question { background: $question-gradient }
+.button-job { background: $job-gradient }
+.button-milestone { background: $milestone-gradient }
