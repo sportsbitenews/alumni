@@ -12,6 +12,7 @@ class MilestoneForm extends React.Component {
       if (this.props.errors.title != undefined) {var errorTitle = this.props.errors.title}
       if (this.props.errors.content != undefined) {var errorContent = this.props.errors.content}
     }
+
     var writeClasses = classNames({
       'answer-form-action': true,
       'is-active': !this.state.preview
@@ -25,10 +26,6 @@ class MilestoneForm extends React.Component {
       'question-form-input': true,
       'is-previewed': this.state.preview
     })
-
-    var csrfToken = document.querySelector('meta[name=csrf-token]').attributes.content.value;
-    var csrfParam = document.querySelector('meta[name=csrf-param]').attributes.content.value;
-    var inputCsrf = `<input name=${csrfParam} value=${csrfToken} type='hidden'>`;
 
     return(
       <form action={Routes.milestones_path()} method='post'>
@@ -67,7 +64,7 @@ class MilestoneForm extends React.Component {
         <div className='post-submissions-submit'>
           <input type='submit' className='button button-milestone' value='Post it' />
         </div>
-        <div dangerouslySetInnerHTML={{__html: inputCsrf}}></div>
+        <div dangerouslySetInnerHTML={{__html: Csrf.getInput()}}></div>
       </form>
     )
   }

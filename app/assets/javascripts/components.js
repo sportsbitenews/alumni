@@ -5,6 +5,7 @@
 //= require react_bootstrap
 
 //= require ./init
+//= require_tree ./helpers
 //= require_tree ./actions
 //= require_tree ./stores
 //= require_tree ./components

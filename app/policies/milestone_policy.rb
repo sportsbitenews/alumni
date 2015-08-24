@@ -6,11 +6,11 @@ class MilestonePolicy < ApplicationPolicy
   end
 
   def new?
-    record.users.include? user
+    user.projects.any?
   end
 
   def create?
-    !user.nil?
+    record.project.map(&:users).flatten.uniq.include?(user)
   end
 
   def show?

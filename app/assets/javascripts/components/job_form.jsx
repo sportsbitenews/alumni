@@ -51,10 +51,6 @@ class JobForm extends React.Component {
       "is-closed": this.state.selectTypeClosed
     })
 
-    var csrfToken = document.querySelector('meta[name=csrf-token]').attributes.content.value;
-    var csrfParam = document.querySelector('meta[name=csrf-param]').attributes.content.value;
-    var inputCsrf = `<input name=${csrfParam} value=${csrfToken} type='hidden'>`;
-
     return(
       <form action={Routes.jobs_path()} method='post'>
         <div className='container'>
@@ -156,7 +152,7 @@ class JobForm extends React.Component {
         <div className='post-submissions-submit'>
           <input type='submit' className='button button-job' value='Post it' />
         </div>
-        <div dangerouslySetInnerHTML={{__html: inputCsrf}}></div>
+        <div dangerouslySetInnerHTML={{__html: Csrf.getInput()}}></div>
       </form>
     )
   }

@@ -9,10 +9,6 @@ class ResourceForm extends React.Component {
       if (this.props.errors.url != undefined) {var errorUrl = this.props.errors.url}
     }
 
-    var csrfToken = document.querySelector('meta[name=csrf-token]').attributes.content.value;
-    var csrfParam = document.querySelector('meta[name=csrf-param]').attributes.content.value;
-    var inputCsrf = `<input name=${csrfParam} value=${csrfToken} type='hidden'>`;
-
     return (
       <form action={Routes.resources_path()} method='post'>
         <div className='container'>
@@ -47,7 +43,7 @@ class ResourceForm extends React.Component {
         <div className='post-submissions-submit'>
           <input type='submit' className='button button-resource' value='Post it' onClick={this.submitForm.bind(this)} />
         </div>
-        <div dangerouslySetInnerHTML={{__html: inputCsrf}}></div>
+        <div dangerouslySetInnerHTML={{__html: Csrf.getInput()}}></div>
       </form>
     );
   }
