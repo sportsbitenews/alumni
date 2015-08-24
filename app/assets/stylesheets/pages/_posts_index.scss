@@ -2,9 +2,7 @@
   height: 100%;
   overflow: hidden;
 
-  body {
-    height: 100%;
-  }
+  body { height: 100% }
 }
 
 .post-list {
@@ -27,21 +25,10 @@
   color: white;
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
 
-  &.resources-column-header {
-    background: $resource-gradient;
-  }
-
-  &.questions-column-header {
-    background: $question-gradient;
-  }
-
-  &.jobs-column-header {
-    background: $job-gradient;
-  }
-
-  &.milestones-column-header {
-    background: $milestone-gradient;
-  }
+  &.resources-column-header { background: $resource-gradient }
+  &.questions-column-header { background: $question-gradient }
+  &.jobs-column-header { background: $job-gradient }
+  &.milestones-column-header { background: $milestone-gradient }
 }
 
 .posts-column-new {
@@ -56,7 +43,62 @@
   text-transform: uppercase;
   cursor: pointer;
 
-  &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+  &:hover { background-color: rgba(255, 255, 255, 0.2) }
+}
+
+.SwipeViewsHeader {
+  display: none;
+  position: relative;
+  z-index: 9;
+}
+
+.SwipeViews {
+  @media (min-width: $screen-md) { width: 100% !important }
+}
+
+.SwipeViewsContainer {
+  padding-top: 120px;
+  display: flex;
+  .SwipeViewsTabs {
+    background-color: #F9F9F9;
+    ul {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.SwipeViewsInk {
+  height: 3px;
+  background-color: #000000;
+  border-radius: 0;
+}
+
+.SwipeViewsTab {
+  opacity: .3;
+
+  &.active {
+    color: #000000;
+    opacity: 1;
+  }
+}
+
+.SwipeViewsTabs { background-color: #F4F4F4 }
+
+@media (max-width: $screen-md) {
+  .SwipeViewsContainer { padding-top: 40px }
+  .SwipeViews { padding-top: 10px }
+  .SwipeViewsHeader { display: block }
+  .headers { display: none !important }
+}
+
+@media (max-width: $screen-xs) {
+  .SwipeViewsHeader { order: 2 }
+
+  .SwipeViewsTabs {
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+    ul { padding-bottom: 18px }
+
   }
 }
