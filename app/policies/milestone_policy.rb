@@ -6,7 +6,7 @@ class MilestonePolicy < ApplicationPolicy
   end
 
   def new?
-    !user.nil?
+    record.users.include? user
   end
 
   def create?
