@@ -18,5 +18,8 @@
 
 class Milestone < ActiveRecord::Base
   include Post
-  # belongs_to :project
+  belongs_to :project
+
+  validates :project_id, presence: true
+  validates :content, presence: true
 end

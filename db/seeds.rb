@@ -7,7 +7,7 @@
 
   user = User.new
   user.gravatar_url = ui_face['image_urls']['epic']
-  user.fist_name = "#{random['name']['first']}"
+  user.first_name = "#{random['name']['first']}"
   user.last_name = "#{random['name']['last']}"
   user.github_nickname = ui_face['username']
   user.email = random['email']

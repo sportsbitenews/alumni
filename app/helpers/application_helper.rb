@@ -13,7 +13,8 @@ module ApplicationHelper
       job: @job ? @job.slice(:title, :company, :ad_url, :city, :remote, :contract, :description) : {},
       milestone: @milestone ? @milestone.slice(:title, :content) : {},
       errors: (@resource || @question || @job || @milestone).errors,
-      form: params[:controller].singularize.capitalize
+      form: params[:controller].singularize.capitalize,
+      currentUserProjects: current_user.projects.any? ? current_user.projects : false
     }
   end
 
