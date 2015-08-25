@@ -19,7 +19,7 @@
 #  github_nickname        :string
 #  gravatar_url           :string
 #  github_token           :string
-#  fist_name              :string
+#  first_name             :string
 #  last_name              :string
 #  alumni                 :boolean          default(FALSE), not null
 #  admin                  :boolean          default(FALSE), not null
