@@ -1,4 +1,10 @@
 .avatar {
   width: 30px;
   border-radius: 50%;
+
+  &-navbar {
+    box-shadow:  0px 0px 1px rgb(216, 216, 216);
+    position: relative;
+    top: -1px;
+  }
 }
