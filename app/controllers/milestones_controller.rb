@@ -30,7 +30,8 @@ class MilestonesController < ApplicationController
     params.require(:milestone).permit(
       :title,
       :content,
-      :user_id
+      :user_id,
+      :project_id
     )
   end
 

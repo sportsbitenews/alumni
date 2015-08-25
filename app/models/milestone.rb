@@ -18,5 +18,5 @@
 
 class Milestone < ActiveRecord::Base
   include Post
-  # belongs_to :project
+  belongs_to :project
 end
