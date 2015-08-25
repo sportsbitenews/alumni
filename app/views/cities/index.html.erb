@@ -1,0 +1,9 @@
+<h1>Cities</h1>
+
+<% @cities.each do |city| %>
+  <% if policy(city).show? %>
+    <%= link_to city.name, city %>
+  <% else %>
+    <%= city.name %>
+  <% end %>
+<% end %>

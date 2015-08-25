@@ -1,0 +1,14 @@
+<h1><%= @city.name %></h1>
+
+<%= link_to "New batch", new_city_batch_path(@city) %>
+
+<% @city.batches.order(starts_at: :desc).each do |batch| %>
+  <h3>
+    <%= link_to batch.name, batch %>
+    <small><%= link_to 'Edit', edit_batch_path(batch) %></small>
+  </h3>
+  <p>
+    <%= l batch.starts_at %> → <%= l batch.ends_at %> |
+    <%= pluralize batch.users.count, 'student' %>
+  </p>
+<% end %>

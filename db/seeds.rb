@@ -7,7 +7,7 @@
 
   user = User.new
   user.gravatar_url = ui_face['image_urls']['epic']
-  user.fist_name = "#{random['name']['first']}"
+  user.first_name = "#{random['name']['first']}"
   user.last_name = "#{random['name']['last']}"
   user.github_nickname = ui_face['username']
   user.email = random['email']
@@ -45,8 +45,8 @@ paris.name = "Paris"
 paris.save
 
 batch = Batch.new
-batch.starts_at = Date.new(2014,7,4)
-batch.starts_at = Date.new(2014,9,4)
+batch.starts_at = Date.new(2014, 7, 4)
+batch.ends_at = Date.new(2014, 9, 4)
 batch.city = paris
 batch.name = "Promo #3"
 batch.save
