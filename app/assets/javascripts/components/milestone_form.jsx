@@ -13,9 +13,6 @@ class MilestoneForm extends React.Component {
       if (this.props.errors.title != undefined) {var errorTitle = this.props.errors.title}
       if (this.props.errors.content != undefined) {var errorContent = this.props.errors.content}
     }
-
-    var that = this;
-
     var writeClasses = classNames({
       'answer-form-action': true,
       'is-active': !this.state.preview
@@ -30,27 +27,23 @@ class MilestoneForm extends React.Component {
       'is-previewed': this.state.preview
     })
 
-    var selectedProject = _.filter(this.props.currentUserProjects, function(n) {
-      return n.id == that.state.projectId;
-    })[0];
+    var selectedProject = _.filter(this.props.currentUserProjects, (n) => n.id == this.state.projectId )[0];
 
 
     return(
       <form action={Routes.milestones_path()} method='post'>
         <div className='container'>
           <div className='post-submissions-row'>
-            <label htmlFor='job[contract]' className='hidden-xs'>
-              <i className='mdi mdi-content-paste'></i>Type
+            <label htmlFor='milestone[project_id]' className='hidden-xs'>
+              <i className='mdi mdi-rocket'></i> Product
             </label>
             <div className='post-submissions-select'>
               <ReactBootstrap.DropdownButton ref='selectType' title={selectedProject.name}>
                 {this.props.currentUserProjects.map(
-                  function(project){
-                    return <div className="input-selector-item" ref='selector' value={project.id} onClick={that.handleProjectClick.bind(that)}>{project.name}</div>
-                  }
+                  (project) => <div className="input-selector-item" ref='selector' value={project.id} onClick={this.handleProjectClick.bind(this)}>{project.name}</div>
                 )}
               </ReactBootstrap.DropdownButton>
-              <input type='hidden' name='milestone[project_id]' value={that.state.projectId} />
+              <input type='hidden' name='milestone[project_id]' value={this.state.projectId} />
             </div>
           </div>
           <div className='post-submissions-row'>

@@ -36,6 +36,9 @@ class PostSubmissions extends React.Component {
       'is-active': this.state.form == "Milestone",
       'is-hidden': !this.props.currentUserProjects
     })
+    if (this.props.currentUserProjects) {
+      var milestoneForm = <MilestoneForm {...this.props} />;
+    }
 
     return(
       <div>
@@ -74,7 +77,7 @@ class PostSubmissions extends React.Component {
             <JobForm {...this.props} />
           </div>
           <div className={milestoneTabClasses}>
-            <MilestoneForm {...this.props} />
+            {milestoneForm}
           </div>
         </div>
       </div>
