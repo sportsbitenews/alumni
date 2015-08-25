@@ -33,8 +33,12 @@ class PostSubmissions extends React.Component {
 
     var milestoneTabClasses = classNames({
       'post-submissions-tab': true,
-      'is-active': this.state.form == "Milestone"
+      'is-active': this.state.form == "Milestone",
+      'is-hidden': !this.props.currentUserProjects
     })
+    if (this.props.currentUserProjects) {
+      var milestoneForm = <MilestoneForm {...this.props} />;
+    }
 
     return(
       <div>
@@ -56,7 +60,7 @@ class PostSubmissions extends React.Component {
             <div className={jobTabClasses} onClick={this.onJobTabClick.bind(this)}>
               Job
             </div>
-            <hr />
+            <hr className={this.props.currentUserProjects ? '' : 'is-hidden'} />
             <div className={milestoneTabClasses} onClick={this.onMilestoneTabClick.bind(this)}>
               Milestone
             </div>
@@ -73,7 +77,7 @@ class PostSubmissions extends React.Component {
             <JobForm {...this.props} />
           </div>
           <div className={milestoneTabClasses}>
-            <MilestoneForm {...this.props} />
+            {milestoneForm}
           </div>
         </div>
       </div>

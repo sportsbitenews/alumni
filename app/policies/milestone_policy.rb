@@ -10,7 +10,7 @@ class MilestonePolicy < ApplicationPolicy
   end
 
   def create?
-    record.project.map(&:users).flatten.uniq.include?(user)
+    record.project.users.include? user
   end
 
   def show?
