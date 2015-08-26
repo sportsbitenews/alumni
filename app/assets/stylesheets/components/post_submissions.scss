@@ -64,12 +64,32 @@
   }
 }
 
-.post-submissions-row {
+.post-submissions-row-in {
+  display: flex;
+  border-bottom: 1Px solid rgba(0, 0, 0, 0.06);
+
+  select {
+    margin-left: 10px;
+  }
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+}
+
+.post-submissions-row,
+.post-submissions-row-in .form-group {
   display: flex;
   align-items: center;
+  width: 100%;
   justify-content: center;
   border-bottom: 1Px solid rgba(0, 0, 0, 0.06);
   padding: 40px 20px;
+
+  abbr {
+    display: none;
+  }
 
   .errors {
     display: flex;
@@ -87,6 +107,7 @@
     flex: 0 0 200px;
     color: darkgrey;
     align-self: center;
+    margin: 0;
 
     i {
       margin-right: 10px;
@@ -98,6 +119,8 @@
     border: none;
     outline: 0;
     background-color: transparent;
+    box-shadow: none;
+
   }
 
   textarea {

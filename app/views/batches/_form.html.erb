@@ -1,5 +1,11 @@
 <%= simple_form_for(resource) do |f|%>
-  <%= f.input :name %>
-  <%= f.input :starts_at %>
-  <%= f.submit %>
+  <row class="post-submissions-row-in">
+    <%= f.input :name, :label => "<i class='mdi mdi-format-text'></i> Name".html_safe, placeholder: 'Promo #3' %>
+  </row>
+  <row class="post-submissions-row-in">
+    <%= f.input :starts_at %>
+  </row>
+  <div class="text-center">
+    <%= f.submit 'Submit', class: 'button button-success' %>
+  </div>
 <% end %>
