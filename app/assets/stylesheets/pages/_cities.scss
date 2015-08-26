@@ -6,6 +6,14 @@
   max-width: 600px;
   flex-flow: column;
 
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
   i {
     background-color: white;
     height: 40px;
@@ -41,6 +49,10 @@
 
 .cities-list-title {
   flex: 1;
+
+  a {
+    color: black;
+  }
 }
 
 
@@ -48,6 +60,8 @@
   display: flex;
   flex: 1;
   flex-flow: column;
+  max-height: 400px;
+  overflow: scroll;
 }
 
 .city-item {
@@ -59,5 +73,11 @@
     &:hover {
       opacity: 1;
     }
+  }
+}
+
+.city-actions {
+  a {
+    opacity: .4;
   }
 }

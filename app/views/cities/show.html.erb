@@ -1,14 +1,32 @@
-<h1><%= @city.name %></h1>
+<div class='cities-list-overlay'>
+  <div class='cities-icon-container'>
+    <i class='mdi mdi-clipboard-text'></i>
+  </div>
+  <div class="cities-list-container">
+    <div class="cities-list-title ">
+      <h1 class='batches-list-title'><%= @city.name %></h1>
+      <div class="city-actions">
+        <%= link_to "New batch", new_city_batch_path(@city) %>
+      </div>
+    </div>
 
-<%= link_to "New batch", new_city_batch_path(@city) %>
-
-<% @city.batches.order(starts_at: :desc).each do |batch| %>
-  <h3>
-    <%= link_to batch.name, batch %>
-    <small><%= link_to 'Edit', edit_batch_path(batch) %></small>
-  </h3>
-  <p>
-    <%= l batch.starts_at %> → <%= l batch.ends_at %> |
-    <%= pluralize batch.users.count, 'student' %>
-  </p>
-<% end %>
+    <div class="cities-list batches-list">
+      <% @city.batches.order(starts_at: :desc).each do |batch| %>
+        <div class="city-item batch-item">
+          <h3>
+            <%= link_to batch.name, batch %>
+            <small class='batch-item-actions'><%= link_to 'Edit', edit_batch_path(batch) %></small>
+          </h3>
+          <div class="bacth-item-dates">
+            <span class='mdi mdi-calendar-multiple'></span>
+            <%= batch.starts_at.strftime('%b %d, %Y') %> → <%= batch.ends_at.strftime('%b %d, %Y') %>
+          </div>
+          <div class="batch-item-students-count">
+            <span class="mdi mdi-account-multiple"></span>
+            <%= pluralize batch.users.count, 'student' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
