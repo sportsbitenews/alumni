@@ -1,9 +1,22 @@
-<h1>Cities</h1>
+<div class='cities-list-overlay'>
+  <div class='cities-icon-container'>
+    <i class='mdi mdi-city'></i>
+  </div>
+  <div class="cities-list-container">
+    <div class="cities-list-title">
+      <h1>Choose a city</h1>
+    </div>
 
-<% @cities.each do |city| %>
-  <% if policy(city).show? %>
-    <%= link_to city.name, city %>
-  <% else %>
-    <%= city.name %>
-  <% end %>
-<% end %>
+    <div class="cities-list">
+      <% @cities.each do |city| %>
+        <div class="city-item">
+          <% if policy(city).show? %>
+            <%= link_to city.name, city %>
+          <% else %>
+            <%= city.name %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
