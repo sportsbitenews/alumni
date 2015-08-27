@@ -1,6 +1,9 @@
 <div class='cities-list-overlay'>
   <div class='cities-icon-container'>
-    <i class='mdi mdi-clipboard-text'></i>
+  <%= link_to cities_path do %>
+    <i class='mdi mdi-city'></i>
+  <% end %>
+  <i class='mdi mdi-clipboard-text is-active'></i>
   </div>
   <div class="cities-list-container">
     <div class="cities-list-title ">
