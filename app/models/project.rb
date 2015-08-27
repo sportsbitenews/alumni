@@ -8,6 +8,7 @@
 #  batch_id   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  tagline    :string
 #
 # Indexes
 #
@@ -16,7 +17,9 @@
 
 class Project < ActiveRecord::Base
   belongs_to :batch
+  has_many :milestones
   has_and_belongs_to_many :users
+  acts_as_votable
 
   validates :name, presence: true
   validates :url, presence: true
