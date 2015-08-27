@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       post :preview
     end
   end
-  resources :batches, only: %i(show)
+  resources :batches, only: %i(show edit update)
   resources :questions, only: %i(new show create)
   resources :milestones, only: %i(new show create)
   resources :jobs, only: %i(new show create)
@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     collection do
       post :preview
     end
+  end
+  resources :cities, only: %i(index show) do
+    resources :batches, only: %i(new create)
   end
 
   resources :users, only: %i(index)

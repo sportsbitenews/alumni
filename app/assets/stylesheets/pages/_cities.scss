@@ -1,0 +1,106 @@
+.cities-list-overlay {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  margin: auto;
+  max-width: 600px;
+  flex-flow: column;
+
+  &.is-not-flex {
+    display: block;
+    height: auto;
+    margin: auto;
+    max-width: 600px;
+    padding-top: 100px;
+
+    .cities-list {
+      overflow: visible;
+      max-height: auto;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  .cities-icon-container {
+    display: flex;
+    justify-content: center;
+    i {
+      color: #CACACA;
+      background-color: #F9F9F9;
+      height: 40px;
+      margin: 0 7px;
+      width: 40px;
+      border-radius: 50%;
+      box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.17);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+  }
+
+  i.is-active {
+    background: white;
+    color: inherit;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 100;
+    opacity: .4;
+    letter-spacing: -1px;
+  }
+}
+
+.cities-icon-container {
+  border-bottom: 1px solid #E0E0E0;
+  height: 22px;
+}
+
+.cities-list-container {
+  display: flex;
+  width: 100%;
+  padding-top: 50px
+}
+
+.cities-list-title {
+  flex: 1;
+
+  a {
+    color: black;
+  }
+}
+
+
+.cities-list {
+  display: flex;
+  flex: 1;
+  flex-flow: column;
+  max-height: 400px;
+  overflow: scroll;
+}
+
+.city-item {
+  a {
+    color: black;
+    opacity: .8;
+    font-size: 30px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.city-actions {
+  a {
+    opacity: .4;
+  }
+}

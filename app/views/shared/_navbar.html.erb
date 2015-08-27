@@ -7,14 +7,14 @@
       </div>
       <div class='navbar-right'>
         <% if user_signed_in? %>
-          <%= link_to destroy_user_session_path do %>
-            <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Sign out" %>
-          <% end %>
+            <%= react_component 'AvatarNavbar', {
+              user: current_user.slice(:github_nickname, :gravatar_url)
+              } %>
           <hr>
           <%= image_tag current_user.gravatar_url, class: 'avatar avatar-navbar' %>
           <hr>
           <%= link_to new_resource_path, class: 'plus' do %>
-          +
+            <i class='mdi mdi-plus'></i>
           <% end %>
         <% else %>
           <%= link_to user_omniauth_authorize_path(:github), class: 'btn-github' do %>

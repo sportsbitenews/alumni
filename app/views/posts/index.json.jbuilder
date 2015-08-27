@@ -15,3 +15,9 @@ json.jobs do
     json.partial! "jobs/job", job: job
   end
 end
+
+json.milestones do
+  json.array! @posts[:milestones] do |milestone|
+    json.partial! "milestones/milestone", milestone: milestone
+  end
+end
