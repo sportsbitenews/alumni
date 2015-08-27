@@ -1,0 +1,35 @@
+<div class='cities-list-overlay <%=  "is-not-flex" if @city.batches.size > 3 %> '>
+  <div class='cities-icon-container'>
+  <%= link_to cities_path do %>
+    <i class='mdi mdi-city'></i>
+  <% end %>
+  <i class='mdi mdi-clipboard-text is-active'></i>
+  </div>
+  <div class="cities-list-container">
+    <div class="cities-list-title ">
+      <h1 class='batches-list-title'><%= @city.name %></h1>
+      <div class="city-actions">
+        <%= link_to "New batch", new_city_batch_path(@city) %>
+      </div>
+    </div>
+
+    <div class="cities-list batches-list">
+      <% @city.batches.order(starts_at: :desc).each do |batch| %>
+        <div class="city-item batch-item">
+          <h3>
+            <%= link_to batch.name, batch %>
+            <small class='batch-item-actions'><%= link_to 'Edit', edit_batch_path(batch) %></small>
+          </h3>
+          <div class="bacth-item-dates">
+            <span class='mdi mdi-calendar-multiple'></span>
+            <%= batch.starts_at.strftime('%b %d, %Y') %> → <%= batch.ends_at.strftime('%b %d, %Y') %>
+          </div>
+          <div class="batch-item-students-count">
+            <span class="mdi mdi-account-multiple"></span>
+            <%= pluralize batch.users.count, 'student' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

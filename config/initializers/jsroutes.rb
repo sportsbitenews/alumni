@@ -5,19 +5,24 @@ JsRoutes.setup do |config|
   #                 $ rake tmp:cache:clear
   #                 before restarting your `rails s`.
   config.include = [
-    /up_vote/,
     /resource/,
     /question/,
-    /^users$/,
-    /^profile$/,
-    /^preview_answers$/,
-    /^answers$/,
     /^jobs$/,
     /^job$/,
     /^new_job$/,
     /^milestones$/,
     /^milestone$/,
     /^new_milestone$/,
+
+    /up_vote/,
+
+    /^users$/,
+    /^profile$/,
+    /^destroy_user_session$/,
+
+    /^preview_answers$/,
+    /^answers$/,
+
     /^batch$/
   ]
 end

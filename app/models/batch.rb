@@ -17,7 +17,15 @@
 
 class Batch < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
+  validates :city, presence: true
+  validates :starts_at, presence: true
 
   belongs_to :city
   has_many :users
+
+  before_validation :set_ends_at
+
+  def set_ends_at
+    self.ends_at = self.starts_at + 9.weeks - 3.days if self.starts_at
+  end
 end
