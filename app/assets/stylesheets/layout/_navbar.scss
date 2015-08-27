@@ -110,3 +110,17 @@
     circle, path {fill: $brand-color }
   }
 }
+
+.cities-index,
+.cities-show,
+.batches-new,
+.batches-edit {
+
+  .navbar-right {
+    a { color: black }
+  }
+
+  .navbar-logo svg {
+    circle, path {fill: $brand-color }
+  }
+}

@@ -8,4 +8,18 @@ class BatchPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def update?
+    admin_or_city_user?
+  end
+
+  def create?
+    admin_or_city_user?
+  end
+
+  private
+
+  def admin_or_city_user?
+    user.admin || record.city.users.include?(user)
+  end
 end

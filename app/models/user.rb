@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :milestones
   has_and_belongs_to_many :projects
+  has_and_belongs_to_many :cities
 
   acts_as_voter
 
