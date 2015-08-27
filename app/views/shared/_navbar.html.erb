@@ -11,8 +11,6 @@
               user: current_user.slice(:github_nickname, :gravatar_url)
               } %>
           <hr>
-          <%= image_tag current_user.gravatar_url, class: 'avatar avatar-navbar' %>
-          <hr>
           <%= link_to new_resource_path, class: 'plus' do %>
             <i class='mdi mdi-plus'></i>
           <% end %>
