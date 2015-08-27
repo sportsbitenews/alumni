@@ -2,9 +2,7 @@ class AvatarNavbar extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      menuOpen: false
-    }
+    this.state = { menuOpen: false }
   }
 
   render() {
@@ -16,7 +14,7 @@ class AvatarNavbar extends React.Component {
     return(
       <div className='user-avatar' onMouseLeave={this.handleMouseLeave.bind(this)}>
         <div className={userMenuClasses}>
-          <a href='users/sign_out' method='patch'>Sign out</a>
+          <a href={Routes.destroy_user_session_path()}>Sign out</a>
           <hr/>
           <a href={Routes.profile_path(this.props.user.github_nickname)}>My profile</a>
           <hr/>
@@ -27,20 +25,14 @@ class AvatarNavbar extends React.Component {
   }
 
   handleClick() {
-    this.setState({
-      menuOpen: true
-    })
+    this.setState({ menuOpen: true })
   }
 
   handleMouseLeave() {
-    this.setState({
-      menuOpen: false
-    })
+    this.setState({ menuOpen: false })
   }
 
   handleMouseEnter() {
-    this.setState({
-      menuOpen: true
-    })
+    this.setState({ menuOpen: true })
   }
 }
