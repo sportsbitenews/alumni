@@ -1,4 +1,4 @@
-<div class='cities-list-overlay'>
+<div class='cities-list-overlay <%=  "is-not-flex" if @city.batches.size > 3 %> '>
   <div class='cities-icon-container'>
   <%= link_to cities_path do %>
     <i class='mdi mdi-city'></i>

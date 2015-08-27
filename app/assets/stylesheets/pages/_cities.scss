@@ -6,6 +6,19 @@
   max-width: 600px;
   flex-flow: column;
 
+  &.is-not-flex {
+    display: block;
+    height: auto;
+    margin: auto;
+    max-width: 600px;
+    padding-top: 100px;
+
+    .cities-list {
+      overflow: visible;
+      max-height: auto;
+    }
+  }
+
   p {
     margin: 0;
   }
