@@ -22,6 +22,10 @@
   }
 }
 
+.button-discret {
+  background: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.35) !important;
+}
 .button-success { background: $green }
 .button-resource { background: $resource-gradient }
 .button-question { background: $question-gradient }

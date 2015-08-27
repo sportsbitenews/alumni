@@ -36,8 +36,13 @@ class AnswerForm extends React.Component {
         </div>
         <textarea placeholder="Respond a nice thing" onFocus={this.onFocusInput.bind(this)} ref="content" className='answer-form-input' onKeyUp={this.onKeyUp.bind(this)} onKeyDown={this.onKeyDown.bind(this)} />
         <div className='answer-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}}></div>
+        <div className='answer-form-actions-submit'>
+        <div className='answer-form-submit button button-discret' onClick={this.closeForm.bind(this)}>
+          Cancel
+        </div>
         <div className='answer-form-submit button button-success' onClick={this.postAnswer.bind(this)}>
           Submit your answer
+        </div>
         </div>
       </div>
     )
@@ -53,6 +58,10 @@ class AnswerForm extends React.Component {
   resetForm() {
     this.setState(this.initialState());
     this.content().value = "";
+  }
+
+  closeForm() {
+    this.setState(this.initialState());
   }
 
   goToBottom(e) {
