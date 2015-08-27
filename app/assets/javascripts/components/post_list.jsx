@@ -37,9 +37,15 @@ var PostList = React.createClass({
             })}
           </div>
           <div className='col-sm-3 posts-column' title="#milestones">
+            <a href={Routes.new_milestone_path()}>
             <div className='posts-column-new'>
               ADD A NEW MILESTONE
             </div>
+            </a>
+            {this.props.milestones.map(milestone => {
+              var props = _.merge(milestone, { key: `${milestone.type}-${milestone.id}` });
+              return React.createElement(MilestoneListElement, props);
+            })}
           </div>
         </SwipeViews>
       </div>

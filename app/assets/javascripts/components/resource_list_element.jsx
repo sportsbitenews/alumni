@@ -18,7 +18,7 @@ class ResourceListElement extends PostListElement {
         <div className='post-item resource-item' ref='listItem'>
           <div className='flex resource-item-meta'>
             <div className='post-item-text'>
-              <ReactBootstrap.OverlayTrigger placement='bottom' trigger='hover' delayShow={200} overlay={tooltip}>
+              <ReactBootstrap.OverlayTrigger placement='bottom' trigger={['hover', 'focus']} delayShow={200} overlay={tooltip}>
                 <div className='post-item-text-name'>
                   {this.props.title}
                 </div>

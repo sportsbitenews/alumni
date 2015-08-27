@@ -30,6 +30,7 @@
 .navbar-right {
   margin-left: auto;
   display: flex;
+
   align-items: center;
   margin-right: 10px;
 
@@ -53,13 +54,9 @@
 }
 
 .navbar-right {
-  a {
-    color: white;
-  }
 
-  hr {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+  a { color: white }
+  hr { background-color: rgba(255, 255, 255, 0.1) }
 
   .user-menu {
     display: flex;
@@ -90,7 +87,7 @@
   }
 }
 
-.nav-bar .container {display: flex}
+.nav-bar .container { display: flex }
 
 .navbar-logo {
   display: flex;

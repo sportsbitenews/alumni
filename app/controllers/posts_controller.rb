@@ -11,7 +11,8 @@ class PostsController < ApplicationController
     @posts = {
       resources: Resource.all.includes(:user).sort_by(&:created_at).reverse,
       questions: Question.all.includes(:user).sort_by(&:created_at).reverse,
-      jobs: Job.all.includes(:user).sort_by(&:created_at).reverse
+      jobs: Job.all.includes(:user).sort_by(&:created_at).reverse,
+      milestones: Milestone.all.includes(:user).sort_by(&:created_at).reverse
     }
   end
 
