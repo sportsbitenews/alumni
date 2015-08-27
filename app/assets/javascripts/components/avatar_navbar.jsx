@@ -11,6 +11,7 @@ class AvatarNavbar extends React.Component {
       'user-menu': true,
       'is-open': this.state.menuOpen
     })
+
     return(
       <div className='user-avatar' onMouseLeave={this.handleMouseLeave.bind(this)}>
         <div className={userMenuClasses}>

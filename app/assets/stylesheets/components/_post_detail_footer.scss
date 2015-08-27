@@ -4,7 +4,11 @@
   bottom: 0;
   width: 100%;
   background: none;
+  z-index: 15;
 
+  &>aside {
+    @media (max-width: $screen-sm) { display: none }
+  }
 }
 
 .post-detail-author {

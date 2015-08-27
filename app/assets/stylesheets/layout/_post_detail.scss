@@ -53,17 +53,22 @@
     flex: 1;
     background-color: white;
 
+    @media (max-width: $screen-sm) {
+      width: 100%;
+    }
+
   }
 
   aside {
     flex: 0 0 350px;
+    align-self: flex-end;
     max-width: 100%;  // Mobile (ssaunier)
     background-color: rgb(243, 243, 243);
     border-left: 1px solid rgba(0, 0, 0, 0.05);
 
-    &.sidebar {
-      align-self: stretch;
-    }
+    @media (max-width: $screen-sm) { width: 100% }
+
+    &.sidebar { align-self: stretch }
   }
 }
 
@@ -77,7 +82,6 @@
     &:hover {
 
     }
-
   }
 }
 
@@ -98,7 +102,12 @@
   }
 }
 
-.post-detail-body {display: flex}
+.post-detail-body {
+  display: flex;
+  @media (max-width: $screen-sm) {
+    flex-flow: column;
+  }
+}
 
 .post-detail-participant {
   display: flex;
@@ -137,6 +146,7 @@
 }
 
 .post-answers-container {
+
   padding-bottom: 62px;
 }
 

@@ -10,6 +10,10 @@
   &.is-editing {
     .answer-form-input {
       height: 250px;
+
+      @media (max-width: $screen-sm) {
+        height: auto;
+      }
     }
     .answer-form-submit { display: block }
     .answer-form-actions {
@@ -59,6 +63,8 @@
   height: 44px;
   border-radius: 4px;
   padding: 10px;
+
+
   &:focus { outline: 0 }
 }
 
@@ -117,8 +123,14 @@
   }
 }
 
+.answer-form-actions-submit {
+  display: flex;
+}
+
 .answer-form-submit {
-  margin-left: auto;
+  &:first-child { margin-left: auto }
+  &:last-child { margin-left: 10px }
+
   padding: 10px 20px;
   margin-top: 10px;
   cursor: pointer;
