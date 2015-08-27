@@ -6,7 +6,7 @@ class BatchesController < ApplicationController
   end
 
   def new
-    next_monday = Date.today + ((6 - Date.today.wday) % 7)
+    next_monday = Date.today + ((1 - Dat.today.wday) % 7)
     @batch = @city.batches.build(starts_at: next_monday)
     authorize @batch
   end
