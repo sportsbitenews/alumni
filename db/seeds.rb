@@ -55,3 +55,17 @@ User.all.sample(25).each do |user|
   u.batch = batch
   u.save
 end
+
+projects = YAML.load_file('db/support/projects.yml')
+projects.each do |p|
+  batch = Batch.first
+  project = Project.new
+  project.url = p['link']
+  project.name = p['name']
+  project.tagline = p['tagline']
+  project.batch = batch
+  project.users << User.random * Random.rand(1..2)
+  project.save
+end
+
+

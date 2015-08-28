@@ -21,7 +21,15 @@ class BatchDetail extends React.Component {
         </div>
         <div className='batch-detail-body'>
           <main className='batch-detail-main'>
-
+            {this.props.projects.map(
+              (project) => {
+                return (
+                  <div>
+                    {project.name}
+                  </div>
+                )
+              }
+            )}
           </main>
 
           <aside className='batch-detail-side-bar'>

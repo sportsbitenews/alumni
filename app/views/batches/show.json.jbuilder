@@ -8,3 +8,14 @@ json.students do
     json.extract! user, :github_nickname, :gravatar_url
   end
 end
+
+json.projects do
+  json.array! @batch.projects.each do |project|
+    json.extract! project, :name, :url
+    json.makers do
+      json.array! project.users.each do |user|
+        json.extract! user, *user_properties
+      end
+    end
+  end
+end
