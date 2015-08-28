@@ -12,14 +12,16 @@ class ProjectDetail extends React.Component {
       <div className='post-detail'>
         <div className='post-detail-header resource-detail'>
           <div className='post-detail-header-main'>
-            <div className='project-detail-batch'>
-              {this.props.batch.name} - {this.props.batch.city}
-            </div>
             <a href={this.props.url} >
               <div className='post-detail-name'>{this.props.name}</div>
             </a>
             <div className='post-detail-tagline'>{this.props.tagline}</div>
             <div className='post-detail-header-action'>
+              <a href={Routes.batch_path(this.props.batch.id)}>
+                <div className='project-detail-batch'>
+                  {this.props.batch.name} - {this.props.batch.city}
+                </div>
+              </a>
               <a href={this.props.url} target='_blank'>
                 <div className='post-detail-url'>
                   {this.props.url}

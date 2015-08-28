@@ -8,6 +8,12 @@ json.makers do
   end
 end
 
+json.batch do
+  json.city @project.batch.city.name
+  json.name @project.batch.name
+  json.id @project.batch.id
+end
+
 json.milestones do
   json.array! project.milestones.reverse do |milestone|
     json.partial! 'milestones/milestone', milestone: milestone
