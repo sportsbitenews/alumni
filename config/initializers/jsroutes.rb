@@ -23,6 +23,7 @@ JsRoutes.setup do |config|
     /^preview_answers$/,
     /^answers$/,
 
-    /^batch$/
+    /^batch$/,
+    /^project$/
   ]
 end

@@ -64,7 +64,7 @@ projects.each do |p|
   project.name = p['name']
   project.tagline = p['tagline']
   project.batch = batch
-  project.users << User.random * Random.rand(1..2)
+  Random.rand(1..2).times { project.users << User.random }
   project.save
 end
 

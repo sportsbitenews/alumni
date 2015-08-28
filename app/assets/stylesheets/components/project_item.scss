@@ -1,0 +1,50 @@
+.projects-list {
+  padding: 20px;
+  padding-top: 0;
+  a { color: black }
+}
+
+.project-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+
+  &:hover {
+    background: #f7f7fa;
+  }
+}
+
+.project-thumbnail {
+  width: 120px;
+  height: 80px;
+  margin-right: 15px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.02);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.14);
+  // TODO: URL TO PNG
+}
+
+.project-item-name {
+  font-size: 20px;
+}
+
+.project-item-tagline {
+  opacity: 0.4;
+  font-weight: 300;
+}
+
+.project-item-makers {
+  margin-left: auto;
+  display: flex;
+}
+
+.project-item-maker {
+  margin-left: 10px;
+}
+
+.project-detail-main {
+  .section-title-h {
+    margin: inherit;
+    padding-left: 6px;
+  }
+}

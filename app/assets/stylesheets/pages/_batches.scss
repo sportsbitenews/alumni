@@ -37,3 +37,29 @@ h1.batches-list-title {
 #edit_batch {
   margin-top: 20px;
 }
+
+.batch-detail-main {
+  .section-title {
+    padding: 20px 34px;
+    .section-title-h {
+      margin-left: inherit;
+      padding-left: 5px;
+    }
+  }
+
+  .post-item {
+    box-shadow: none;
+    background: none;
+
+    &:hover {
+      background: #f7f7fa;
+    }
+  }
+}
+
+.ranked-by-milestone {
+  margin-left: auto !important;
+  opacity: 0.4;
+  font-size: 12px;
+
+}
