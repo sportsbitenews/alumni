@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :questions, only: %i(new show create)
   resources :milestones, only: %i(new show create)
   resources :jobs, only: %i(new show create)
+  resources :projects, only: %i(show)
   resources :resources, only: %i(new create show) do
     collection do
       post :preview
