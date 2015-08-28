@@ -12,8 +12,9 @@ class PopoverUser extends React.Component {
     )
   }
 
-  openProfile() {
+  openProfile(e) {
     window.open(Routes.profile_path(this.props.user.github_nickname), '_self')
+    e.preventDefault();
   }
 
 }
