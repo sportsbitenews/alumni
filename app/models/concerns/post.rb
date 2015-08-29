@@ -1,7 +1,7 @@
 module Post
   extend ActiveSupport::Concern
 
-  POST_TYPES = %w(Resource Question)
+  POST_TYPES = %w(Resource Question Job Milestone)
   class UnauthorizedPostTypeException < Exception; end
 
   included do

@@ -2,8 +2,9 @@ class PostStoreClass {
   constructor() {
     this.posts = {
       'Question': {},
-      'Resource': {}
-      // TODO: add more types
+      'Resource': {},
+      'Job': {},
+      'Milestone': {}
     };
     this.bindListeners({
       updatePost: AnswerActions.post,

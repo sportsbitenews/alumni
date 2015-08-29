@@ -1,4 +1,4 @@
-class JobPolicy < ApplicationPolicy
+class JobPolicy < PostPolicy
   class Scope < Scope
     def resolve
       scope
@@ -12,6 +12,7 @@ class JobPolicy < ApplicationPolicy
   def show?
     true
   end
+
   def create?
     !user.nil?
   end
