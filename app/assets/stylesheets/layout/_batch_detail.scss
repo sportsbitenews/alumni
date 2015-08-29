@@ -65,8 +65,14 @@
 .batch-detail-side-bar {
   flex: 0 0 350px;
   max-width: 100%;
+  overflow: hidden;
+  position: relative;
   background-color: #f3f3f3;
   border-left: 1px solid rgba(0, 0, 0, 0.05);
+
+  &.is-collapsed {
+    .batch-detail-sidebar-viewmore { display: block }
+  }
 }
 
 .batch-detail-body {
@@ -74,4 +80,22 @@
   @media (max-width: $screen-sm) {
     flex-flow: column;
   }
+}
+
+.batch-detail-sidebar-viewmore {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: none;
+  box-shadow: 0px 0px 10px 8px #F3F3F3;
+  background-color: #F3F3F3;
+  padding: 17px;
+  color: rgba(169, 169, 169, 0.81);
+  font-weight: bold;
+  letter-spacing: 0px;
+  cursor: pointer;
+
+  span { font-size: 13px }
 }

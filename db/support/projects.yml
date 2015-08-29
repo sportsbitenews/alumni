@@ -1,0 +1,36 @@
+- name: The Babyboom
+  tagline: "Préparez-vous à devenir parents, à votre rythme, depuis votre canapé."
+  link: http://www.thebabyboom.fr
+
+- name: GoMobily
+  tagline: Search for accessibility information here
+  link: http://www.gomobi.ly/
+
+- name: Open Loge
+  tagline: Retrouvez les services de la loge de votre quartier
+  link: http://beta.openloge.fr
+
+- name: Beauty Time
+  tagline: "Prenez vos rendez-vous beauté en ligne, 24h / 24h"
+  link: http://beautytime.herokuapp.com/
+
+- name: Pepeat
+  tagline: Commandez des plats maison cuisinés par des passionnés
+  link: http://pepeat-production.herokuapp.com/
+
+- name: Tournesol Microgrids
+  tagline: A Network of Microgrid pioneers
+  link: https://tournesol-microgrid-production.herokuapp.com/
+
+- name: Le Salon
+  tagline: Les meubles directement depuis les fabricants
+  link: https://lesalon.herokuapp.com/
+
+- name: La Réserve
+  tagline: Aimez vos réservations
+  link: http://la-reserve.herokuapp.com/
+
+- name: MakiWars
+  tagline: Salmon vs Avocado. Choose your side.
+  link: http://makiswar-production.herokuapp.com/
+
