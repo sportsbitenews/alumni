@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby "2.2.2"
+ruby "2.2.3"
 
-gem "rails", "4.2.3"
+gem "rails", "4.2.4"
 gem "pg"
 gem "figaro"
 gem "simple_form"
@@ -33,7 +33,7 @@ gem "uglifier"
 gem "bootstrap-sass"
 gem "font-awesome-rails"
 gem "lodash-rails"
-gem "react-rails", "~> 1.0"
+gem "react-rails", "1.2.0"
 gem 'react-bootstrap-rails'
 gem "jbuilder"
 
