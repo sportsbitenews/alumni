@@ -9,20 +9,14 @@ class PostDetailBody extends React.Component {
 
     // http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
     this.onStoreChange = this.onStoreChange.bind(this);
-    this.onUserStoreChange = this.onUserStoreChange.bind(this);
   }
 
   componentDidMount() {
     PostStore.listen(this.onStoreChange);
-    UserStore.listen(this.onUserStoreChange);
-
-    // Fetch Slack connection status for everyone
-    UserActions.fetchUsers(_.map(this.props.up_voters, 'id'));
   }
 
   componentWillUnmount() {
     PostStore.unlisten(this.onStoreChange);
-    UserStore.unlisten(this.onUserStoreChange);
   }
 
   onStoreChange(store) {
@@ -34,11 +28,6 @@ class PostDetailBody extends React.Component {
         answerers: post.answerers
       });
     }
-  }
-
-  onUserStoreChange(store) {
-    var newUpVoters = _.map(this.state.upVoters, (upVoter) => store.getUser(upVoter.id) || upVoter);
-    this.setState({ upVoters: newUpVoters });
   }
 
   render() {

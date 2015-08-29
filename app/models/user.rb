@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   LEWAGON_GITHUB_ORGANIZATION = 'lewagon'.freeze
 
   PUBLIC_PROPERTIES = %i(id github_nickname gravatar_url first_name last_name)
-  PRIVATE_PROPERTIES = %i(slack_uid)
+  PRIVATE_PROPERTIES = %i(slack_uid connected_to_slack)
 
   devise :trackable, :database_authenticatable
   devise :omniauthable, :omniauth_providers => [:github]
@@ -82,8 +82,8 @@ class User < ActiveRecord::Base
     User.find(rand(1..count))
   end
 
-  def connected_to_slack?
-    @connected_to_slack ||= SlackService.new.connected_to_slack?(self)
+  def connected_to_slack
+    @connected_to_slack ||= SlackService.new.connected_to_slack(self)
   end
 
   def user_messages_slack_url

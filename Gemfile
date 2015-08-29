@@ -42,6 +42,11 @@ gem "link_thumbnailer"
 gem "js-routes"
 
 
+gem 'sidekiq'
+gem 'sidekiq-failures'
+gem 'sinatra'  # Dependency of sidekiq
+gem 'sidekiq-cron'
+
 source "https://rails-assets.org" do
   gem "rails-assets-axios"
   gem "rails-assets-alt"

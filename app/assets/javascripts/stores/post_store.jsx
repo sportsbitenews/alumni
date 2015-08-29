@@ -2,8 +2,9 @@ class PostStoreClass {
   constructor() {
     this.posts = {
       'Question': {},
-      'Resource': {}
-      // TODO: add more types
+      'Resource': {},
+      'Job': {},
+      'Milestone': {}
     };
     this.bindListeners({
       updatePost: AnswerActions.post,
@@ -17,12 +18,6 @@ class PostStoreClass {
 
   updatePostWithUsers(post) {
     this.posts[post.type][post.id] = post;
-
-    UserActions.fetchUsers(
-      _.chain(post.up_voters)
-       .filter((upVoter) => typeof UserStore.state.getUser(upVoter.id) === "undefined")
-       .map('id')
-       .value());
   }
 
   getPost(type, id) {

@@ -1,4 +1,4 @@
-class MilestonePolicy < ApplicationPolicy
+class MilestonePolicy < PostPolicy
   class Scope < Scope
     def resolve
       scope

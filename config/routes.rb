@@ -30,5 +30,11 @@ Rails.application.routes.draw do
 
   resources :users, only: %i(index)
 
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
+  # Keep this route at the bottom.
   get '/:github_nickname', to: 'users#show', as: :profile
 end
