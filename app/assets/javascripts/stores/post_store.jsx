@@ -17,12 +17,6 @@ class PostStoreClass {
 
   updatePostWithUsers(post) {
     this.posts[post.type][post.id] = post;
-
-    UserActions.fetchUsers(
-      _.chain(post.up_voters)
-       .filter((upVoter) => typeof UserStore.state.getUser(upVoter.id) === "undefined")
-       .map('id')
-       .value());
   }
 
   getPost(type, id) {

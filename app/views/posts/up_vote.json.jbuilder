@@ -9,6 +9,6 @@ end
 json.answerers do
   json.array! @post.answers.map do |answer|
     json.extract! answer.user, :id, :gravatar_url, :github_nickname
-    json.connected_to_slack answer.user.connected_to_slack?
+    json.connected_to_slack answer.user.connected_to_slack
   end
 end

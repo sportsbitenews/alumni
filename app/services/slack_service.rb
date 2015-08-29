@@ -8,12 +8,9 @@ class SlackService
     @client = Slack::Client.new token: token
   end
 
-  def connected_to_slack?(user)
+  def connected_to_slack(user)
     if user.slack_uid.present?
-      from_cache('connected', user.id, expire: 5.minutes) do
-        response = @client.users_getPresence(user: user.slack_uid)
-        response["presence"] == "active"
-      end
+      redis.get(connected_user_key(user.slack_uid)) == "1"
     else
       false
     end
@@ -28,8 +25,23 @@ class SlackService
     end
   end
 
+  def refresh_all_connected
+    @client.users_list(presence: 1)["members"].each do |member|
+      key = connected_user_key(member["id"])
+      active = (member["presence"] == "active") ? "1" : "0"
+      redis.set(key, active)
+      redis.expire(key, 10.minutes)
+    end
+  end
+
   def user_messages_slack_url(user)
     username = slack_username(user)
     "https://lewagon-alumni.slack.com/messages/@#{username}" if username
+  end
+
+  private
+
+  def connected_user_key(slack_uid)
+    "connected:#{slack_uid}"
   end
 end
