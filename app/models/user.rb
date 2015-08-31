@@ -29,6 +29,8 @@
 #  slack_uid              :string
 #  phone                  :string
 #  slack_token            :string
+#  birth_day              :date
+#  studies                :text
 #
 # Indexes
 #

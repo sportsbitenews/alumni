@@ -17,6 +17,14 @@ class BatchPolicy < ApplicationPolicy
     admin_or_city_user?
   end
 
+  def onboarding?
+    record.any?
+  end
+
+  def register?
+    record.onboarding
+  end
+
   private
 
   def admin_or_city_user?

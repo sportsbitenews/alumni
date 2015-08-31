@@ -1,0 +1,36 @@
+<div class="batch-register">
+  <div class="companion-container">
+    <div class="no-tickets">
+      <div class="octocat">
+        <%= image_tag 'octowagon.png' %>
+      </div>
+      <div class="bubble">
+        <h1 class="text-center" style="font-weight: normal">
+          You're in ! <b>Please fill all these infos to complete the registration.</b>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class='batch-form-register'>
+    <%= simple_form_for(@user, url: user_path(@user)) do |f|%>
+      <row class="post-submissions-row-in">
+        <%= f.input :first_name, :label => "<i class='mdi mdi-format-text'></i> First Name".html_safe, placeholder: 'Bastien', require: true %>
+      </row>
+      <row class="post-submissions-row-in">
+        <%= f.input :last_name, :label => "<i class='mdi mdi-format-text'></i> Last Name".html_safe, placeholder: 'Asnieur' require: true %>
+      </row>
+      <row class="post-submissions-row-in">
+        <%= f.input :birth_day, :label => "<i class='mdi mdi-cake'></i> Birth Day".html_safe, placeholder: 'Promo #3', :as => :date, :start_year => Date.today.year - 16, :end_year => 1900, :order => [ :day, :month, :year], require: true %>
+      </row>
+      <row class="post-submissions-row-in">
+        <%= f.input :phone, :label => "<i class='mdi mdi-cellphone-iphone'></i> Phone Number".html_safe, placeholder: '+33658...', require: true %>
+      </row>
+      <row class="post-submissions-row-in">
+        <%= f.input :studies, label: "<i class='mdi mdi-school'></i> Studies".html_safe, placeholder: 'Tell us more about your studies', require: true %>
+      </row>
+      <div class="text-center">
+        <%= f.submit 'Submit', class: 'button button-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i(update)
   def index
     ids = params[:ids] || []
     @users = policy_scope(User).where(id: ids.map(&:to_i))
@@ -18,5 +19,30 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
+
+  def update
+    if @user.update_attributes(user_params)
+      redirect_to root_path
+    else
+      # handle error
+    end
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
+    authorize @user
+  end
+
+  def user_params
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :birth_day,
+      :phone,
+      :studies
+    )
   end
 end
