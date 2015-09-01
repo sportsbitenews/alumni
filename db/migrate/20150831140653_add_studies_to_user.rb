@@ -1,5 +1,5 @@
 class AddStudiesToUser < ActiveRecord::Migration
   def change
-    add_column :users, :studies, :text
+    add_column :users, :school, :string
   end
 end

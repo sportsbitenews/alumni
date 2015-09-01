@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901075444) do
+ActiveRecord::Schema.define(version: 20150831140653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 20150901075444) do
     t.integer  "city_id"
     t.date     "starts_at"
     t.date     "ends_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "onboarding"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "onboarding", default: false, null: false
   end
 
   add_index "batches", ["city_id"], name: "index_batches_on_city_id", using: :btree
