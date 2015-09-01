@@ -22,7 +22,12 @@
 
 .batches-list {
   justify-content: center;
-  padding-left: 100px;
+  padding-left: 0;
+
+  &.is-not-flex {
+    padding-left: 0;
+    justify-content: inherit;
+  }
 }
 
 .batch-item {

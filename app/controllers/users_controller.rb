@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i(update)
+  before_action :set_user, only: %i(update confirm delete)
   def index
     ids = params[:ids] || []
     @users = policy_scope(User).where(id: ids.map(&:to_i))
@@ -27,6 +27,17 @@ class UsersController < ApplicationController
     else
       # handle error
     end
+  end
+
+  def delete
+    @user.destroy
+    render nothing: true
+  end
+
+  def confirm
+    @user.alumni = true
+    @user.save
+    render nothing: true
   end
 
   private

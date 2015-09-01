@@ -10,10 +10,12 @@
     <div class="cities-list">
       <% @cities.each do |city| %>
         <div class="city-item">
-          <% if policy(city).show? %>
-            <%= link_to city.name, city %>
-          <% else %>
-            <%= city.name %>
+          <%= link_to city_path(city) do %>
+            <% if policy(city).show? %>
+              <%= link_to city.name, city %>
+            <% else %>
+              <%= city.name %>
+            <% end %>
           <% end %>
         </div>
       <% end %>
