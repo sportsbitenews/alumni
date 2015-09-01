@@ -139,7 +139,11 @@
 .cities-index,
 .cities-show,
 .batches-new,
-.batches-edit {
+.batches-edit,
+.batches-register,
+.batches-onboarding {
+
+  .btn-github { display: none }
 
   .navbar-right {
     a { color: black }

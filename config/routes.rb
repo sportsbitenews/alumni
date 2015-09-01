@@ -14,7 +14,15 @@ Rails.application.routes.draw do
       post :preview
     end
   end
-  resources :batches, only: %i(show edit update)
+
+  resources :batches, only: %i(show edit update) do
+    member do
+      get :register
+    end
+  end
+
+  get :onboarding, to: 'batches#onboarding'
+
   resources :questions, only: %i(new show create)
   resources :milestones, only: %i(new show create)
   resources :jobs, only: %i(new show create)
@@ -28,7 +36,7 @@ Rails.application.routes.draw do
     resources :batches, only: %i(new create)
   end
 
-  resources :users, only: %i(index)
+  resources :users, only: %i(index update)
 
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin? } do

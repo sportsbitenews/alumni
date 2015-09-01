@@ -1,0 +1,32 @@
+<div class='cities-list-overlay batch-list-overlay'>
+  <div class="cities-list-container batches-list-container">
+    <div class="cities-list batches-list">
+      <% @batches.each do |batch| %>
+        <div class="city-item batch-item">
+          <%= link_to user_omniauth_authorize_path(:github, batch: batch.id) do %>
+
+            <h1>
+              <%= batch.name %> - <%= batch.city.name %>
+            </h1>
+            <div class='batch-date'>
+              <%= batch.starts_at.strftime('%b %d, %Y') %> - <%= batch.ends_at.strftime('%b %d, %Y') %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="cities-list-title ">
+      <div class="no-tickets">
+        <div class="octocat">
+          <%= image_tag 'octowagon.png' %>
+        </div>
+        <div class="bubble">
+          <h1 class="text-center" style="font-weight: normal">
+            Welcome to the alumni platform! <b> Choose your batch to get started</b>
+          </h1>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
