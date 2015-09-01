@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       :last_name,
       :birth_day,
       :phone,
-      :studies
+      :school
     )
   end
 end

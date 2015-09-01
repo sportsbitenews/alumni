@@ -5,6 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if omniauth_params.has_key? "batch"
       batch = Batch.find(omniauth_params['batch'])
       if batch.onboarding
+        @user.alumni = false
         @user.save!
         sign_in @user, :event => :authentication
         redirect_to register_batch_path(batch)
@@ -14,6 +15,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
     elsif false
       # TODO : check if user is in the alumni list.
+      # @user.alumni = true
       if @user.persisted? || @user.valid?
         @user.save
         sign_in @user, :event => :authentication
