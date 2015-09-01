@@ -36,7 +36,12 @@ Rails.application.routes.draw do
     resources :batches, only: %i(new create)
   end
 
-  resources :users, only: %i(index update)
+  resources :users, only: %i(index update) do
+    member do
+      post :confirm
+      post :delete
+    end
+  end
 
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin? } do

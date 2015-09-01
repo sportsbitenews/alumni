@@ -9,6 +9,14 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def confirm?
+    user.admin
+  end
+
+  def delete?
+    user.admin
+  end
+
   def update?
     record == user
   end

@@ -24,6 +24,9 @@ JsRoutes.setup do |config|
     /^answers$/,
 
     /^batch$/,
-    /^project$/
+    /^project$/,
+
+    /^confirm_user$/,
+    /^delete_user$/
   ]
 end

@@ -13,7 +13,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:alert] = "The registration period is over for this batch."
         redirect_to root_path
       end
-    elsif false
+    elsif true
       # TODO : check if user is in the alumni list.
       # @user.alumni = true
       if @user.persisted? || @user.valid?

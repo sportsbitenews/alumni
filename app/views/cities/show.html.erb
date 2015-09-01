@@ -1,4 +1,4 @@
-<div class='cities-list-overlay <%=  "is-not-flex" if @city.batches.size > 3 %> '>
+<div class='cities-list-overlay is-not-flex'>
   <div class='cities-icon-container'>
   <%= link_to cities_path do %>
     <i class='mdi mdi-city'></i>
@@ -15,20 +15,29 @@
 
     <div class="cities-list batches-list">
       <% @city.batches.order(starts_at: :desc).each do |batch| %>
-        <div class="city-item batch-item">
-          <h3>
-            <%= link_to batch.name, batch %>
-            <small class='batch-item-actions'><%= link_to 'Edit', edit_batch_path(batch) %></small>
-          </h3>
-          <div class="bacth-item-dates">
-            <span class='mdi mdi-calendar-multiple'></span>
-            <%= batch.starts_at.strftime('%b %d, %Y') %> → <%= batch.ends_at.strftime('%b %d, %Y') %>
+          <div class="city-item batch-item">
+            <h3>
+              <%= link_to batch.name, batch %>
+              <small class='batch-item-actions'><%= link_to 'Edit', edit_batch_path(batch) %></small>
+            </h3>
+            <div class="bacth-item-dates">
+              <span class='mdi mdi-calendar-multiple'></span>
+              <%= batch.starts_at.strftime('%b %d, %Y') %> → <%= batch.ends_at.strftime('%b %d, %Y') %>
+            </div>
+            <div class="batch-item-students-count">
+              <span class="mdi mdi-account-multiple"></span>
+              <%= pluralize batch.users.count, 'student' %>
+            </div>
+            <% if !batch.users.where(alumni: false).empty? %>
+              <div class='pending-students'>
+                <% batch.users.where(alumni: false).each do |student| %>
+                    <%= react_component 'StudentItem', {
+                        student: student
+                    } %>
+                <% end %>
+              </div>
+            <% end %>
           </div>
-          <div class="batch-item-students-count">
-            <span class="mdi mdi-account-multiple"></span>
-            <%= pluralize batch.users.count, 'student' %>
-          </div>
-        </div>
       <% end %>
     </div>
   </div>
