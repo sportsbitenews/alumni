@@ -1,4 +1,4 @@
-json.name @batch.name
+json.slug @batch.slug
 json.starts_at @batch.starts_at.strftime('%B ')
 json.ends_at @batch.ends_at.strftime('%B %Y')
 json.city @batch.city.name

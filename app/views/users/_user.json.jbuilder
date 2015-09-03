@@ -5,7 +5,7 @@ json.user_messages_slack_url user.user_messages_slack_url
 
 json.batch do
   json.id user.batch.id
-  json.name user.batch.name
+  json.slug user.batch.slug
 end
 
 json.votes do
