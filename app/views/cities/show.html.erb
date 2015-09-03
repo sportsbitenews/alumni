@@ -17,7 +17,7 @@
       <% @city.batches.order(starts_at: :desc).each do |batch| %>
           <div class="city-item batch-item">
             <h3>
-              <%= link_to "Promo ##{batch.slug}", batch %>
+              <%= link_to "Batch ##{batch.slug}", batch %>
               <small class='batch-item-actions'><%= link_to 'Edit', edit_batch_path(batch) %></small>
             </h3>
             <div class="bacth-item-dates">

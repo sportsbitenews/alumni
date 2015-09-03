@@ -101,7 +101,7 @@ end
 # batch = Batch.new
 # batch.starts_at = Date.new(2014, 7, 4)
 # batch.city = paris
-# batch.name = "Promo #3"
+# batch.name = "Batch #3"
 # batch.save
 
 # User.all.sample(25).each do |user|

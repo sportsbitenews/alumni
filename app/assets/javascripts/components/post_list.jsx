@@ -37,7 +37,7 @@ var PostList = React.createClass({
             })}
           </div>
           <div className='col-sm-3 posts-column' title="#milestones">
-            <a href={this.props.current_user.can_post_milestone ? Routes.new_milestone_path() : 'mailto:ssaunier@gmail.com'}>
+            <a href={this.props.current_user.can_post_milestone ? Routes.new_milestone_path() : 'mailto:seb@lewagon.org'}>
             <div className='posts-column-new'>
             {this.props.current_user.can_post_milestone ? 'ADD A NEW MILESTONE' : 'SUBMIT A NEW PRODUCT'}
             </div>
