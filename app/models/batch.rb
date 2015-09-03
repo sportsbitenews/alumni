@@ -3,7 +3,7 @@
 # Table name: batches
 #
 #  id         :integer          not null, primary key
-#  name       :string
+#  slug       :integer
 #  city_id    :integer
 #  starts_at  :date
 #  ends_at    :date
@@ -17,7 +17,7 @@
 #
 
 class Batch < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
+  validates :slug, presence: true, uniqueness: true
   validates :city, presence: true
   validates :starts_at, presence: true
 
