@@ -44,7 +44,7 @@ class UserProfile extends React.Component {
             <div className='user-profile-header-footer'>
               <a href={Routes.batch_path(this.props.batch.id)}>
                 <div className='batch-detail-footer-item is-hoverable'>
-                  {this.props.batch.name}
+                  Promo #{this.props.batch.slug}
                 </div>
               </a>
               <a href={"http://github.com/" + this.props.github_nickname} target='_blank'>

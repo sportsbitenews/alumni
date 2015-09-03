@@ -19,7 +19,7 @@ class ProjectDetail extends React.Component {
             <div className='post-detail-header-action'>
               <a href={Routes.batch_path(this.props.batch.id)}>
                 <div className='project-detail-batch'>
-                  {this.props.batch.name} - {this.props.batch.city}
+                  Promo #{this.props.batch.slug} - {this.props.batch.city}
                 </div>
               </a>
               <a href={this.props.url} target='_blank'>

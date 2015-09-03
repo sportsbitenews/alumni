@@ -6,7 +6,7 @@
           <%= link_to user_omniauth_authorize_path(:github, batch: batch.id) do %>
 
             <h1>
-              <%= batch.name %> - <%= batch.city.name %>
+              Promo #<%= batch.slug %> - <%= batch.city.name %>
             </h1>
             <div class='batch-date'>
               <%= batch.starts_at.strftime('%b %d, %Y') %> - <%= batch.ends_at.strftime('%b %d, %Y') %>

@@ -1,6 +1,7 @@
 json.name project.name
 json.url project.url
 json.id project.id
+json.tagline project.tagline
 
 json.makers do
   json.array! project.users.each do |maker|
@@ -10,7 +11,7 @@ end
 
 json.batch do
   json.city @project.batch.city.name
-  json.name @project.batch.name
+  json.slug @project.batch.slug
   json.id @project.batch.id
 end
 
