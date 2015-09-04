@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831140653) do
+ActiveRecord::Schema.define(version: 20150904140648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150831140653) do
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "batches", force: :cascade do |t|
-    t.string   "name"
+    t.string   "slug"
     t.integer  "city_id"
     t.date     "starts_at"
     t.date     "ends_at"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20150831140653) do
     t.string   "slack_token"
     t.date     "birth_day"
     t.string   "school"
+    t.boolean  "staff",                  default: false, null: false
   end
 
   add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree

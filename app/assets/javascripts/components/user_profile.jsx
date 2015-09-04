@@ -32,6 +32,26 @@ class UserProfile extends React.Component {
       'is-active': this.props.connected_to_slack
     });
 
+    var batchInfo = null;
+    if (this.props.batch) {
+      var batchInfo = (
+        <a href={Routes.batch_path(this.props.batch.id)}>
+          <div className='batch-detail-footer-item is-hoverable'>
+            Batch #{this.props.batch.slug}
+          </div>
+        </a>);
+    }
+
+    var slack = null;
+    if (this.props.user_messages_slack_url) {
+      var slack = (
+        <a href={this.props.user_messages_slack_url} target="_blank">
+          <div className='batch-detail-footer-item is-hoverable'>
+            SLACK
+          </div>
+        </a>);
+    }
+
     return (
       <div>
         <div className='user-profile-header'>
@@ -42,20 +62,14 @@ class UserProfile extends React.Component {
               <span className={badgeConnectedClasses} />
             </h1>
             <div className='user-profile-header-footer'>
-              <a href={Routes.batch_path(this.props.batch.id)}>
-                <div className='batch-detail-footer-item is-hoverable'>
-                  Batch #{this.props.batch.slug}
-                </div>
-              </a>
+              {batchInfo}
               <a href={"http://github.com/" + this.props.github_nickname} target='_blank'>
                 <div className='batch-detail-footer-item is-hoverable'>
                   GITHUB
                 </div>
               </a>
+              {slack}
             </div>
-            <a href={this.props.user_messages_slack_url}>
-              {this.props.user_messages_slack_url}
-            </a>
           </div>
         </div>
         <div className='post-submissions-tabs-overlay'>
