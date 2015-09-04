@@ -42,16 +42,18 @@ class ProjectDetail extends React.Component {
           </div>
         </div>
         <div className='container'>
-          {this.props.milestones.map(
-            (milestone) => {return (
-              <div className='milestone-item-container'>
-                <div className='milestone-item-date'>
-                  {milestone.date}
+          {
+            this.props.milestones.map(
+              (milestone) => {return (
+                <div className='milestone-item-container'>
+                  <div className='milestone-item-date'>
+                    {milestone.date}
+                  </div>
+                  <MilestoneListElement {...milestone} />
                 </div>
-                <MilestoneListElement {...milestone} />
-              </div>
-            )}
-          )}
+              )}
+            )
+          }
         </div>
       </div>
     )

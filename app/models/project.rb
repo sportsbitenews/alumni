@@ -2,13 +2,17 @@
 #
 # Table name: projects
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  url        :string
-#  batch_id   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  tagline    :string
+#  id                         :integer          not null, primary key
+#  name                       :string
+#  url                        :string
+#  batch_id                   :integer
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  tagline                    :string
+#  cover_picture_file_name    :string
+#  cover_picture_content_type :string
+#  cover_picture_file_size    :integer
+#  cover_picture_updated_at   :datetime
 #
 # Indexes
 #

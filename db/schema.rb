@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150904140648) do
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "batches", force: :cascade do |t|
-    t.string   "slug"
+    t.integer  "slug"
     t.integer  "city_id"
     t.date     "starts_at"
     t.date     "ends_at"
@@ -85,9 +85,13 @@ ActiveRecord::Schema.define(version: 20150904140648) do
     t.string   "name"
     t.string   "url"
     t.integer  "batch_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "tagline"
+    t.string   "cover_picture_file_name"
+    t.string   "cover_picture_content_type"
+    t.integer  "cover_picture_file_size"
+    t.datetime "cover_picture_updated_at"
   end
 
   add_index "projects", ["batch_id"], name: "index_projects_on_batch_id", using: :btree
