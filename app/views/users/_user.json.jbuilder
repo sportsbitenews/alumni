@@ -3,9 +3,11 @@ json.extract! user, *user_properties
 json.connected_to_slack user.connected_to_slack
 json.user_messages_slack_url user.user_messages_slack_url
 
-json.batch do
-  json.id user.batch.id
-  json.slug user.batch.slug
+if user.batch
+  json.batch do
+    json.id user.batch.id
+    json.slug user.batch.slug
+  end
 end
 
 json.votes do

@@ -40,8 +40,6 @@
 #
 
 class User < ActiveRecord::Base
-  LEWAGON_GITHUB_ORGANIZATION = 'lewagon'.freeze
-
   PUBLIC_PROPERTIES = %i(id github_nickname gravatar_url first_name last_name)
   PRIVATE_PROPERTIES = %i(slack_uid connected_to_slack)
 
@@ -49,7 +47,6 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:github]
 
   validates :github_nickname, uniqueness: { allow_nil: false }
-  # validate :belongs_to_lewagon_github_org
 
   belongs_to :batch
   has_many :resources
@@ -67,7 +64,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_github_oauth(auth)
-    user = where(uid: auth[:uid]).first || User.new
+    user = where(uid: auth[:uid]).first || where(github_nickname: auth.info.nickname).first || User.new
     store_github_info(user, auth)
     user
   end
@@ -92,15 +89,13 @@ class User < ActiveRecord::Base
     @user_messages_slack_url ||= SlackService.new.user_messages_slack_url(self)
   end
 
+  def legit?
+    admin || staff || teacher || teacher_assistant || alumni
+  end
+
   private
 
   def octokit_client
     @octokit_client ||= Octokit::Client.new(access_token: github_token)
-  end
-
-  def belongs_to_lewagon_github_org
-    unless octokit_client.organization_member?(LEWAGON_GITHUB_ORGANIZATION, github_nickname)
-      errors.add(:github_nickname, "Sorry, you don't belong to lewagon GitHub organization")
-    end
   end
 end

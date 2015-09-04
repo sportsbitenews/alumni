@@ -1,7 +1,8 @@
 class BatchesController < ApplicationController
   before_action :set_batch, only: %i(show edit update register)
   before_action :set_city, only: %i(new create)
-  skip_before_action :authenticate_user!, only: %i(show onboarding register)
+  skip_before_action :authenticate_user!, only: :onboarding
+  skip_after_action :verify_authorized, only: :onboarding
 
   def show
   end
@@ -35,7 +36,6 @@ class BatchesController < ApplicationController
 
   def onboarding
     @batches = Batch.where(onboarding: true)
-    authorize @batches
   end
 
   def register

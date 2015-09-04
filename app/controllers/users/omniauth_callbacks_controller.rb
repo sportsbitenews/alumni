@@ -6,6 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       batch = Batch.find(omniauth_params['batch'])
       if batch.onboarding
         @user.alumni = false
+        @user.batch = batch
         @user.save!
         sign_in @user, :event => :authentication
         redirect_to register_batch_path(batch)
@@ -13,17 +14,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:alert] = "The registration period is over for this batch."
         redirect_to root_path
       end
-    elsif true
-      # TODO : check if user is in the alumni list.
-      # @user.alumni = true
-      if @user.persisted? || @user.valid?
-        @user.save
-        sign_in @user, :event => :authentication
-        redirect_to after_sign_in
-      else
-        flash[:alert] = @user.errors.messages.values.join(", ")
-        redirect_to root_path
-      end
+    elsif @user.persisted? && @user.legit?
+      @user.save
+      sign_in @user, :event => :authentication
+      redirect_to after_sign_in
     else
       flash[:alert] = "The platform is reserved to the alumni."
       redirect_to root_path
