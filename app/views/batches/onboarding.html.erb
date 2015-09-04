@@ -22,7 +22,11 @@
         </div>
         <div class="bubble">
           <h1 class="text-center" style="font-weight: normal">
-            Welcome to the alumni platform! <b> Choose your batch to get started</b>
+            <% if @batches.any? %>
+              Welcome to the alumni platform! <b> Choose your batch to get started</b>
+            <% else %>
+              Sorry, can't find any batch for you to register.
+            <% end %>
           </h1>
         </div>
       </div>

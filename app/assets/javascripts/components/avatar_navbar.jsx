@@ -15,7 +15,11 @@ class AvatarNavbar extends React.Component {
     return(
       <div className='user-avatar' onMouseLeave={this.handleMouseLeave.bind(this)}>
         <div className={userMenuClasses}>
-          <a href={Routes.destroy_user_session_path()}>Sign out</a>
+          <a href={Routes.destroy_user_session_path()} style={{opacity: 0.3}}>Sign out</a>
+          <hr/>
+          <a href="http://lewagon-alumni.slack.com" target="_blank">Slack</a>
+          <hr/>
+          <a href="http://kitt.lewagon.org" target="_blank">Kitt</a>
           <hr/>
           <a href={Routes.profile_path(this.props.user.github_nickname)}>My profile</a>
           <hr/>

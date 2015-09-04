@@ -14,19 +14,19 @@
   <div class='batch-form-register'>
     <%= simple_form_for(@user, url: user_path(@user)) do |f|%>
       <row class="post-submissions-row-in">
-        <%= f.input :first_name, :label => "<i class='mdi mdi-format-text'></i> First Name".html_safe, placeholder: 'Bastien', require: true %>
+        <%= f.input :first_name, :label => "<i class='mdi mdi-format-text'></i> First Name".html_safe, placeholder: 'e.g. George', required: true %>
       </row>
       <row class="post-submissions-row-in">
-        <%= f.input :last_name, :label => "<i class='mdi mdi-format-text'></i> Last Name".html_safe, placeholder: 'Asnieur', require: true %>
+        <%= f.input :last_name, :label => "<i class='mdi mdi-format-text'></i> Last Name".html_safe, placeholder: 'e.g. Abitbol', required: true %>
       </row>
       <row class="post-submissions-row-in">
-        <%= f.input :birth_day, :label => "<i class='mdi mdi-cake'></i> Birth Day".html_safe, placeholder: 'Batch #3', :as => :date, :start_year => Date.today.year - 16, :end_year => 1900, :order => [ :day, :month, :year], require: true %>
+        <%= f.input :birth_day, :label => "<i class='mdi mdi-cake'></i> Birth Day".html_safe, placeholder: 'Batch #3', :as => :date, :start_year => Date.today.year - 30, :end_year => 1900, :order => [ :day, :month, :year], required: true %>
       </row>
       <row class="post-submissions-row-in">
-        <%= f.input :phone, :label => "<i class='mdi mdi-cellphone-iphone'></i> Phone Number".html_safe, placeholder: '+33658...', require: true %>
+        <%= f.input :phone, :label => "<i class='mdi mdi-cellphone-iphone'></i> Phone Number".html_safe, placeholder: 'e.g. +336123...', required: true %>
       </row>
       <row class="post-submissions-row-in">
-        <%= f.input :school, label: "<i class='mdi mdi-school'></i> Studies".html_safe, placeholder: 'Tell us more about your studies', require: true %>
+        <%= f.input :school, label: "<i class='mdi mdi-school'></i> Studies".html_safe, placeholder: 'Which graduate school did you go to?', required: true %>
       </row>
       <div class="text-center">
         <%= f.submit 'Submit', class: 'button button-success' %>
