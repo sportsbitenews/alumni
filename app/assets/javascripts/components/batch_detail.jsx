@@ -19,7 +19,7 @@ class BatchDetail extends React.Component {
       <div>
         <div className='batch-detail-header'>
           <div className='batch-detail-name'>
-            {this.props.name}
+            Batch #{this.props.slug} - {this.props.city}
           </div>
           <div className='batch-detail-header-footer'>
             <div className='batch-detail-dates batch-detail-footer-item '>
