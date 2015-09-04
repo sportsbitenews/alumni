@@ -27,11 +27,7 @@ ActiveRecord::Schema.define(version: 20150904140648) do
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "batches", force: :cascade do |t|
-<<<<<<< HEAD
-    t.integer  "slug"
-=======
     t.string   "slug"
->>>>>>> master
     t.integer  "city_id"
     t.date     "starts_at"
     t.date     "ends_at"
