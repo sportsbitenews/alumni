@@ -41,11 +41,17 @@ class BatchDetail extends React.Component {
             <div className='projects-list'>
               {this.props.projects.map(
                 (project) => {
+                  var projectThumbnailStyle = {
+                    background: 'url(' + project.thumbnail_url + ')',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center center',
+                    backgroundColor: 'rgba(0, 0, 0, 0.02)'
+                  }
                   return (
                     <div>
                     <a href={Routes.project_path(project.id)}>
                       <div className='project-item'>
-                        <div className='project-thumbnail' />
+                        <div className='project-thumbnail' style={projectThumbnailStyle} />
                         <div className='project-item-infos'>
                           <div className='project-item-name'>
                             {project.name}

@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :users
   acts_as_votable
   has_attached_file :cover_picture,
-    styles: { cover: { geomerty: "1400x787>", format: 'jpg', quality: 40 } }
+    styles: { cover: { geomerty: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geomerty: "270x180>", format: 'jpg', quality: 20 } }
 
   validates :name, presence: true
   validates :url, presence: true

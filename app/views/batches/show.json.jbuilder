@@ -1,4 +1,4 @@
-json.name @batch.name
+json.slug @batch.slug
 json.starts_at @batch.starts_at.strftime('%B ')
 json.ends_at @batch.ends_at.strftime('%B %Y')
 json.city @batch.city.name
@@ -12,6 +12,8 @@ end
 json.projects do
   json.array! @batch.projects.each do |project|
     json.extract! project, :name, :url, :tagline, :id
+    json.thumbnail_url project.cover_picture.url(:thumbnail)
+
     json.makers do
       json.array! project.users.each do |user|
         json.extract! user, *user_properties

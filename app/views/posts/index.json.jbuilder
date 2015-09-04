@@ -21,3 +21,7 @@ json.milestones do
     json.partial! "milestones/milestone", milestone: milestone
   end
 end
+
+json.current_user do
+  json.can_post_milestone user_signed_in? ? current_user.projects.any? : false
+end
