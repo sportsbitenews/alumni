@@ -6,20 +6,21 @@ lille    = City.create! name: 'Lille'
 beirut   = City.create! name: 'Beirut'
 bordeaux = City.create! name: 'Bordeaux'
 
-Batch.create! slug: 1, city_id: 1, starts_at: Date.new(2014, 1, 6)
-Batch.create! slug: 2, city_id: 1, starts_at: Date.new(2014, 3, 7)
-Batch.create! slug: 3, city_id: 1, starts_at: Date.new(2014, 7, 7)
-Batch.create! slug: 4, city_id: 1, starts_at: Date.new(2014, 10, 6)
-Batch.create! slug: 5, city_id: 1, starts_at: Date.new(2014, 10, 20)
-Batch.create! slug: 6, city_id: 1, starts_at: Date.new(2015, 1, 5)
-Batch.create! slug: 7, city_id: 2, starts_at: Date.new(2015, 1, 12)
-Batch.create! slug: 8, city_id: 1, starts_at: Date.new(2015, 3, 9)
-Batch.create! slug: 9, city_id: 2, starts_at: Date.new(2015, 5, 4)
-Batch.create! slug: 10, city_id: 1, starts_at: Date.new(2015, 5, 11)
-Batch.create! slug: 11, city_id: 1, starts_at: Date.new(2015, 7, 13)
-Batch.create! slug: 12, city_id: 2, starts_at: Date.new(2015, 8, 17)
-Batch.create! slug: 13, city_id: 3, starts_at: Date.new(2015, 9, 7)
-Batch.create! slug: 14, city_id: 4, starts_at: Date.new(2015, 9, 14)
+
+Batch.create! slug: 1, city: paris, starts_at: Date.new(2014, 1, 6)
+Batch.create! slug: 2, city: paris, starts_at: Date.new(2014, 3, 7)
+Batch.create! slug: 3, city: paris, starts_at: Date.new(2014, 7, 7)
+Batch.create! slug: 4, city: paris, starts_at: Date.new(2014, 10, 6)
+Batch.create! slug: 5, city: paris, starts_at: Date.new(2014, 10, 20)
+Batch.create! slug: 6, city: paris, starts_at: Date.new(2015, 1, 5)
+Batch.create! slug: 7, city: brussels, starts_at: Date.new(2015, 1, 12)
+Batch.create! slug: 8, city: paris, starts_at: Date.new(2015, 3, 9)
+Batch.create! slug: 9, city: brussels, starts_at: Date.new(2015, 5, 4)
+Batch.create! slug: 10, city: paris, starts_at: Date.new(2015, 5, 11)
+Batch.create! slug: 11, city: paris, starts_at: Date.new(2015, 7, 13)
+Batch.create! slug: 12, city: brussels, starts_at: Date.new(2015, 8, 17)
+Batch.create! slug: 13, city: lille, starts_at: Date.new(2015, 9, 7)
+Batch.create! slug: 14, city: beirut, starts_at: Date.new(2015, 9, 14)
 
 users.each do |u|
   user = User.new
