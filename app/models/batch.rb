@@ -3,7 +3,7 @@
 # Table name: batches
 #
 #  id         :integer          not null, primary key
-#  slug       :string
+#  slug       :integer
 #  city_id    :integer
 #  starts_at  :date
 #  ends_at    :date

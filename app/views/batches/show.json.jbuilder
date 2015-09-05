@@ -12,6 +12,8 @@ end
 json.projects do
   json.array! @batch.projects.each do |project|
     json.extract! project, :name, :url, :tagline, :id
+    json.thumbnail_url project.cover_picture.url(:thumbnail)
+
     json.makers do
       json.array! project.users.each do |user|
         json.extract! user, *user_properties

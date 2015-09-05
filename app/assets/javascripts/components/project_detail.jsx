@@ -7,10 +7,25 @@ class ProjectDetail extends React.Component {
       (upVoter) => upVoter.connected_to_slack ? 0 : 1,
       (upVoter) => upVoter.github_nickname.toLowerCase()
     );
+    var browserStyle = {
+      background: 'url(' + this.props.cover_url + ')',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
+      backgroundColor: "white"
+
+    }
+
+    if (this.props.cover_url != '/cover_pictures/cover/missing.png') {
+      var browser = (
+        <div className="browser-mockup">
+          <div className='browser-content' style={browserStyle} />
+        </div>
+      )
+    }
 
     return(
       <div className='post-detail'>
-        <div className='post-detail-header resource-detail'>
+        <div className='post-detail-header project-detail-header resource-detail'>
           <div className='post-detail-header-main'>
             <a href={this.props.url} >
               <div className='post-detail-name'>{this.props.name}</div>
@@ -40,6 +55,7 @@ class ProjectDetail extends React.Component {
               </div>
             </div>
           </div>
+          {browser}
         </div>
         <div className='container'>
           {this.props.milestones.map(

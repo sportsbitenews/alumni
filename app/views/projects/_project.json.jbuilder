@@ -2,6 +2,8 @@ json.name project.name
 json.url project.url
 json.id project.id
 json.tagline project.tagline
+json.cover_url project.cover_picture.url(:cover)
+json.thumbnail_url project.cover_picture.url(:thumbnail)
 
 json.makers do
   json.array! project.users.each do |maker|

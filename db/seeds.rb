@@ -1,11 +1,11 @@
 users = YAML.load_file('db/users_dump.yml')
-projects = YAML.load_file('db/projects_dump.yml')
 
 paris    = City.create! name: 'Paris'
 brussels = City.create! name: 'Brussels'
 lille    = City.create! name: 'Lille'
 beirut   = City.create! name: 'Beirut'
 bordeaux = City.create! name: 'Bordeaux'
+
 
 Batch.create! slug: 1, city: paris, starts_at: Date.new(2014, 1, 6)
 Batch.create! slug: 2, city: paris, starts_at: Date.new(2014, 3, 7)
@@ -19,8 +19,8 @@ Batch.create! slug: 9, city: brussels, starts_at: Date.new(2015, 5, 4)
 Batch.create! slug: 10, city: paris, starts_at: Date.new(2015, 5, 11)
 Batch.create! slug: 11, city: paris, starts_at: Date.new(2015, 7, 13)
 Batch.create! slug: 12, city: brussels, starts_at: Date.new(2015, 8, 17)
-Batch.create! slug: 13, city_id: lille, starts_at: Date.new(2015, 9, 7)
-Batch.create! slug: 14, city_id: beirut, starts_at: Date.new(2015, 9, 14)
+Batch.create! slug: 13, city: lille, starts_at: Date.new(2015, 9, 7)
+Batch.create! slug: 14, city: beirut, starts_at: Date.new(2015, 9, 14)
 
 users.each do |u|
   user = User.new
@@ -34,9 +34,12 @@ users.each do |u|
   user.save
 end
 
+projects = YAML.load_file('db/projects_dump.yml')
 projects.each do |p|
-  project = Project.new
-  project.name = p['name']
+  project = Project.find_or_create_by(name: p['name'])
+  if p['cover_picture']
+    project.cover_picture = p['cover_picture']
+  end
   project.batch = Batch.find_by(slug: p['batch_slug'])
   project.tagline = p['tagline']
   project.url = p['url']
@@ -48,78 +51,5 @@ projects.each do |p|
     end
   end
   project.save
+  project.cover_picture.reprocess!
 end
-
-
-
-# # USER
-#   # using ui_face api + randomuser
-
-# 30.times do
-#   random = JSON.load(open('https://randomuser.me/api'))['results'][0]['user']
-#   ui_face = JSON.load(open('http://uifaces.com/api/v1/random'))
-
-#   user = User.new
-#   user.gravatar_url = ui_face['image_urls']['epic']
-#   user.first_name = "#{random['name']['first']}"
-#   user.last_name = "#{random['name']['last']}"
-#   user.github_nickname = ui_face['username']
-#   user.email = random['email']
-#   user.alumni = true
-#   user.save(validate: false)
-#   puts "Welcome #{user.github_nickname}"
-# end
-
-
-# questions = YAML.load_file('db/support/questions.yml')
-# questions.each do |q|
-#   question = Question.new
-#   question.title = q['title']
-#   question.user = User.random
-#   question.content = q['content']
-#   question.save
-#   puts "Question ##{question.id} created"
-# end
-
-# resources = JSON.load(open("https://api.producthunt.com/v1/posts?access_token=#{ENV['PH_TOKEN']}"))
-# resources['posts'].each do |r|
-#   resource = Resource.new
-#   resource.title = r['name']
-#   resource.url = r['redirect_url']
-#   resource.screenshot_url = r['screenshot_url']['850px']
-#   resource.tagline = r['tagline']
-#   resource.user = User.random
-#   resource.save
-
-#   puts "#{resource.title} created"
-# end
-
-# paris = City.new
-# paris.name = "Paris"
-# paris.save
-
-# batch = Batch.new
-# batch.starts_at = Date.new(2014, 7, 4)
-# batch.city = paris
-# batch.name = "Batch #3"
-# batch.save
-
-# User.all.sample(25).each do |user|
-#   u = user
-#   u.batch = batch
-#   u.save
-# end
-
-# projects = YAML.load_file('db/support/projects.yml')
-# projects.each do |p|
-#   batch = Batch.first
-#   project = Project.new
-#   project.url = p['link']
-#   project.name = p['name']
-#   project.tagline = p['tagline']
-#   project.batch = batch
-#   Random.rand(1..2).times { project.users << User.random }
-#   project.save
-# end
-
-
