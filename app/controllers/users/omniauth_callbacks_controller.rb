@@ -19,8 +19,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in @user, :event => :authentication
       redirect_to after_sign_in
     else
-      flash[:alert] = "The platform is reserved to the alumni."
-      redirect_to root_path
+      flash[:alert] = "Sorry, this website is reserved to the Wagon alumni."
+      redirect_to new_user_session_path
     end
   end
 

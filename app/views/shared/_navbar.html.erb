@@ -14,7 +14,7 @@
           <%= link_to new_resource_path, class: 'plus' do %>
             <i class='mdi mdi-plus'></i>
           <% end %>
-        <% else %>
+        <% elsif params[:controller] != 'devise/sessions' %>
           <%= link_to user_omniauth_authorize_path(:github), class: 'btn-github' do %>
             <%= fa_icon 'github' %> <%= t ".sign_out", default: "Sign in" %>
           <% end %>
