@@ -31,6 +31,7 @@
 #  slack_token            :string
 #  birth_day              :date
 #  school                 :string
+#  staff                  :boolean          default(FALSE), not null
 #
 # Indexes
 #
