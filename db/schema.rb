@@ -12,6 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20150904140648) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150904140648) do
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "batches", force: :cascade do |t|
-    t.integer  "slug"
+    t.string   "slug"
     t.integer  "city_id"
     t.date     "starts_at"
     t.date     "ends_at"
