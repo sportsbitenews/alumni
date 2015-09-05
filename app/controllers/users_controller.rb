@@ -25,18 +25,19 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       redirect_to root_path
     else
-      # handle error
+      # TODO" handle error
     end
   end
 
   def delete
-    @user.destroy
+    @user.destroy!
     render nothing: true
   end
 
   def confirm
     @user.alumni = true
-    @user.save
+    @user.save!
+    OnboardUserJob.perform_async(@user.id)
     render nothing: true
   end
 
