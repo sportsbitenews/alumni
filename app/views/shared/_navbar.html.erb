@@ -5,6 +5,11 @@
         <%= render 'shared/logo' %>
       <% end %>
       </div>
+      <% if current_user && current_user.legit? && current_user.slack_uid.blank? %>
+        <div class="navbar-link-to-slack">
+          <i class="fa fa-slack"></i> Accept the <strong>Slack</strong> email invitation, then <%= link_to "link your account", user_omniauth_authorize_path(:slack) %>.
+        </div>
+      <% end %>
       <div class='navbar-right'>
         <% if user_signed_in? %>
             <%= react_component 'AvatarNavbar', {

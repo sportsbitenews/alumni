@@ -24,6 +24,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def slack
+    if params[:error].blank?
+      auth = request.env["omniauth.auth"]
+      if current_user.update(slack_uid: auth["uid"], slack_token: auth["credentials"]["token"])
+        flash[:notice] = "Awesome! Your Slack account is now linked"
+      else
+        flash[:error] = "There was an issue while linking your Slack account. Ask @ssaunier."
+      end
+    end
+    redirect_to root_path
+  end
+
   private
 
   def after_sign_in

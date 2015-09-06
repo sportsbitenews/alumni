@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   PRIVATE_PROPERTIES = %i(slack_uid connected_to_slack)
 
   devise :trackable, :database_authenticatable
-  devise :omniauthable, :omniauth_providers => [:github]
+  devise :omniauthable, :omniauth_providers => [:github, :slack]
 
   validates :github_nickname, uniqueness: { allow_nil: false }
 
