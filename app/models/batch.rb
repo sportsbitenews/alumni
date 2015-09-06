@@ -34,6 +34,6 @@ class Batch < ActiveRecord::Base
   end
 
   def create_slack_channel
-    CreateSlackChannelJob.perform_later(id)
+    CreateSlackChannelJob.perform_later(id) if slack_id.blank?
   end
 end
