@@ -7,20 +7,21 @@ beirut   = City.create! name: 'Beirut'
 bordeaux = City.create! name: 'Bordeaux'
 
 
-Batch.create! slug: 1, city: paris, starts_at: Date.new(2014, 1, 6)
-Batch.create! slug: 2, city: paris, starts_at: Date.new(2014, 3, 7)
-Batch.create! slug: 3, city: paris, starts_at: Date.new(2014, 7, 7)
-Batch.create! slug: 4, city: paris, starts_at: Date.new(2014, 10, 6)
-Batch.create! slug: 5, city: paris, starts_at: Date.new(2014, 10, 20)
-Batch.create! slug: 6, city: paris, starts_at: Date.new(2015, 1, 5)
-Batch.create! slug: 7, city: brussels, starts_at: Date.new(2015, 1, 12)
-Batch.create! slug: 8, city: paris, starts_at: Date.new(2015, 3, 9)
-Batch.create! slug: 9, city: brussels, starts_at: Date.new(2015, 5, 4)
-Batch.create! slug: 10, city: paris, starts_at: Date.new(2015, 5, 11)
-Batch.create! slug: 11, city: paris, starts_at: Date.new(2015, 7, 13)
-Batch.create! slug: 12, city: brussels, starts_at: Date.new(2015, 8, 17)
-Batch.create! slug: 13, city: lille, starts_at: Date.new(2015, 9, 7)
-Batch.create! slug: 14, city: beirut, starts_at: Date.new(2015, 9, 14)
+Batch.create! slug: 1, city: paris, starts_at: Date.new(2014, 1, 6), slack_id: 'C03302GJ9'
+Batch.create! slug: 2, city: paris, starts_at: Date.new(2014, 3, 7), slack_id: 'C032KMS4A'
+Batch.create! slug: 3, city: paris, starts_at: Date.new(2014, 7, 7), slack_id: 'C032J80M0'
+Batch.create! slug: 4, city: paris, starts_at: Date.new(2014, 10, 6), slack_id: 'C02QKRX85'
+Batch.create! slug: 5, city: paris, starts_at: Date.new(2014, 10, 20), slack_id: 'C02QK0ZF2'
+Batch.create! slug: 6, city: paris, starts_at: Date.new(2015, 1, 5), slack_id: 'C0393G6N4'
+Batch.create! slug: 7, city: brussels, starts_at: Date.new(2015, 1, 12), slack_id: 'C03579S5S'
+Batch.create! slug: 8, city: paris, starts_at: Date.new(2015, 3, 9), slack_id: 'C03T3CETW'
+Batch.create! slug: 9, city: brussels, starts_at: Date.new(2015, 5, 4), slack_id: 'C04F6PW7Y'
+Batch.create! slug: 10, city: paris, starts_at: Date.new(2015, 5, 11), slack_id: 'C04HMSHSE'
+Batch.create! slug: 11, city: paris, starts_at: Date.new(2015, 7, 13), slack_id: 'C07FSQBUL'
+Batch.create! slug: 12, city: brussels, starts_at: Date.new(2015, 8, 17), slack_id: 'C08TA6HFV'
+Batch.create! slug: 13, city: lille, starts_at: Date.new(2015, 9, 7), slack_id: 'C09QAE7BN'
+Batch.create! slug: 14, city: beirut, starts_at: Date.new(2015, 9, 14), slack_id: 'C09QAQ4C9'
+Batch.create! slug: 15, city: paris, starts_at: Date.new(2015, 9, 21), slack_id: 'C09QAJ8EQ'
 
 users.each do |u|
   user = User.new

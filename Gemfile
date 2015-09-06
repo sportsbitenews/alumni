@@ -21,6 +21,7 @@ gem "redis"
 gem "slack-api"
 gem 'octicons-rails'
 gem 'rails_admin'
+gem 'rest_client'
 
 
 gem 'redcarpet'
