@@ -94,6 +94,10 @@ class User < ActiveRecord::Base
     admin || staff || teacher || teacher_assistant || alumni
   end
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def octokit_client

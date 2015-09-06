@@ -36,4 +36,8 @@ class Batch < ActiveRecord::Base
   def create_slack_channel
     CreateSlackChannelJob.perform_later(id) if slack_id.blank?
   end
+
+  def name
+    "Batch #{slug} - #{city.name}"
+  end
 end
