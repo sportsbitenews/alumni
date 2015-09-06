@@ -102,6 +102,8 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     ethon (0.7.4)
       ffi (>= 1.3.0)
@@ -127,6 +129,8 @@ GEM
     high_voltage (2.4.0)
     hitimes (1.2.2)
     htmlentities (4.3.4)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     i18n_data (0.7.0)
     image_info (1.1.0)
@@ -178,7 +182,7 @@ GEM
     multipart-post (2.0.0)
     nested_form (0.3.2)
     net-http-persistent (2.9.4)
-    netrc (0.7.9)
+    netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     oauth2 (1.0.0)
@@ -306,8 +310,10 @@ GEM
     remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    rest_client (1.8.3)
-      netrc (~> 0.7.7)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rufus-scheduler (3.1.4)
     safe_yaml (1.0.4)
     sass (3.4.16)
@@ -367,6 +373,9 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     unicode_utils (1.4.0)
     uniform_notifier (1.7.0)
     validate_url (1.0.2)
@@ -431,7 +440,7 @@ DEPENDENCIES
   react-rails (= 1.2.0)
   redcarpet
   redis
-  rest_client
+  rest-client
   sass-pygments-rails
   sass-rails (~> 5.0)
   sidekiq
