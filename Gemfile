@@ -10,6 +10,7 @@ gem "country_select"
 gem "high_voltage"
 gem "devise"
 gem "omniauth-github"
+gem "omniauth-slack", '1.0.1'
 gem "octokit"
 gem "pundit"
 gem "paperclip"
