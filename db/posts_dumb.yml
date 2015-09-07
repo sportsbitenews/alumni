@@ -1,0 +1,102 @@
+- type: Resource
+  title: Fontello
+  tagline: Icon font generator
+  url: http://fontello.com
+  author: deuxio
+- type: Resource
+  title: UpUp
+  tagline: Make sure your sites work even when your users are offline
+  url: https://www.talater.com/upup
+  author: maxbrodi
+- type: Resource
+  title: CodeMyUI
+  url: http://codemyui.com
+  tagline: Handpicked code snippets you can use in your web projects
+  author: gregcha
+- type: Resource
+  title: How DNS works
+  url: https://howdns.works
+  author: lienvdsteen
+  tagline: Super cute web comics about 'How DNS Works' for beginners!
+- type: Resource
+  title: Material Theme
+  url:  https://github.com/equinusocio/material theme
+  author: cveneziani
+  tagline: Bring the Material Design visual language to your Sublime Text 3
+- type: Resource
+  title: CSS Animation Generator
+  url: https://coveloping.com/tools/css-animation-generator
+  tagline: Create over 30 different CSS animations.
+  author: lg75
+- type: Question
+  title: Problem on redirect URI Stripe
+  author: Arthurhge
+  content: |
+    Sachant que mon redirect URI est `https://www.krawd.com/stripe_connections/callback` et que je ne peux pas mettre http sur le form stripe
+    Voici ma methode callback dans mon controller :
+    ```
+      def callback
+        # if params[:error] => si je veux gérer les erreurs eventuelles renvoyées par stripe
+        @brief = Brief.find(params[:state])
+        stripe_auth_url = "https://connect.stripe.com/oauth"
+        @user = current_user
+        client = OAuth2::Client.new(ENV['STRIPE_CONNECT_CLIENT_ID'], ENV['STRIPE_SECRET_KEY'], :site => stripe_auth_url)
+        access_token = client.auth_code.get_token(params[:code], :redirect_uri => '#{request.protocol}#{request.host_with_port}/oauth2/callback')
+        stripe_connection = StripeConnection.find_or_create_by(user_id: @user.id)
+        stripe_connection.update_attributes(access_token: access_token.token,
+           p                                 refresh_token: access_token.refresh_token,
+                                            livemode: access_token.params['livemode'],
+                                            stripe_user_id: access_token.params['stripe_user_id'],
+                                            publishable_key: access_token.params['stripe_publishable_key']
+                                            )
+      end
+    ```
+    y aurait-il un bon samaritain qui pourrait m’aider?
+  answers:
+  - author: tdeschamps
+    content: |
+     'bah apparemment y a pas le https sur le message d’erreur mais http
+      t’as pas un probleme de ssl?'
+  - author: Arthurhge
+    content: |
+      bah je paie sur heroku le truc ssl
+      et j’ai un user qui a déjà réussi à connecter son compte stripe à mon site
+      ps. j'ai toujours rêvé d'être une princesse
+- type: Question
+  title: 'One submit on many forms.'
+  author: emiliecoudrat
+  content: "hello, qqun a-t-il un moyen simple de faire un seul submit pour plusieurs forms sur une même page (un seul model) ?"
+  answers:
+    - author: GatienH
+      content: '@emiliecoudrat: si tu utilises simple_form avec des simple_fields peut-être ? En gros tu ouvres un simple_form dans lequel tu utilises des simple_fields pour chacun de tes « sous formulaires ». Tu n’obtiens à la fin qu’un seul submit pour le simple_form global. C’est à peu prêt bien expliqué dans la [doc de la gem](https://github.com/plataformatec/simple_form). Ca ressemble à ce dont tu as besoin ?'
+- type: Question
+  title: 'Mangopay ?'
+  author: CandiceSG
+  content: "qqun aurait installé mangopay pour une marketplace et des conseils de tutos, articles, doc sympa à me conseiller ?"
+  answers:
+    - author: soniaprevost
+      content: '@davidgeismar ?'
+    - author: davidgeismar
+      content: 'y a pas de tutos particuliers, faut lire la doc, les appeler et utiliser le code de gens qui l’ont déjà installé'
+- type: Question
+  title: 'Mangopay ?'
+  author: CandiceSG
+  content: "qqun aurait installé mangopay pour une marketplace et des conseils de tutos, articles, doc sympa à me conseiller?"
+  answers:
+    - author: soniaprevost
+      content: '@davidgeismar ?'
+    - author: davidgeismar
+      content: 'y a pas de tutos particuliers, faut lire la doc, les appeler et utiliser le code de gens qui l’ont déjà installé'
+
+- type: Question
+  title: API Mailchimp
+  author: neocanada
+  content: |
+    'Hello !
+    Une question sur l’api Mailchimp, j’ai reconfiguré l’api pour envoyer à Mailchimp les emails de mes nouveaux users, ca fonctionne, mais je voulais savoir comment faire pour envoyer les contacts des users déjà inscrit ? J’ai déjà des contacts sur Mailchimp rentrés à la main, c’est perdu ou on peut merger les contacts...
+    Deuxième question quelle est le meilleur moyen de programmer des emails après un certain temps sans être venu sur le site, genre « Ca fait longtemps que l’on vous a pas sur …. »'
+  answers:
+    - author: tdeschamps
+      content: '@neocanada t’as utilisé gibbon?'
+
+
