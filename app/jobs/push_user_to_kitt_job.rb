@@ -6,7 +6,7 @@ class PushUserToKittJob < ActiveJob::Base
     client = RestClient::Resource.new(new_student_url, user: 'alumni', password: ENV['ALUMNI_PASSWORD'])
     payload = {
       camp: {
-        slug: user.camp.slug
+        slug: user.batch.slug
       },
       user: user.slice(:github_nickname, :uid, :email, :first_name, :last_name)
     }

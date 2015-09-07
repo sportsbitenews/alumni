@@ -10,7 +10,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def confirm?
-    user.admin
+    user.admin || (user.cities.any? && user.cities.include?(record.batch.city))
   end
 
   def delete?
