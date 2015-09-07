@@ -21,6 +21,7 @@ JsRoutes.setup do |config|
     /^destroy_user_session$/,
 
     /^preview_answers$/,
+    /^language_answers$/,
     /^answers$/,
 
     /^batch$/,
