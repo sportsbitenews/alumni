@@ -55,7 +55,7 @@ projects.each do |p|
   project.cover_picture.reprocess!
 end
 
-posts = YAML.load_file(File.join(Rails.root, 'db', 'posts_dumb.yml'))
+posts = YAML.load_file(File.join(Rails.root, 'db', 'posts_dump.yml'))
 posts.each do |p|
   post = p['type'].constantize.new
   post.title = p['title']
