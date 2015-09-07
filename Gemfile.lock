@@ -393,6 +393,7 @@ GEM
     websocket-driver (0.5.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    whatlanguage (1.0.5)
 
 PLATFORMS
   ruby
@@ -456,6 +457,7 @@ DEPENDENCIES
   spring
   uglifier
   validate_url
+  whatlanguage
 
 BUNDLED WITH
    1.10.6

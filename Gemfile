@@ -24,6 +24,7 @@ gem 'octicons-rails'
 gem 'rails_admin'
 gem 'rest-client'
 gem 'appsignal'
+gem 'whatlanguage'
 
 
 gem 'redcarpet'
