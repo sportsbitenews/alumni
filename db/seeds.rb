@@ -54,3 +54,26 @@ projects.each do |p|
   project.save
   project.cover_picture.reprocess!
 end
+
+posts = YAML.load_file(File.join(Rails.root, 'db', 'posts_dumb.yml'))
+posts.each do |p|
+  post = p['type'].constantize.new
+  post.title = p['title']
+  post.user = User.find_by(github_nickname: p['author'])
+
+  case p['type']
+  when 'Resource'
+    post.url = p['url']
+    post.tagline = p['tagline']
+  when 'Question'
+    post.content = p['content']
+  end
+  post.save
+
+  if p['type'] == 'Question'
+    p['answers'].map do |a|
+      answer = post.answers.create!(user: User.find_by(github_nickname: a['author']), content: a['content'])
+    end
+  end
+
+end
