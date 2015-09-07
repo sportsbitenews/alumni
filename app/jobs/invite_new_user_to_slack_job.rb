@@ -15,7 +15,9 @@ class InviteNewUserToSlackJob < ActiveJob::Base
     response = RestClient.post endpoint, params, content_type: :json, accept: :json
     response_json = JSON.parse response.body
 
-    fail SlackInviteNewUserError, response.body unless response_json["ok"]
-    # Slack only returns {"ok": true}, at this point, we do not have any user slack uid (not yet registered)
+    if !response_json["ok"] || response["error"] != "already_in_team"
+      fail SlackInviteNewUserError, response.body
+      # Slack only returns {"ok": true}, at this point, we do not have any user slack uid (not yet registered)
+    end
   end
 end
