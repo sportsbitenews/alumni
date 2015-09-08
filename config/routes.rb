@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :answers, only: [:create] do
     collection do
       post :preview
+      get :language
     end
   end
 

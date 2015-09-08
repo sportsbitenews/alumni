@@ -1,7 +1,26 @@
+@keyframes writeEnter {
+  0% { transform: scale(1) }
+  50% { transform: scale(1.1) }
+  100% { transform: scale(1) }
+}
+
 .answer-form {
   padding-top: 0;
   display: flex;
   flex-flow: column;
+
+  &.has-french-content {
+    .answer-form-action-write {
+      background: #FFF7E1;
+      color: black;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-right: 10px;
+      border-radius: 20em;
+
+      animation: writeEnter 0.3s ease forwards;
+    }
+  }
 
   &.is-sending-post {
     .answer-form-input { background-color: #F6F6F6 }

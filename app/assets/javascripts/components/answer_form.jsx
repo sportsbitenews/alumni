@@ -20,13 +20,16 @@ class AnswerForm extends React.Component {
       'is-previewed': this.state.preview,
       'is-editing': this.state.editing,
       'is-blank': this.state.blank,
-      'is-sending-post': this.state.pendingPost
+      'is-sending-post': this.state.pendingPost,
+      'has-french-content': this.state.frenchSpeaking
     });
+
+    var writeValue = this.state.frenchSpeaking ? "Write in 🇬🇧, please 🙏" : 'Write'
 
     return(
       <div className={formClasses}>
         <div className='answer-form-actions'>
-          <a className='answer-form-action answer-form-action-write' onClick={this.onEditClick.bind(this)}>Write</a>
+          <a className='answer-form-action answer-form-action-write' onClick={this.onEditClick.bind(this)}>{writeValue}</a>
           <hr />
           <a className='answer-form-action answer-form-action-preview' onClick={this.onPreviewClick.bind(this)}>Preview</a>
           <a className="answer-form-action-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
@@ -34,7 +37,13 @@ class AnswerForm extends React.Component {
             Markdown supported
           </a>
         </div>
-        <textarea placeholder="Say something nice!" onFocus={this.onFocusInput.bind(this)} ref="content" className='answer-form-input' onKeyUp={this.onKeyUp.bind(this)} onKeyDown={this.onKeyDown.bind(this)} />
+        <textarea
+          placeholder="Say something nice!"
+          onFocus={this.onFocusInput.bind(this)}
+          ref="content" className='answer-form-input'
+          onKeyUp={this.onKeyUp.bind(this)}
+          onKeyDown={this.onKeyDown.bind(this)}
+        />
         <div className='answer-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}}></div>
         <div className='answer-form-actions-submit'>
         <div className='answer-form-submit button button-discret' onClick={this.closeForm.bind(this)}>
@@ -111,6 +120,8 @@ class AnswerForm extends React.Component {
       this.resetForm();
       this.content().blur();
     }
+    this.isFrenchContent(React.findDOMNode(this.refs.content).value)
+
   }
 
   postAnswer() {
@@ -137,9 +148,23 @@ class AnswerForm extends React.Component {
       editing: false,
       preview: false,
       pendingPost: false,
+      frenchSpeaking: false,
       renderedContent: "Nothing to preview",
       blank: true
     };
+  }
+
+  isFrenchContent(content) {
+    axios.get(`${Routes.language_answers_path()}?content=${content}`)
+      .then((response) => {
+        if (response.data.french > response.data.english) {
+          this.setState({ frenchSpeaking: true })
+        } else {
+          if (this.state.frenchSpeaking) {
+            this.setState({ frenchSpeaking: false })
+          }
+        }
+      })
   }
 
   content() {
