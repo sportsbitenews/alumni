@@ -155,14 +155,14 @@ class AnswerForm extends React.Component {
   }
 
   isFrenchContent(content) {
-    console.log(content)
     axios.get(`${Routes.language_answers_path()}?content=${content}`)
       .then((response) => {
-        console.log(response.data)
-        if (response.data.french > 3) {
+        if (response.data.french > response.data.english) {
           this.setState({ frenchSpeaking: true })
         } else {
-          this.setState({ frenchSpeaking: false })
+          if (this.state.frenchSpeaking) {
+            this.setState({ frenchSpeaking: false })
+          }
         }
       })
   }
