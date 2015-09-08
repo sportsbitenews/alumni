@@ -20,13 +20,16 @@ class AnswerForm extends React.Component {
       'is-previewed': this.state.preview,
       'is-editing': this.state.editing,
       'is-blank': this.state.blank,
-      'is-sending-post': this.state.pendingPost
+      'is-sending-post': this.state.pendingPost,
+      'has-french-content': this.state.frenchSpeaking
     });
+
+    var writeValue = this.state.frenchSpeaking ? "Write in 🇬🇧, please 🙏" : 'Write'
 
     return(
       <div className={formClasses}>
         <div className='answer-form-actions'>
-          <a className='answer-form-action answer-form-action-write' onClick={this.onEditClick.bind(this)}>Write</a>
+          <a className='answer-form-action answer-form-action-write' onClick={this.onEditClick.bind(this)}>{writeValue}</a>
           <hr />
           <a className='answer-form-action answer-form-action-preview' onClick={this.onPreviewClick.bind(this)}>Preview</a>
           <a className="answer-form-action-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
@@ -117,7 +120,7 @@ class AnswerForm extends React.Component {
       this.resetForm();
       this.content().blur();
     }
-    this.checkFrenchSpeaking(React.findDOMNode(this.refs.content).value)
+    this.isFrenchContent(React.findDOMNode(this.refs.content).value)
 
   }
 
@@ -145,15 +148,22 @@ class AnswerForm extends React.Component {
       editing: false,
       preview: false,
       pendingPost: false,
+      frenchSpeaking: false,
       renderedContent: "Nothing to preview",
       blank: true
     };
   }
 
-  checkFrenchSpeaking(content) {
+  isFrenchContent(content) {
+    console.log(content)
     axios.get(`${Routes.language_answers_path()}?content=${content}`)
-      .then(function (response) {
-        console.log(response.data);
+      .then((response) => {
+        console.log(response.data)
+        if (response.data.french > 3) {
+          this.setState({ frenchSpeaking: true })
+        } else {
+          this.setState({ frenchSpeaking: false })
+        }
       })
   }
 
