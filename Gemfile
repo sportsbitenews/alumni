@@ -40,6 +40,7 @@ gem "lodash-rails"
 gem "react-rails", "1.2.0"
 gem 'react-bootstrap-rails'
 gem "jbuilder"
+gem 'font_assets'
 
 gem "rails-i18n"
 gem "link_thumbnailer"
