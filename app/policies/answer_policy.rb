@@ -4,4 +4,8 @@ class AnswerPolicy < ApplicationPolicy
       scope
     end
   end
+
+  def update?
+    record.user.id == user.id
+  end
 end

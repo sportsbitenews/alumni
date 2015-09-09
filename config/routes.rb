@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :answers, only: [:create] do
+  resources :answers, only: [:create, :update] do
     collection do
       post :preview
       get :language
