@@ -2,12 +2,9 @@ require 'whatlanguage'
 
 class AnswersController < ApplicationController
   include PostScope
-
-  skip_before_filter :verify_authenticity_token, only: :update
   skip_after_action :verify_authorized, only: [ :preview, :language ]
   before_action :set_post, only: [:create]
   before_action :set_answer, only: [:update]
-  respond_to :json, only: [:update]
 
   def preview
     @content = params[:content]

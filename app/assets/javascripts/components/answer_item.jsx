@@ -5,7 +5,7 @@ class AnswerItem extends React.Component {
       highlighted: false,
       isEditing: false,
       content: this.props.content,
-      original_content: this.props.original_content
+      originalContent: this.props.original_content
     }
   }
 
@@ -16,7 +16,7 @@ class AnswerItem extends React.Component {
 
     var editItem = classNames({
       'answer-item-share': true,
-      'is-hidden': !this.props.is_mine
+      'is-hidden': !this.props.editable
     })
 
     var answerItemClasses = classNames({
@@ -43,7 +43,7 @@ class AnswerItem extends React.Component {
             <textarea
               className='answer-form-edit'
               ref='editForm'
-              defaultValue={this.state.original_content}
+              defaultValue={this.state.originalContent}
             />
             <div className='button button-success' onClick={this.updateAnswer.bind(this)}>
               Edit your answer

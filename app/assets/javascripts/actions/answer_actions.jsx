@@ -10,7 +10,7 @@ class AnswerActionsClass {
   }
 
   update(answer_id, content) {
-    axios.patch(Routes.answer_path(answer_id), {"content": content })
+    axios.railsPatch(Routes.answer_path(answer_id, { format: 'json' }), {"content": content })
       .then((response) => this.dispatch(response.data))
   }
 }
