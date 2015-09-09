@@ -57,10 +57,11 @@ class UserProfile extends React.Component {
         <div className='user-profile-header'>
           <div className='container'>
             <img src={this.props.gravatar_url} className="img-circle user-profile-avatar" />
-            <h1 className='text-center user-profile-username'>
-              @{this.props.github_nickname}
-              <span className={badgeConnectedClasses} />
+
+            <h1 className='text-center user-profile-name'>
+              {`${this.props.first_name} ${this.props.last_name}`} <span className={badgeConnectedClasses} />
             </h1>
+            <span className='user-profile-username'>@{this.props.github_nickname}</span>
             <div className='user-profile-header-footer'>
               {batchInfo}
               <a href={"http://github.com/" + this.props.github_nickname} target='_blank'>
