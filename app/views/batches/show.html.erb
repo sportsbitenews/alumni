@@ -1,1 +1,5 @@
 <%= react_component_with_jbuilder "BatchDetail", class: 'batch-detail-page' %>
+
+<% content_for(:title) do %>
+  Batch #<%= @batch.slug %> - <%= @batch.city.name %>
+<% end %>
