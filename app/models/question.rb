@@ -17,4 +17,8 @@
 class Question < ActiveRecord::Base
   include Post
   validates :content, presence: true
+
+  def search_data
+    super as_json(only: [:title, :content])
+  end
 end

@@ -25,6 +25,7 @@ gem 'rails_admin'
 gem 'rest-client'
 gem 'appsignal'
 gem 'whatlanguage'
+gem 'searchkick'
 
 
 gem 'redcarpet'
