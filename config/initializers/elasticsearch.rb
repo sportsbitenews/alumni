@@ -1,5 +1,6 @@
 require "faraday"
 require "typhoeus/adapters/faraday"
+Ethon.logger = Logger.new("/dev/null")
 
 host = ENV.fetch('SEARCHBOX_URL', '127.0.0.1:9200')
 

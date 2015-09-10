@@ -10,6 +10,9 @@
           <i class="fa fa-slack"></i> Accept the <strong>Slack</strong> email invitation, then <%= link_to "link your account", user_omniauth_authorize_path(:slack) %>.
         </div>
       <% end %>
+      <% if user_signed_in? %>
+        <%= react_component 'SearchBar' %>
+      <% end %>
       <div class='navbar-right'>
         <% if user_signed_in? %>
             <%= react_component 'AvatarNavbar', {

@@ -1,5 +1,31 @@
-var PostList = React.createClass({
-  render: function() {
+class PostList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      resources: props.resources,
+      questions: props.questions,
+      jobs: props.jobs,
+      milestones: props.milestones
+    };
+
+    this.onStoreChange = this.onStoreChange.bind(this);
+  }
+
+  componentDidMount() {
+    PostStore.listen(this.onStoreChange);
+  }
+
+  onStoreChange(store) {
+    this.setState({
+      resources: store.posts.resources,
+      questions: store.posts.questions,
+      jobs: store.posts.jobs,
+      milestones: store.posts.milestones,
+    });
+  }
+
+  render() {
     return (
       <div ref='postList'>
         <SwipeViews>
@@ -9,7 +35,7 @@ var PostList = React.createClass({
               ADD A NEW RESOURCE
             </div>
           </a>
-            {this.props.resources.map(resource => {
+            {this.state.resources.map(resource => {
               var props = _.merge(resource, { key: `${resource.type}-${resource.id}` });
               return React.createElement(ResourceListElement, props);
             })}
@@ -20,7 +46,7 @@ var PostList = React.createClass({
               ASK A NEW QUESTION
             </div>
           </a>
-            {this.props.questions.map(question => {
+            {this.state.questions.map(question => {
               var props = _.merge(question, { key: `${question.type}-${question.id}` });
               return React.createElement(QuestionListElement, props);
             })}
@@ -31,7 +57,7 @@ var PostList = React.createClass({
                 ADD A NEW JOB
               </div>
             </a>
-            {this.props.jobs.map(job => {
+            {this.state.jobs.map(job => {
               var props = _.merge(job, { key: `${job.type}-${job.id}` });
               return React.createElement(JobListElement, props);
             })}
@@ -42,7 +68,7 @@ var PostList = React.createClass({
             {this.props.current_user.can_post_milestone ? 'ADD A NEW MILESTONE' : 'SUBMIT A NEW PRODUCT'}
             </div>
             </a>
-            {this.props.milestones.map(milestone => {
+            {this.state.milestones.map(milestone => {
               var props = _.merge(milestone, { key: `${milestone.type}-${milestone.id}` });
               return React.createElement(MilestoneListElement, props);
             })}
@@ -51,4 +77,4 @@ var PostList = React.createClass({
       </div>
     );
   }
-});
+}

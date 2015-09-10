@@ -471,6 +471,7 @@ DEPENDENCIES
   sinatra
   slack-api
   spring
+  typhoeus
   uglifier
   validate_url
   whatlanguage

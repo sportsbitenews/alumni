@@ -5,7 +5,7 @@ module Post
   class UnauthorizedPostTypeException < Exception; end
 
   included do
-    searchkick index_name: 'post'
+    searchkick index_name: 'post', callbacks: :async
 
     belongs_to :user
     validates :title, presence: true, length: { maximum: 255 }

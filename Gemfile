@@ -26,6 +26,7 @@ gem 'rest-client'
 gem 'appsignal'
 gem 'whatlanguage'
 gem 'searchkick'
+gem 'typhoeus'
 
 
 gem 'redcarpet'
