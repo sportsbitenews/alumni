@@ -3,3 +3,13 @@
 <% content_for(:title) do %>
   Batch #<%= @batch.slug %> - <%= @batch.city.name %>
 <% end %>
+
+<% content_for(:description) do %>
+  <%= @batch.users.count %> students attended Le Wagon in <%= @batch.city.name %>
+  from <%= l @batch.starts_at, format: :long %> to <%= l @batch.ends_at, format: :long %>. Check out the
+  projects they built with Ruby on Rails in only 2 weeks!
+<% end %>
+
+<% content_for(:meta_image_url) do %>
+  <%= @batch.meta_image.url(:facebook) %>
+<% end %>
