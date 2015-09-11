@@ -10,14 +10,13 @@
           <i class="fa fa-slack"></i> Accept the <strong>Slack</strong> email invitation, then <%= link_to "link your account", user_omniauth_authorize_path(:slack) %>.
         </div>
       <% end %>
-      <% if user_signed_in? %>
-        <%= react_component 'SearchBar' %>
-      <% end %>
       <div class='navbar-right'>
         <% if user_signed_in? %>
             <%= react_component 'AvatarNavbar', {
               user: current_user.slice(:github_nickname, :gravatar_url)
               } %>
+          <hr class='search-icon-hr'>
+          <%= react_component 'SearchIcon' %>
           <hr>
           <%= link_to new_resource_path, class: 'plus' do %>
             <i class='mdi mdi-plus'></i>
@@ -26,6 +25,10 @@
           <%= link_to user_omniauth_authorize_path(:github), class: 'btn-github' do %>
             <%= fa_icon 'github' %> <%= t ".sign_out", default: "Sign in" %>
           <% end %>
+        <% end %>
+        <% if !user_signed_in? %>
+          <hr class='search-icon-hr'>
+          <%= react_component 'SearchIcon' %>
         <% end %>
     </div>
   </div>

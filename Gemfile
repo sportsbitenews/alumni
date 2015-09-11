@@ -58,6 +58,7 @@ source "https://rails-assets.org" do
   gem "rails-assets-axios"
   gem "rails-assets-alt"
   gem "rails-assets-classnames"
+  gem 'rails-assets-pubsub-js'
   gem 'rails-assets-react-swipe-views'
   gem 'rails-assets-mdi' # material design icons
 end
