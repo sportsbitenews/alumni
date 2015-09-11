@@ -1,4 +1,4 @@
-‡class PostList extends React.Component {
+class PostList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -26,6 +26,9 @@
   }
 
   render() {
+    var addPostClasses = classNames({
+      'hidden': !this.props.current_user.can_post
+    })
     return (
       <div ref='postList'>
         <SwipeViews>
