@@ -17,14 +17,19 @@ class SearchBar extends React.Component {
 
   handleKeydown(e) {
     if (e.which == 27 && this.props.active) {
-      console.log('LOL')
       PubSub.publish('searchBarActiveState', false)
+      React.findDOMNode(this.refs.keywords).value = ''
     }
   }
 
   componentDidMount() {
     PubSub.subscribe('searchBarActiveState', (msg, data) => {
-      data ? React.findDOMNode(this.refs.keywords).focus() : React.findDOMNode(this.refs.espaceFocus).focus()
+      if (data) {
+        React.findDOMNode(this.refs.keywords).focus()
+      } else {
+        React.findDOMNode(this.refs.keywords).value = ''
+        React.findDOMNode(this.refs.espaceFocus).focus()
+      }
     })
   }
 }
