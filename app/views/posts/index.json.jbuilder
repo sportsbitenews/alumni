@@ -23,5 +23,6 @@ json.milestones do
 end
 
 json.current_user do
+  json.can_post user_signed_in?
   json.can_post_milestone user_signed_in? ? current_user.projects.any? : false
 end
