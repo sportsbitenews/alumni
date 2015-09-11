@@ -11,6 +11,8 @@
 #  updated_at :datetime         not null
 #  onboarding :boolean          default(FALSE), not null
 #  slack_id   :string
+#  youtube_id :string
+#  live       :boolean          default(FALSE), not null
 #
 # Indexes
 #
