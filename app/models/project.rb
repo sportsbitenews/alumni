@@ -13,6 +13,7 @@
 #  cover_picture_content_type :string
 #  cover_picture_file_size    :integer
 #  cover_picture_updated_at   :datetime
+#  position                   :integer
 #
 # Indexes
 #
@@ -23,7 +24,7 @@ class Project < ActiveRecord::Base
   belongs_to :batch
   has_many :milestones
   has_and_belongs_to_many :users
-  acts_as_votable
+  acts_as_list scope: :batch
   has_attached_file :cover_picture,
     styles: { cover: { geomerty: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geomerty: "270x180>", format: 'jpg', quality: 20 } }
 
