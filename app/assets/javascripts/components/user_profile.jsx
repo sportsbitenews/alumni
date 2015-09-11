@@ -37,7 +37,7 @@ class UserProfile extends React.Component {
       var batchInfo = (
         <a href={Routes.batch_path(this.props.batch.id)}>
           <div className='batch-detail-footer-item is-hoverable'>
-            Batch #{this.props.batch.slug}
+            {`Batch #${this.props.batch.slug} - ${this.props.batch.city}`}
           </div>
         </a>);
     }
