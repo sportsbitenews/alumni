@@ -26,7 +26,7 @@ class Batch < ActiveRecord::Base
 
   belongs_to :city
   has_many :users
-  has_many :projects
+  has_many :projects, -> { order(position: :asc) }
 
   before_validation :set_ends_at
   after_create :create_slack_channel

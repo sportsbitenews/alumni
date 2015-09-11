@@ -15,6 +15,7 @@ gem "octokit"
 gem "pundit"
 gem "paperclip"
 gem "aws-sdk", "< 2.0"
+gem 'acts_as_list'
 gem 'acts_as_votable', '~> 0.10.0'
 gem "validate_url"
 gem "autoprefixer-rails"
