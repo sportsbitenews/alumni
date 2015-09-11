@@ -8,6 +8,7 @@ json.youtube_id @batch.youtube_id
 json.students do
   json.array! @batch.users.each do |user|
     json.extract! user, :github_nickname, :gravatar_url
+    json.connected_to_slack user.connected_to_slack
   end
 end
 
@@ -19,7 +20,6 @@ json.projects do
     json.makers do
       json.array! project.users.each do |user|
         json.extract! user, *user_properties
-        json.connected_to_slack user.connected_to_slack
       end
     end
 
