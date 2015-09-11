@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show
   before_action :set_job, only: [:show]
   def new
     @job = Job.new

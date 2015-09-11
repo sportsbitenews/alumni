@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150905182036) do
+ActiveRecord::Schema.define(version: 20150911105903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,16 @@ ActiveRecord::Schema.define(version: 20150905182036) do
     t.integer  "city_id"
     t.date     "starts_at"
     t.date     "ends_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "onboarding", default: false, null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.boolean  "onboarding",              default: false, null: false
     t.string   "slack_id"
+    t.string   "youtube_id"
+    t.boolean  "live",                    default: false, null: false
+    t.string   "meta_image_file_name"
+    t.string   "meta_image_content_type"
+    t.integer  "meta_image_file_size"
+    t.datetime "meta_image_updated_at"
   end
 
   add_index "batches", ["city_id"], name: "index_batches_on_city_id", using: :btree
@@ -93,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150905182036) do
     t.string   "cover_picture_content_type"
     t.integer  "cover_picture_file_size"
     t.datetime "cover_picture_updated_at"
+    t.integer  "position"
   end
 
   add_index "projects", ["batch_id"], name: "index_projects_on_batch_id", using: :btree

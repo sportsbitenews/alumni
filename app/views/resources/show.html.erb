@@ -1,1 +1,10 @@
 <%= react_component_with_jbuilder "Resource", class: 'post-detail-page' %>
+
+<% content_for(:title) do %>
+  <%= @resource.title %> - Le Wagon Alumni
+<% end %>
+
+<% content_for(:title) do %>
+  <%= @resource.tagline %>
+<% end %>
+

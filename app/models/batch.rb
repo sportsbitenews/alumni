@@ -2,15 +2,21 @@
 #
 # Table name: batches
 #
-#  id         :integer          not null, primary key
-#  slug       :string
-#  city_id    :integer
-#  starts_at  :date
-#  ends_at    :date
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  onboarding :boolean          default(FALSE), not null
-#  slack_id   :string
+#  id                      :integer          not null, primary key
+#  slug                    :string
+#  city_id                 :integer
+#  starts_at               :date
+#  ends_at                 :date
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  onboarding              :boolean          default(FALSE), not null
+#  slack_id                :string
+#  youtube_id              :string
+#  live                    :boolean          default(FALSE), not null
+#  meta_image_file_name    :string
+#  meta_image_content_type :string
+#  meta_image_file_size    :integer
+#  meta_image_updated_at   :datetime
 #
 # Indexes
 #
@@ -24,10 +30,15 @@ class Batch < ActiveRecord::Base
 
   belongs_to :city
   has_many :users
-  has_many :projects
+  has_many :projects, -> { order(position: :asc) }
 
   before_validation :set_ends_at
   after_create :create_slack_channel
+
+  has_attached_file :meta_image,
+    styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }
+  validates_attachment_content_type :meta_image,
+    content_type: /\Aimage\/.*\z/
 
   def set_ends_at
     self.ends_at = self.starts_at + 9.weeks - 3.days if self.starts_at

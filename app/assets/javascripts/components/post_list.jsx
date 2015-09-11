@@ -1,4 +1,4 @@
-class PostList extends React.Component {
+‡class PostList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -30,7 +30,7 @@ class PostList extends React.Component {
       <div ref='postList'>
         <SwipeViews>
           <div className='col-sm-3 posts-column' title="#resources">
-          <a href={Routes.new_resource_path()}>
+          <a href={Routes.new_resource_path()} className={addPostClasses}>
             <div className='posts-column-new'>
               ADD A NEW RESOURCE
             </div>
@@ -41,7 +41,7 @@ class PostList extends React.Component {
             })}
           </div>
           <div className='col-sm-3 posts-column' title="#help">
-          <a href={Routes.new_question_path()}>
+          <a href={Routes.new_question_path()} className={addPostClasses}>
             <div className='posts-column-new'>
               ASK A NEW QUESTION
             </div>
@@ -52,7 +52,7 @@ class PostList extends React.Component {
             })}
           </div>
           <div className='col-sm-3 posts-column' title="#jobs">
-            <a href={Routes.new_job_path()}>
+            <a href={Routes.new_job_path()} className={addPostClasses}>
               <div className='posts-column-new'>
                 ADD A NEW JOB
               </div>
@@ -63,7 +63,8 @@ class PostList extends React.Component {
             })}
           </div>
           <div className='col-sm-3 posts-column' title="#milestones">
-            <a href={this.props.current_user.can_post_milestone ? Routes.new_milestone_path() : 'mailto:seb@lewagon.org'}>
+            <a href={this.props.current_user.can_post_milestone ? Routes.new_milestone_path() : 'mailto:seb@lewagon.org'}
+               className={addPostClasses}>
             <div className='posts-column-new'>
             {this.props.current_user.can_post_milestone ? 'ADD A NEW MILESTONE' : 'SUBMIT A NEW PRODUCT'}
             </div>

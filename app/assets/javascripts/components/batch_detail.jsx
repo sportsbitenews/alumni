@@ -15,6 +15,23 @@ class BatchDetail extends React.Component {
       'batch-detail-side-bar': true,
       'is-collapsed': this.state.sidebarHeight != "100%"
     })
+
+    if (this.props.live) {
+      var demoDay = (
+        <div>
+          <div className='batch-members-count section-title'>
+            <i className='mdi mdi-star-outline' />
+            <div className='section-title-h'>DEMO DAY</div>
+            <div className='section-title-h ranked-by-milestone live'><span className='round' />LIVE</div>
+          </div>
+          <div className='iframe-container'>
+            <div className='video-container'>
+              <iframe src={`https://www.youtube.com/embed/${this.props.youtube_id}`} />
+            </div>
+          </div>
+        </div>
+      )
+    }
     return(
       <div>
         <div className='batch-detail-header'>
@@ -32,9 +49,10 @@ class BatchDetail extends React.Component {
         </div>
         <div className='batch-detail-body'>
           <main className='batch-detail-main'>
+            {demoDay}
             <div className='batch-members-count section-title'>
               <i className='mdi mdi-cube-outline' />
-              <div className='section-title-h'>{this.props.projects.length} PRODUCTS LAUNCHED</div>
+              <div className='section-title-h'>{this.props.projects.length} PRODUCTS</div>
               <div className='section-title-h ranked-by-milestone'>RANKED BY MILESTONE</div>
             </div>
 
@@ -123,7 +141,7 @@ class BatchDetail extends React.Component {
 
   componentDidMount() {
     var mainHeight = this._heightOf("batch-members-count") + this._heightOf('projects-list')
-    if (this._heightOf('batch-detail-side-bar') > mainHeight ) {
+    if (this._heightOf('batch-detail-side-bar') > mainHeight && this.props.projects > 5 ) {
       this.setState({
         sidebarHeight: mainHeight
       })

@@ -42,7 +42,7 @@
 
 class User < ActiveRecord::Base
   PUBLIC_PROPERTIES = %i(id github_nickname gravatar_url first_name last_name)
-  PRIVATE_PROPERTIES = %i(slack_uid connected_to_slack)
+  PRIVATE_PROPERTIES = %i(email slack_uid connected_to_slack)
 
   devise :trackable, :database_authenticatable
   devise :omniauthable, :omniauth_providers => [:github, :slack]

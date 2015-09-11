@@ -1,1 +1,10 @@
 <%= react_component_with_jbuilder "Question", class: 'post-detail-page' %>
+
+<% content_for(:title) do %>
+  <%= @question.title %>
+<% end %>
+
+<% content_for(:description) do %>
+  <%= @question.content %>
+<% end %>
+

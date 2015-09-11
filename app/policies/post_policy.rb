@@ -5,6 +5,10 @@ class PostPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    true
+  end
+
   def up_vote?
     !user.nil?
   end
