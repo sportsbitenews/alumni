@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     if params[:keywords].blank?
       set_default_posts
     else
-      posts = Question.search(params[:keywords])  # Search 4 post types
+      posts = Question.includes(:answers).search(params[:keywords])  # Search 4 post types
       @posts = {
         resources: posts.select  { |r| r.is_a? Resource },
         questions: posts.select  { |r| r.is_a? Question },
