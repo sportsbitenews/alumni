@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   include PostScope
   skip_after_action :verify_policy_scoped, only: :index
   skip_after_action :verify_authorized, only: :search
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: %i(index search)
   skip_after_action :verify_policy_scoped, only: [:index]
   before_action :set_post, only: [:up_vote, :show]
 
