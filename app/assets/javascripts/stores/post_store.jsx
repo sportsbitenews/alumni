@@ -1,27 +1,32 @@
 class PostStoreClass {
   constructor() {
     this.posts = {
-      'Question': {},
-      'Resource': {},
-      'Job': {},
-      'Milestone': {}
+      questions: {},
+      resources: {},
+      jobs: {},
+      milestones: {}
     };
     this.bindListeners({
       updatePost: AnswerActions.post,
-      updatePostWithUsers: PostActions.upVote
+      updatePostWithUsers: PostActions.upVote,
+      updatePosts: PostActions.search
     });
   }
 
+  updatePosts(posts) {
+    this.posts = posts;
+  }
+
   updatePost(post) {
-    this.posts[post.type][post.id] = post;
+    this.posts[`${post.type.toLowerCase()}s`][post.id] = post;
   }
 
   updatePostWithUsers(post) {
-    this.posts[post.type][post.id] = post;
+    this.posts[`${post.type.toLowerCase()}s`][post.id] = post;
   }
 
   getPost(type, id) {
-    return this.posts[type][id];
+    return this.posts[`${type.toLowerCase()}s`][id];
   }
 }
 

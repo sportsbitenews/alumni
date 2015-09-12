@@ -20,4 +20,8 @@ class Resource < ActiveRecord::Base
   include Post
   validates :tagline, presence: true
   validates :url, presence: true, url: true, uniqueness: true
+
+  def search_data
+    super as_json(only: [:title, :tagline, :url])
+  end
 end

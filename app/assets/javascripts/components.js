@@ -2,6 +2,7 @@
 //= require lodash
 //= require classnames
 //= require alt
+//= require pubsub-js
 //= require react_bootstrap
 //= require react-swipe-views
 

@@ -22,4 +22,8 @@ class Milestone < ActiveRecord::Base
 
   validates :project_id, presence: true
   validates :content, presence: true
+
+  def search_data
+    super as_json(only: [:title, :content])
+  end
 end

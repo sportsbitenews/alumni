@@ -5,6 +5,8 @@ module Post
   class UnauthorizedPostTypeException < Exception; end
 
   included do
+    searchkick index_name: 'post', callbacks: :async
+
     belongs_to :user
     validates :title, presence: true, length: { maximum: 255 }
     validates :user, presence: true
@@ -32,5 +34,9 @@ module Post
       answer.user = User.random
       answer.save
     end
+  end
+
+  def search_data(data)
+    data.merge("type" => self.class.to_s.underscore)
   end
 end

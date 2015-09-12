@@ -26,8 +26,11 @@ class Job < ActiveRecord::Base
   validates :description, presence: true
   validates :city, presence: true, if: :remote_false?
 
-
   def remote_false?
     !remote
+  end
+
+  def search_data
+    super as_json(only: [:title, :company, :description])
   end
 end
