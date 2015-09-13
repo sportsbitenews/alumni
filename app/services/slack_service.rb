@@ -2,6 +2,7 @@ require "slack"
 
 class SlackService
   include Cache
+  include Rails.application.routes.url_helpers
 
   def initialize(options = {})
     token = options.fetch(:token, ENV['SLACK_ALUMNI_ADMIN_TOKEN'])
@@ -37,6 +38,25 @@ class SlackService
   def user_messages_slack_url(user)
     username = slack_username(user)
     "https://lewagon-alumni.slack.com/messages/@#{username}" if username
+  end
+
+  def notify(post)
+    options = {
+      channel: ENV['SLACK_INCOMING_WEBHOOK_CHANNEL'],
+      attachments: [{
+        author_name: post.user.name,
+        author_link: profile_url(post.user.github_nickname),
+        author_icon: post.user.gravatar_url,
+        fallback: post.slack_fallback,
+        pretext: post.slack_pretext,
+        color: post.class::COLOR_FROM,
+        title: post.slack_title,
+        title_link: send(:"#{post.class.to_s.underscore}_url", post),
+        text: post.slack_text,
+        mrkdwn_in: %w(text pretext)
+      }]
+    }
+    RestClient.post ENV['SLACK_INCOMING_WEBHOOK_URL'], options.to_json, content_type: :json, accept: :json
   end
 
   private

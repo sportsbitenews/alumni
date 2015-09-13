@@ -18,6 +18,9 @@
 
 class Milestone < ActiveRecord::Base
   include Post
+  COLOR_FROM = '#232526'
+  COLOR_TO = '#414345'
+
   belongs_to :project
 
   validates :project_id, presence: true
@@ -25,5 +28,21 @@ class Milestone < ActiveRecord::Base
 
   def search_data
     super as_json(only: [:title, :content])
+  end
+
+  def slack_fallback
+    "New milestone for #{project.name} : #{title}"
+  end
+
+  def slack_pretext
+    "New milestone for *#{project.name}*!"
+  end
+
+  def slack_title
+    title
+  end
+
+  def slack_text
+    content
   end
 end

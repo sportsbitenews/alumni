@@ -13,6 +13,8 @@ module Post
     acts_as_votable
     has_many :answers, as: :answerable
 
+    after_create ->() { NotifyNewPostInSlack.perform_later(self.class.to_s, id) }
+
     # TODO(ssaunier): compute on-the-fly score for a resource
     # score = function(x is days passed since created_at, votes) {
     #  return votes / (1 + ln(x/2 + 1))
