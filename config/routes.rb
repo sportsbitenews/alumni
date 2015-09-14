@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  resources :posts, only: %i(index  ) do
+  resources :posts, only: %i(index) do
     member do
       post :up_vote
+    end
+    collection do
+      post :search
     end
   end
 

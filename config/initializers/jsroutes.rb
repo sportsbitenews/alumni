@@ -14,7 +14,8 @@ JsRoutes.setup do |config|
     /^milestone$/,
     /^new_milestone$/,
 
-    /up_vote/,
+    /^up_vote_post$/,
+    /^search_posts$/,
 
     /^users$/,
     /^profile$/,

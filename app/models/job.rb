@@ -22,12 +22,34 @@
 
 class Job < ActiveRecord::Base
   include Post
+  COLOR_FROM = '#4776E6'
+  COLOR_TO = '#8E54E9'
+
   validates :company, presence: true
   validates :description, presence: true
   validates :city, presence: true, if: :remote_false?
 
-
   def remote_false?
     !remote
+  end
+
+  def search_data
+    super as_json(only: [:title, :company, :description])
+  end
+
+  def slack_fallback
+    "New job: #{slack_title}"
+  end
+
+  def slack_pretext
+    "A new job has been posted."
+  end
+
+  def slack_title
+    "#{title} (#{contract}) @ #{company} #{city.blank? ? 'Remote' : "in #{city}"}"
+  end
+
+  def slack_text
+    description
   end
 end

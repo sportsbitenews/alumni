@@ -8,6 +8,26 @@ While developing, you shall go faster by disabling back-end React rendering:
 $ PRERENDER=false rails s
 ```
 
+## Dependencies
+
+You need both **Redis** and **Elasticsearch** running on your computer.
+
+## Sidekiq
+
+You can run background jobs with a new terminal open and:
+
+```bash
+$ sidekiq
+```
+
+## ElasticSearch
+
+To reindex all models, just run:
+
+```bash
+$ rake searchkick:reindex:all
+```
+
 ## Figaro
 
 You need to `touch config/application.yml` after your `git clone`. Here are the keys you need:

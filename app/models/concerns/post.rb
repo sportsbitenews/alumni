@@ -5,11 +5,15 @@ module Post
   class UnauthorizedPostTypeException < Exception; end
 
   included do
+    searchkick index_name: 'post', callbacks: :async
+
     belongs_to :user
     validates :title, presence: true, length: { maximum: 255 }
     validates :user, presence: true
     acts_as_votable
     has_many :answers, as: :answerable
+
+    after_create ->() { NotifyNewPostInSlack.perform_later(self.class.to_s, id) }
 
     # TODO(ssaunier): compute on-the-fly score for a resource
     # score = function(x is days passed since created_at, votes) {
@@ -32,5 +36,9 @@ module Post
       answer.user = User.random
       answer.save
     end
+  end
+
+  def search_data(data)
+    data.merge("type" => self.class.to_s.underscore)
   end
 end

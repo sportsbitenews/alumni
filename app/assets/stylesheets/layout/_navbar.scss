@@ -8,6 +8,8 @@
 
 .headers {
   display: none;
+  height: 82px;
+  overflow: hidden;
 }
 
 .nav-bar{
@@ -60,9 +62,9 @@
 }
 
 .navbar-right {
-
   a { color: white }
   hr { background-color: rgba(255, 255, 255, 0.1) }
+
 
   .user-menu {
     display: flex;
@@ -119,6 +121,10 @@
 .posts-index {
   .navbar-link-to-slack { color: black !important }
 
+  .search-icon { display: block }
+  .search-icon-hr {
+    display: block;
+  }
   .header-main {
     position: fixed;
     transition: .2s ease;
@@ -133,6 +139,7 @@
 
   .nav-bar {
     background: white;
+    box-shadow: 0 0 1px rgba(0,0,0,0.15);
   }
 
   .navbar-right {

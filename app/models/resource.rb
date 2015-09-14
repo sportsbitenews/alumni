@@ -18,6 +18,29 @@
 
 class Resource < ActiveRecord::Base
   include Post
+  COLOR_FROM = '#ffb347'
+  COLOR_TO = '#ffcc33'
+
   validates :tagline, presence: true
   validates :url, presence: true, url: true, uniqueness: true
+
+  def search_data
+    super as_json(only: [:title, :tagline, :url])
+  end
+
+  def slack_fallback
+    "New resource: #{title}, #{tagline}. Posted by #{user.name}"
+  end
+
+  def slack_pretext
+    "A new resource has been posted. Check it out and upvote it!"
+  end
+
+  def slack_title
+    title
+  end
+
+  def slack_text
+    tagline
+  end
 end
