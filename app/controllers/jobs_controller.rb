@@ -21,6 +21,7 @@ class JobsController < ApplicationController
     #TODO : handle all columns update
     @job.description = params[:content]
     @job.save
+    authorize @job
   end
 
   def show

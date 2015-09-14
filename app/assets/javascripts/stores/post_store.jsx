@@ -8,6 +8,7 @@ class PostStoreClass {
     };
     this.bindListeners({
       updatePost: AnswerActions.post,
+      updatePost: PostActions.update,
       updatePostWithUsers: PostActions.upVote,
       updatePosts: PostActions.search
     });

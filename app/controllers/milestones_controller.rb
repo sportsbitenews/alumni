@@ -13,6 +13,7 @@ class MilestonesController < ApplicationController
     #TODO : handle all columns update
     @milestone.content = params[:content]
     @milestone.save
+    authorize @milestone
   end
 
   def create

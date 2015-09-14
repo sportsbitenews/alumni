@@ -6,6 +6,6 @@ class AnswerPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user.id == user.id || user.admin?
+    user ? record.user.id == user.id || user.admin? : false
   end
 end

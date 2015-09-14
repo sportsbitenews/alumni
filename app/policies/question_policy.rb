@@ -10,7 +10,7 @@ class QuestionPolicy < PostPolicy
   end
 
   def update?
-    record.user.id == user.id || user.admin?
+    user ? record.user.id == user.id || user.admin? : false
   end
 
   def show?

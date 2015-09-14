@@ -79,8 +79,11 @@ class AnswerItem extends React.Component {
         }, 100)
       }
     }
-
-    AnswerStore.listen(this.onStoreChange.bind(this))
+    if (this.props.type === 'FirstItem') {
+      PostStore.listen(this.onStoreChange.bind(this))
+    } else {
+      AnswerStore.listen(this.onStoreChange.bind(this))
+    }
   }
 
   componentWillUnmount() {
@@ -100,12 +103,21 @@ class AnswerItem extends React.Component {
   }
 
   onStoreChange(store) {
-    if (store.updated_answer.id == this.props.id) {
-      this.setState ({
+    if (this.props.type === 'FirstItem') {
+      post = eval("store.posts." + this.props.post_type.toLowerCase() + "s[" + this.props.id + "]")
+      this.setState({
         isEditing: false,
-        original_content: store.updated_answer.original_content,
-        content: store.updated_answer.content
+        original_content: post.original_content,
+        content: post.content
       })
+    } else {
+      if (store.updated_answer.id == this.props.id) {
+        this.setState ({
+          isEditing: false,
+          original_content: store.updated_answer.original_content,
+          content: store.updated_answer.content
+        })
+      }
     }
   }
 
