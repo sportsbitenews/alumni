@@ -17,6 +17,12 @@ class JobsController < ApplicationController
     end
   end
 
+  def update
+    #TODO : handle all columns update
+    @job.description = params[:content]
+    @job.save
+  end
+
   def show
   end
 

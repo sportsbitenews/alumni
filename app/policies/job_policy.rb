@@ -9,6 +9,10 @@ class JobPolicy < PostPolicy
     !user.nil?
   end
 
+  def update?
+    record.user.id == user.id || user.admin?
+  end
+
   def show?
     true
   end

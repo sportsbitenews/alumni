@@ -9,6 +9,10 @@ class PostPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    record.user.id == user.id || user.admin?
+  end
+
   def up_vote?
     !user.nil?
   end

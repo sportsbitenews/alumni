@@ -92,7 +92,11 @@ class AnswerItem extends React.Component {
   }
 
   updateAnswer() {
-    AnswerActions.update(this.props.id, React.findDOMNode(this.refs.editForm).value)
+    if (this.props.type == 'FirstItem') {
+      PostActions.update(React.findDOMNode(this.refs.editForm).value, this.props.post_type, this.props.id)
+    } else {
+      AnswerActions.update(this.props.id, React.findDOMNode(this.refs.editForm).value)
+    }
   }
 
   onStoreChange(store) {

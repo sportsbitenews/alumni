@@ -1,6 +1,7 @@
 json.extract! post, :id, :title
 json.type post.class.to_s  # Needed for polymorphic ReactJS
 json.time_ago_in_words time_ago_in_words(post.created_at)
+json.editable policy(post).update?
 json.user do
   json.extract! post.user, *user_properties
 end

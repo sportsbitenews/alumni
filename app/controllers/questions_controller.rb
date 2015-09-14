@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
-  before_action :set_question, only: [:show]
+  before_action :set_question, only: [:show, :update]
 
   def show
     authorize @question
@@ -15,6 +15,12 @@ class QuestionsController < ApplicationController
     else
       render :'new'
     end
+  end
+
+  def update
+    # TODO : handle title update
+    @question.content = params[:content]
+    @question.save
   end
 
   def new
