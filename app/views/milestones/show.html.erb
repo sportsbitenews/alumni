@@ -1,1 +1,9 @@
 <%= react_component_with_jbuilder "MilestoneDetail", class: 'post-detail-page' %>
+
+<% content_for(:title) do %>
+  <%= @milestone.title %>
+<% end %>
+
+<% content_for(:description) do %>
+  <%= @milestone.content %>
+<% end %>

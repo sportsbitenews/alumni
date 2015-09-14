@@ -1,1 +1,22 @@
 <%= react_component_with_jbuilder "UserProfile" %>
+
+<% content_for(:title) do %>
+  <% if @user.alumni %>
+    <%= @user.name %> is a Wagon alumni
+  <% else %>
+    <%= @user.name %> - Le Wagon Alumni
+  <% end %>
+<% end %>
+
+<% content_for(:description) do %>
+  <% if @user.alumni && @user.batch %>
+    <% if @user.batch.ends_at > DateTime.now %>
+      <%= @user.name %> is attending Le Wagon in <%= @user.batch.city.name %>
+      until <%= l @user.batch.ends_at, format: :long %> with the batch #<%= @user.batch.slug %>
+    <% else %>
+      <%= @user.name %> attended Le Wagon in <%= @user.batch.city.name %>
+      from <%= l @user.batch.starts_at, format: :long %> to <%= l @user.batch.ends_at, format: :long %>
+      with the batch #<%= @user.batch.slug %>.
+    <% end %>
+  <% end %>
+<% end %>

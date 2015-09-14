@@ -1,1 +1,9 @@
 <%= react_component_with_jbuilder "Job", class: 'post-detail-page' %>
+
+<% content_for(:title) do %>
+  <%= @job.title %> @ <%= @job.company %>
+<% end %>
+
+<% content_for(:description) do %>
+  <%= @job.description %>
+<% end %>

@@ -1,10 +1,14 @@
 var PostList = React.createClass({
   render: function() {
+    var addPostClasses = classNames({
+      'hidden': !this.props.current_user.can_post
+    })
+
     return (
       <div ref='postList'>
         <SwipeViews>
           <div className='col-sm-3 posts-column' title="#resources">
-          <a href={Routes.new_resource_path()}>
+          <a href={Routes.new_resource_path()} className={addPostClasses}>
             <div className='posts-column-new'>
               ADD A NEW RESOURCE
             </div>
@@ -15,7 +19,7 @@ var PostList = React.createClass({
             })}
           </div>
           <div className='col-sm-3 posts-column' title="#help">
-          <a href={Routes.new_question_path()}>
+          <a href={Routes.new_question_path()} className={addPostClasses}>
             <div className='posts-column-new'>
               ASK A NEW QUESTION
             </div>
@@ -26,7 +30,7 @@ var PostList = React.createClass({
             })}
           </div>
           <div className='col-sm-3 posts-column' title="#jobs">
-            <a href={Routes.new_job_path()}>
+            <a href={Routes.new_job_path()} className={addPostClasses}>
               <div className='posts-column-new'>
                 ADD A NEW JOB
               </div>
@@ -37,7 +41,8 @@ var PostList = React.createClass({
             })}
           </div>
           <div className='col-sm-3 posts-column' title="#milestones">
-            <a href={this.props.current_user.can_post_milestone ? Routes.new_milestone_path() : 'mailto:seb@lewagon.org'}>
+            <a href={this.props.current_user.can_post_milestone ? Routes.new_milestone_path() : 'mailto:seb@lewagon.org'}
+               className={addPostClasses}>
             <div className='posts-column-new'>
             {this.props.current_user.can_post_milestone ? 'ADD A NEW MILESTONE' : 'SUBMIT A NEW PRODUCT'}
             </div>

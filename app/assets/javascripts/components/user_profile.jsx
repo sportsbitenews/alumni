@@ -37,17 +37,28 @@ class UserProfile extends React.Component {
       var batchInfo = (
         <a href={Routes.batch_path(this.props.batch.id)}>
           <div className='batch-detail-footer-item is-hoverable'>
-            Batch #{this.props.batch.slug}
+            {`Batch #${this.props.batch.slug} - ${this.props.batch.city}`}
           </div>
         </a>);
     }
 
     var slack = null;
-    if (this.props.user_messages_slack_url) {
+    if (this.props.current_user.user_signed_in && this.props.user_messages_slack_url) {
       var slack = (
         <a href={this.props.user_messages_slack_url} target="_blank">
           <div className='batch-detail-footer-item is-hoverable'>
             SLACK
+          </div>
+        </a>);
+    }
+
+    var mail = null;
+
+    if (this.props.current_user.user_signed_in && this.props.email) {
+      var mail = (
+        <a href={`mailto:${this.props.email}`}>
+          <div className='batch-detail-footer-item is-hoverable'>
+            {this.props.email}
           </div>
         </a>);
     }
@@ -57,10 +68,11 @@ class UserProfile extends React.Component {
         <div className='user-profile-header'>
           <div className='container'>
             <img src={this.props.gravatar_url} className="img-circle user-profile-avatar" />
-            <h1 className='text-center user-profile-username'>
-              @{this.props.github_nickname}
-              <span className={badgeConnectedClasses} />
+
+            <h1 className='text-center user-profile-name'>
+              {`${this.props.first_name} ${this.props.last_name}`} <span className={badgeConnectedClasses} />
             </h1>
+            <span className='user-profile-username'>@{this.props.github_nickname}</span>
             <div className='user-profile-header-footer'>
               {batchInfo}
               <a href={"http://github.com/" + this.props.github_nickname} target='_blank'>
@@ -69,6 +81,7 @@ class UserProfile extends React.Component {
                 </div>
               </a>
               {slack}
+              {mail}
             </div>
           </div>
         </div>

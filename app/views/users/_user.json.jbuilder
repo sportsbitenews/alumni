@@ -7,6 +7,7 @@ if user.batch
   json.batch do
     json.id user.batch.id
     json.slug user.batch.slug
+    json.city user.batch.city.name
   end
 end
 

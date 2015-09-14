@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html class="<%= "#{params[:controller]}-#{params[:action]}".gsub('/', '_') %>">
 <head>
-  <title><%= yield(:title) || "Wagon Rails" %></title>
+  <title><%= yield(:title) || "Le Wagon - Alumni" %></title>
   <meta name="description" content="<%= (yield(:description) || "").squish %>">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
+
+  <%= render 'shared/meta/twitter' %>
+  <%= render 'shared/meta/open_graph' %>
 </head>
 <body>
   <%= render "shared/flashes" %>
