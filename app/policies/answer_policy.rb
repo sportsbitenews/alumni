@@ -4,4 +4,8 @@ class AnswerPolicy < ApplicationPolicy
       scope
     end
   end
+
+  def create?
+    !user.nil?
+  end
 end
