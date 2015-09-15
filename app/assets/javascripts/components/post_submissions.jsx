@@ -50,7 +50,7 @@ class PostSubmissions extends React.Component {
         <div className='post-submissions-tabs-overlay'>
           <div className='post-submissions-tabs'>
             <div className={resourceTabClasses} onClick={this.onResourceTabClick.bind(this)}>
-              Ressource
+              Resource
             </div>
             <hr/>
             <div className={questionTabClasses} onClick={this.onQuestionTabClick.bind(this)}>
