@@ -20,3 +20,7 @@
     <% end %>
   <% end %>
 <% end %>
+
+<%= content_for(:meta_image_url) do %>
+  <%= @user.gravatar_url %>
+<% end %>
