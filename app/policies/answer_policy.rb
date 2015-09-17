@@ -8,4 +8,8 @@ class AnswerPolicy < ApplicationPolicy
   def update?
     user ? record.user.id == user.id || user.admin? : false
   end
+
+  def create?
+    !user.nil?
+  end
 end
