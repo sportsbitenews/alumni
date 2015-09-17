@@ -6,7 +6,6 @@ class CityPolicy < ApplicationPolicy
   end
 
   def show?
-    # user.admin || record.users.include?(user)
-    true
+    user.admin || record.users.include?(user)
   end
 end
