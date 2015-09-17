@@ -17,7 +17,7 @@ cities.each do |c|
   city.save
 end
 
-marseille = City.last
+paris = City.find_by_name("Aix - Marseille")
 paris = City.find_by_name("Paris")
 brussels = City.find_by_name("Brussels")
 lille = City.find_by_name("Lille")
