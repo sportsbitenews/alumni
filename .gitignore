@@ -12,3 +12,6 @@
 /config/application.yml
 /db/*_dump.yml
 /node_modules
+
+# Ignore application configuration
+/config/application.yml

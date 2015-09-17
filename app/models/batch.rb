@@ -17,6 +17,8 @@
 #  meta_image_content_type :string
 #  meta_image_file_size    :integer
 #  meta_image_updated_at   :datetime
+#  last_seats              :boolean          default(FALSE), not null
+#  full                    :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -31,6 +33,7 @@ class Batch < ActiveRecord::Base
   belongs_to :city
   has_many :users
   has_many :projects, -> { order(position: :asc) }
+  has_and_belongs_to_many :teachers, class_name: "User", foreign_key: "batch_id"
 
   before_validation :set_ends_at
   after_create :create_slack_channel

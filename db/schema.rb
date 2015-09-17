@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911105903) do
+ActiveRecord::Schema.define(version: 20150917154624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,15 +42,45 @@ ActiveRecord::Schema.define(version: 20150911105903) do
     t.string   "meta_image_content_type"
     t.integer  "meta_image_file_size"
     t.datetime "meta_image_updated_at"
+    t.boolean  "last_seats",              default: false, null: false
+    t.boolean  "full",                    default: false, null: false
   end
 
   add_index "batches", ["city_id"], name: "index_batches_on_city_id", using: :btree
 
+  create_table "batches_users", id: false, force: :cascade do |t|
+    t.integer "batch_id"
+    t.integer "user_id"
+  end
+
+  add_index "batches_users", ["batch_id"], name: "index_batches_users_on_batch_id", using: :btree
+  add_index "batches_users", ["user_id"], name: "index_batches_users_on_user_id", using: :btree
+
   create_table "cities", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "location"
+    t.string   "address"
+    t.text     "description_fr"
+    t.text     "description_en"
+    t.integer  "meetup_id"
+    t.string   "twitter_url"
+    t.boolean  "active",                        default: false, null: false
+    t.string   "city_picture_file_name"
+    t.string   "city_picture_content_type"
+    t.integer  "city_picture_file_size"
+    t.datetime "city_picture_updated_at"
+    t.string   "location_picture_file_name"
+    t.string   "location_picture_content_type"
+    t.integer  "location_picture_file_size"
+    t.datetime "location_picture_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "slug"
   end
+
+  add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
 
   create_table "cities_users", id: false, force: :cascade do |t|
     t.integer "city_id"
@@ -59,6 +89,19 @@ ActiveRecord::Schema.define(version: 20150911105903) do
 
   add_index "cities_users", ["city_id"], name: "index_cities_users_on_city_id", using: :btree
   add_index "cities_users", ["user_id"], name: "index_cities_users_on_user_id", using: :btree
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "jobs", force: :cascade do |t|
     t.string   "company"
