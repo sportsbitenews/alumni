@@ -8,7 +8,7 @@ end
 json.up_voters do
   json.array! post.votes_for.includes(:voter).map do |vote|
     json.extract! vote.voter, *user_properties
-  end.zip(post.answers.map {|a| a.user})
+  end.zip(post.answers.includes(:user).map {|a| a.user})
 end
 
 
