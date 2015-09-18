@@ -54,4 +54,8 @@ class Batch < ActiveRecord::Base
   def name
     "Batch #{slug} - #{city.name}"
   end
+
+  def featured_projects
+    projects.order('position asc').where(featured: true)
+  end
 end

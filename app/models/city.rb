@@ -37,9 +37,9 @@ class City < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   has_attached_file :city_picture,
-      styles: { big: "1000x600>" }
+    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }
   has_attached_file :location_picture,
-      styles: { big: "1000x600>" }
+    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }
   validates_attachment_content_type :city_picture,
     content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :location_picture,
@@ -53,5 +53,8 @@ class City < ActiveRecord::Base
 
   def next_available_batch
     batches.where(full: false).order(:starts_at).first
+  end
+  def projects
+    self.batches.order('starts_at desc').map {|b| b.featured_projects }.flatten
   end
 end
