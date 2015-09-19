@@ -335,7 +335,7 @@
 
 ### `GET /api/v1/stories`
 
-``javascript
+```javascript
 {
   stories: [
     {
@@ -357,3 +357,4 @@
     }
   ]
 }
+```
