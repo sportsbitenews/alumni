@@ -342,7 +342,7 @@
       id: 1,
       description: {
         fr: "Lancée en 2014, la startup Kudoz vient d’annoncer avoir bouclé une levée de fonds de 1,2 million d’euros auprès de Schibsted Media Group, société qui détient également Leboncoin et MonsieurDrive.",
-        en: "Lunched in 2014, Kudoz has just raised 1,2 million euros with Schibsted Media Group, the investor of Leboncoin & MonsieurDrive."
+        en: "Launched in 2014, Kudoz has just raised 1,2 million euros with Schibsted Media Group, the investor of Leboncoin & MonsieurDrive."
       },
       picture: "http://path.jpg",
       alumni: {
