@@ -111,11 +111,13 @@ class AnswerItem extends React.Component {
         content: post.content
       })
     } else {
-      if (store.updated_answer.id == this.props.id) {
+      var updatedAnswer = store.getUpdatedAnswer();
+      debugger
+      if (updatedAnswer && updatedAnswer.id == this.props.id) {
         this.setState ({
           isEditing: false,
-          original_content: store.updated_answer.original_content,
-          content: store.updated_answer.content
+          original_content: updatedAnswer.original_content,
+          content: updatedAnswer.content
         })
       }
     }
