@@ -2,7 +2,7 @@
 
 `GET /api/v1/cities`
 
-```json
+```javascript
 {
   cities: [
     {
