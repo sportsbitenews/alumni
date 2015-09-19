@@ -288,7 +288,7 @@
       tagline: "Tinder for job search.",
       position: 1,
       thumbnail: "http://path.jpg",
-      makers: [ "..."" ],
+      makers: [ "..." ],
       batch: "1",
       city: "Paris"
     },
