@@ -37,7 +37,7 @@ class City < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   has_attached_file :city_picture,
-    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }
+    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "270x180>", format: 'jpg', quality: 20 } }
   has_attached_file :location_picture,
     styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }
   validates_attachment_content_type :city_picture,
