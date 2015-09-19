@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
-  before_action :set_job, only: [:show]
+  before_action :set_job, only: [:show, :update]
   def new
     @job = Job.new
     authorize @job
@@ -18,10 +18,9 @@ class JobsController < ApplicationController
   end
 
   def update
-    #TODO : handle all columns update
     @job.description = params[:content]
     @job.save
-    authorize @job
+    render :show
   end
 
   def show
