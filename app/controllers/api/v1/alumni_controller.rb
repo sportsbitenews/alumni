@@ -1,7 +1,7 @@
 class Api::V1::AlumniController < Api::V1::BaseController
   before_action :set_city
   def index
-    @alumni = @city.alumni
+    @alumni = @city.users
   end
   private
   def set_city

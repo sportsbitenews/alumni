@@ -55,11 +55,11 @@ class City < ActiveRecord::Base
     batches.where(full: false).order(:starts_at).first
   end
 
-  %w(teachers alumni projects featured_projects).each do |method|
+  [:teachers, :users, :projects, :featured_projects].each do |method|
     class_eval %Q"
-                def #{method}
-                  batches.includes(:#{method}).order('starts_at desc').map {|b| b.#{method} }.flatten
-                end
-              "
+      def #{method}
+        batches.includes(:#{method}).order('starts_at desc').map {|b| b.#{method} }.flatten
+      end
+    "
   end
 end
