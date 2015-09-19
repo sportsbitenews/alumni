@@ -8,7 +8,8 @@ json.stories do
     json.picture story.picture.url(:cover)
     json.alumni do
       json.extract! story.user, :id, :github_nickname, :gravatar_url, :first_name, :last_name
-      json.batch_slug story.user.batch.slug if story.user.batch
+      json.slug story.user.batch.slug if story.user.batch
+      json.city story.user.batch.city.name if story.user.batch
     end
   end
 end

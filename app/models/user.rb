@@ -32,6 +32,8 @@
 #  birth_day              :date
 #  school                 :string
 #  staff                  :boolean          default(FALSE), not null
+#  bio_en                 :text
+#  bio_fr                 :text
 #
 # Indexes
 #
@@ -57,6 +59,7 @@ class User < ActiveRecord::Base
   has_one  :story
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :cities
+  has_and_belongs_to_many :batches
 
   acts_as_voter
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919102702) do
+ActiveRecord::Schema.define(version: 20150919141924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -220,6 +220,8 @@ ActiveRecord::Schema.define(version: 20150919102702) do
     t.date     "birth_day"
     t.string   "school"
     t.boolean  "staff",                  default: false, null: false
+    t.text     "bio_en"
+    t.text     "bio_fr"
   end
 
   add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree

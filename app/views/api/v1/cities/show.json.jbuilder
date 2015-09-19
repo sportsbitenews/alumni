@@ -10,9 +10,19 @@ json.city do
   json.extract! @city, :meetup_id, :twitter_url
   json.next_batch do
     json.extract! @city.next_available_batch, :slug, :starts_at, :ends_at, :last_seats
-    json.teachers @city.next_available_batch.teachers do |teacher|
-      json.extract! teacher, :id, :github_nickname, :gravatar_url, :first_name,
-                             :last_name, :teacher_assistant, :teacher
+    json.teachers @teachers do |teacher|
+      json.extract! teacher, :id, :github_nickname, :gravatar_url, :first_name, :last_name
+      json.bio do
+        json.fr teacher.bio_fr
+        json.en teacher.bio_en
+      end
+    end
+    json.teacher_assistants @teacher_assistants do |teacher|
+      json.extract! teacher, :id, :github_nickname, :gravatar_url, :first_name, :last_name
+      json.bio do
+        json.fr teacher.bio_fr
+        json.en teacher.bio_en
+      end
     end
   end
 end

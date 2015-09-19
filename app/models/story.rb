@@ -20,7 +20,7 @@
 #
 
 class Story < ActiveRecord::Base
-  validates :description_en, :description_fr, :user_id, presence: true
+  validates :description_en, :description_fr, :user, :picture, presence: true
   belongs_to :user
   has_attached_file :picture,
     styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "270x180>", format: 'jpg', quality: 20 } }
