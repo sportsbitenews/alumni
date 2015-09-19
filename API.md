@@ -43,7 +43,7 @@
 
 `GET /api/v1/cities/:city_slug` exemple `GET /api/v1/cities/paris`
 
-```json
+```javascript
 {
   city: {
     id: 1,
@@ -111,7 +111,7 @@
 
 `GET /api/v1/alumni`
 
-```json
+```javascript
 {
   alumni: [
     {
@@ -138,7 +138,7 @@
 
 `GET /api/v1/alumni?city=paris`
 
-```json
+```javascript
 {
   alumni: [
     {
@@ -158,7 +158,7 @@
 
 `GET /api/v1/staff`
 
-```json
+```javascript
 {
   staff: {
     teachers: [
@@ -226,7 +226,7 @@
 
 `GET /api/v1/staff?city=paris`
 
-```json
+```javascript
 {
   staff: {
     teachers: [
@@ -279,7 +279,7 @@
 
 `GET /api/v1/projects`
 
-```json
+```javascript
 {
   projects: [
     {
@@ -308,7 +308,7 @@
 
 `GET /api/v1/projects?city=paris`
 
-```json
+```javascript
 {
   projects: [
     {
@@ -335,7 +335,7 @@
 
 `GET /api/v1/stories`
 
-``json
+``javascript
 {
   stories: [
     {
