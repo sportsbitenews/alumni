@@ -1,11 +1,27 @@
 users = YAML.load_file('db/users_dump.yml')
 
-paris    = City.create! name: 'Paris'
-brussels = City.create! name: 'Brussels'
-lille    = City.create! name: 'Lille'
-beirut   = City.create! name: 'Beirut'
-bordeaux = City.create! name: 'Bordeaux'
+cities = YAML.load_file('db/cities_dump.yml')
 
+cities.each do |c|
+  city = City.new
+  city.name = c['name']
+  city.active = c['active']
+  city.location = c['location']
+  city.description_fr = c['description_fr']
+  city.description_en = c['description_en']
+  city.address = c['address']
+  city.location_picture = c['location_picture']
+  city.city_picture = c['city_picture']
+  city.meetup_id = c['meetup_id']
+  city.twitter_url = c['twitter_url']
+  city.save
+end
+
+marseille = City.find_by_name("Aix - Marseille")
+paris = City.find_by_name("Paris")
+brussels = City.find_by_name("Brussels")
+lille = City.find_by_name("Lille")
+beirut = City.find_by_name("Beirut")
 
 Batch.create! slug: 1, city: paris, starts_at: Date.new(2014, 1, 6), slack_id: 'C03302GJ9'
 Batch.create! slug: 2, city: paris, starts_at: Date.new(2014, 3, 7), slack_id: 'C032KMS4A'
@@ -60,7 +76,6 @@ posts.each do |p|
   post = p['type'].constantize.new
   post.title = p['title']
   post.user = User.find_by(github_nickname: p['author'])
-
   case p['type']
   when 'Resource'
     post.url = p['url']

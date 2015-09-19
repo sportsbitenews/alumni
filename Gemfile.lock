@@ -136,6 +136,9 @@ GEM
       railties (>= 3.2, < 5.0)
     font_assets (0.1.11)
       rack
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
+    geocoder (1.2.11)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -431,6 +434,8 @@ DEPENDENCIES
   figaro
   font-awesome-rails
   font_assets
+  friendly_id (~> 5.1.0)
+  geocoder
   high_voltage
   jbuilder
   jquery-rails

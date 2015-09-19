@@ -14,6 +14,7 @@
 #  cover_picture_file_size    :integer
 #  cover_picture_updated_at   :datetime
 #  position                   :integer
+#  featured                   :boolean          default(FALSE), not null
 #
 # Indexes
 #

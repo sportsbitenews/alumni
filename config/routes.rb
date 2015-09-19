@@ -2,6 +2,14 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'posts#index'
 
+  # API routing
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :cities, only: [ :index, :show ]
+      resources :projects, only: [ :index ]
+    end
+  end
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :posts, only: %i(index) do
     member do
