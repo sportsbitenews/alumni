@@ -1,6 +1,6 @@
 ## Cities
 
-`GET /api/v1/cities`
+### `GET /api/v1/cities`
 
 ```javascript
 {
@@ -41,7 +41,7 @@
 }
 ```
 
-`GET /api/v1/cities/:city_slug` exemple `GET /api/v1/cities/paris`
+### `GET /api/v1/cities/:city_slug` exemple `GET /api/v1/cities/paris`
 
 ```javascript
 {
@@ -109,7 +109,7 @@
 
 ## Alumni
 
-`GET /api/v1/alumni`
+### `GET /api/v1/alumni`
 
 ```javascript
 {
@@ -136,7 +136,7 @@
 }
 ```
 
-`GET /api/v1/alumni?city=paris`
+### `GET /api/v1/alumni?city=paris`
 
 ```javascript
 {
@@ -156,7 +156,7 @@
 
 ## Staff
 
-`GET /api/v1/staff`
+### `GET /api/v1/staff`
 
 ```javascript
 {
@@ -224,7 +224,7 @@
 }
 ```
 
-`GET /api/v1/staff?city=paris`
+### `GET /api/v1/staff?city=paris`
 
 ```javascript
 {
@@ -277,7 +277,7 @@
 
 ## Projects
 
-`GET /api/v1/projects`
+### `GET /api/v1/projects`
 
 ```javascript
 {
@@ -306,7 +306,7 @@
 }
 ```
 
-`GET /api/v1/projects?city=paris`
+### `GET /api/v1/projects?city=paris`
 
 ```javascript
 {
@@ -327,13 +327,13 @@
 
 ### Featured products
 
-`GET /api/v1/projects?featured=true`
+#### `GET /api/v1/projects?featured=true`
 
-`GET /api/v1/projects?city=paris&featured=true`
+#### `GET /api/v1/projects?city=paris&featured=true`
 
 ## Stories
 
-`GET /api/v1/stories`
+### `GET /api/v1/stories`
 
 ``javascript
 {
