@@ -298,7 +298,7 @@
       tagline: "Rate and review angel investors.",
       position: 2,
       thumbnail: "http://path.jpg",
-      makers: [ "..."" ],
+      makers: [ "..." ],
       batch: "2",
       city: "Brussels"
     }
@@ -317,7 +317,7 @@
       tagline: "Tinder for job search.",
       position: 1,
       thumbnail: "http://path.jpg",
-      makers: [ "..."" ],
+      makers: [ "..." ],
       batch: "1",
       city: "Paris"
     }
