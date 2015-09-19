@@ -31,6 +31,7 @@
 
 .navbar-link-to-slack {
   line-height: 33px;
+  color: white;
   margin-left: 1em;
 }
 
@@ -118,6 +119,8 @@
 }
 
 .posts-index {
+  .navbar-link-to-slack { color: black !important }
+
   .search-icon { display: block }
   .search-icon-hr {
     display: block;
@@ -155,13 +158,11 @@
 .batches-register,
 .batches-onboarding,
 .devise_sessions-new {
-
+  .navbar-link-to-slack { color: black !important }
   .btn-github { display: none }
-
   .navbar-right {
     a { color: black }
   }
-
   .navbar-logo svg {
     circle, path {fill: $brand-color }
   }

@@ -9,6 +9,13 @@ class MilestonesController < ApplicationController
   def show
   end
 
+  def update
+    #TODO : handle all columns update
+    @milestone.content = params[:content]
+    @milestone.save
+    authorize @milestone
+  end
+
   def create
     @milestone = current_user.milestones.build milestone_params.except!(:authenticity_token)
     authorize @milestone

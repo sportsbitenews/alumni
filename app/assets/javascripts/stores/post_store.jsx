@@ -7,7 +7,7 @@ class PostStoreClass {
       milestones: {}
     };
     this.bindListeners({
-      updatePost: AnswerActions.post,
+      updatePost: [ AnswerActions.post, PostActions.update ],
       updatePostWithUsers: PostActions.upVote,
       updatePosts: PostActions.search
     });

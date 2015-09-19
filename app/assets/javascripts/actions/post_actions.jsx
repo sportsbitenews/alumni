@@ -4,6 +4,11 @@ class PostActionsClass {
       .then((response) => this.dispatch(response.data));
   }
 
+  update(content, post_type, id) {
+    axios.railsPatch(eval("Routes." + post_type.toLowerCase() + "_path(" + id + ", {format: 'json',   content:" + JSON.stringify(content) +"})"))
+      .then((response) => this.dispatch(response.data))
+  }
+
   search(keywords) {
     axios.railsPost(Routes.search_posts_path({ format: 'json' }), { keywords: keywords })
       .then((response) => this.dispatch(response.data))
