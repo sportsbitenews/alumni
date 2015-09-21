@@ -7,5 +7,7 @@ json.projects @projects.each do |project|
     end
   end
   json.batch project.batch.slug
-  json.city project.batch.city.name
+  json.city do
+    json.extract! project.batch.city, :name, :slug
+  end
 end

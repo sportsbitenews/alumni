@@ -8,6 +8,7 @@
     {
       id: 1,
       name: "Paris",
+      slug: "paris",
       location: "Le Wagon",
       description: {
         fr: "En plein coeur du 11ème, à 100m du Métro Oberkampf. Vous travaillerez dans un incroyable Hacker Space de 600 m2 designé par 2 artistes des Beaux-Arts. Un des spots "tech" les plus sympas de Paris. Préparez-vous à plonger dans un univers où ça parle code & produit et où l'on concrétise ses idées ! ",
@@ -24,6 +25,7 @@
     {
       id: 2,
       name: "Brussels",
+      slug: "brussels",
       location: "Costation",
       description: {
         fr: "Nos cours, à Bruxelles, sont donnés en anglais dans les locaux de <a href='http://www.co-station.com/'>Co.Station</a>, un accélérateur de startups, situé au coeur de la ville, à deux minutes à pied de la Gare Centrale. ",
@@ -41,6 +43,8 @@
 }
 ```
 
+#### `GET /api/v1/cities?active=true`
+
 ### `GET /api/v1/cities/:city_slug` exemple `GET /api/v1/cities/paris`
 
 ```javascript
@@ -48,6 +52,7 @@
   city: {
     id: 1,
     name: "Paris",
+    slug: "paris",
     location: "Le Wagon",
     description: {
       fr: "En plein coeur du 11ème, à 100m du Métro Oberkampf. Vous travaillerez dans un incroyable Hacker Space de 600 m2 designé par 2 artistes des Beaux-Arts. Un des spots "tech" les plus sympas de Paris. Préparez-vous à plonger dans un univers où ça parle code & produit et où l'on concrétise ses idées ! ",
@@ -120,7 +125,10 @@
       gravatar_url: "https://avatars.githubusercontent.com/u/50518?v=3",
       first_name: "Sponge",
       last_name: "Bob",
-      city: "Paris",
+      city: {
+        name: "Paris",
+        slug: "paris"
+      },
       batch_slug: "15"
     },
     {
@@ -129,7 +137,10 @@
       gravatar_url: "https://avatars.githubusercontent.com/u/50518?v=3",
       first_name: "Uncle",
       last_name: "Scrooge",
-      city: "Brussels",
+      city: {
+        name: "Brussels",
+        slug: "brussels"
+      },
       batch_slug: "13"
     }
   ]
@@ -358,3 +369,5 @@
   ]
 }
 ```
+
+#### `GET /api/v1/stories?published=true`
