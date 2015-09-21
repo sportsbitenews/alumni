@@ -61,8 +61,8 @@
     address: "16 Villa Gaudelet, 75011 Paris",
     latitude: 48.8648482,
     longitude: 2.3798534,
-    location_picture: "http://wagon-alumni.s3.amazonaws.com/development/cities/location_pictures/000/000/001/cover/local-paris.jpg?1442595265",
-    city_picture: "http://wagon-alumni.s3.amazonaws.com/development/cities/city_pictures/000/000/001/cover/paris.jpg?1442595266",
+    location_picture: "http://path.jpg",
+    city_picture: "http://path.jpg",
     meetup_id: 16766372,
     twitter_url: "https://twitter.com/Lewagonparis",
     next_batch: {
@@ -74,7 +74,7 @@
         {
           id: 1,
           github_nickname: "ssaunier",
-          gravatar_url: "https://avatars.githubusercontent.com/u/2471555?v=3",
+          thumbnail: "https://path.jpg",
           first_name: "Sébastien",
           last_name: "Saunier",
           bio: {
@@ -85,7 +85,7 @@
         {
           id: 2,
           github_nickname: "Papillard",
-          gravatar_url: "https://avatars.githubusercontent.com/u/2471555?v=3",
+          thumbnail: "https://path.jpg",
           first_name: "Boris",
           last_name: "Paillard",
           bio: {
@@ -98,7 +98,7 @@
         {
           id: 3,
           github_nickname: "Tchret",
-          gravatar_url: "https://avatars.githubusercontent.com/u/2471555?v=3",
+          thumbnail: "https://path.jpg",
           first_name: "Thomas",
           last_name: "Chrétien",
           bio: {
@@ -122,7 +122,7 @@
     {
       id: 1,
       github_nickname: "spongebob",
-      gravatar_url: "https://avatars.githubusercontent.com/u/50518?v=3",
+      thumbnail: "https://path.jpg",
       first_name: "Sponge",
       last_name: "Bob",
       city: {
@@ -134,7 +134,7 @@
     {
       id: 1,
       github_nickname: "unclescrooge",
-      gravatar_url: "https://avatars.githubusercontent.com/u/50518?v=3",
+      thumbnail: "https://path.jpg",
       first_name: "Uncle",
       last_name: "Scrooge",
       city: {
@@ -155,7 +155,7 @@
     {
       id: 1,
       github_nickname: "spongebob",
-      gravatar_url: "https://avatars.githubusercontent.com/u/50518?v=3",
+      thumbnail: "https://path.jpg",
       first_name: "Sponge",
       last_name: "Bob",
       city: "Paris",
@@ -176,7 +176,7 @@
       {
         id: 1,
         github_nickname: "ssaunier",
-        gravatar_url: "https://avatars.githubusercontent.com/u/2471555?v=3",
+        thumbnail: "https://path.jpg",
         first_name: "Sébastien",
         last_name: "Saunier",
         bio: {
@@ -197,7 +197,7 @@
       {
         id: 4,
         github_nickname: "cveneziani",
-        gravatar_url: "https://avatars.githubusercontent.com/u/2471555?v=3",
+        thumbnail: "https://path.jpg",
         first_name: "Cecile",
         last_name: "Veneziani",
         bio: {
@@ -216,7 +216,7 @@
       {
         id: 3,
         github_nickname: "Tchret",
-        gravatar_url: "https://avatars.githubusercontent.com/u/2471555?v=3",
+        thumbnail: "https://path.jpg",
         first_name: "Thomas",
         last_name: "Chrétien",
         bio: {
@@ -244,7 +244,7 @@
       {
         id: 1,
         github_nickname: "ssaunier",
-        gravatar_url: "https://avatars.githubusercontent.com/u/2471555?v=3",
+        thumbnail: "https://path.jpg",
         first_name: "Sébastien",
         last_name: "Saunier",
         bio: {
@@ -267,7 +267,7 @@
       {
         id: 3,
         github_nickname: "Tchret",
-        gravatar_url: "https://avatars.githubusercontent.com/u/2471555?v=3",
+        thumbnail: "https://path.jpg",
         first_name: "Thomas",
         last_name: "Chrétien",
         bio: {
@@ -359,7 +359,7 @@
       alumni: {
         id: 15,
         github_nickname: "Olixier",
-        gravatar_url: "https://avatars.githubusercontent.com/u/2471555?v=3",
+        thumbnail: "https://path.jpg",
         first_name: "Olivier",
         last_name: "Xu",
         slug: "15",
