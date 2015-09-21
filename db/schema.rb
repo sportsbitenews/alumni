@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918175905) do
+ActiveRecord::Schema.define(version: 20150921155437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,6 +175,21 @@ ActiveRecord::Schema.define(version: 20150918175905) do
 
   add_index "resources", ["user_id"], name: "index_resources_on_user_id", using: :btree
 
+  create_table "stories", force: :cascade do |t|
+    t.text     "description_en"
+    t.text     "description_fr"
+    t.boolean  "published",            default: false, null: false
+    t.integer  "user_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
+
+  add_index "stories", ["user_id"], name: "index_stories_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -205,6 +220,12 @@ ActiveRecord::Schema.define(version: 20150918175905) do
     t.date     "birth_day"
     t.string   "school"
     t.boolean  "staff",                  default: false, null: false
+    t.text     "bio_en"
+    t.text     "bio_fr"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree
@@ -234,5 +255,6 @@ ActiveRecord::Schema.define(version: 20150918175905) do
   add_foreign_key "projects", "batches"
   add_foreign_key "questions", "users"
   add_foreign_key "resources", "users"
+  add_foreign_key "stories", "users"
   add_foreign_key "users", "batches"
 end

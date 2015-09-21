@@ -37,7 +37,7 @@ class City < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   has_attached_file :city_picture,
-    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }
+    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "270x180>", format: 'jpg', quality: 20 } }
   has_attached_file :location_picture,
     styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }
   validates_attachment_content_type :city_picture,
@@ -54,7 +54,10 @@ class City < ActiveRecord::Base
   def next_available_batch
     batches.where(full: false).order(:starts_at).first
   end
-  def projects
-    self.batches.order('starts_at desc').map {|b| b.featured_projects }.flatten
+
+  %i(teachers users projects featured_projects).each do |method|
+    define_method method do
+      batches.includes(method).order(starts_at: :desc).map(&method).flatten
+    end
   end
 end

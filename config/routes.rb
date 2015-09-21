@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :cities, only: [ :index, :show ]
       resources :projects, only: [ :index ]
+      resources :alumni, only: [ :index ]
+      resources :staff, only: [ :index ]
+      resources :stories, only: [ :index ]
     end
   end
 
