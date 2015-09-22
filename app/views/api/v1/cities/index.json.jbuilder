@@ -6,8 +6,8 @@ json.cities do
       json.en city.description_en
     end
     json.extract! city, :address, :latitude, :longitude
-    json.location_picture city.location_picture.url(:cover)
-    json.city_picture city.city_picture.url(:cover)
+    json.location_picture city.location_picture.url(:thumbnail)
+    json.city_picture city.city_picture.url(:thumbnail)
     json.extract! city, :meetup_id, :twitter_url
     if city.next_available_batch.present?
       json.next_batch do
