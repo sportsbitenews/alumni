@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
-  before_action :set_job, only: [:show]
+  before_action :set_job, only: [:show, :update]
   def new
     @job = Job.new
     authorize @job
@@ -15,6 +15,12 @@ class JobsController < ApplicationController
     else
       render :'new'
     end
+  end
+
+  def update
+    @job.description = params[:content]
+    @job.save
+    render :show
   end
 
   def show

@@ -45,7 +45,11 @@ class PostDetailBody extends React.Component {
         <AnswerItem
           user={this.props.user}
           content={this.props.description}
-          type="FirstItem"
+          original_content={this.props.original_description}
+          type={"FirstItem"}
+          post_type={this.props.type}
+          id={this.props.id}
+          editable={this.props.editable}
           time_ago={this.props.time_ago_in_words}  /
         >);
     }
@@ -55,8 +59,12 @@ class PostDetailBody extends React.Component {
         <AnswerItem
           user={this.props.user}
           content={this.props.content}
+          editable={this.props.editable}
+          post_type={this.props.type}
+          original_content={this.props.original_content}
           type="FirstItem"
-          time_ago={this.props.time_ago_in_words} /
+          time_ago={this.props.time_ago_in_words}
+          id={this.props.id} /
         >
       );
     }

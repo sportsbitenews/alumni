@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :answers, only: [:create] do
+  resources :answers, only: [:create, :update] do
     collection do
       post :preview
       get :language
@@ -38,9 +38,9 @@ Rails.application.routes.draw do
 
   get :onboarding, to: 'batches#onboarding'
 
-  resources :questions, only: %i(new show create)
-  resources :milestones, only: %i(new show create)
-  resources :jobs, only: %i(new show create)
+  resources :questions, only: %i(new show create update)
+  resources :milestones, only: %i(new show create update)
+  resources :jobs, only: %i(new show create update)
   resources :projects, only: %i(show)
   resources :resources, only: %i(new create show) do
     collection do

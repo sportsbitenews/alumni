@@ -8,6 +8,11 @@ class AnswerActionsClass {
     axios.railsPost(Routes.answers_path({ format: 'json' }), {"post_id": post_id, "content": content, "type": type})
       .then((response) => this.dispatch(response.data));
   }
+
+  update(answer_id, content) {
+    axios.railsPatch(Routes.answer_path(answer_id, { format: 'json' }), {"content": content })
+      .then((response) => this.dispatch(response.data))
+  }
 }
 
 AnswerActions = alt.createActions(AnswerActionsClass);

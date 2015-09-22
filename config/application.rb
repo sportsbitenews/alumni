@@ -61,5 +61,13 @@ module Alumni
       blacklist: ['spec.functionName', 'validation.react'],
       optional: ["es6.arrowFunctions", "es6.classes"]
     }
+
+    # API
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '/api/*', :headers => :any, methods: [:get]
+      end
+    end
   end
 end
