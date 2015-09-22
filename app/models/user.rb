@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
   end
 
   def thumbnail
-    picture.exists? ? picture.url(:thumb) : gravatar_url
+    picture.exists? ? picture.url(:medium) : gravatar_url
   end
 
   private
