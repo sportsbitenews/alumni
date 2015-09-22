@@ -1,5 +1,5 @@
 json.projects @projects.each do |project|
-  json.extract! project, :id, :url, :tagline, :position
+  json.extract! project, :id, :url, :name, :tagline, :position
   json.thumbnail project.cover_picture.url(:thumbnail)
   json.makers do
     json.array! project.users.each do |user|
