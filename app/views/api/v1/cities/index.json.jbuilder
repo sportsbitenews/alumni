@@ -9,8 +9,10 @@ json.cities do
     json.location_picture city.location_picture.url(:cover)
     json.city_picture city.city_picture.url(:cover)
     json.extract! city, :meetup_id, :twitter_url
-    json.next_batch do
-      json.extract! city.next_available_batch, :starts_at, :ends_at, :last_seats
+    if city.next_available_batch.present?
+      json.next_batch do
+        json.extract! city.next_available_batch, :starts_at, :ends_at, :last_seats
+      end
     end
   end
 end
