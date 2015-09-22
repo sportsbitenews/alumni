@@ -120,28 +120,10 @@
 {
   alumni: [
     {
-      id: 1,
-      github_nickname: "spongebob",
-      thumbnail: "https://path.jpg",
-      first_name: "Sponge",
-      last_name: "Bob",
-      city: {
-        name: "Paris",
-        slug: "paris"
-      },
-      batch_slug: "15"
+      thumbnail: "https://an-alumnus-from-paris.jpg",
     },
     {
-      id: 1,
-      github_nickname: "unclescrooge",
-      thumbnail: "https://path.jpg",
-      first_name: "Uncle",
-      last_name: "Scrooge",
-      city: {
-        name: "Brussels",
-        slug: "brussels"
-      },
-      batch_slug: "13"
+      thumbnail: "https://an-alumnus-from-brussels.jpg",
     }
   ]
 }
@@ -153,13 +135,7 @@
 {
   alumni: [
     {
-      id: 1,
-      github_nickname: "spongebob",
-      thumbnail: "https://path.jpg",
-      first_name: "Sponge",
-      last_name: "Bob",
-      city: "Paris",
-      batch_slug: "15"
+      thumbnail: "https://an-alumnus-from-paris.jpg",
     }
   ]
 }
