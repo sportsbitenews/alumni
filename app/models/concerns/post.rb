@@ -2,6 +2,7 @@ module Post
   extend ActiveSupport::Concern
 
   POST_TYPES = %w(Resource Question Job Milestone)
+  PAGE_COUNT = 10
   class UnauthorizedPostTypeException < Exception; end
 
   included do
@@ -14,6 +15,11 @@ module Post
     has_many :answers, as: :answerable
 
     after_create ->() { NotifyNewPostInSlack.perform_later(self.class.to_s, id) }
+
+    scope :list, (lambda do |options = {}|
+      page = options.fetch(:page, 1)
+      order(created_at: :desc).page(page).limit(PAGE_COUNT).includes(:user)
+    end)
 
     # TODO(ssaunier): compute on-the-fly score for a resource
     # score = function(x is days passed since created_at, votes) {

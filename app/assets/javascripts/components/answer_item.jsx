@@ -104,7 +104,7 @@ class AnswerItem extends React.Component {
 
   onStoreChange(store) {
     if (this.props.type === 'FirstItem') {
-      post = eval("store.posts." + this.props.post_type.toLowerCase() + "s[" + this.props.id + "]")
+      post = store.getPost(this.props.post_type, this.props.id);
       this.setState({
         isEditing: false,
         original_content: post.original_content,
@@ -112,7 +112,6 @@ class AnswerItem extends React.Component {
       })
     } else {
       var updatedAnswer = store.getUpdatedAnswer();
-      debugger
       if (updatedAnswer && updatedAnswer.id == this.props.id) {
         this.setState ({
           isEditing: false,

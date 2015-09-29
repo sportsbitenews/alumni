@@ -441,6 +441,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   js-routes
+  kaminari
   letter_opener
   link_thumbnailer
   lodash-rails

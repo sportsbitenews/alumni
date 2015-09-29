@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       post :up_vote
     end
     collection do
+      get :next
       post :search
     end
   end

@@ -4,10 +4,6 @@ class MilestoneListElement extends PostListElement {
     // this.state = _.merge(this.state, {}); // Uncomment to add specific state
   }
 
-  color() {
-    return "#2980b9"
-  }
-
   content() {
     return (
       <div className='post-item milestone-item'>
