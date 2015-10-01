@@ -14,7 +14,8 @@
 .users-show {
   .resource-item,
   .question-item,
-  .job-item {
+  .job-item,
+  .milestone-item {
     position: relative;
     padding-left: 14px !important;
     &:after {
@@ -31,4 +32,5 @@
   .resource-item:after { background: $resource-gradient }
   .question-item:after { background: $question-gradient }
   .job-item:after { background: $job-gradient }
+  .milestone-item:after { background: $milestone-gradient }
 }

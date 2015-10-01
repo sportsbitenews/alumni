@@ -6,10 +6,15 @@ class PostList extends React.Component {
       resources: props.resources,
       questions: props.questions,
       jobs: props.jobs,
-      milestones: props.milestones
+      milestones: props.milestones,
+      end: {}
     };
 
     this.onStoreChange = this.onStoreChange.bind(this);
+  }
+
+  componentWillMount() {
+    PostActions.fillStore(this.state);
   }
 
   componentDidMount() {
@@ -22,7 +27,21 @@ class PostList extends React.Component {
       questions: store.posts.questions,
       jobs: store.posts.jobs,
       milestones: store.posts.milestones,
+      end: store.end
     });
+  }
+
+  renderInfiniteList(type) {
+    var collection = `${type.toLowerCase()}s`;
+    return (
+      <InfiniteScroll loadMore={(page) => PostActions.fetchPage(type, page)}
+                      hasMore={this.state.end[collection] !== true}>
+        {this.state[collection].map(post => {
+          var props = _.merge(post, { key: `${post.type}-${post.id}` });
+          return React.createElement(eval(`${type}ListElement`), props);
+        })}
+      </InfiniteScroll>
+    );
   }
 
   render() {
@@ -33,49 +52,31 @@ class PostList extends React.Component {
       <div ref='postList'>
         <SwipeViews>
           <div className='col-sm-3 posts-column' title="#resources">
-          <a href={Routes.new_resource_path()} className={addPostClasses}>
-            <div className='posts-column-new'>
-              ADD A NEW RESOURCE
-            </div>
-          </a>
-            {this.state.resources.map(resource => {
-              var props = _.merge(resource, { key: `${resource.type}-${resource.id}` });
-              return React.createElement(ResourceListElement, props);
-            })}
+            <a href={Routes.new_resource_path()} className={addPostClasses}>
+              <div className='posts-column-new'>ADD A NEW RESOURCE</div>
+            </a>
+            {this.renderInfiniteList('Resource')}
           </div>
           <div className='col-sm-3 posts-column' title="#help">
-          <a href={Routes.new_question_path()} className={addPostClasses}>
-            <div className='posts-column-new'>
-              ASK A NEW QUESTION
-            </div>
-          </a>
-            {this.state.questions.map(question => {
-              var props = _.merge(question, { key: `${question.type}-${question.id}` });
-              return React.createElement(QuestionListElement, props);
-            })}
+            <a href={Routes.new_question_path()} className={addPostClasses}>
+              <div className='posts-column-new'>ASK A NEW QUESTION</div>
+            </a>
+            {this.renderInfiniteList('Question')}
           </div>
           <div className='col-sm-3 posts-column' title="#jobs">
             <a href={Routes.new_job_path()} className={addPostClasses}>
-              <div className='posts-column-new'>
-                ADD A NEW JOB
-              </div>
+              <div className='posts-column-new'>ADD A NEW JOB</div>
             </a>
-            {this.state.jobs.map(job => {
-              var props = _.merge(job, { key: `${job.type}-${job.id}` });
-              return React.createElement(JobListElement, props);
-            })}
+            {this.renderInfiniteList('Job')}
           </div>
           <div className='col-sm-3 posts-column' title="#milestones">
             <a href={this.props.current_user.can_post_milestone ? Routes.new_milestone_path() : 'mailto:seb@lewagon.org'}
                className={addPostClasses}>
-            <div className='posts-column-new'>
-            {this.props.current_user.can_post_milestone ? 'ADD A NEW MILESTONE' : 'SUBMIT A NEW PRODUCT'}
-            </div>
+              <div className='posts-column-new'>
+                {this.props.current_user.can_post_milestone ? 'ADD A NEW MILESTONE' : 'SUBMIT A NEW PRODUCT'}
+              </div>
             </a>
-            {this.state.milestones.map(milestone => {
-              var props = _.merge(milestone, { key: `${milestone.type}-${milestone.id}` });
-              return React.createElement(MilestoneListElement, props);
-            })}
+            {this.renderInfiniteList('Milestone')}
           </div>
         </SwipeViews>
       </div>

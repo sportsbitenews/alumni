@@ -8,6 +8,10 @@ module PostScope
 
   def set_post_without_authorize
     fail UnauthorizedPostTypeException unless Post::POST_TYPES.include?(params[:type])
-    @post = params[:type].constantize.find(params[:post_id] || params[:id])
+    @post = post_type.find(params[:post_id] || params[:id])
+  end
+
+  def post_type
+    params[:type].constantize
   end
 end

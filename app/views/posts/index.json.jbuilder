@@ -1,25 +1,17 @@
 json.resources do
-  json.array! @posts[:resources] do |resource|
-    json.partial! "resources/resource", resource: resource
-  end
+  json.partial! "index", posts: @resources
 end
 
 json.questions do
-  json.array! @posts[:questions] do |question|
-    json.partial! "questions/question", question: question
-  end
+  json.partial! "index", posts: @questions
 end
 
 json.jobs do
-  json.array! @posts[:jobs] do |job|
-    json.partial! "jobs/job", job: job
-  end
+  json.partial! "index", posts: @jobs
 end
 
 json.milestones do
-  json.array! @posts[:milestones] do |milestone|
-    json.partial! "milestones/milestone", milestone: milestone
-  end
+  json.partial! "index", posts: @milestones
 end
 
 json.current_user do

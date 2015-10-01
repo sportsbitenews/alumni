@@ -16,6 +16,7 @@ JsRoutes.setup do |config|
 
     /^up_vote_post$/,
     /^search_posts$/,
+    /^next_posts$/,
 
     /^users$/,
     /^profile$/,

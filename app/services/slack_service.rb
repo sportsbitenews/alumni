@@ -21,7 +21,7 @@ class SlackService
     if user.slack_uid.present?
       from_cache('username', user.id, expire: 1.day) do
         response = @client.users_info(user: user.slack_uid)
-        response["user"]["name"]
+        response["user"].try("name")
       end
     end
   end

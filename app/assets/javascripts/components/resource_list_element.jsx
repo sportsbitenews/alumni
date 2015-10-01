@@ -4,10 +4,6 @@ class ResourceListElement extends PostListElement {
     // this.state = _.merge(this.state, {});  // Uncomment to add specific state
   }
 
-  color() {
-    return "orange";
-  }
-
   content() {
     var thumbnailStyle = {
       backgroundImage: "url('"+ this.props.screenshot_url +"');"
