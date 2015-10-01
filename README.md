@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/lewagon/alumni.png?label=ready&title=Ready)](https://waffle.io/lewagon/alumni)
 # Le Wagon Alumni
 
 ## React prerendering
