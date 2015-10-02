@@ -19,6 +19,7 @@
 #  meta_image_updated_at   :datetime
 #  last_seats              :boolean          default(FALSE), not null
 #  full                    :boolean          default(FALSE), not null
+#  time_zone               :string           default("Paris")
 #
 # Indexes
 #
