@@ -53,6 +53,6 @@ class Batch < ActiveRecord::Base
   end
 
   def name
-    "Batch #{slug} - #{city.name}"
+    "Batch #{slug} - #{city.try(:name)}"
   end
 end
