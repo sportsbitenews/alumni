@@ -8,7 +8,6 @@ class CreateCampInKitt < ActiveJob::Base
       camp: {
         slug: batch.slug,
         starts_at: batch.starts_at,
-        ends_at: batch.ends_at,
         time_zone: batch.time_zone,
         city: batch.city.name
       }
