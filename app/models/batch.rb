@@ -30,15 +30,17 @@ class Batch < ActiveRecord::Base
   validates :slug, presence: true, uniqueness: true
   validates :city, presence: true
   validates :starts_at, presence: true
+  validates :time_zone, presence: true
 
   belongs_to :city
-  has_many :users
+  has_many :users  # Students
   has_many :projects, -> { order(position: :asc) }
   has_many :featured_projects, -> { where(featured: true) }, class_name: "Project"
   has_and_belongs_to_many :teachers, class_name: "User", foreign_key: "batch_id"
 
   before_validation :set_ends_at
   after_create :create_slack_channel
+  after_create :push_to_kitt
 
   has_attached_file :meta_image,
     styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }
@@ -51,6 +53,10 @@ class Batch < ActiveRecord::Base
 
   def create_slack_channel
     CreateSlackChannelJob.perform_later(id) if slack_id.blank?
+  end
+
+  def push_to_kitt
+    CreateCampInKitt.perform_later(id)
   end
 
   def name
