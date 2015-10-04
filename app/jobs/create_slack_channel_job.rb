@@ -2,7 +2,7 @@ class CreateSlackChannelJob < ActiveJob::Base
   class SlackChannelCreationError < Exception; end
 
   def perform(batch_id)
-    if ENV['AUTO_SLACK_CHANNEL_CREATION_ENABLED'] == true
+    if ENV['AUTO_SLACK_CHANNEL_CREATION_ENABLED'] == 'true'
       batch = Batch.find(batch_id)
 
       params = {
