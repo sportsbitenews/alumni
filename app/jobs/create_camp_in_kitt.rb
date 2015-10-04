@@ -1,6 +1,6 @@
 class CreateCampInKitt < ActiveJob::Base
   def perform(batch_id)
-    batch = Batch.find(id)
+    batch = Batch.find(batch_id)
 
     new_camp_url = "#{ENV['KITT_BASE_URL']}/api/v1/alumni/camp"
     client = RestClient::Resource.new(new_camp_url, user: 'alumni', password: ENV['ALUMNI_PASSWORD'])
