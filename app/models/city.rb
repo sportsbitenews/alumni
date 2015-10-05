@@ -49,7 +49,6 @@ class City < ActiveRecord::Base
   after_validation :geocode, if: :address_changed?
 
   has_many :batches
-  has_and_belongs_to_many :users
 
   def next_available_batch
     batches.where(full: false).order(:starts_at).first
