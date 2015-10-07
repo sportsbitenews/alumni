@@ -56,7 +56,7 @@ class City < ActiveRecord::Base
 
   %i(teachers users projects featured_projects).each do |method|
     define_method method do
-      batches.includes(method).order(starts_at: :desc).map(&method).flatten
+      batches.includes(method).order(starts_at: :desc).map(&method).flatten.uniq
     end
   end
 end
