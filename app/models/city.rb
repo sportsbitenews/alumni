@@ -50,13 +50,13 @@ class City < ActiveRecord::Base
 
   has_many :batches
 
-  def next_available_batch
-    batches.where(full: false).order(:starts_at).first
+  def open_batches
+    batches.where(open_for_registration: true).order(:starts_at)
   end
 
   %i(teachers users projects featured_projects).each do |method|
     define_method method do
-      batches.includes(method).order(starts_at: :desc).map(&method).flatten
+      batches.includes(method).order(starts_at: :desc).map(&method).flatten.uniq
     end
   end
 end
