@@ -22,7 +22,6 @@ json.projects do
         json.extract! user, *user_properties
       end
     end
-
     json.milestones do
       json.array! project.milestones.each do |milestone|
         json.partial! 'milestones/milestone', milestone: milestone

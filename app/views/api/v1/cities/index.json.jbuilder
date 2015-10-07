@@ -17,10 +17,8 @@ json.cities do
       end
     end
     json.extract! city, :meetup_id, :twitter_url
-    if city.next_available_batch.present?
-      json.next_batch do
-        json.extract! city.next_available_batch, :starts_at, :ends_at, :last_seats
-      end
+    json.batches city.open_batches do |batch|
+      json.extract! batch, :starts_at, :ends_at, :full, :last_seats
     end
   end
 end

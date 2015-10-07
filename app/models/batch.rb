@@ -20,6 +20,7 @@
 #  last_seats              :boolean          default(FALSE), not null
 #  full                    :boolean          default(FALSE), not null
 #  time_zone               :string           default("Paris")
+#  open_for_registration   :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -27,7 +28,7 @@
 #
 
 class Batch < ActiveRecord::Base
-  validates :slug, presence: true, uniqueness: true
+  validates :slug, uniqueness: true, allow_nil: true
   validates :city, presence: true
   validates :starts_at, presence: true
   validates :time_zone, presence: true
@@ -39,8 +40,11 @@ class Batch < ActiveRecord::Base
   has_and_belongs_to_many :teachers, class_name: "User", foreign_key: "batch_id"
 
   before_validation :set_ends_at
-  after_create :create_slack_channel
-  after_create :push_to_kitt
+  after_save :create_slack_channel, if: :slug_set?
+  after_save :push_to_kitt, if: :slug_set?
+
+  # TODO(ssaunier):
+  # after_create :create_trello_board
 
   has_attached_file :meta_image,
     styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }
@@ -61,5 +65,9 @@ class Batch < ActiveRecord::Base
 
   def name
     "Batch #{slug} - #{city.try(:name)}"
+  end
+
+  def slug_set?
+    !slug.empty? && slug_changed?
   end
 end
