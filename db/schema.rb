@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007093104) do
+ActiveRecord::Schema.define(version: 20151008183224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20151007093104) do
     t.boolean  "full",                    default: false,   null: false
     t.string   "time_zone",               default: "Paris"
     t.boolean  "open_for_registration",   default: false,   null: false
+    t.integer  "price_cents",             default: 0,       null: false
+    t.string   "price_currency",          default: "EUR",   null: false
   end
 
   add_index "batches", ["city_id"], name: "index_batches_on_city_id", using: :btree

@@ -22,6 +22,7 @@ gem "autoprefixer-rails"
 gem "redis"
 gem "slack-api"
 gem 'octicons-rails'
+gem 'money-rails'
 gem 'rails_admin'
 gem 'rest-client'
 gem 'appsignal'
