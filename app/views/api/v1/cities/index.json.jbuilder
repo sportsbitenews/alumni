@@ -18,7 +18,7 @@ json.cities do
     end
     json.extract! city, :meetup_id, :twitter_url
     json.batches city.open_batches do |batch|
-      json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :price_cents, :price_currency
+      json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :price_cents, :price_currency, :trello_inbox_list_id
     end
   end
 end
