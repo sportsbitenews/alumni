@@ -8,9 +8,11 @@ json.projects @projects.each do |project|
         json.extract! user, :id, :github_nickname, :thumbnail
       end
     end
-    json.batch project.batch.slug
-    json.city do
-      json.extract! project.batch.city, :name, :slug
+    if project.batch
+      json.batch project.batch.slug
+      json.city do
+        json.extract! project.batch.city, :name, :slug
+      end
     end
   end
 end
