@@ -28,6 +28,7 @@ gem 'appsignal'
 gem 'whatlanguage'
 gem 'searchkick'
 gem 'typhoeus'
+gem 'babosa'
 gem "geocoder"
 gem 'kaminari'
 gem 'friendly_id', '~> 5.1.0'
