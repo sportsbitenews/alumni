@@ -11,10 +11,12 @@ json.makers do
   end
 end
 
-json.batch do
-  json.city @project.batch.city.name
-  json.slug @project.batch.slug
-  json.id @project.batch.id
+if @project.batch
+  json.batch do
+    json.city @project.batch.city.name
+    json.slug @project.batch.slug
+    json.id @project.batch.id
+  end
 end
 
 json.milestones do

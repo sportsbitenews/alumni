@@ -23,6 +23,15 @@ class ProjectDetail extends React.Component {
       )
     }
 
+    var batch = null;
+    if (this.props.batch) {
+      batch = (<a href={Routes.batch_path(this.props.batch.id)}>
+                <div className='project-detail-batch'>
+                  {`Batch #${this.props.batch.slug} - ${this.props.batch.city}`}
+                </div>
+              </a>);
+    }
+
     return(
       <div className='post-detail'>
         <div className='post-detail-header project-detail-header resource-detail'>
@@ -32,11 +41,7 @@ class ProjectDetail extends React.Component {
             </a>
             <div className='post-detail-tagline'>{this.props.tagline}</div>
             <div className='post-detail-header-action'>
-              <a href={Routes.batch_path(this.props.batch.id)}>
-                <div className='project-detail-batch'>
-                  {`Batch #${this.props.batch.slug} - ${this.props.batch.city}`}
-                </div>
-              </a>
+              {batch}
               <a href={this.props.url} target='_blank'>
                 <div className='post-detail-url'>
                   {this.props.url}
