@@ -9,6 +9,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
+require 'meetup_client'
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -18,6 +19,10 @@ Bundler.require(*Rails.groups)
 module Alumni
   class Application < Rails::Application
     config.middleware.use Rack::Deflater
+
+    MeetupClient.configure do |config|
+      config.api_key = ENV['MEETUP_API_KEY']
+    end
 
     config.i18n.enforce_available_locales = true
     config.embed_authenticity_token_in_remote_forms = true

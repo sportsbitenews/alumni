@@ -191,6 +191,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    meetup_client (0.1.0)
     method_source (0.8.2)
     mime-types (2.6.1)
     mimemagic (0.3.0)
@@ -447,6 +448,7 @@ DEPENDENCIES
   letter_opener
   link_thumbnailer
   lodash-rails
+  meetup_client
   octicons-rails
   octokit
   omniauth-github
