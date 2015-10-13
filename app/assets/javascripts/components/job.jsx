@@ -4,7 +4,7 @@ class Job extends React.Component {
       var learnMore = (
                         <a href={this.props.ad_url} target='_blank'>
                           <div className='post-detail-url'>
-                            Learn more
+                            <i className='mdi mdi-link' />&nbsp;Learn more
                           </div>
                         </a>
                       )
@@ -14,7 +14,7 @@ class Job extends React.Component {
       var contactEmail = (
                           <a href={`mailto:${this.props.contact_email}`}>
                             <div className='post-detail-url'>
-                              {this.props.contact_email}
+                              <i className='mdi mdi-email-outline' />&nbsp;Apply
                             </div>
                           </a>
                          )
@@ -24,9 +24,8 @@ class Job extends React.Component {
       var inCity = (
         <span><span className='text-readable'>in</span> {this.props.city}</span>
       );
-
+    } else {
       var remote = 'remote';
-
     }
     return (
       <div className='post-detail'>
@@ -39,13 +38,6 @@ class Job extends React.Component {
               </div>
               {contactEmail}
               {learnMore}
-              <div className='post-detail-author'>
-                <a href={Routes.profile_path(this.props.user.github_nickname)}>
-                  <div>
-                    <img src={this.props.user.gravatar_url} />
-                  </div>
-                </a>
-              </div>
             </div>
           </div>
         </div>

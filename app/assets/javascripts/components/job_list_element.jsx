@@ -5,11 +5,16 @@ class JobListElement extends PostListElement {
   }
 
   content() {
+    var city = this.props.city;
+    if (city !== "") {
+      city = `(${city})`;
+    }
+
     return (
       <div className='post-item job-item'>
         <div className='post-item-text'>
           <div className='post-item-text-name'>
-            {this.props.title}
+            {this.props.title} @ {this.props.company} {city}
           </div>
           <div className='post-item-text-tagline'>
             posted by
