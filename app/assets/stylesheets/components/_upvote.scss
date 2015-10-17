@@ -5,37 +5,27 @@
   &:hover {
     color: $brand-color;
     .upvote-item {border-color: $brand-color;}
-    .upvote-item figure {background: $brand-color;}
+    .upvote-item figure {color: $brand-color;}
   }
 
   &.is-upvoted {
     color: $brand-color;
     .upvote-item {border-color: $brand-color}
     .upvote-item figure {
-      background: $brand-color;
-      border: 1px solid white;
+      color: $brand-color;
     }
   }
 }
 
 .upvote-item {
   height: 16px;
-  border: 2px solid black;
   width: 16px;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 
   figure {
-    background: black;
-    border-radius: 50%;
-
-    transition: 0.2s ease border;
-    height: 12px;
-    width: 12px;
-    border: 4px solid white;
-
+    font-size: 24px;
   }
 }
 
