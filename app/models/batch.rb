@@ -71,6 +71,6 @@ class Batch < ActiveRecord::Base
   end
 
   def slug_set?
-    !slug.empty? && slug_changed?
+    !slug.empty? && (id_changed? || slug_changed?)
   end
 end
