@@ -35,6 +35,7 @@ class Batch < ActiveRecord::Base
   validates :city, presence: true
   validates :starts_at, presence: true
   validates :time_zone, presence: true
+  validates :price_cents, numericality: { greater_than: 3_000_00 }  # cents
 
   belongs_to :city
   has_many :users  # Students
