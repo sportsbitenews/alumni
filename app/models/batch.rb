@@ -21,6 +21,7 @@
 #  full                    :boolean          default(FALSE), not null
 #  time_zone               :string           default("Paris")
 #  open_for_registration   :boolean          default(FALSE), not null
+#  trello_board_id         :string
 #
 # Indexes
 #
@@ -28,7 +29,7 @@
 #
 
 class Batch < ActiveRecord::Base
-  validates :slug, uniqueness: true, allow_nil: true
+  validates :slug, uniqueness: true, allow_nil: true, allow_blank: true
   validates :city, presence: true
   validates :starts_at, presence: true
   validates :time_zone, presence: true
