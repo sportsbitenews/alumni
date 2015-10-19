@@ -22,6 +22,8 @@
 #  time_zone               :string           default("Paris")
 #  open_for_registration   :boolean          default(FALSE), not null
 #  trello_inbox_list_id    :string
+#  price_cents             :integer          default(0), not null
+#  price_currency          :string           default("USD"), not null
 #
 # Indexes
 #
@@ -43,6 +45,7 @@ class Batch < ActiveRecord::Base
   before_validation :set_ends_at
   after_save :create_slack_channel, if: :slug_set?
   after_save :push_to_kitt, if: :slug_set?
+  monetize :price_cents
 
   # TODO(ssaunier):
   # after_create :create_trello_board
