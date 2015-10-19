@@ -28,9 +28,10 @@
               <span class="mdi mdi-account-multiple"></span>
               <%= pluralize batch.users.count, 'student' %>
             </div>
-            <% if !batch.users.where(alumni: false).empty? %>
+            <% pending_students = batch.users.select(&:ready_for_validation?) %>
+            <% if !pending_students.empty? %>
               <div class='pending-students'>
-                <% batch.users.where(alumni: false).each do |student| %>
+                <% pending_students.each do |student| %>
                     <%= react_component 'StudentItem', {
                         student: student
                     } %>
