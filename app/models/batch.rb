@@ -21,7 +21,7 @@
 #  full                    :boolean          default(FALSE), not null
 #  time_zone               :string           default("Paris")
 #  open_for_registration   :boolean          default(FALSE), not null
-#  trello_board_id         :string
+#  trello_inbox_list_id    :string
 #
 # Indexes
 #
