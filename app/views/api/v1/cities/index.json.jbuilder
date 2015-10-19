@@ -22,7 +22,7 @@ json.cities do
       json.meetup_url groups.empty? ? nil : groups.first['link']
     end
     json.batches city.open_batches do |batch|
-      json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :trello_board_id
+      json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :trello_inbox_list_id
     end
   end
 end
