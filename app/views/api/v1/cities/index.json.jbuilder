@@ -16,10 +16,10 @@ json.cities do
         json.thumbnail city.location_picture.url(:thumbnail)
       end
     end
-    api = MeetupApi.new
     json.extract! city, :meetup_id, :twitter_url
     if city.meetup_id
-      json.meetup_url api.groups(group_id: city[:meetup_id])["results"].first['link']
+      groups = @meetup_client.groups(group_id: city[:meetup_id])["results"]
+      json.meetup_url groups.empty? ? nil : groups.first['link']
     end
     json.batches city.open_batches do |batch|
       json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats
