@@ -14,6 +14,8 @@ class StudentItem extends React.Component {
       'is-removed': this.state.removed
     })
 
+    var tooltip = (<ReactBootstrap.Tooltip className='tooltip-resource'>Invite to Kitt & Slack</ReactBootstrap.Tooltip>)
+
     return(
       <div>
           <div className={itemClasses}>
@@ -35,9 +37,11 @@ class StudentItem extends React.Component {
               <img src={this.props.student.gravatar_url} />
             </div>
             <div className='student-item-cta' onClick={this.handleValidation.bind(this)}>
-              <a>
-                <i className='mdi mdi-check'></i>
-              </a>
+              <ReactBootstrap.OverlayTrigger placement='top' trigger={['hover', 'focus']} delayShow={30} overlay={tooltip}>
+                <a>
+                  <i className='mdi mdi-check'></i>
+                </a>
+              </ReactBootstrap.OverlayTrigger>
             </div>
           </div>
 

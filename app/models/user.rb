@@ -117,6 +117,10 @@ class User < ActiveRecord::Base
     picture.exists? ? picture.url(:medium) : gravatar_url
   end
 
+  def ready_for_validation?
+    !alumni && first_name.present? && last_name.present?
+  end
+
   private
 
   def octokit_client
