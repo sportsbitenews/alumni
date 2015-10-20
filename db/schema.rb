@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012102924) do
+ActiveRecord::Schema.define(version: 20151020084652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -193,6 +193,16 @@ ActiveRecord::Schema.define(version: 20151012102924) do
 
   add_index "stories", ["user_id"], name: "index_stories_on_user_id", using: :btree
 
+  create_table "testimonials", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "en"
+    t.string   "fr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "testimonials", ["user_id"], name: "index_testimonials_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -260,5 +270,6 @@ ActiveRecord::Schema.define(version: 20151012102924) do
   add_foreign_key "questions", "users"
   add_foreign_key "resources", "users"
   add_foreign_key "stories", "users"
+  add_foreign_key "testimonials", "users"
   add_foreign_key "users", "batches"
 end

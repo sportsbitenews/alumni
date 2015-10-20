@@ -21,9 +21,6 @@
 #  full                    :boolean          default(FALSE), not null
 #  time_zone               :string           default("Paris")
 #  open_for_registration   :boolean          default(FALSE), not null
-#  price_cents             :integer          default(0), not null
-#  price_currency          :string           default("EUR"), not null
-#  trello_inbox_list_id    :string
 #
 # Indexes
 #
