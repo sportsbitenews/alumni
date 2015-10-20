@@ -59,7 +59,6 @@ class User < ActiveRecord::Base
   belongs_to :batch
   has_many :resources
   has_many :jobs
-  has_many :jobs
   has_many :questions
   has_many :testimonials
   has_many :milestones
