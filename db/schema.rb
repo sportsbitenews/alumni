@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020084652) do
+ActiveRecord::Schema.define(version: 20151020161120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,15 +63,15 @@ ActiveRecord::Schema.define(version: 20151020084652) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "location"
     t.string   "address"
     t.text     "description_fr"
     t.text     "description_en"
     t.integer  "meetup_id"
     t.string   "twitter_url"
-    t.boolean  "active",                        default: false, null: false
+    t.boolean  "active",                         default: false, null: false
     t.string   "city_picture_file_name"
     t.string   "city_picture_content_type"
     t.integer  "city_picture_file_size"
@@ -83,6 +83,10 @@ ActiveRecord::Schema.define(version: 20151020084652) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "slug"
+    t.string   "classroom_picture_file_name"
+    t.string   "classroom_picture_content_type"
+    t.integer  "classroom_picture_file_size"
+    t.datetime "classroom_picture_updated_at"
   end
 
   add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree

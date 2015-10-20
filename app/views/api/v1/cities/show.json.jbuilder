@@ -7,6 +7,7 @@ json.city do
   json.extract! @city, :address, :latitude, :longitude
   json.location_picture @city.location_picture.url(:cover)
   json.city_picture @city.city_picture.url(:cover)
+  json.classroom_picture @city.classroom_picture.url(:cover)
   json.extract! @city, :meetup_id, :twitter_url
   json.teachers @teachers do |teacher|
     json.extract! teacher, :id, :github_nickname, :thumbnail, :first_name, :last_name
