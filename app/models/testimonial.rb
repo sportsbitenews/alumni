@@ -16,4 +16,6 @@
 
 class Testimonial < ActiveRecord::Base
   belongs_to :user
+  validates :en, presence: true
+  validates :fr, presence: true
 end
