@@ -5,11 +5,21 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if omniauth_params.has_key? "batch"
       batch = Batch.find(omniauth_params['batch'])
       if batch.onboarding
-        @user.alumni = false
-        @user.batch = batch
-        @user.save!
-        sign_in @user, :event => :authentication
-        redirect_to register_batch_path(batch)
+        if @user.alumni
+          sign_in @user, :event => :authentication
+          flash[:notice] = "Welcome to the Alumni :) Start browsing these resources"
+          redirect_to root_path
+        elsif @user.teacher || @user.staff || @user.admin
+          sign_in @user, :event => :authentication
+          flash[:alert] = "You cannot onboard a Batch, you're Staff! ;)"
+          redirect_to root_path
+        else
+          @user.alumni = false
+          @user.batch = batch
+          @user.save!
+          sign_in @user, :event => :authentication
+          redirect_to register_batch_path(batch)
+        end
       else
         flash[:alert] = "The registration period is over for this batch."
         redirect_to root_path

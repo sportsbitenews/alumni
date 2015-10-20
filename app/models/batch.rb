@@ -21,6 +21,9 @@
 #  full                    :boolean          default(FALSE), not null
 #  time_zone               :string           default("Paris")
 #  open_for_registration   :boolean          default(FALSE), not null
+#  trello_inbox_list_id    :string
+#  price_cents             :integer          default(0), not null
+#  price_currency          :string           default("USD"), not null
 #
 # Indexes
 #
@@ -28,10 +31,11 @@
 #
 
 class Batch < ActiveRecord::Base
-  validates :slug, uniqueness: true, allow_nil: true
+  validates :slug, uniqueness: true, allow_nil: true, allow_blank: true
   validates :city, presence: true
   validates :starts_at, presence: true
   validates :time_zone, presence: true
+  validates :price_cents, numericality: { greater_than: 3_000_00 }  # cents
 
   belongs_to :city
   has_many :users  # Students
@@ -42,6 +46,7 @@ class Batch < ActiveRecord::Base
   before_validation :set_ends_at
   after_save :create_slack_channel, if: :slug_set?
   after_save :push_to_kitt, if: :slug_set?
+  monetize :price_cents
 
   # TODO(ssaunier):
   # after_create :create_trello_board

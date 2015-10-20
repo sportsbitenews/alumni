@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(version: 20151020084652) do
     t.boolean  "full",                    default: false,   null: false
     t.string   "time_zone",               default: "Paris"
     t.boolean  "open_for_registration",   default: false,   null: false
+    t.string   "trello_inbox_list_id"
+    t.integer  "price_cents",             default: 0,       null: false
+    t.string   "price_currency",          default: "USD",   null: false
   end
 
   add_index "batches", ["city_id"], name: "index_batches_on_city_id", using: :btree

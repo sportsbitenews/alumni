@@ -29,6 +29,7 @@ RailsAdmin.config do |config|
         field :city
         field :starts_at
         field :onboarding
+        field :open_for_registration
         field :slack_id
       end
     end
