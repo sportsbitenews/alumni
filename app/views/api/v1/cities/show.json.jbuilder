@@ -5,9 +5,9 @@ json.city do
     json.en @city.description_en
   end
   json.extract! @city, :address, :latitude, :longitude
-  json.location_picture @city.location_picture.url(:cover)
-  json.city_picture @city.city_picture.url(:cover)
-  json.classroom_picture @city.classroom_picture.url(:cover)
+  json.location_picture @city.location_picture.present? ? @city.location_picture.url(:cover) : nil
+  json.city_picture @city.city_picture.present? ? @city.city_picture.url(:cover) : nil
+  json.classroom_picture @city.classroom_picture.present? ? @city.classroom_picture.url(:cover) : nil
   json.extract! @city, :meetup_id, :twitter_url
   json.teachers @teachers do |teacher|
     json.extract! teacher, :id, :github_nickname, :thumbnail, :first_name, :last_name
