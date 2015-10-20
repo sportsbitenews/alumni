@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   # API routing
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :cities, only: [ :index, :show ]
-      resources :batches, only: [ :show ]
-      resources :projects, only: [ :index ]
-      resources :alumni, only: [ :index ]
-      resources :staff, only: [ :index ]
-      resources :stories, only: [ :index ]
+      resources :cities,       only: [ :index, :show ]
+      resources :batches,      only: [ :show ]
+      resources :projects,     only: [ :index ]
+      resources :alumni,       only: [ :index ]
+      resources :staff,        only: [ :index ]
+      resources :stories,      only: [ :index ]
+      resources :testimonials, only: [ :index ]
     end
   end
 

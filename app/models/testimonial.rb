@@ -4,8 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  en         :string
-#  fr         :string
+#  content    :string
+#  locale     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -16,6 +16,7 @@
 
 class Testimonial < ActiveRecord::Base
   belongs_to :user
-  validates :en, presence: true
-  validates :fr, presence: true
+  validates :user, presence: true
+  validates :content, presence: true
+  validates :locale, presence: true
 end

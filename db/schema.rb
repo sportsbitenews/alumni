@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20151020084652) do
     t.boolean  "open_for_registration",   default: false,   null: false
     t.string   "trello_inbox_list_id"
     t.integer  "price_cents",             default: 0,       null: false
-    t.string   "price_currency",          default: "USD",   null: false
+    t.string   "price_currency",          default: "EUR",   null: false
   end
 
   add_index "batches", ["city_id"], name: "index_batches_on_city_id", using: :btree
@@ -198,8 +198,8 @@ ActiveRecord::Schema.define(version: 20151020084652) do
 
   create_table "testimonials", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "en"
-    t.string   "fr"
+    t.string   "content"
+    t.string   "locale"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
