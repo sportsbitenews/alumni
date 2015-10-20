@@ -60,6 +60,7 @@ class User < ActiveRecord::Base
   has_many :resources
   has_many :jobs
   has_many :questions
+  has_many :testimonials
   has_many :milestones
   has_one  :story
   has_and_belongs_to_many :projects
