@@ -16,13 +16,17 @@ json.cities do
         json.thumbnail city.location_picture.url(:thumbnail)
       end
     end
-    json.extract! city, :meetup_id, :twitter_url
+    json.extract! city, :twitter_url
     if city.meetup_id
       groups = @meetup_client.groups(group_id: city[:meetup_id])["results"]
-      json.meetup_url groups.empty? ? nil : groups.first['link']
+      if groups && !groups.empty?
+        json.meetup_id :meetup_id
+        json.meetup_url groups.first['link']
+      end
     end
     json.batches city.open_batches do |batch|
       json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :price_cents, :price_currency
+      json.analytics_slug "#{batch.city.name.downcase}-#{batch.starts_at.strftime("%B").downcase}-#{batch.starts_at.strftime("%Y")}"
     end
   end
 end
