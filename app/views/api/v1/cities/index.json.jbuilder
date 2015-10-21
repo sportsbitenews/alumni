@@ -18,9 +18,10 @@ json.cities do
     end
     json.extract! city, :twitter_url
     if city.meetup_id
-      groups = @meetup_client.groups(group_id: city[:meetup_id])["results"]
+      groups = @meetup_client.groups(group_id: city.meetup_id)["results"]
+
       if groups && !groups.empty?
-        json.meetup_id :meetup_id
+        json.extract! city, :meetup_id
         json.meetup_url groups.first['link']
       end
     end
