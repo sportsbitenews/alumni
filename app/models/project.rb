@@ -36,6 +36,8 @@ class Project < ActiveRecord::Base
   validates_attachment_content_type :cover_picture,
     content_type: /\Aimage\/.*\z/
 
+  after_save ->() { InvalidateWwwCacheJob.perform_later }
+
   def slugify
     self.slug = self.name.to_slug.normalize.to_s
   end

@@ -26,4 +26,6 @@ class Story < ActiveRecord::Base
     styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "270x180>", format: 'jpg', quality: 20 } }
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
+
+  after_save ->() { InvalidateWwwCacheJob.perform_later }
 end

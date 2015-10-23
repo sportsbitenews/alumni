@@ -56,6 +56,8 @@ class Batch < ActiveRecord::Base
   validates_attachment_content_type :meta_image,
     content_type: /\Aimage\/.*\z/
 
+  after_save ->() { InvalidateWwwCacheJob.perform_later }
+
   def set_ends_at
     self.ends_at = self.starts_at + 9.weeks - 3.days if self.starts_at
   end

@@ -58,6 +58,8 @@ class City < ActiveRecord::Base
 
   has_many :batches
 
+  after_save ->() { InvalidateWwwCacheJob.perform_later }
+
   def open_batches
     batches.where(open_for_registration: true).order(:starts_at)
   end
