@@ -28,6 +28,7 @@
 #  classroom_picture_file_size    :integer
 #  classroom_picture_updated_at   :datetime
 #  course_locale                  :string
+#  specifics                      :text
 #
 # Indexes
 #

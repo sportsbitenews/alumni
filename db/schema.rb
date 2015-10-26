@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026142240) do
+ActiveRecord::Schema.define(version: 20151026154003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151026142240) do
     t.integer  "classroom_picture_file_size"
     t.datetime "classroom_picture_updated_at"
     t.string   "course_locale"
+    t.text     "specifics"
   end
 
   add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
