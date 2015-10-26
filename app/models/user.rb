@@ -39,6 +39,7 @@
 #  picture_file_size      :integer
 #  picture_updated_at     :datetime
 #  role                   :string
+#  twitter_nickname       :string
 #
 # Indexes
 #

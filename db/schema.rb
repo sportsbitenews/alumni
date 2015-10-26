@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026154003) do
+ActiveRecord::Schema.define(version: 20151026161930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -255,6 +255,7 @@ ActiveRecord::Schema.define(version: 20151026154003) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "role"
+    t.string   "twitter_nickname"
   end
 
   add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree
