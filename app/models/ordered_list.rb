@@ -15,6 +15,8 @@ class OrderedList < ActiveRecord::Base
   validates :element_type, inclusion: { in: ELEMENT_TYPES }
   validate :slugs_exist?
 
+  after_save ->() { InvalidateWwwCacheJob.perform_later }
+
   rails_admin do
     edit do
       field :element_type, :enum do
