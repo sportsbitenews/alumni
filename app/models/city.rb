@@ -12,7 +12,6 @@
 #  description_en                 :text
 #  meetup_id                      :integer
 #  twitter_url                    :string
-#  active                         :boolean          default(FALSE), not null
 #  city_picture_file_name         :string
 #  city_picture_content_type      :string
 #  city_picture_file_size         :integer
@@ -40,7 +39,7 @@ class City < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   validates :name, presence: true, uniqueness: true
-
+  validates :course_locale, presence: true,  inclusion: { in: %w(en fr) }
   has_attached_file :city_picture,
     styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "540x360>", format: 'jpg', quality: 70 } }
   has_attached_file :location_picture,
@@ -65,7 +64,7 @@ class City < ActiveRecord::Base
     batches.where(open_for_registration: true).order(:starts_at)
   end
 
-  %i(teachers users projects featured_projects).each do |method|
+  %i(teachers users projects).each do |method|
     define_method method do
       batches.includes(method).order(starts_at: :desc).map(&method).flatten.uniq
     end

@@ -125,6 +125,10 @@ class User < ActiveRecord::Base
     !alumni && first_name.present? && last_name.present?
   end
 
+  def self.find_by_slug(slug)
+    find_by_github_nickname slug
+  end
+
   private
 
   def octokit_client

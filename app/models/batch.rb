@@ -40,7 +40,6 @@ class Batch < ActiveRecord::Base
   belongs_to :city
   has_many :users  # Students
   has_many :projects, -> { order(position: :asc) }
-  has_many :featured_projects, -> { where(featured: true) }, class_name: "Project"
   has_and_belongs_to_many :teachers, class_name: "User", foreign_key: "batch_id"
 
   before_validation :set_ends_at

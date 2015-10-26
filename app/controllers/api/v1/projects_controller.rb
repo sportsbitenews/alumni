@@ -1,13 +1,16 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
   def index
     if params[:city].present?
-      city = City.friendly.find(params[:city])
-      @projects = params[:featured] ? city.featured_projects : city.projects
-    elsif params[:slug].present?
-      slugs = params['slug'].split(',')
-      @projects = Project.where(slug: slugs)
+      @projects = City.friendly.find(params[:city]).projects
+    elsif params[:list_name].present?
+      list = OrderedList.find_by_name(params[:list_name])
+      if list
+        @projects = Project.where(slug: list.slugs).sort_by {|p| list.slugs.index(p.slug) }
+      else
+        @projects = Project.all
+      end
     else
-      @projects = params[:featured] ? Project.where(featured: true) : Project.all
+      @projects = Project.all
     end
   end
 end
