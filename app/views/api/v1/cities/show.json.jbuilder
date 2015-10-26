@@ -1,5 +1,5 @@
 json.city do
-  json.extract! @city, :id, :name, :slug, :location
+  json.extract! @city, :id, :name, :slug, :location, :specifics
   json.description do
     json.fr @city.description_fr
     json.en @city.description_en
