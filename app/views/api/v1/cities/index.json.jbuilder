@@ -5,7 +5,7 @@ json.cities do
       json.fr city.description_fr
       json.en city.description_en
     end
-    json.extract! city, :address, :latitude, :longitude
+    json.extract! city, :address, :latitude, :longitude, :course_locale
     json.pictures do
       json.city do
         json.cover city.city_picture.url(:cover)
