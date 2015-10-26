@@ -34,7 +34,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in @user, :event => :authentication
       answer = @user.answers.create content: omniauth_params['content']
       omniauth_params['post_type'].constantize.find(omniauth_params['post_id']).answers << answer
-      redirect_to eval(omniauth_params["post_type"].downcase + "_path(omniauth_params['post_id'])")
+      route = :"#{omniauth_params["post_type"].downcase}_path"
+      redirect_to send(route, omniauth_params['post_id'])
     elsif @user.persisted? && @user.legit?
       @user.save
       sign_in @user, :event => :authentication
