@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026104302) do
+ActiveRecord::Schema.define(version: 20151026142240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,15 +63,14 @@ ActiveRecord::Schema.define(version: 20151026104302) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "location"
     t.string   "address"
     t.text     "description_fr"
     t.text     "description_en"
     t.integer  "meetup_id"
     t.string   "twitter_url"
-    t.boolean  "active",                         default: false, null: false
     t.string   "city_picture_file_name"
     t.string   "city_picture_content_type"
     t.integer  "city_picture_file_size"

@@ -12,7 +12,6 @@
 #  description_en                 :text
 #  meetup_id                      :integer
 #  twitter_url                    :string
-#  active                         :boolean          default(FALSE), not null
 #  city_picture_file_name         :string
 #  city_picture_content_type      :string
 #  city_picture_file_size         :integer
