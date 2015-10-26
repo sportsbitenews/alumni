@@ -19,4 +19,6 @@ class Testimonial < ActiveRecord::Base
   validates :user, presence: true
   validates :content, presence: true
   validates :locale, presence: true
+
+  after_save ->() { InvalidateWwwCacheJob.perform_later }
 end
