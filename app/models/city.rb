@@ -24,6 +24,7 @@
 #  latitude                      :float
 #  longitude                     :float
 #  slug                          :string
+#  course_locale                 :string
 #
 # Indexes
 #
@@ -35,6 +36,7 @@ class City < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   validates :name, presence: true, uniqueness: true
+  validates :course_locale, presence: true
 
   has_attached_file :city_picture,
     styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "270x180>", format: 'jpg', quality: 20 } }
