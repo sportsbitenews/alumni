@@ -24,6 +24,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:alert] = "The registration period is over for this batch."
         redirect_to root_path
       end
+    elsif omniauth_params['scenario'] === 'upvote'
+      @user.save!
+      sign_in @user, :event => :authentication
+      @user.up_votes omniauth_params['post_type'].constantize.find(omniauth_params['post_id'])
+      redirect_to after_sign_in
+    elsif omniauth_params['scenario'] == 'post_answer'
+      @user.save!
+      sign_in @user, :event => :authentication
+      answer = @user.answers.create content: omniauth_params['content']
+      omniauth_params['post_type'].constantize.find(omniauth_params['post_id']).answers << answer
+      route = :"#{omniauth_params["post_type"].downcase}_path"
+      redirect_to send(route, omniauth_params['post_id'])
     elsif @user.persisted? && @user.legit?
       @user.save
       sign_in @user, :event => :authentication

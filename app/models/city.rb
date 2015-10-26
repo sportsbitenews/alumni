@@ -23,6 +23,7 @@
 #  latitude                       :float
 #  longitude                      :float
 #  slug                           :string
+#  course_locale                  :string
 #  classroom_picture_file_name    :string
 #  classroom_picture_content_type :string
 #  classroom_picture_file_size    :integer

@@ -1,0 +1,32 @@
+.modal-sign-in {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(white, .89);
+  z-index: -1;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: .3s ease opacity;
+  visibility: hidden;
+  display: flex;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 99;
+
+    .modal-sign-in-content {
+      animation: expandUp 1s ease forwards;
+    }
+  }
+}
+
+.modal-sign-in-title {
+  font-size: 34px;
+  margin-bottom: 50px;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
