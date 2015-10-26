@@ -64,7 +64,7 @@ class City < ActiveRecord::Base
     batches.where(open_for_registration: true).order(:starts_at)
   end
 
-  %i(teachers users projects featured_projects).each do |method|
+  %i(teachers users projects).each do |method|
     define_method method do
       batches.includes(method).order(starts_at: :desc).map(&method).flatten.uniq
     end
