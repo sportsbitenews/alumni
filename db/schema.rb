@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021071919) do
+ActiveRecord::Schema.define(version: 20151026104302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,19 +140,26 @@ ActiveRecord::Schema.define(version: 20151021071919) do
   add_index "milestones", ["project_id"], name: "index_milestones_on_project_id", using: :btree
   add_index "milestones", ["user_id"], name: "index_milestones_on_user_id", using: :btree
 
+  create_table "ordered_lists", force: :cascade do |t|
+    t.string   "name"
+    t.string   "element_type"
+    t.text     "slugs",        default: [],              array: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
     t.integer  "batch_id"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "tagline"
     t.string   "cover_picture_file_name"
     t.string   "cover_picture_content_type"
     t.integer  "cover_picture_file_size"
     t.datetime "cover_picture_updated_at"
     t.integer  "position"
-    t.boolean  "featured",                   default: false, null: false
     t.string   "slug"
   end
 
