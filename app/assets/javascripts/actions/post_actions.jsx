@@ -5,7 +5,14 @@ class PostActionsClass {
 
   upVote(type, id) {
     axios.railsPost(Routes.up_vote_post_path(id, { format: 'json' }), { type: type })
-      .then((response) => this.dispatch(response.data));
+      .then((response) => {
+          this.dispatch(response.data);
+        }
+      ).catch((response) => {
+        if (response.status === 401) {
+          PubSub.publish('displayModal', {post_id: id, post_type: type, scenario: 'upvote'})
+        }
+      });
   }
 
   update(content, type, id) {

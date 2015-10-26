@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021071919) do
+ActiveRecord::Schema.define(version: 20151026112716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20151021071919) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "slug"
+    t.string   "course_locale"
     t.string   "classroom_picture_file_name"
     t.string   "classroom_picture_content_type"
     t.integer  "classroom_picture_file_size"
