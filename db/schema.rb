@@ -83,14 +83,11 @@ ActiveRecord::Schema.define(version: 20151021071919) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "slug"
-<<<<<<< HEAD
     t.string   "course_locale"
-=======
     t.string   "classroom_picture_file_name"
     t.string   "classroom_picture_content_type"
     t.integer  "classroom_picture_file_size"
     t.datetime "classroom_picture_updated_at"
->>>>>>> master
   end
 
   add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
