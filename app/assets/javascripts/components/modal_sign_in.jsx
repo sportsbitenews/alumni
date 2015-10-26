@@ -15,6 +15,14 @@ class ModalSignIn extends React.Component {
       'is-active': this.state.isActive
     })
 
+    var scenario = this.state.signInParams.scenario;
+
+    if (scenario === 'post_answer') {
+      var scenarioAction = 'and publish your answer'
+    } else if (scenario === 'upvote') {
+      var scenarioAction = 'and upvote'
+    }
+
     return(
       <div className={cC} onClick={this.escape.bind(this)}>
         <div className='modal-sign-in-content'>
@@ -23,7 +31,7 @@ class ModalSignIn extends React.Component {
           </div>
           <div className='text-center'>
             <a className='button button-success' href={Routes.user_omniauth_authorize_path('github', this.state.signInParams)}>
-              Sign in with GitHub
+              Sign in {scenarioAction} automatically!
             </a>
           </div>
         </div>
