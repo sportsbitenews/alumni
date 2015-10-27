@@ -1,7 +1,18 @@
 class Question extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isSolved: this.props.solved
+    }
+  }
   render() {
+    componentClasses = classNames({
+      'post-detail': true,
+      'is-editable': this.props.editable,
+      'is-solved': this.state.isSolved
+    })
     return (
-      <div className='post-detail'>
+      <div className={componentClasses}>
         <div className='post-detail-header question-detail'>
           <div className='post-detail-header-main'>
             <div className='post-detail-name post-detail-name-reduce'>{this.props.title}</div>
@@ -11,8 +22,9 @@ class Question extends React.Component {
                 <Upvote {...this.props} />
               </div>
               <a href={this.props.url} target='_blank'>
-                <div className='post-detail-url'>
-                  Not solved
+                <div className='post-detail-url question-detail-url' onClick={this.solve.bind(this)}>
+                  <span className='question-detail-not-solved'>Not solved</span>
+                  <span className='question-detail-solved'><i className='fa fa-check'/> Solved</span>
                 </div>
               </a>
               <div className='post-detail-author'>
@@ -30,5 +42,12 @@ class Question extends React.Component {
       </div>
 
     )
+  }
+
+  solve() {
+    if (this.props.editable) {
+      axios.railsPatch(Routes.solve_question_path(this.props.id))
+        .then((response) => this.setState({ isSolved: response.data.state }))
+    }
   }
 }
