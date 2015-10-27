@@ -6,7 +6,6 @@ JsRoutes.setup do |config|
   #                 before restarting your `rails s`.
   config.include = [
     /resource/,
-    /^user_omniauth_authorize$/,
     /question/,
     /^jobs$/,
     /^job$/,

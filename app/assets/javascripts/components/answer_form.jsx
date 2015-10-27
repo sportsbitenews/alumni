@@ -113,10 +113,10 @@ class AnswerForm extends React.Component {
   }
 
   onKeyDown(e) {
-    if (e.which == 13 && (e.metaKey || e.ctrlKey)) {
+    if (e.which === 13 && (e.metaKey || e.ctrlKey)) {
       this.postAnswer()
     }
-    else if (e.which == 27 && this.state.blank) {
+    else if (e.which === 27 && this.state.blank) {
       this.resetForm();
       this.content().blur();
     }

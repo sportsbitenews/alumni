@@ -30,7 +30,7 @@ class ModalSignIn extends React.Component {
             Please sign in to do that
           </div>
           <div className='text-center'>
-            <a className='button button-success' href={Routes.user_omniauth_authorize_path('github', this.state.signInParams)}>
+            <a className='button button-success' href={this.props.github_url + "?" + this._serialize(this.state.signInParams)}>
               Sign in {scenarioAction} automatically!
             </a>
           </div>
@@ -52,5 +52,14 @@ class ModalSignIn extends React.Component {
     this.setState({
       isActive: false
     })
+  }
+
+  _serialize(obj) {
+    var str = [];
+    for(var p in obj) {
+      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    }
+
+    return str.join("&");
   }
 }
