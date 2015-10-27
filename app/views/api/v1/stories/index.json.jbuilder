@@ -3,6 +3,7 @@ json.stories do
     json.id story.id
     json.company do
       json.name story.company.name if story.company
+      json.url story.company.url if story.company
       json.logo story.company.logo.url(:thumbnail) if story.company
     end
     json.description do
