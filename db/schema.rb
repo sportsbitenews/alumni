@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027143646) do
+ActiveRecord::Schema.define(version: 20151027140353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(version: 20151027143646) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.string   "url"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -219,10 +218,8 @@ ActiveRecord::Schema.define(version: 20151027143646) do
     t.string   "company_picture_content_type"
     t.integer  "company_picture_file_size"
     t.datetime "company_picture_updated_at"
-    t.integer  "company_id"
   end
 
-  add_index "stories", ["company_id"], name: "index_stories_on_company_id", using: :btree
   add_index "stories", ["user_id"], name: "index_stories_on_user_id", using: :btree
 
   create_table "testimonials", force: :cascade do |t|
@@ -302,7 +299,6 @@ ActiveRecord::Schema.define(version: 20151027143646) do
   add_foreign_key "projects", "batches"
   add_foreign_key "questions", "users"
   add_foreign_key "resources", "users"
-  add_foreign_key "stories", "companies"
   add_foreign_key "stories", "users"
   add_foreign_key "testimonials", "users"
   add_foreign_key "users", "batches"

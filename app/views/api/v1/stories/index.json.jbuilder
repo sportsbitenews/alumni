@@ -1,10 +1,12 @@
 json.stories do
   json.array! @stories do |story|
     json.id story.id
-    json.company do
-      json.name story.company.name if story.company
-      json.url story.company.url if story.company
-      json.logo story.company.logo.url(:thumbnail) if story.company
+    if story.company
+      json.company do
+        json.name story.company.name
+        json.url story.company.url
+        json.logo story.company.logo.url(:thumbnail)
+      end
     end
     json.description do
       json.fr story.description_fr

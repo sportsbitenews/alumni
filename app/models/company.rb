@@ -18,7 +18,7 @@ class Company < ActiveRecord::Base
   has_many :stories
 
   has_attached_file :logo,
-    styles: { thumbnail: { geometry: "270x180>", format: 'jpg', quality: 20 } }
+    styles: { thumbnail: { geometry: "270x180>", format: 'png' } }
   validates_attachment_content_type :logo,
     content_type: /\Aimage\/.*\z/
 
