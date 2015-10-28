@@ -20,8 +20,8 @@ class QuestionsController < ApplicationController
   def update
     # TODO : handle title update
     @question.content = params[:content]
-    @question.save
     authorize @question
+    @question.save
   end
 
   def new
