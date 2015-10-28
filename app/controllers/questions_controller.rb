@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
-  before_action :set_question, only: [:show, :update]
+  before_action :set_question, only: [:show, :update, :solve]
 
   def show
     authorize @question
@@ -20,13 +20,20 @@ class QuestionsController < ApplicationController
   def update
     # TODO : handle title update
     @question.content = params[:content]
-    @question.save
     authorize @question
+    @question.save
   end
 
   def new
     @question = Question.new
     authorize @question
+  end
+
+  def solve
+    @question.solved = !@question.solved
+    authorize @question
+    @question.save
+    render json: {state: @question.solved}
   end
 
   private

@@ -41,7 +41,11 @@ Rails.application.routes.draw do
 
   get :onboarding, to: 'batches#onboarding'
 
-  resources :questions, only: %i(new show create update)
+  resources :questions, only: %i(new show create update) do
+    member do
+      patch :solve
+    end
+  end
   resources :milestones, only: %i(new show create update)
   resources :jobs, only: %i(new show create update)
   resources :projects, only: %i(show)

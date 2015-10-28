@@ -10,7 +10,11 @@ class QuestionPolicy < PostPolicy
   end
 
   def update?
-    user ? record.user.id == user.id || user.admin? : false
+    admin_or_owner
+  end
+
+  def solve?
+    admin_or_owner
   end
 
   def show?
@@ -19,5 +23,11 @@ class QuestionPolicy < PostPolicy
 
   def create?
     !user.nil?
+  end
+
+  private
+
+  def admin_or_owner
+    user ? record.user.id == user.id || user.admin? : false
   end
 end
