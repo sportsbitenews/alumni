@@ -31,8 +31,8 @@ class QuestionsController < ApplicationController
 
   def solve
     @question.solved = !@question.solved
-    @question.save
     authorize @question
+    @question.save
     render json: {state: @question.solved}
   end
 
