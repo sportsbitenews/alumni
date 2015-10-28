@@ -8,7 +8,7 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  solved     :boolean          default(FALSE)
+#  solved     :boolean          default(FALSE), not null
 #
 # Indexes
 #
