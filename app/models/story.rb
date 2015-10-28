@@ -14,6 +14,10 @@
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
 #  company_id           :integer
+#  title_en             :string
+#  title_fr             :string
+#  summary_fr           :text
+#  summary_en           :text
 #
 # Indexes
 #
