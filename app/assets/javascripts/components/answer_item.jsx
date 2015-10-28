@@ -132,6 +132,12 @@ class AnswerItem extends React.Component {
     window.prompt("Copy to clipboard", link);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      content: this.props.content
+    })
+  }
+
 
 
 }
