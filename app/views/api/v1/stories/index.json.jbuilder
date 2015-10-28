@@ -1,7 +1,6 @@
 json.stories do
   json.array! @stories do |story|
     json.id story.id
-    json.id story.id
     if story.company
       json.company do
         json.name story.company.name
