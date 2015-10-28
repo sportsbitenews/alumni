@@ -79,9 +79,11 @@ class AnswerForm extends React.Component {
 
   onStoreChange(store) {
     var newAnswer = store.getNewAnswer();
-    this.setState({
-      renderedContent: newAnswer.rendered_content
-    })
+    if (newAnswer) {
+      this.setState({
+        renderedContent: newAnswer.rendered_content
+      })
+    }
   }
 
   onPostStoreChange(store) {
