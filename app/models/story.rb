@@ -2,22 +2,18 @@
 #
 # Table name: stories
 #
-#  id                           :integer          not null, primary key
-#  description_en               :text
-#  description_fr               :text
-#  published                    :boolean          default(FALSE), not null
-#  user_id                      :integer
-#  created_at                   :datetime         not null
-#  updated_at                   :datetime         not null
-#  picture_file_name            :string
-#  picture_content_type         :string
-#  picture_file_size            :integer
-#  picture_updated_at           :datetime
-#  company_picture_file_name    :string
-#  company_picture_content_type :string
-#  company_picture_file_size    :integer
-#  company_picture_updated_at   :datetime
-#  company_id                   :integer
+#  id                   :integer          not null, primary key
+#  description_en       :text
+#  description_fr       :text
+#  published            :boolean          default(FALSE), not null
+#  user_id              :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  picture_file_name    :string
+#  picture_content_type :string
+#  picture_file_size    :integer
+#  picture_updated_at   :datetime
+#  company_id           :integer
 #
 # Indexes
 #
