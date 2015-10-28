@@ -40,6 +40,7 @@ class PostDetailBody extends React.Component {
       (upVoter) => upVoter.github_nickname.toLowerCase()
     );
 
+
     if (this.props.description != undefined) {
       var firstAnswer = (
         <AnswerItem

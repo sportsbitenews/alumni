@@ -82,11 +82,11 @@ ActiveRecord::Schema.define(version: 20151027143646) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "slug"
+    t.string   "course_locale"
     t.string   "classroom_picture_file_name"
     t.string   "classroom_picture_content_type"
     t.integer  "classroom_picture_file_size"
     t.datetime "classroom_picture_updated_at"
-    t.string   "course_locale"
     t.text     "specifics"
   end
 
@@ -186,8 +186,9 @@ ActiveRecord::Schema.define(version: 20151027143646) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "solved",     default: false
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
@@ -207,18 +208,14 @@ ActiveRecord::Schema.define(version: 20151027143646) do
   create_table "stories", force: :cascade do |t|
     t.text     "description_en"
     t.text     "description_fr"
-    t.boolean  "published",                    default: false, null: false
+    t.boolean  "published",            default: false, null: false
     t.integer  "user_id"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.string   "company_picture_file_name"
-    t.string   "company_picture_content_type"
-    t.integer  "company_picture_file_size"
-    t.datetime "company_picture_updated_at"
     t.integer  "company_id"
   end
 
