@@ -31,6 +31,8 @@ JsRoutes.setup do |config|
     /^project$/,
 
     /^confirm_user$/,
-    /^delete_user$/
+    /^delete_user$/,
+    /^solve_question$/
+
   ]
 end
