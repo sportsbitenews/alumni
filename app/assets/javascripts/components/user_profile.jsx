@@ -31,6 +31,11 @@ class UserProfile extends React.Component {
       'badge-connected': true,
       'is-active': this.props.connected_to_slack
     });
+    if (this.props.badge) {
+      var badge = (
+        <div className={'badge ' + this.props.badge}>{this.props.badge}</div>
+      )
+    }
 
     var batchInfo = null;
     if (this.props.batch) {
@@ -63,6 +68,8 @@ class UserProfile extends React.Component {
         </a>);
     }
 
+    console.log(this.props)
+
     return (
       <div>
         <div className='user-profile-header'>
@@ -72,7 +79,10 @@ class UserProfile extends React.Component {
             <h1 className='text-center user-profile-name'>
               {`${this.props.first_name} ${this.props.last_name}`} <span className={badgeConnectedClasses} />
             </h1>
-            <span className='user-profile-username'>@{this.props.github_nickname}</span>
+            <div className='user-profile-username-container flex'>
+              <span className='user-profile-username'>@{this.props.github_nickname}</span>
+              {badge}
+            </div>
             <div className='user-profile-header-footer'>
               {batchInfo}
               <a href={"http://github.com/" + this.props.github_nickname} target='_blank'>

@@ -28,6 +28,17 @@
   font-size: 20px;
   color: white;
   opacity: 0.7;
+
+  &-container {
+    justify-content: center;
+    .badge {
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      border-radius: 2px;
+    }
+  }
+
 }
 
 .user-profile-header-footer {
