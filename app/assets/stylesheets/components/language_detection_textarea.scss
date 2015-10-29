@@ -1,0 +1,31 @@
+.language-detection-textarea {
+  &.has-french-content {
+    .answer-form-action-write {
+      background: #FFF7E1;
+      color: black;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-right: 10px;
+      border-radius: 20em;
+
+      animation: writeEnter 0.3s ease forwards;
+    }
+  }
+
+  &.is-previewed {
+    .answer-form-input { display: none }
+    .answer-form-preview { display: block }
+    .answer-form-action-preview {
+      opacity: 1;
+      font-weight: bold;
+    }
+
+    .answer-form-action-write {
+      opacity: 0.4;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

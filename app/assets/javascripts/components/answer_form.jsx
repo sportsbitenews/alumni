@@ -5,53 +5,47 @@ class AnswerForm extends React.Component {
   }
 
   componentDidMount() {
-    AnswerStore.listen(this.onStoreChange.bind(this));
     PostStore.listen(this.onPostStoreChange.bind(this));
   }
 
   componentWillUnmount() {
-    AnswerStore.unlisten(this.onStoreChange.bind(this));
     PostStore.unlisten(this.onPostStoreChange.bind(this));
   }
 
   render() {
     var formClasses = classNames({
       'answer-form': true,
-      'is-previewed': this.state.preview,
       'is-editing': this.state.editing,
       'is-blank': this.state.blank,
-      'is-sending-post': this.state.pendingPost,
-      'has-french-content': this.state.frenchSpeaking
+      'is-sending-post': this.state.pendingPost
     });
 
-    var writeValue = this.state.frenchSpeaking ? "Write in 🇬🇧, please 🙏" : 'Write'
+    var fakeTextAreaClasses = classNames({
+      'answer-form-input': true,
+      'hidden': this.state.editing
+    })
 
     return(
       <div className={formClasses}>
-        <div className='answer-form-actions'>
-          <a className='answer-form-action answer-form-action-write' onClick={this.onEditClick.bind(this)}>{writeValue}</a>
-          <hr />
-          <a className='answer-form-action answer-form-action-preview' onClick={this.onPreviewClick.bind(this)}>Preview</a>
-          <a className="answer-form-action-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
-            <span className="octicon octicon-markdown"></span>
-            Markdown supported
-          </a>
-        </div>
-        <textarea
-          placeholder="Say something nice!"
-          onFocus={this.onFocusInput.bind(this)}
-          ref="content" className='answer-form-input'
-          onKeyUp={this.onKeyUp.bind(this)}
-          onKeyDown={this.onKeyDown.bind(this)}
+        <LanguageDetectionTextarea
+          placeholder={"Say something nice!"}
+          onFocus=    {this.onFocusInput.bind(this)}
+          onKeyDown=  {this.onKeyDown.bind(this)}
+          setContent= {this.setContent.bind(this)}
         />
-        <div className='answer-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}}></div>
+        <textarea
+          className=  {fakeTextAreaClasses}
+          onFocus=    {this.onFocusInput.bind(this)}
+          placeholder='Say something nice!'
+        />
+
         <div className='answer-form-actions-submit'>
-        <div className='answer-form-submit button button-discret' onClick={this.closeForm.bind(this)}>
-          Cancel
-        </div>
-        <div className='answer-form-submit button button-success' onClick={this.postAnswer.bind(this)}>
-          Submit your answer
-        </div>
+          <div className='answer-form-submit button button-discret' onClick={this.closeForm.bind(this)}>
+            Cancel
+          </div>
+          <div className='answer-form-submit button button-success' onClick={this.postAnswer.bind(this)}>
+            Submit your answer
+          </div>
         </div>
       </div>
     )
@@ -59,14 +53,12 @@ class AnswerForm extends React.Component {
 
   onFocusInput(e) {
     e.preventDefault();
-    this.setState({
-      editing: true
-    })
-  }
-
-  resetForm() {
-    this.setState(this.initialState());
-    this.content().value = "";
+    if (!this.state.editing){
+      this.setState({
+        editing: true
+      })
+      PubSub.publish('focusRealInput')
+    }
   }
 
   closeForm() {
@@ -77,44 +69,17 @@ class AnswerForm extends React.Component {
     window.scroll(0, document.body.scrollHeight)
   }
 
-  onStoreChange(store) {
-    var newAnswer = store.getNewAnswer();
-    if (newAnswer) {
-      this.setState({
-        renderedContent: newAnswer.rendered_content
-      })
-    }
-  }
-
   onPostStoreChange(store) {
     if (this.state.pendingPost){
-      this.resetForm();
-      this.content().blur();
-      this.goToBottom();
-    }
-  }
-
-  onEditClick(e) {
-    e.preventDefault();
-    if (this.state.preview) {
       this.setState({
-        preview: false,
-        renderedContent: this.state.blank ? "Nothing to preview" : "Loading preview..."
+        editing: false,
+        pendingPost: false
       })
-    }
-  }
-
-  onPreviewClick(e) {
-    e.preventDefault();
-    this.setState({
-      preview: true
-    })
-    if (!this.state.blank) {
-      AnswerActions.preview(this.content().value);
     }
   }
 
   onKeyDown(e) {
+    console.log(this.state.content)
     if (e.which === 13 && (e.metaKey || e.ctrlKey)) {
       this.postAnswer()
     }
@@ -122,54 +87,22 @@ class AnswerForm extends React.Component {
       this.resetForm();
       this.content().blur();
     }
-    this.isFrenchContent(React.findDOMNode(this.refs.content).value)
+  }
 
+  setContent(content) {
+    this.setState({ content: content })
   }
 
   postAnswer() {
-    AnswerActions.post(this.props.type, this.props.post_id, this.content().value);
-    this.setState({
-      pendingPost: true
-    })
-  }
-
-  onKeyUp(e) {
-    if (this.content().value == "") {
-      this.setState({
-        blank: true
-      })
-    } else if (this.state.blank) {
-      this.setState({
-        blank: false
-      })
-    }
+    AnswerActions.post(this.props.type, this.props.post_id, this.state.content);
+    this.setState({ pendingPost: true })
   }
 
   initialState() {
     return {
-      editing: false,
-      preview: false,
       pendingPost: false,
-      frenchSpeaking: false,
-      renderedContent: "Nothing to preview",
-      blank: true
+      editing: false,
+      content: ''
     };
-  }
-
-  isFrenchContent(content) {
-    axios.get(`${Routes.language_answers_path()}?content=${content}`)
-      .then((response) => {
-        if (response.data.french > response.data.english) {
-          this.setState({ frenchSpeaking: true })
-        } else {
-          if (this.state.frenchSpeaking) {
-            this.setState({ frenchSpeaking: false })
-          }
-        }
-      })
-  }
-
-  content() {
-    return React.findDOMNode(this.refs.content);
   }
 }

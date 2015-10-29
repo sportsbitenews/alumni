@@ -5,7 +5,8 @@ class JobForm extends React.Component {
       preview: false,
       remote: false,
       renderedContent: "Nothing to preview.",
-      type: 'Freelance'
+      type: 'Freelance',
+      frenchSpeaking: false
     }
   }
 
@@ -141,7 +142,13 @@ class JobForm extends React.Component {
                   Markdown supported
                 </a>
               </div>
-              <textarea ref='content' defaultValue={this.props.question.tagline} placeholder='Describe the job' name='job[description]' />
+              <textarea
+                ref='content'
+                defaultValue={this.props.question.tagline}
+                placeholder='Describe the job'
+                name='job[description]'
+                onKeyDown={this.handleKeyDown.bind(this)}
+              />
               <div className='question-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}} />
             </div>
             <div className='errors'>
@@ -155,6 +162,10 @@ class JobForm extends React.Component {
         <div dangerouslySetInnerHTML={{__html: Csrf.getInput()}}></div>
       </form>
     )
+  }
+
+  handleKeyDown(e) {
+    this.isFrenchContent(React.findDOMNode(this.refs.content).value)
   }
 
   handleTypeClick(e) {
@@ -185,6 +196,19 @@ class JobForm extends React.Component {
         renderedContent: store.new_answer.rendered_content == "" ? "Nothing to preview." : store.new_answer.rendered_content
       })
     }
+  }
+
+  isFrenchContent(content) {
+    axios.get(`${Routes.language_answers_path()}?content=${content}`)
+      .then((response) => {
+        if (response.data.french > response.data.english) {
+          this.setState({ frenchSpeaking: true })
+        } else {
+        if (this.state.frenchSpeaking) {
+          this.setState({ frenchSpeaking: false })
+        }
+      }
+    })
   }
 
   onWriteClick(e) {
