@@ -68,8 +68,6 @@ class UserProfile extends React.Component {
         </a>);
     }
 
-    console.log(this.props)
-
     return (
       <div>
         <div className='user-profile-header'>
