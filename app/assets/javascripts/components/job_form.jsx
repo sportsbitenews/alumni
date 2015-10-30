@@ -132,25 +132,13 @@ class JobForm extends React.Component {
             <label htmlFor='job[description]' className='hidden-xs'>
               <i className='mdi mdi-message-text-outline'></i>Description
             </label>
-            <div className={contentInputClasses}>
-              <div className='answer-form-actions question-form-actions'>
-                <a className={writeClasses} onClick={this.onWriteClick.bind(this)}>Write</a>
-                <hr />
-                <a className={previewClasses} onClick={this.onPreviewClick.bind(this)}>Preview</a>
-                <a className="question-form-action-extra hidden-xs answer-form-action-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
-                  <span className="octicon octicon-markdown"></span>
-                  Markdown supported
-                </a>
-              </div>
-              <textarea
-                ref='content'
-                defaultValue={this.props.question.tagline}
-                placeholder='Describe the job'
-                name='job[description]'
-                onKeyDown={this.handleKeyDown.bind(this)}
-              />
-              <div className='question-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}} />
-            </div>
+            <LanguageDetectionTextarea
+              placeholder={"Describe the job"}
+              defaultValue={this.props.question.tagline}
+              name='job[description]'
+              onKeyDown={this.handleKeyDown.bind(this)}
+            />
+
             <div className='errors'>
               {errorDescription}
             </div>

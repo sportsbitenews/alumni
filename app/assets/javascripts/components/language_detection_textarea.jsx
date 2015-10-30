@@ -46,6 +46,8 @@ class LanguageDetectionTextarea extends React.Component {
           placeholder={this.props.placeholder}
           onFocus={this.props.onFocus}
           ref="content"
+          defaultValue={this.props.defaultValue}
+          name={this.props.name}
           className='answer-form-input answer-form-input-ui'
           onKeyUp={this.onKeyUp.bind(this)}
           onKeyDown={this.props.onKeyDown}
@@ -74,8 +76,10 @@ class LanguageDetectionTextarea extends React.Component {
 
   onKeyUp(e) {
     var content = this.content().value;
-    this.isFrenchContent(this.content().value)
-    this.props.setContent(content)
+    this.isFrenchContent(content)
+    if (this.props.setContent) {
+      this.props.setContent(content)
+    }
     if (this.content().value == "") {
       this.setState({
         blank: true

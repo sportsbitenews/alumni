@@ -106,7 +106,7 @@
   label {
     flex: 0 0 200px;
     color: darkgrey;
-    align-self: center;
+    align-self: flex-start;
     margin: 0;
 
     i {
@@ -196,4 +196,23 @@
   align-items: center;
   padding: 40px;
   justify-content: center;
+}
+
+.language-detection-textarea {
+  flex: 1;
+  .answer-form-action-write { opacity: 1 }
+
+}
+
+.post-submissions-row .answer-form-actions {
+  display: flex;
+  align-items: center;
+}
+
+.post-submissions-row .answer-form-input-ui { display: block }
+
+.post-submissions-row {
+  textarea {
+    margin-top: 10px;
+  }
 }
