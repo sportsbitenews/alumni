@@ -28,7 +28,7 @@ class AnswerForm extends React.Component {
     return(
       <div className={formClasses}>
         <LanguageDetectionTextarea
-          placeholder={"Say something nice!"}
+          placeholder={"Say something nice, in english please."}
           onFocus=    {this.onFocusInput.bind(this)}
           onKeyDown=  {this.onKeyDown.bind(this)}
           setContent= {this.setContent.bind(this)}
@@ -79,7 +79,6 @@ class AnswerForm extends React.Component {
   }
 
   onKeyDown(e) {
-    console.log(this.state.content)
     if (e.which === 13 && (e.metaKey || e.ctrlKey)) {
       this.postAnswer()
     }

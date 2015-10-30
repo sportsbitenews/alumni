@@ -44,7 +44,7 @@ class QuestionForm extends React.Component {
             </label>
             <LanguageDetectionTextarea
               defaultValue={this.props.question.content}
-              placeholder='Describe your problem'
+              placeholder='Describe your problem, in english please. Also, use Markdown.'
               name='question[content]'
             />
 

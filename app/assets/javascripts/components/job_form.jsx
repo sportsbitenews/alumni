@@ -133,7 +133,7 @@ class JobForm extends React.Component {
               <i className='mdi mdi-message-text-outline'></i>Description
             </label>
             <LanguageDetectionTextarea
-              placeholder={"Describe the job"}
+              placeholder={"Describe the job, in english please. Also, use Markdown."}
               defaultValue={this.props.question.tagline}
               name='job[description]'
               onKeyDown={this.handleKeyDown.bind(this)}
