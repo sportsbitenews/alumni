@@ -9,24 +9,12 @@
   display: flex;
   flex-flow: column;
 
-  &.has-french-content {
-    .answer-form-action-write {
-      background: #FFF7E1;
-      color: black;
-      padding-left: 10px;
-      padding-right: 10px;
-      margin-right: 10px;
-      border-radius: 20em;
-
-      animation: writeEnter 0.3s ease forwards;
-    }
-  }
-
   &.is-sending-post {
     .answer-form-input { background-color: #F6F6F6 }
   }
 
   &.is-editing {
+    .answer-form-input-ui {display:block}
     .answer-form-input {
       height: 250px;
 
@@ -53,23 +41,6 @@
 
     }
   }
-
-  &.is-previewed {
-    .answer-form-input { display: none }
-    .answer-form-preview { display: block }
-    .answer-form-action-preview {
-      opacity: 1;
-      font-weight: bold;
-    }
-
-    .answer-form-action-write {
-      opacity: 0.4;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
 }
 
 .answer-form-input {
@@ -83,7 +54,7 @@
   border-radius: 4px;
   padding: 10px;
 
-
+  &-ui { display: none }
   &:focus { outline: 0 }
 }
 

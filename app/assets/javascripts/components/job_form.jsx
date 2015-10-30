@@ -5,7 +5,8 @@ class JobForm extends React.Component {
       preview: false,
       remote: false,
       renderedContent: "Nothing to preview.",
-      type: 'Freelance'
+      type: 'Freelance',
+      frenchSpeaking: false
     }
   }
 
@@ -102,9 +103,9 @@ class JobForm extends React.Component {
             </label>
             <div className='post-submissions-select'>
               <ReactBootstrap.DropdownButton ref='selectType' className={selectTypeClasses} title={this.state.type}>
-                  <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Freelance</div>
-                  <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Employee</div>
-                  <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Internship</div>
+                <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Freelance</div>
+                <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Employee</div>
+                <div className="input-selector-item" ref='selector' onClick={this.handleTypeClick.bind(this)}>Internship</div>
               </ReactBootstrap.DropdownButton>
               <input type='hidden' name='job[contract]' value={this.state.type} />
             </div>
@@ -131,19 +132,13 @@ class JobForm extends React.Component {
             <label htmlFor='job[description]' className='hidden-xs'>
               <i className='mdi mdi-message-text-outline'></i>Description
             </label>
-            <div className={contentInputClasses}>
-              <div className='answer-form-actions question-form-actions'>
-                <a className={writeClasses} onClick={this.onWriteClick.bind(this)}>Write</a>
-                <hr />
-                <a className={previewClasses} onClick={this.onPreviewClick.bind(this)}>Preview</a>
-                <a className="question-form-action-extra hidden-xs answer-form-action-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
-                  <span className="octicon octicon-markdown"></span>
-                  Markdown supported
-                </a>
-              </div>
-              <textarea ref='content' defaultValue={this.props.question.tagline} placeholder='Describe the job' name='job[description]' />
-              <div className='question-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}} />
-            </div>
+            <LanguageDetectionTextarea
+              placeholder={"Describe the job, in english please. Also, use Markdown."}
+              defaultValue={this.props.question.tagline}
+              name='job[description]'
+              onKeyDown={this.handleKeyDown.bind(this)}
+            />
+
             <div className='errors'>
               {errorDescription}
             </div>
@@ -155,6 +150,10 @@ class JobForm extends React.Component {
         <div dangerouslySetInnerHTML={{__html: Csrf.getInput()}}></div>
       </form>
     )
+  }
+
+  handleKeyDown(e) {
+    this.isFrenchContent(React.findDOMNode(this.refs.content).value)
   }
 
   handleTypeClick(e) {
@@ -185,6 +184,19 @@ class JobForm extends React.Component {
         renderedContent: store.new_answer.rendered_content == "" ? "Nothing to preview." : store.new_answer.rendered_content
       })
     }
+  }
+
+  isFrenchContent(content) {
+    axios.get(`${Routes.language_answers_path()}?content=${content}`)
+      .then((response) => {
+        if (response.data.french > response.data.english) {
+          this.setState({ frenchSpeaking: true })
+        } else {
+        if (this.state.frenchSpeaking) {
+          this.setState({ frenchSpeaking: false })
+        }
+      }
+    })
   }
 
   onWriteClick(e) {
