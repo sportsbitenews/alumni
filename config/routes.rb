@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :projects,     only: [ :index ]
       resources :alumni,       only: [ :index ]
       resources :staff,        only: [ :index ]
-      resources :stories,      only: [ :index ]
+      resources :stories,      only: [ :index, :show ]
       resources :testimonials, only: [ :index ]
     end
   end
