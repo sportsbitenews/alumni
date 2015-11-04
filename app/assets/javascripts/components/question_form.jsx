@@ -42,19 +42,12 @@ class QuestionForm extends React.Component {
             <label htmlFor='question[tagline]' className='hidden-xs'>
               <i className='mdi mdi-message-text-outline'></i>Content
             </label>
-            <div className={contentInputClasses}>
-              <div className='answer-form-actions question-form-actions'>
-                <a className={writeClasses} onClick={this.onWriteClick.bind(this)}>Write</a>
-                <hr />
-                <a className={previewClasses} onClick={this.onPreviewClick.bind(this)}>Preview</a>
-                <a className="question-form-action-extra hidden-xs answer-form-action-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
-                  <span className="octicon octicon-markdown"></span>
-                  Markdown supported
-                </a>
-              </div>
-              <textarea ref='content' defaultValue={this.props.question.content} placeholder='Describe your problem' name='question[content]' />
-              <div className='question-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}} />
-            </div>
+            <LanguageDetectionTextarea
+              defaultValue={this.props.question.content}
+              placeholder='Describe your problem, in english please. Also, use Markdown.'
+              name='question[content]'
+            />
+
             <div className='errors'>
               {errorContent}
             </div>

@@ -1,5 +1,5 @@
 json.array! @testimonials.each do |testimonial|
-  json.extract! testimonial, :content, :locale
+  json.extract! testimonial, :id, :content, :locale
   json.user do
     json.extract! testimonial.user, :github_nickname, :gravatar_url, :first_name, :last_name
     json.batch do
