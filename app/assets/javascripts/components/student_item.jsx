@@ -34,7 +34,7 @@ class StudentItem extends React.Component {
               </div>
             </div>
             <div className="student-item-avatar">
-              <img src={this.props.student.gravatar_url} />
+              <img src={this.props.student.thumbnail} />
             </div>
             <div className='student-item-cta' onClick={this.handleValidation.bind(this)}>
               <ReactBootstrap.OverlayTrigger placement='top' trigger={['hover', 'focus']} delayShow={30} overlay={tooltip}>

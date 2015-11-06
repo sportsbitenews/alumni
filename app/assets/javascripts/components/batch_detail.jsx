@@ -83,7 +83,7 @@ class BatchDetail extends React.Component {
                             (maker) => {
                               return(
                                 <div className='project-item-maker'>
-                                  <img src={maker.gravatar_url} className='avatar' />
+                                  <img src={maker.thumbnail} className='avatar' />
                                 </div>
                               )
                             }
@@ -121,7 +121,7 @@ class BatchDetail extends React.Component {
               return (
                 <a href={Routes.profile_path(student.github_nickname)} className={participantClasses} key={student.id}>
                   <div className='post-detail-participant-avatar'>
-                    <img src={student.gravatar_url} className='avatar' />
+                    <img src={student.thumbnail} className='avatar' />
                   </div>
                   <div className='post-detail-participant-name'>
                     {student.github_nickname}

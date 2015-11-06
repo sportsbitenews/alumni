@@ -49,7 +49,7 @@
 #
 
 class User < ActiveRecord::Base
-  PUBLIC_PROPERTIES = %i(id github_nickname gravatar_url first_name last_name)
+  PUBLIC_PROPERTIES = %i(id github_nickname first_name last_name thumbnail)
   PRIVATE_PROPERTIES = %i(email slack_uid connected_to_slack)
 
   devise :trackable, :database_authenticatable

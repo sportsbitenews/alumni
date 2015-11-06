@@ -26,7 +26,7 @@ class Resource extends React.Component {
               <div className='post-detail-author'>
                 <a href={Routes.profile_path(this.props.user.github_nickname)}>
                   <div>
-                    <img src={this.props.user.gravatar_url} />
+                    <img src={this.props.user.thumbnail} />
                   </div>
                 </a>
               </div>

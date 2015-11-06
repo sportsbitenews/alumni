@@ -24,7 +24,7 @@ class AvatarNavbar extends React.Component {
           <a href={Routes.profile_path(this.props.user.github_nickname)}>My profile</a>
           <hr/>
         </div>
-        <img onClick={this.handleClick.bind(this)} onMouseEnter={this.handleMouseEnter.bind(this)} className='avatar avatar-navbar' src={this.props.user.gravatar_url} />
+        <img onClick={this.handleClick.bind(this)} onMouseEnter={this.handleMouseEnter.bind(this)} className='avatar avatar-navbar' src={this.props.user.thumbnail} />
       </div>
     )
   }

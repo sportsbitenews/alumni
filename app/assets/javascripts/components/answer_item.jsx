@@ -27,7 +27,7 @@ class AnswerItem extends React.Component {
     return(
       <div className={answerItemClasses} id={answerItemId}>
         <div className='answer-avatar'>
-          <img src={this.props.user.gravatar_url} className='avatar' />
+          <img src={this.props.user.thumbnail} className='avatar' />
         </div>
         <div className='answer-body'>
           <div className='answer-header'>

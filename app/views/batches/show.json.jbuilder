@@ -7,7 +7,7 @@ json.youtube_id @batch.youtube_id
 
 json.students do
   json.array! @batch.users.each do |user|
-    json.extract! user, :github_nickname, :gravatar_url
+    json.extract! user, :github_nickname, :thumbnail
     json.connected_to_slack user.connected_to_slack
   end
 end

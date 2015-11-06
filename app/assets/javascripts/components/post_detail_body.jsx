@@ -92,7 +92,7 @@ class PostDetailBody extends React.Component {
               return (
                 <a href={Routes.profile_path(upVoter.github_nickname)} className={participantClasses} key={upVoter.id}>
                   <div className='post-detail-participant-avatar'>
-                    <img src={upVoter.gravatar_url} className='avatar' />
+                    <img src={upVoter.thumbnail} className='avatar' />
                   </div>
                   <div className='post-detail-participant-name'>
                     {upVoter.github_nickname}

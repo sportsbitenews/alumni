@@ -46,7 +46,7 @@ class SlackService
       attachments: [{
         author_name: post.user.name,
         author_link: profile_url(post.user.github_nickname),
-        author_icon: post.user.gravatar_url,
+        author_icon: post.user.thumbnail,
         fallback: post.slack_fallback,
         pretext: post.slack_pretext,
         color: post.class::COLOR_FROM,

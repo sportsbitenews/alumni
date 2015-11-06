@@ -52,7 +52,7 @@ class ProjectDetail extends React.Component {
                   (maker) => {return(
                     <a href={Routes.profile_path(maker.github_nickname)}>
                       <div>
-                        <img src={maker.gravatar_url} className='' />
+                        <img src={maker.thumbnail} className='' />
                       </div>
                     </a>
                   )}

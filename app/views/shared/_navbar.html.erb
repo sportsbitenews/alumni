@@ -13,7 +13,7 @@
       <div class='navbar-right'>
         <% if user_signed_in? %>
             <%= react_component 'AvatarNavbar', {
-              user: current_user.slice(:github_nickname, :gravatar_url)
+              user: current_user.slice(:github_nickname, :thumbnail)
               } %>
           <hr class='search-icon-hr'>
           <%= react_component 'SearchIcon' %>
