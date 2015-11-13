@@ -39,6 +39,7 @@ class City < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  validates :slug, presence: true, uniqueness: true
   validates :name, presence: true, uniqueness: true
   validates :course_locale, presence: true,  inclusion: { in: %w(en fr) }
   has_attached_file :city_picture,
