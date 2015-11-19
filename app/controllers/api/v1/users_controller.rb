@@ -1,6 +1,8 @@
 class Api::V1::UsersController < Api::V1::BaseController
   before_action :check_shared_secret!
 
+  class HttpAuthorizationHeaderException < Exception; end
+
   def picture
     # ssaunier__sebastien_jean_marie_christian_saunier.jpg
     github_nickname = params[:filename].split("__").first
