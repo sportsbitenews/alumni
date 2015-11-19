@@ -140,6 +140,9 @@ GEM
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     geocoder (1.2.11)
+    gibbon (2.1.0)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -449,6 +452,7 @@ DEPENDENCIES
   font_assets
   friendly_id (~> 5.1.0)
   geocoder
+  gibbon
   high_voltage
   jbuilder
   jquery-rails
