@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       resources :staff,        only: [ :index ]
       resources :stories,      only: [ :index, :show ]
       resources :testimonials, only: [ :index ]
+      resources :users,        only: [] do
+        put :picture, on: :collection
+      end
     end
   end
 
