@@ -124,7 +124,7 @@ class BatchDetail extends React.Component {
                     <img src={student.thumbnail} className='avatar' />
                   </div>
                   <div className='post-detail-participant-name'>
-                    {student.github_nickname}
+                    {student.first_name}
                   </div>
                   <div className='post-detail-participant-status' />
                 </a>

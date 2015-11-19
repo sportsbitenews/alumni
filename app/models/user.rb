@@ -106,6 +106,10 @@ class User < ActiveRecord::Base
     @connected_to_slack ||= SlackService.new.connected_to_slack(self)
   end
 
+  def sidebar_order
+    "#{connected_to_slack ? "_" : ""}#{first_name.downcase}"
+  end
+
   def user_messages_slack_url
     @user_messages_slack_url ||= SlackService.new.user_messages_slack_url(self)
   end
