@@ -2,7 +2,8 @@ require "pathname"
 
 namespace :api do
   task :upload_pictures, [:folder] => :environment do |t, args|
-    endpoint = "http://localhost:3000/api/v1/users/picture"
+    # endpoint = "http://localhost:3000/api/v1/users/picture"
+    endpoint = "http://alumni.lewagon.org/api/v1/users/picture"
 
     Dir["#{args[:folder]}/*.jpg"].each do |file|
       puts file
