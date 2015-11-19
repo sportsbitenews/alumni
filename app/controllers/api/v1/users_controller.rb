@@ -6,7 +6,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def picture
     # ssaunier__sebastien_jean_marie_christian_saunier.jpg
     github_nickname = params[:filename].split("__").first
-    user = User.find_by_github_nickname(github_nickname)
+    user = User.where('github_nickname ILIKE ?', github_nickname).first
     if user
       f = Tempfile.new([ params[:filename], '.jpg' ])
       f.binmode
