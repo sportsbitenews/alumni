@@ -1,3 +1,5 @@
+# Batch.find(17).users.each { |u| Mailchimp.new.subscribe_to_alumni_list(u); puts u.email; sleep 1 }
+
 class Mailchimp
   def initialize
     @gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
