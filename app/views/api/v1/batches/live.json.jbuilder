@@ -1,6 +1,9 @@
 json.batch do
-  json.live_url @live_url
-  json.extract! @batch, :slug
-  json.city @batch.city.name
-  json.projects_count @batch.projects.count
+  json.live !@batch.nil?
+  if @batch
+    json.live_url batch_url(@batch)
+    json.extract! @batch, :slug
+    json.city @batch.city.name if @batch.city
+    json.projects_count @batch.projects.count
+  end
 end

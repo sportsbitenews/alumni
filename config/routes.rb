@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :cities,       only: [ :index, :show ]
       resources :batches,      only: [ :show ] do
         collection do
-          get "live" => "batches#live"
+          get "live"
         end
       end
       resources :projects,     only: [ :index ]
