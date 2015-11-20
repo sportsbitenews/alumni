@@ -32,6 +32,10 @@ class BatchDetail extends React.Component {
             <div className='video-container'>
               <iframe src={`https://www.youtube.com/embed/${this.props.youtube_id}`} />
             </div>
+            <div className="video-footer-cta">
+              Want to code your own product? <strong>Join Le Wagon <a href="http://lewagon.com/program" target="_blank">FullStack program</a></strong>
+              <a className="cover-link" href="http://lewagon.com/program" target="_blank"></a>
+            </div>
           </div>
         </div>
       )
