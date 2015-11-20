@@ -16,13 +16,17 @@ class BatchDetail extends React.Component {
       'is-collapsed': this.state.sidebarHeight != "100%"
     })
 
-    if (this.props.live) {
+    if (this.props.youtube_id) {
+      var live = null;
+      if (this.props.live) {
+        live = <div className='section-title-h ranked-by-milestone live'><span className='round' />LIVE</div>;
+      }
       var demoDay = (
         <div>
           <div className='batch-members-count section-title'>
             <i className='mdi mdi-star-outline' />
             <div className='section-title-h'>DEMO DAY</div>
-            <div className='section-title-h ranked-by-milestone live'><span className='round' />LIVE</div>
+            {live}
           </div>
           <div className='iframe-container'>
             <div className='video-container'>
