@@ -187,3 +187,25 @@ h1.batches-list-title {
   border: none;
   height:100%;
 }
+
+.video-footer-cta {
+  position: relative;
+  .cover-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    cursor: pointer;
+  }
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+  background: #469ae0;
+  font-weight: lighter;
+  text-align: center;
+  line-height: 90px;
+  color: white;
+  font-size: 17px;
+}
