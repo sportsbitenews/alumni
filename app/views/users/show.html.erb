@@ -24,3 +24,9 @@
 <%= content_for(:meta_image_url) do %>
   <%= @user.thumbnail %>
 <% end %>
+
+<% if @user.noindex %>
+  <% content_for(:other_meta) do %>
+    <meta name="robots" content="noindex, nofollow, noimageindex" />
+  <% end %>
+<% end %>

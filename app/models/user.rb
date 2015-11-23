@@ -40,6 +40,7 @@
 #  picture_updated_at     :datetime
 #  role                   :string
 #  twitter_nickname       :string
+#  noindex                :boolean          default(FALSE), not null
 #
 # Indexes
 #
