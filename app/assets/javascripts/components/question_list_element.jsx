@@ -5,6 +5,10 @@ class QuestionListElement extends PostListElement {
   }
 
   content() {
+    var solvedMark = null;
+    if (this.props.solved) {
+      solvedMark = <i className="fa fa-check" />;
+    }
     return (
       <div className='post-item question-item'>
         <div className='post-item-text'>
@@ -13,7 +17,8 @@ class QuestionListElement extends PostListElement {
           </div>
           <div className='post-item-text-tagline'>
             posted by
-              <PopoverUser user={this.props.user} />
+            <PopoverUser user={this.props.user} />
+            {solvedMark}
           </div>
         </div>
         <div className='post-item-upvote'>

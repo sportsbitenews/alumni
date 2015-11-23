@@ -1,0 +1,10 @@
+.question-item {
+  .fa-check {
+    margin-left: 2px;
+  }
+  &:hover {
+    .fa-check {
+      color: $green;
+    }
+  }
+}

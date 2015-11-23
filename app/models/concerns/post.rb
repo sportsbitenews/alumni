@@ -2,7 +2,7 @@ module Post
   extend ActiveSupport::Concern
 
   POST_TYPES = %w(Resource Question Job Milestone)
-  PAGE_COUNT = 10
+  PAGE_COUNT = 15
   class UnauthorizedPostTypeException < Exception; end
 
   included do
