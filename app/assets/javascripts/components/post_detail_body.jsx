@@ -75,7 +75,7 @@ class PostDetailBody extends React.Component {
         <main>
           <div className='post-answers-container'>
              {firstAnswer}
-             {this.state.answers.map((props) => <AnswerItem {...props}/>)}
+             {this.state.answers.map((props, index) => <AnswerItem key={index} {...props}/>)}
           </div>
         </main>
         <aside className='post-detail-sidebar'>
