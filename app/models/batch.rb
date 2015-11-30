@@ -31,6 +31,8 @@
 #
 
 class Batch < ActiveRecord::Base
+  include Cacheable
+
   validates :slug, uniqueness: true, allow_nil: true, allow_blank: true
   validates :city, presence: true
   validates :starts_at, presence: true
@@ -54,8 +56,6 @@ class Batch < ActiveRecord::Base
     styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }
   validates_attachment_content_type :meta_image,
     content_type: /\Aimage\/.*\z/
-
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
 
   def set_ends_at
     self.ends_at = self.starts_at + 9.weeks - 3.days if self.starts_at

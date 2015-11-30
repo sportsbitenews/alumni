@@ -36,6 +36,7 @@
 #
 
 class City < ActiveRecord::Base
+  include Cacheable
   extend FriendlyId
   friendly_id :name, use: :slugged
 
@@ -59,8 +60,6 @@ class City < ActiveRecord::Base
   after_validation :geocode, classroom_pictureif: :address_changed?
 
   has_many :batches
-
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
 
   def open_batches
     batches.where(open_for_registration: true).order(:starts_at)

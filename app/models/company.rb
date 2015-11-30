@@ -14,6 +14,8 @@
 #
 
 class Company < ActiveRecord::Base
+  include Cacheable
+
   validates :name, presence: true
   has_many :stories
 
@@ -21,5 +23,4 @@ class Company < ActiveRecord::Base
     styles: { thumbnail: { geometry: "400x400>", format: 'png' } }
   validates_attachment_content_type :logo,
     content_type: /\Aimage\/.*\z/
-
 end

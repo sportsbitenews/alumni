@@ -26,6 +26,8 @@
 #
 
 class Story < ActiveRecord::Base
+  include Cacheable
+
   validates :description_en, :description_fr, :user, :picture, presence: true
   belongs_to :user
   has_attached_file :picture,
@@ -34,5 +36,4 @@ class Story < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
   belongs_to :company
 
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
 end

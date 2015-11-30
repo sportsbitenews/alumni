@@ -22,6 +22,7 @@
 #
 
 class Project < ActiveRecord::Base
+  include Cacheable
   belongs_to :batch
   has_many :milestones
   has_and_belongs_to_many :users
@@ -34,8 +35,6 @@ class Project < ActiveRecord::Base
   before_create :slugify
   validates_attachment_content_type :cover_picture,
     content_type: /\Aimage\/.*\z/
-
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
 
   def slugify
     self.slug = self.name.to_slug.normalize.to_s

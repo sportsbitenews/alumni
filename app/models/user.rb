@@ -50,6 +50,7 @@
 #
 
 class User < ActiveRecord::Base
+  include Cacheable
   PUBLIC_PROPERTIES = %i(id github_nickname first_name last_name thumbnail)
   PRIVATE_PROPERTIES = %i(email slack_uid connected_to_slack)
 
@@ -77,8 +78,6 @@ class User < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
 
   acts_as_voter
-
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
 
   # include Devise::Controllers::Helpers
   def self.properties(user_signed_in)
