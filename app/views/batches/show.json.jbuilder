@@ -13,7 +13,8 @@ end
 
 json.projects do
   json.array! @batch.projects.each do |project|
-    json.extract! project, :name, :url, :tagline, :id
+    json.extract! project, :name, :url, :id
+    json.tagline project.tagline_en
     json.thumbnail_url project.cover_picture.url(:thumbnail)
 
     json.makers do
