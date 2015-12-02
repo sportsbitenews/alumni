@@ -83,7 +83,7 @@ class BatchDetail extends React.Component {
                             {project.name}
                           </div>
                           <div className='project-item-tagline'>
-                            {project.tagline}
+                            {project.tagline_en}
                           </div>
                         </div>
                         <div className='project-item-makers'>

@@ -39,7 +39,7 @@ class ProjectDetail extends React.Component {
             <a href={this.props.url} >
               <div className='post-detail-name'>{this.props.name}</div>
             </a>
-            <div className='post-detail-tagline'>{this.props.tagline}</div>
+            <div className='post-detail-tagline'>{this.props.tagline_en}</div>
             <div className='post-detail-header-action'>
               {batch}
               <a href={this.props.url} target='_blank'>

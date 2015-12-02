@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123090855) do
+ActiveRecord::Schema.define(version: 20151202142053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,13 +166,14 @@ ActiveRecord::Schema.define(version: 20151123090855) do
     t.integer  "batch_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.string   "tagline"
+    t.string   "tagline_en"
     t.string   "cover_picture_file_name"
     t.string   "cover_picture_content_type"
     t.integer  "cover_picture_file_size"
     t.datetime "cover_picture_updated_at"
     t.integer  "position"
     t.string   "slug"
+    t.string   "tagline_fr"
   end
 
   add_index "projects", ["batch_id"], name: "index_projects_on_batch_id", using: :btree
