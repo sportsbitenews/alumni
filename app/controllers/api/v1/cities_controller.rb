@@ -1,8 +1,9 @@
 class Api::V1::CitiesController < Api::V1::BaseController
   def index
-    @cities = params[:active].present? ? City.where(active: true) : City.all
+    @cities = City.where(published: true)
     @meetup_client = MeetupApi.new
   end
+
   def show
     @city = City.friendly.find(params[:id])
     teachers = OrderedList.find_by_name "#{params[:id]}_teachers"

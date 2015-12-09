@@ -43,7 +43,7 @@
 }
 ```
 
-#### `GET /api/v1/cities?active=true`
+#### `GET /api/v1/cities`
 
 ### `GET /api/v1/cities/:city_slug` exemple `GET /api/v1/cities/paris`
 

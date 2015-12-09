@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202142053) do
+ActiveRecord::Schema.define(version: 20151209133528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20151202142053) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.string   "location"
     t.string   "address"
     t.text     "description_fr"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20151202142053) do
     t.datetime "classroom_picture_updated_at"
     t.string   "course_locale"
     t.text     "specifics"
+    t.boolean  "publihsed",                      default: true, null: false
   end
 
   add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
