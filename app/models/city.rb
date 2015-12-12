@@ -29,7 +29,6 @@
 #  classroom_picture_updated_at   :datetime
 #  course_locale                  :string
 #  specifics                      :text
-#  publihsed                      :boolean          default(TRUE), not null
 #
 # Indexes
 #

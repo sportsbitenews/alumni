@@ -1,6 +1,13 @@
 class Api::V1::CitiesController < Api::V1::BaseController
   def index
-    @cities = City.where(published: true)
+    @city_ordered_list = OrderedList.find_by_name('official_cities')
+    if @city_ordered_list
+      @cities = City.where(slug: @city_ordered_list.slugs).sort_by do |city|
+        @city_ordered_list.slugs.index(city.slug)
+      end
+    else
+      @cities = City.all
+    end
     @meetup_client = MeetupApi.new
   end
 
