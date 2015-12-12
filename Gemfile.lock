@@ -135,7 +135,7 @@ GEM
       thor (~> 0.14)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
-    font_assets (0.1.11)
+    font_assets (0.1.12)
       rack
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
