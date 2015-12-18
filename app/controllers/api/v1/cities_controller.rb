@@ -11,6 +11,10 @@ class Api::V1::CitiesController < Api::V1::BaseController
     @meetup_client = MeetupApi.new
   end
 
+  def slugs
+    @slugs = City.all.pluck(:slug)
+  end
+
   def show
     @city = City.friendly.find(params[:id])
     teachers = OrderedList.find_by_name "#{params[:id]}_teachers"

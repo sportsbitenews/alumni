@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   # API routing
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :cities,       only: [ :index, :show ]
+      resources :cities,       only: [ :index, :show ] do
+        collection do
+          get "slugs"
+        end
+      end
       resources :batches,      only: [ :show ] do
         collection do
           get "live"
