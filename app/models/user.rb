@@ -123,8 +123,8 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def thumbnail
-    picture.exists? ? picture.url(:medium) : gravatar_url
+  def thumbnail(style = :medium)
+    picture.exists? ? picture.url(style) : gravatar_url
   end
 
   def ready_for_validation?
