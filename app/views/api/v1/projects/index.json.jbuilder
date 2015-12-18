@@ -9,7 +9,8 @@ json.projects @projects.each do |project|
     json.card project.cover_picture.url(:card)
     json.makers do
       json.array! project.users.each do |user|
-        json.extract! user, :id, :github_nickname, :thumbnail
+        json.extract! user, :id, :github_nickname
+        json.thumbnail user.thumbnail(:thumb)
       end
     end
     if project.batch
