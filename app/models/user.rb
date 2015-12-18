@@ -72,7 +72,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :batches
 
   has_attached_file :picture,
-    styles: { medium: "300x300>", thumb: "100x100>" }
+    styles: { medium: "300x300>", thumb: "100x100>" },
+    processors: [ :paperclip_optimizer ]
 
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
