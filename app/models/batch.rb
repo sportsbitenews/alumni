@@ -53,7 +53,7 @@ class Batch < ActiveRecord::Base
   # after_create :create_trello_board
 
   has_attached_file :meta_image,
-    styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }, processors: [ :paperclip_optimizer ]
+    styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }, processors: [ :thumbnail, :paperclip_optimizer ]
   validates_attachment_content_type :meta_image,
     content_type: /\Aimage\/.*\z/
 

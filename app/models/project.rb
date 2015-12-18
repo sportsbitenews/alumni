@@ -29,7 +29,7 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :users
   acts_as_list scope: :batch
   has_attached_file :cover_picture,
-    styles: { cover: { geometry: "1400x730>", format: 'jpg', quality: 40 }, card: { geometry: "700x365>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "320x167>", format: 'jpg', quality: 20 } }, processors: [ :paperclip_optimizer ]
+    styles: { cover: { geometry: "1400x730>", format: 'jpg', quality: 40 }, card: { geometry: "700x365>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "320x167>", format: 'jpg', quality: 20 } }, processors: [ :thumbnail, :paperclip_optimizer ]
   validates :name, presence: true
   validates :slug, uniqueness: true
   validates :url, presence: true
