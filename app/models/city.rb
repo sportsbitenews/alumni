@@ -44,11 +44,11 @@ class City < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :course_locale, presence: true,  inclusion: { in: %w(en fr) }
   has_attached_file :city_picture,
-    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "540x360>", format: 'jpg', quality: 70 } }
+    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "540x360>", format: 'jpg', quality: 70 } }, processors: [ :paperclip_optimizer ]
   has_attached_file :location_picture,
-    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }
+    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }, processors: [ :paperclip_optimizer ]
   has_attached_file :classroom_picture,
-    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }
+    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }, processors: [ :paperclip_optimizer ]
   validates_attachment_content_type :city_picture,
     content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :location_picture,
