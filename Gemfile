@@ -64,6 +64,9 @@ gem 'sidekiq-failures'
 gem 'sinatra'  # Dependency of sidekiq
 gem 'sidekiq-cron'
 
+gem 'prawn'
+gem 'prawn-table'
+
 source "https://rails-assets.org" do
   gem "rails-assets-axios"
   gem "rails-assets-alt"
