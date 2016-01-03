@@ -120,7 +120,10 @@ class User < ActiveRecord::Base
   end
 
   def name
-    "#{first_name} #{last_name}"
+    @name ||= (
+      (first_name || "").split("-").map(&:capitalize).join("-") + " " +
+      (last_name || "").split(" ").map(&:capitalize).join(" ")
+    )
   end
 
   def thumbnail(style = :medium)

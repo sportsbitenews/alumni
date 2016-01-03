@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :batches, only: %i(show edit update) do
     member do
       get :register
+      get :signing_sheet
     end
   end
 

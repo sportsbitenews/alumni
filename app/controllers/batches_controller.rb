@@ -1,5 +1,5 @@
 class BatchesController < ApplicationController
-  before_action :set_batch, only: %i(show edit update register)
+  before_action :set_batch, only: %i(show edit update register signing_sheet)
   before_action :set_city, only: %i(new create)
   skip_before_action :authenticate_user!, only: %i(onboarding show)
   skip_after_action :verify_authorized, only: :onboarding
@@ -40,6 +40,14 @@ class BatchesController < ApplicationController
 
   def register
     @user = current_user
+  end
+
+  def signing_sheet
+    sheet = SigningSheet.new(@batch)
+    send_data sheet.render,
+      filename: "Batch ##{@batch.slug} - Émargement.pdf",
+      type: "application/pdf",
+      disposition: :inline
   end
 
   private
