@@ -2,33 +2,38 @@
 #
 # Table name: cities
 #
-#  id                             :integer          not null, primary key
-#  name                           :string
-#  created_at                     :datetime         not null
-#  updated_at                     :datetime         not null
-#  location                       :string
-#  address                        :string
-#  description_fr                 :text
-#  description_en                 :text
-#  meetup_id                      :integer
-#  twitter_url                    :string
-#  city_picture_file_name         :string
-#  city_picture_content_type      :string
-#  city_picture_file_size         :integer
-#  city_picture_updated_at        :datetime
-#  location_picture_file_name     :string
-#  location_picture_content_type  :string
-#  location_picture_file_size     :integer
-#  location_picture_updated_at    :datetime
-#  latitude                       :float
-#  longitude                      :float
-#  slug                           :string
-#  classroom_picture_file_name    :string
-#  classroom_picture_content_type :string
-#  classroom_picture_file_size    :integer
-#  classroom_picture_updated_at   :datetime
-#  course_locale                  :string
-#  specifics                      :text
+#  id                               :integer          not null, primary key
+#  name                             :string
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  location                         :string
+#  address                          :string
+#  description_fr                   :text
+#  description_en                   :text
+#  meetup_id                        :integer
+#  twitter_url                      :string
+#  city_picture_file_name           :string
+#  city_picture_content_type        :string
+#  city_picture_file_size           :integer
+#  city_picture_updated_at          :datetime
+#  location_picture_file_name       :string
+#  location_picture_content_type    :string
+#  location_picture_file_size       :integer
+#  location_picture_updated_at      :datetime
+#  latitude                         :float
+#  longitude                        :float
+#  slug                             :string
+#  classroom_picture_file_name      :string
+#  classroom_picture_content_type   :string
+#  classroom_picture_file_size      :integer
+#  classroom_picture_updated_at     :datetime
+#  course_locale                    :string
+#  specifics                        :text
+#  company_name                     :string
+#  company_nature                   :string
+#  company_hq                       :string
+#  company_purpose_and_registration :string
+#  training_address                 :string
 #
 # Indexes
 #
