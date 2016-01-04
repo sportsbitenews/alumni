@@ -21,16 +21,16 @@ class SigningSheet < Prawn::Document
     end
 
     # TODO: Move this to DB
-    formatted_text [ { text: "Le Wagon", styles: [ :bold ] }, { text: " - Société par Actions Simplifiée au capital de 1000 euros" } ]
-    text "Siège social : 24 rue Louis Blanc 75010 Paris - 794 949 917 RCS Paris"
-    text "Organisme de formation enregistré auprès de la DIRECCTE IDF sous le n° 11 75 50770 75"
+    formatted_text [ { text: "#{@batch.city.company_name}", styles: [ :bold ] }, { text: " - #{@batch.city.company_nature}" } ]
+    text "Siège social : #{@batch.city.company_hq}"
+    text "#{@batch.city.company_purpose_and_registration}"
   end
 
   def draw_context
     # TODO: Move this to DB
     text "Formation FullStack (Batch ##{@batch.slug}) " \
       + " se déroulant du #{I18n.l @batch.starts_at, locale: :fr} au #{I18n.l(@batch.starts_at + 9.weeks - 3.days, locale: :fr)}" \
-      + " au 16 Villa Gaudelet 75011 Paris"
+      + " au #{@batch.city.training_address}"
   end
 
   def draw_students_table
