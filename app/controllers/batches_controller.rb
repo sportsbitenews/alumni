@@ -35,7 +35,7 @@ class BatchesController < ApplicationController
   end
 
   def onboarding
-    @batches = Batch.where(onboarding: true)
+    @batches = Batch.where(onboarding: true).order(slug: :asc)
   end
 
   def register
