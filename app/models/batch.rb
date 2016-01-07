@@ -61,6 +61,10 @@ class Batch < ActiveRecord::Base
     self.ends_at = self.starts_at + 9.weeks - 3.days if self.starts_at
   end
 
+  def slack_channel_name
+    "batch-#{slug}-#{city.name.downcase}"
+  end
+
   def create_slack_channel
     CreateSlackChannelJob.perform_later(id) if slack_id.blank?
   end
