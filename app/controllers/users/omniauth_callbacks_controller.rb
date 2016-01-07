@@ -50,7 +50,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if current_user.update(slack_uid: auth["uid"], slack_token: auth["credentials"]["token"])
         flash[:notice] = "Awesome! Your Slack account is now linked"
       else
-        flash[:error] = "There was an issue while linking your Slack account. Ask @ssaunier."
+        flash[:alert] = "There was an issue while linking your Slack account. Ask @ssaunier."
       end
     end
     redirect_to root_path
