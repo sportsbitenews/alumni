@@ -62,7 +62,7 @@ class Batch < ActiveRecord::Base
   end
 
   def slack_channel_name
-    "batch-#{slug}-#{city.name.downcase}"
+    "batch-#{slug}-#{city.name.downcase.gsub(/[ -]/, "")}"
   end
 
   def create_slack_channel
