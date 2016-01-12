@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
   end
 
   def sidebar_order
-    "#{connected_to_slack ? "_" : ""}#{first_name.downcase}"
+    "#{connected_to_slack ? "_" : ""}#{first_name&.downcase}"
   end
 
   def user_messages_slack_url
