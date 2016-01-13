@@ -19,6 +19,7 @@ class UsersController < ApplicationController
           render_404
         end
       end
+      format.all { render_404 }
     end
   end
 
