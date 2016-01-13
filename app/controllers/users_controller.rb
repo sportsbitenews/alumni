@@ -16,7 +16,7 @@ class UsersController < ApplicationController
             redirect_to profile_path(@user.github_nickname)
           end
         else
-          not_found
+          render_404
         end
       end
     end
