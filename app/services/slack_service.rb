@@ -35,6 +35,10 @@ class SlackService
     end
   end
 
+  def users
+    @client.users_list["members"]
+  end
+
   def user_messages_slack_url(user)
     username = slack_username(user)
     "https://lewagon-alumni.slack.com/messages/@#{username}" if username
