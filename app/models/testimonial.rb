@@ -15,10 +15,9 @@
 #
 
 class Testimonial < ActiveRecord::Base
+  include Cacheable
   belongs_to :user
   validates :user, presence: true
   validates :content, presence: true
   validates :locale, presence: true
-
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
 end

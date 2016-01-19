@@ -11,11 +11,10 @@
 #
 
 class OrderedList < ActiveRecord::Base
+  include Cacheable
   ELEMENT_TYPES = %w(User Project City)
   validates :element_type, inclusion: { in: ELEMENT_TYPES }
   validate :slugs_exist?
-
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
 
   rails_admin do
     edit do

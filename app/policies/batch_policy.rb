@@ -21,6 +21,10 @@ class BatchPolicy < ApplicationPolicy
     record.onboarding
   end
 
+  def signing_sheet?
+    admin_or_city_user?
+  end
+
   private
 
   def admin_or_city_user?

@@ -1,8 +1,20 @@
 class Api::V1::CitiesController < Api::V1::BaseController
   def index
-    @cities = params[:active].present? ? City.where(active: true) : City.all
+    @city_ordered_list = OrderedList.find_by_name('official_cities')
+    if @city_ordered_list
+      @cities = City.where(slug: @city_ordered_list.slugs).sort_by do |city|
+        @city_ordered_list.slugs.index(city.slug)
+      end
+    else
+      @cities = City.all
+    end
     @meetup_client = MeetupApi.new
   end
+
+  def slugs
+    @slugs = City.all.pluck(:slug)
+  end
+
   def show
     @city = City.friendly.find(params[:id])
     teachers = OrderedList.find_by_name "#{params[:id]}_teachers"

@@ -16,7 +16,7 @@ class PostActionsClass {
   }
 
   update(content, type, id) {
-    axios.railsPatch(Routes[`${type.toLowerCase()}_path`](id, { format: 'json', content: JSON.stringify(content) }))
+    axios.railsPatch(Routes[`${type.toLowerCase()}_path`](id, { format: 'json' }), { content: content })
       .then((response) => this.dispatch(response.data))
   }
 

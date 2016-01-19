@@ -39,12 +39,12 @@ class ProjectDetail extends React.Component {
             <a href={this.props.url} >
               <div className='post-detail-name'>{this.props.name}</div>
             </a>
-            <div className='post-detail-tagline'>{this.props.tagline}</div>
+            <div className='post-detail-tagline'>{this.props.tagline_en}</div>
             <div className='post-detail-header-action'>
               {batch}
               <a href={this.props.url} target='_blank'>
                 <div className='post-detail-url'>
-                  {this.props.url}
+                  {this.props.url.replace(/https?:\/\//, "")}
                 </div>
               </a>
               <div className='project-detail-makers post-detail-author'>
@@ -52,7 +52,7 @@ class ProjectDetail extends React.Component {
                   (maker) => {return(
                     <a href={Routes.profile_path(maker.github_nickname)}>
                       <div>
-                        <img src={maker.thumbnail} className='' />
+                        <img src={maker.thumbnail} />
                       </div>
                     </a>
                   )}

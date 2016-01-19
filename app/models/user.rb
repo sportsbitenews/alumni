@@ -40,6 +40,7 @@
 #  picture_updated_at     :datetime
 #  role                   :string
 #  twitter_nickname       :string
+#  noindex                :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -49,6 +50,7 @@
 #
 
 class User < ActiveRecord::Base
+  include Cacheable
   PUBLIC_PROPERTIES = %i(id github_nickname first_name last_name thumbnail)
   PRIVATE_PROPERTIES = %i(email slack_uid connected_to_slack)
 
@@ -70,15 +72,15 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :batches
 
   has_attached_file :picture,
-    styles: { medium: "300x300>", thumb: "100x100>" }
+    styles: { medium: "300x300>", thumb: "100x100>" },
+    processors: [ :thumbnail, :paperclip_optimizer ]
 
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
 
   acts_as_voter
 
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
-  # after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }
+  after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }
 
   # include Devise::Controllers::Helpers
   def self.properties(user_signed_in)
@@ -107,6 +109,10 @@ class User < ActiveRecord::Base
     @connected_to_slack ||= SlackService.new.connected_to_slack(self)
   end
 
+  def sidebar_order
+    "#{connected_to_slack ? "_" : ""}#{first_name&.downcase}"
+  end
+
   def user_messages_slack_url
     @user_messages_slack_url ||= SlackService.new.user_messages_slack_url(self)
   end
@@ -116,11 +122,14 @@ class User < ActiveRecord::Base
   end
 
   def name
-    "#{first_name} #{last_name}"
+    @name ||= (
+      (first_name || "").split("-").map(&:capitalize).join("-") + " " +
+      (last_name || "").split(" ").map(&:capitalize).join(" ")
+    )
   end
 
-  def thumbnail
-    picture.exists? ? picture.url(:medium) : gravatar_url
+  def thumbnail(style = :medium)
+    picture.exists? ? picture.url(style) : gravatar_url
   end
 
   def ready_for_validation?

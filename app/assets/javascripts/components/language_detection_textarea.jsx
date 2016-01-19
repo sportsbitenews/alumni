@@ -6,7 +6,8 @@ class LanguageDetectionTextarea extends React.Component {
       preview: false,
       frenchSpeaking: false,
       renderedContent: "Nothing to preview",
-      blank: true
+      blank: true,
+      pendingDetection: false
     }
   }
 
@@ -106,16 +107,22 @@ class LanguageDetectionTextarea extends React.Component {
   }
 
   isFrenchContent(content) {
-    axios.get(`${Routes.language_answers_path()}?content=${content}`)
-      .then((response) => {
-        if (response.data.french > response.data.english) {
-          this.setState({ frenchSpeaking: true })
-        } else {
-        if (this.state.frenchSpeaking) {
-          this.setState({ frenchSpeaking: false })
-        }
-      }
-    })
+    console.log(content[content.length - 1]);
+    if (!this.state.pendingDetection && content[content.length - 1].match(/[^A-z]/)) {  // Only check for new words
+      this.setState({ pendingDetection: true });
+      axios.get(`${Routes.language_answers_path()}?content=${content}`)
+        .then((response) => {
+          if (response.data.french > response.data.english) {
+            this.setState({ frenchSpeaking: true, pendingDetection: false })
+          } else {
+            if (this.state.frenchSpeaking) {
+              this.setState({ frenchSpeaking: false, pendingDetection: false })
+            } else {
+              this.setState({ pendingDetection: false });
+            }
+          }
+        });
+    }
   }
 
   content() {

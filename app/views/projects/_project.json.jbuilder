@@ -1,7 +1,10 @@
 json.name project.name
 json.url project.url
 json.id project.id
-json.tagline project.tagline
+json.tagline do
+  json.en project.tagline_en
+  json.fr project.tagline_fr
+end
 json.cover_url project.cover_picture.url(:cover)
 json.thumbnail_url project.cover_picture.url(:thumbnail)
 

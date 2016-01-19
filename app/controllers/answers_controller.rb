@@ -3,7 +3,6 @@ require 'whatlanguage'
 class AnswersController < ApplicationController
   include PostScope
   skip_after_action :verify_authorized, only: [ :preview, :language ]
-  before_action :set_post, only: [:create]
   before_action :set_answer, only: [:update]
   before_action :set_post_without_authorize, only: :create
 

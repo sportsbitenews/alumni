@@ -31,6 +31,8 @@
 #
 
 class Batch < ActiveRecord::Base
+  include Cacheable
+
   validates :slug, uniqueness: true, allow_nil: true, allow_blank: true
   validates :city, presence: true
   validates :starts_at, presence: true
@@ -51,14 +53,16 @@ class Batch < ActiveRecord::Base
   # after_create :create_trello_board
 
   has_attached_file :meta_image,
-    styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }
+    styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }, processors: [ :thumbnail, :paperclip_optimizer ]
   validates_attachment_content_type :meta_image,
     content_type: /\Aimage\/.*\z/
 
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
-
   def set_ends_at
     self.ends_at = self.starts_at + 9.weeks - 3.days if self.starts_at
+  end
+
+  def slack_channel_name
+    "batch-#{slug}-#{city.name.downcase.gsub(/[ -]/, "")}"
   end
 
   def create_slack_channel

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028102729) do
+ActiveRecord::Schema.define(version: 20160104121302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20151028102729) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "location"
     t.string   "address"
     t.text     "description_fr"
@@ -88,6 +88,11 @@ ActiveRecord::Schema.define(version: 20151028102729) do
     t.datetime "classroom_picture_updated_at"
     t.string   "course_locale"
     t.text     "specifics"
+    t.string   "company_name"
+    t.string   "company_nature"
+    t.string   "company_hq"
+    t.string   "company_purpose_and_registration"
+    t.string   "training_address"
   end
 
   add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
@@ -166,13 +171,14 @@ ActiveRecord::Schema.define(version: 20151028102729) do
     t.integer  "batch_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.string   "tagline"
+    t.string   "tagline_en"
     t.string   "cover_picture_file_name"
     t.string   "cover_picture_content_type"
     t.integer  "cover_picture_file_size"
     t.datetime "cover_picture_updated_at"
     t.integer  "position"
     t.string   "slug"
+    t.string   "tagline_fr"
   end
 
   add_index "projects", ["batch_id"], name: "index_projects_on_batch_id", using: :btree
@@ -274,6 +280,7 @@ ActiveRecord::Schema.define(version: 20151028102729) do
     t.datetime "picture_updated_at"
     t.string   "role"
     t.string   "twitter_nickname"
+    t.boolean  "noindex",                default: false, null: false
   end
 
   add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree

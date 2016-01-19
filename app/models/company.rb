@@ -14,12 +14,13 @@
 #
 
 class Company < ActiveRecord::Base
+  include Cacheable
+
   validates :name, presence: true
   has_many :stories
 
   has_attached_file :logo,
-    styles: { thumbnail: { geometry: "270x180>", format: 'png' } }
+    styles: { thumbnail: { geometry: "400x400>", format: 'png' } }, processors: [ :thumbnail, :paperclip_optimizer ]
   validates_attachment_content_type :logo,
     content_type: /\Aimage\/.*\z/
-
 end

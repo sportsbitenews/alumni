@@ -6,15 +6,15 @@ json.live @batch.live
 json.youtube_id @batch.youtube_id
 
 json.students do
-  json.array! @batch.users.each do |user|
-    json.extract! user, :github_nickname, :thumbnail
-    json.connected_to_slack user.connected_to_slack
+  json.array! @batch.users.sort_by(&:sidebar_order).each do |user|
+    json.extract! user, :first_name, :last_name, :github_nickname, :thumbnail, :connected_to_slack
   end
 end
 
 json.projects do
   json.array! @batch.projects.each do |project|
-    json.extract! project, :name, :url, :tagline, :id
+    json.extract! project, :name, :url, :id
+    json.tagline project.tagline_en
     json.thumbnail_url project.cover_picture.url(:thumbnail)
 
     json.makers do

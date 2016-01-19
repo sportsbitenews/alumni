@@ -26,13 +26,14 @@
 #
 
 class Story < ActiveRecord::Base
+  include Cacheable
+
   validates :description_en, :description_fr, :user, :picture, presence: true
   belongs_to :user
   has_attached_file :picture,
-    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "270x180>", format: 'jpg', quality: 20 } }
+    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "270x180>", format: 'jpg', quality: 20 } }, processors: [ :thumbnail, :paperclip_optimizer ]
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
   belongs_to :company
 
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
 end

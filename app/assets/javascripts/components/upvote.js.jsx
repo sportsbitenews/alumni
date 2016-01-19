@@ -37,7 +37,7 @@ class Upvote extends React.Component {
     return(
       <div onClick={this.upVote} className={upvoteClasses}>
         <div className='upvote-item'>
-          <figure className='mdi mdi-chevron-up' />
+          <figure className='fa fa-caret-up' />
         </div>
         <div className='upvote-count'>
           {this.state.upVoters.length}

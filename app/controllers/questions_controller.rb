@@ -40,6 +40,8 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = Question.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
   end
 
   def question_params

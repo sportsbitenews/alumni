@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.2.3"
+ruby "2.3.0"
 
 gem "rails", "4.2.4"
 gem "pg"
@@ -10,10 +10,12 @@ gem "country_select"
 gem "high_voltage"
 gem "devise"
 gem "omniauth-github"
-gem "omniauth-slack", '1.0.1'
+gem "omniauth-slack"
 gem "octokit"
 gem "pundit"
 gem "paperclip"
+gem "image_optim_pack"
+gem "paperclip-optimizer"
 gem "aws-sdk", "< 2.0"
 gem 'acts_as_list'
 gem 'acts_as_votable', '~> 0.10.0'
@@ -62,6 +64,9 @@ gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra'  # Dependency of sidekiq
 gem 'sidekiq-cron'
+
+gem 'prawn'
+gem 'prawn-table'
 
 source "https://rails-assets.org" do
   gem "rails-assets-axios"

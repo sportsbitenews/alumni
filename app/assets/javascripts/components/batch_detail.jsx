@@ -16,17 +16,25 @@ class BatchDetail extends React.Component {
       'is-collapsed': this.state.sidebarHeight != "100%"
     })
 
-    if (this.props.live) {
+    if (this.props.youtube_id) {
+      var live = null;
+      if (this.props.live) {
+        live = <div className='section-title-h ranked-by-milestone live'><span className='round' />LIVE</div>;
+      }
       var demoDay = (
         <div>
           <div className='batch-members-count section-title'>
             <i className='mdi mdi-star-outline' />
             <div className='section-title-h'>DEMO DAY</div>
-            <div className='section-title-h ranked-by-milestone live'><span className='round' />LIVE</div>
+            {live}
           </div>
           <div className='iframe-container'>
             <div className='video-container'>
               <iframe src={`https://www.youtube.com/embed/${this.props.youtube_id}`} />
+            </div>
+            <div className="video-footer-cta">
+              Want to code your own product? <strong>Join Le Wagon <a href="http://lewagon.com/program" target="_blank">FullStack program</a></strong>
+              <a className="cover-link" href="http://lewagon.com/program" target="_blank"></a>
             </div>
           </div>
         </div>
@@ -75,7 +83,7 @@ class BatchDetail extends React.Component {
                             {project.name}
                           </div>
                           <div className='project-item-tagline'>
-                            {project.tagline}
+                            {project.tagline_en}
                           </div>
                         </div>
                         <div className='project-item-makers'>
@@ -124,7 +132,7 @@ class BatchDetail extends React.Component {
                     <img src={student.thumbnail} className='avatar' />
                   </div>
                   <div className='post-detail-participant-name'>
-                    {student.github_nickname}
+                    {student.first_name}
                   </div>
                   <div className='post-detail-participant-status' />
                 </a>

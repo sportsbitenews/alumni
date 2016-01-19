@@ -14,6 +14,7 @@
 #  cover_picture_file_size    :integer
 #  cover_picture_updated_at   :datetime
 #  position                   :integer
+#  featured                   :boolean          default(FALSE), not null
 #  slug                       :string
 #
 # Indexes
@@ -22,20 +23,19 @@
 #
 
 class Project < ActiveRecord::Base
+  include Cacheable
   belongs_to :batch
   has_many :milestones
   has_and_belongs_to_many :users
   acts_as_list scope: :batch
   has_attached_file :cover_picture,
-    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 }, card: { geometry: "700x393>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "270x180>", format: 'jpg', quality: 20 } }
+    styles: { cover: { geometry: "1400x730>", format: 'jpg', quality: 40 }, card: { geometry: "700x365>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "320x167>", format: 'jpg', quality: 20 } }, processors: [ :thumbnail, :paperclip_optimizer ]
   validates :name, presence: true
   validates :slug, uniqueness: true
   validates :url, presence: true
   before_create :slugify
   validates_attachment_content_type :cover_picture,
     content_type: /\Aimage\/.*\z/
-
-  after_save ->() { InvalidateWwwCacheJob.perform_later }
 
   def slugify
     self.slug = self.name.to_slug.normalize.to_s

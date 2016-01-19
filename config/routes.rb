@@ -5,8 +5,16 @@ Rails.application.routes.draw do
   # API routing
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :cities,       only: [ :index, :show ]
-      resources :batches,      only: [ :show ]
+      resources :cities,       only: [ :index, :show ] do
+        collection do
+          get "slugs"
+        end
+      end
+      resources :batches,      only: [ :show ] do
+        collection do
+          get "live"
+        end
+      end
       resources :projects,     only: [ :index ]
       resources :alumni,       only: [ :index ]
       resources :staff,        only: [ :index ]
@@ -39,6 +47,7 @@ Rails.application.routes.draw do
   resources :batches, only: %i(show edit update) do
     member do
       get :register
+      get :signing_sheet
     end
   end
 

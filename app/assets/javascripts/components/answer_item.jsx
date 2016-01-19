@@ -27,15 +27,27 @@ class AnswerItem extends React.Component {
     return(
       <div className={answerItemClasses} id={answerItemId}>
         <div className='answer-avatar'>
-          <img src={this.props.user.thumbnail} className='avatar' />
+          <a href={`/${this.props.user.github_nickname}`}>
+            <img src={this.props.user.thumbnail} className='avatar' />
+          </a>
         </div>
         <div className='answer-body'>
           <div className='answer-header'>
             <div className='answer-user-name'>
-              {this.props.user.github_nickname}
+              <a href={`/${this.props.user.github_nickname}`}>
+                {this.props.user.github_nickname}
+              </a>
             </div>
             <div className='answer-time-ago'>
               {this.props.time_ago} ago
+            </div>
+            <div className='answer-item-menu'>
+              <div className={editItem} onClick={this.handleEditionMode.bind(this)}>
+                EDIT
+              </div>
+              <div className='answer-item-share' onClick={this.displaySharingUrl.bind(this)}>
+                SHARE
+              </div>
             </div>
           </div>
           <div className='answer-content' dangerouslySetInnerHTML={{__html: this.state.content}}></div>
@@ -47,14 +59,6 @@ class AnswerItem extends React.Component {
             />
             <div className='button button-success' onClick={this.updateAnswer.bind(this)}>
               Edit your answer
-            </div>
-          </div>
-          <div className='answer-item-menu'>
-            <div className={editItem} onClick={this.handleEditionMode.bind(this)}>
-              EDIT
-            </div>
-            <div className='answer-item-share' onClick={this.displaySharingUrl.bind(this)}>
-              SHARE
             </div>
           </div>
         </div>
