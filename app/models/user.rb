@@ -80,6 +80,8 @@ class User < ActiveRecord::Base
 
   acts_as_voter
 
+  # after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }
+
   # include Devise::Controllers::Helpers
   def self.properties(user_signed_in)
     PUBLIC_PROPERTIES + (user_signed_in ? PRIVATE_PROPERTIES : [])
