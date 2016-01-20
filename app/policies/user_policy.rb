@@ -5,10 +5,6 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def show?
-    true
-  end
-
   def confirm?
     user.admin || (user.cities.any? && user.cities.include?(record.batch.city))
   end

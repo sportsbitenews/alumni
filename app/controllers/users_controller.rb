@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
+  skip_after_action :verify_authorized, only: :show
+
   before_action :set_user, only: %i(update confirm delete)
   def index
     ids = params[:ids] || []
@@ -11,7 +13,6 @@ class UsersController < ApplicationController
       format.html do
         @user = User.where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
         if @user
-          authorize @user
           if params[:github_nickname] != @user.github_nickname
             redirect_to profile_path(@user.github_nickname)
           end
