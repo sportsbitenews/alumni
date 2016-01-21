@@ -66,11 +66,11 @@ class Batch < ActiveRecord::Base
   end
 
   def create_slack_channel
-    CreateSlackChannelJob.perform_later(id) if slack_id.blank?
+    CreateSlackChannelJob.set(wait: 10.seconds).perform_later(id) if slack_id.blank?
   end
 
   def push_to_kitt
-    CreateCampInKitt.perform_later(id)
+    CreateCampInKitt.set(wait: 10.seconds).perform_later(id)
   end
 
   def name
