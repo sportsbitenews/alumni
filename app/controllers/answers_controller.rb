@@ -20,6 +20,8 @@ class AnswersController < ApplicationController
     authorize answer
     if !answer.save
       @post.answers.delete(answer)
+    else
+      SlackService.new.notify_answer(answer)
     end
   end
 

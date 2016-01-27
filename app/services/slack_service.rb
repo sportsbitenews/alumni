@@ -45,25 +45,72 @@ class SlackService
   end
 
   def notify(post)
-    options = {
-      channel: ENV['SLACK_INCOMING_WEBHOOK_CHANNEL'],
+    options = slack_options(post)
+    options[:channel] = ENV['SLACK_INCOMING_WEBHOOK_CHANNEL']
+    options[:attachments][0][:fallback] = post.slack_fallback
+    options[:attachments][0][:pretext] = post.slack_pretext
+    options[:attachments][0][:text] = post.slack_text
+    RestClient.post ENV['SLACK_INCOMING_WEBHOOK_URL'], options.to_json, content_type: :json, accept: :json
+  end
+
+  def notify_upvote(post, upvoter)
+    if slack_username(post.user)
+      options = slack_options(post)
+      options[:channel] = "@#{slack_username(upvoter)}"
+      options[:attachments][0][:fallback] = "Your #{post.class.to_s.downcase} was upvoted!"
+      options[:attachments][0][:pretext] = "Your #{post.class.to_s.downcase} was upvoted, check it out!"
+      options[:attachments][0][:text] = "<#{profile_url(upvoter.github_nickname)}|@#{upvoter.github_nickname}> upvoted your #{post.class.to_s.downcase}!"
+      RestClient.post ENV['SLACK_INCOMING_WEBHOOK_URL'], options.to_json, content_type: :json, accept: :json
+    end
+  end
+
+  def notify_answer(answer)
+    post = answer.answerable
+    options = slack_options(post)
+    answerer = answer.user
+    # send slack DM to other answerers
+    other_answerers = post.answers.map(&:user).uniq - [answerer, post.user]
+    other_answerers.each do |other_answerer|
+      if slack_username(other_answerer)
+        options[:channel] = "@#{slack_username(other_answerer)}"
+        options[:attachments][0][:fallback] = "@#{answerer.github_nickname} commented on #{post.slack_title}:"
+        options[:attachments][0][:pretext] = "<#{profile_url(answerer.github_nickname)}|@#{answerer.github_nickname}> commented on a #{post.class.to_s.downcase} you also commented, check it out!"
+        options[:attachments][0][:text] = "<#{profile_url(answerer.github_nickname)}|@#{answerer.github_nickname}>: #{answer.slack_content_preview}"
+        RestClient.post ENV['SLACK_INCOMING_WEBHOOK_URL'], options.to_json, content_type: :json, accept: :json
+      end
+    end
+    # send slack DM to upvoters (except answerers and post.user)
+    upvoters = post.votes_for.up.voters.reject { |voter| voter.id == answerer.id || voter.id == post.user.id || other_answerers.map(&:id).include?(voter.id) }
+    upvoters.each do |upvoter|
+      if slack_username(upvoter)
+        options[:channel] = "@#{slack_username(upvoter)}"
+        options[:attachments][0][:pretext] = "<#{profile_url(answerer.github_nickname)}|@#{answerer.github_nickname}> commented on a #{post.class.to_s.downcase} you upvoted, check it out!"
+        RestClient.post ENV['SLACK_INCOMING_WEBHOOK_URL'], options.to_json, content_type: :json, accept: :json
+      end
+    end
+    # send slack DM to post owner (unless he answered on his post)
+    if slack_username(post.user) && post.user != answerer
+      options[:channel] = "@#{slack_username(post.user)}"
+      options[:attachments][0][:pretext] = "<#{profile_url(answerer.github_nickname)}|@#{answerer.github_nickname}> commented on your #{post.class.to_s.downcase}, check it out!"
+      RestClient.post ENV['SLACK_INCOMING_WEBHOOK_URL'], options.to_json, content_type: :json, accept: :json
+    end
+  end
+
+  private
+
+  def slack_options(post)
+    {
       attachments: [{
         author_name: post.user.name,
         author_link: profile_url(post.user.github_nickname),
         author_icon: post.user.thumbnail,
-        fallback: post.slack_fallback,
-        pretext: post.slack_pretext,
         color: post.class::COLOR_FROM,
         title: post.slack_title,
         title_link: send(:"#{post.class.to_s.underscore}_url", post),
-        text: post.slack_text,
         mrkdwn_in: %w(text pretext)
       }]
     }
-    RestClient.post ENV['SLACK_INCOMING_WEBHOOK_URL'], options.to_json, content_type: :json, accept: :json
   end
-
-  private
 
   def connected_user_key(slack_uid)
     "connected:#{slack_uid}"
