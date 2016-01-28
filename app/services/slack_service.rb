@@ -67,6 +67,7 @@ class SlackService
       other_answerer_slack_nickname = slack_username(other_answerer)
       if other_answerer_slack_nickname
         attributes[:channel] = "@#{other_answerer_slack_nickname}"
+        attributes[:author_name] = "#{answerer.name} commented on #{post.user.name}'s #{post.class.to_s.downcase}!"
         send_slack_notif(post, attributes)
       end
     end
@@ -77,6 +78,7 @@ class SlackService
       if upvoter_slack_nickname
         attributes[:channel] = "@#{upvoter_slack_nickname}"
         attributes[:pretext] = "<#{profile_url(answerer.github_nickname)}|@#{answerer.github_nickname}> commented on a #{post.class.to_s.downcase} you upvoted, check it out!"
+        attributes[:author_name] = "#{answerer.name} commented on #{post.user.name}'s #{post.class.to_s.downcase}!"
         send_slack_notif(post, attributes)
       end
     end
@@ -84,7 +86,9 @@ class SlackService
     post_owner_slack_nickname = slack_username(post.user)
     if post_owner_slack_nickname && post.user != answerer
       attributes[:channel] = "@#{post_owner_slack_nickname}"
-      attributes[:pretext] = "<#{profile_url(answerer.github_nickname)}|@#{answerer.github_nickname}> commented on your #{post.class.to_s.downcase}, check it out!"
+      attributes[:author_name] = "#{answerer.name} commented on your #{post.class.to_s.downcase}!"
+      attributes[:pretext] = ""
+      attributes[:title] = ":speech_balloon: #{post.slack_title}"
       send_slack_notif(post, attributes)
     end
   end
@@ -93,7 +97,6 @@ class SlackService
 
   def send_slack_notif(post, attributes)
     options = slack_options(post, attributes)
-    p options
     RestClient.post ENV['SLACK_INCOMING_WEBHOOK_URL'], options.to_json, content_type: :json, accept: :json
   end
 
@@ -105,13 +108,19 @@ class SlackService
       attributes[:pretext] = instance.slack_pretext
       attributes[:text] = instance.slack_text
     elsif notif_purpose == :upvote
+      attributes[:title] = ":+1: #{instance.slack_title}"
+      attributes[:author_name] = "#{upvoter.name} upvoted your #{instance.class.to_s.downcase}!"
+      attributes[:author_link] = profile_url(upvoter.github_nickname)
+      attributes[:author_icon] = upvoter.thumbnail
       attributes[:fallback] = "Your #{instance.class.to_s.downcase} was upvoted by #{upvoter.name}!"
-      attributes[:pretext] = "Your #{instance.class.to_s.downcase} was upvoted, check it out!"
-      attributes[:text] = "<#{profile_url(upvoter.github_nickname)}|@#{upvoter.github_nickname}> upvoted your #{instance.class.to_s.downcase}!"
+      attributes[:pretext] = ""
+      attributes[:text] = ""
     elsif notif_purpose == :answer
+      attributes[:author_link] = profile_url(instance.user.github_nickname)
+      attributes[:author_icon] = instance.user.thumbnail
       attributes[:fallback] = "@#{instance.user.github_nickname} commented on #{instance.answerable.slack_title}:"
-      attributes[:pretext] = "<#{profile_url(instance.user.github_nickname)}|@#{instance.user.github_nickname}> commented on a #{instance.answerable.class.to_s.downcase} you also commented, check it out!"
-      attributes[:text] = "<#{profile_url(instance.user.github_nickname)}|@#{instance.user.github_nickname}>: #{instance.slack_content_preview}"
+      attributes[:pretext] = ""
+      attributes[:text] = "<@#{slack_username(instance.user)}> _said_ #{instance.slack_content_preview}"
     end
     return attributes
   end
@@ -120,11 +129,11 @@ class SlackService
     {
       channel: attributes[:channel],
       attachments: [{
-        author_name: post.user.name,
-        author_link: profile_url(post.user.github_nickname),
-        author_icon: post.user.thumbnail,
+        author_name: attributes[:author_name] || post.user.name,
+        author_link: attributes[:author_link] || profile_url(post.user.github_nickname),
+        author_icon: attributes[:author_icon] || post.user.thumbnail,
         color: post.class::COLOR_FROM,
-        title: post.slack_title,
+        title: attributes[:title] || post.slack_title,
         title_link: send(:"#{post.class.to_s.underscore}_url", post),
         mrkdwn_in: %w(text pretext),
         fallback: attributes[:fallback] || "",
