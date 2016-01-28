@@ -1,5 +1,6 @@
 class NotifyAnswerInSlack < ActiveJob::Base
-  def perform(post, user)
-    SlackService.new.notify_upvote(post, user)
+  def perform(answer_id)
+    answer = Answer.find(answer_id)
+    SlackService.new.notify_answer(answer)
   end
 end
