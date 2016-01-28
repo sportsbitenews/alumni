@@ -21,7 +21,7 @@ class AnswersController < ApplicationController
     if !answer.save
       @post.answers.delete(answer)
     else
-      SlackService.new.notify_answer(answer)
+      NotifyUpvoteInSlack.perform_later(answer)
     end
   end
 

@@ -16,7 +16,7 @@ class PostsController < ApplicationController
       current_user.unvote_for @post
     else
       current_user.up_votes @post
-      SlackService.new.notify_upvote(@post, current_user)
+      NotifyUpvoteInSlack.perform_later(@post, current_user)
     end
   end
 
