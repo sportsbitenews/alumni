@@ -48,6 +48,9 @@ class AnswerItem extends React.Component {
               <div className='answer-item-share' onClick={this.displaySharingUrl.bind(this)}>
                 SHARE
               </div>
+              <div className={editItem} onClick={this.handleDeletion.bind(this)}>
+                DELETE
+              </div>
             </div>
           </div>
           <div className='answer-content' dangerouslySetInnerHTML={{__html: this.state.content}}></div>
@@ -96,6 +99,14 @@ class AnswerItem extends React.Component {
 
   handleEditionMode() {
     this.setState({ isEditing: !this.state.isEditing })
+  }
+
+  handleDeletion() {
+    // var that = this
+    // $.ajax({
+    //   type: 'POST',
+    //   url: Routes.
+    // })
   }
 
   updateAnswer() {

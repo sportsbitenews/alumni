@@ -9,6 +9,10 @@ class AnswerPolicy < ApplicationPolicy
     user ? record.user.id == user.id || user.admin? : false
   end
 
+  def destroy?
+    user ? record.user.id == user.id || user.admin? : false
+  end
+
   def create?
     !user.nil?
   end

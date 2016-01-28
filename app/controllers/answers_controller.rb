@@ -3,7 +3,7 @@ require 'whatlanguage'
 class AnswersController < ApplicationController
   include PostScope
   skip_after_action :verify_authorized, only: [ :preview, :language ]
-  before_action :set_answer, only: [:update]
+  before_action :set_answer, only: [:update, :destroy]
   before_action :set_post_without_authorize, only: :create
 
   def preview
@@ -21,6 +21,10 @@ class AnswersController < ApplicationController
     if !answer.save
       @post.answers.delete(answer)
     end
+  end
+
+  def destroy
+    @answer.destroy
   end
 
   def language
