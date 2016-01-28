@@ -41,21 +41,7 @@ class PostDetailBody extends React.Component {
     );
 
 
-    if (this.props.description != undefined) {
-      var firstAnswer = (
-        <AnswerItem
-          user={this.props.user}
-          content={this.props.description}
-          original_content={this.props.original_description}
-          type={"FirstItem"}
-          post_type={this.props.type}
-          id={this.props.id}
-          editable={this.props.editable}
-          time_ago={this.props.time_ago_in_words}  /
-        >);
-    }
-
-    if (this.props.content != undefined){
+    if (this.props.content !== undefined){
       var firstAnswer = (
         <AnswerItem
           user={this.props.user}

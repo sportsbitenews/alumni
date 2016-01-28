@@ -24,6 +24,8 @@ class AnswerItem extends React.Component {
       'is-editing': this.state.isEditing
     })
 
+    console.log(this.state.content);
+
     return(
       <div className={answerItemClasses} id={answerItemId}>
         <div className='answer-avatar'>
@@ -120,9 +122,10 @@ class AnswerItem extends React.Component {
   onStoreChange(store) {
     if (this.props.type === 'FirstItem') {
       post = store.getPost(this.props.post_type, this.props.id);
+      debugger
       this.setState({
         isEditing: false,
-        original_content: post.original_content,
+        originalContent: post.original_content,
         content: post.content
       })
     } else {
@@ -130,7 +133,7 @@ class AnswerItem extends React.Component {
       if (updatedAnswer && updatedAnswer.id == this.props.id) {
         this.setState ({
           isEditing: false,
-          original_content: updatedAnswer.original_content,
+          originalContent: updatedAnswer.original_content,
           content: updatedAnswer.content
         })
       }
@@ -146,13 +149,5 @@ class AnswerItem extends React.Component {
     }
     window.prompt("Copy to clipboard", link);
   }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      content: this.props.content
-    })
-  }
-
-
 
 }
