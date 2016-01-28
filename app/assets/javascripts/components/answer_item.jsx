@@ -5,7 +5,8 @@ class AnswerItem extends React.Component {
       highlighted: false,
       isEditing: false,
       content: this.props.content,
-      originalContent: this.props.original_content
+      originalContent: this.props.original_content,
+      isDeleted: false
     }
   }
 
@@ -21,10 +22,9 @@ class AnswerItem extends React.Component {
 
     var answerItemClasses = classNames({
       'answer-item': true,
-      'is-editing': this.state.isEditing
+      'is-editing': this.state.isEditing,
+      'hidden': this.state.isDeleted
     })
-
-    console.log(this.state.content);
 
     return(
       <div className={answerItemClasses} id={answerItemId}>
@@ -104,11 +104,9 @@ class AnswerItem extends React.Component {
   }
 
   handleDeletion() {
-    // var that = this
-    // $.ajax({
-    //   type: 'POST',
-    //   url: Routes.
-    // })
+    if (this.props.type != 'FirstItem') {
+      AnswerActions.delete(this.props.id)
+    }
   }
 
   updateAnswer() {
@@ -122,7 +120,6 @@ class AnswerItem extends React.Component {
   onStoreChange(store) {
     if (this.props.type === 'FirstItem') {
       post = store.getPost(this.props.post_type, this.props.id);
-      debugger
       this.setState({
         isEditing: false,
         originalContent: post.original_content,

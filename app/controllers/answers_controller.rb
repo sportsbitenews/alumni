@@ -24,6 +24,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
+    @post = @answer.answerable
     @answer.destroy
   end
 
