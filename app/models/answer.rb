@@ -22,4 +22,8 @@ class Answer < ActiveRecord::Base
   validates :user, presence: true
   validates :answerable_id, presence: true
   validates :answerable_type, presence: true
+
+  def slack_content_preview
+    content.length > 60 ? (content[0..60] + "... " + "<" + Rails.application.routes.url_helpers.send(:"#{answerable.class.to_s.downcase}_url", answerable, anchor: "answer-#{id}") + "|check out full answer>") : content + " <" + Rails.application.routes.url_helpers.send(:"#{answerable.class.to_s.downcase}_url", answerable, anchor: "answer-#{id}") + "| Answer here!>"
+  end
 end
