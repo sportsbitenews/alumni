@@ -24,7 +24,6 @@
 #  trello_inbox_list_id    :string
 #  price_cents             :integer          default(0), not null
 #  price_currency          :string           default("EUR"), not null
-#  apply_facebook_pixel    :string
 #
 # Indexes
 #

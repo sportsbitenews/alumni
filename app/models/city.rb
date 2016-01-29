@@ -34,6 +34,7 @@
 #  company_hq                       :string
 #  company_purpose_and_registration :string
 #  training_address                 :string
+#  apply_facebook_pixel             :string
 #
 # Indexes
 #
