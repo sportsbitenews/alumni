@@ -8,14 +8,14 @@
 #  batch_id                   :integer
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  tagline                    :string
+#  tagline_en                 :string
 #  cover_picture_file_name    :string
 #  cover_picture_content_type :string
 #  cover_picture_file_size    :integer
 #  cover_picture_updated_at   :datetime
 #  position                   :integer
-#  featured                   :boolean          default(FALSE), not null
 #  slug                       :string
+#  tagline_fr                 :string
 #
 # Indexes
 #
