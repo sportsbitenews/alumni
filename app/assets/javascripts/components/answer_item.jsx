@@ -16,6 +16,11 @@ class AnswerItem extends React.Component {
 
     var editItem = classNames({
       'answer-item-share': true,
+      'is-hidden': !this.props.editable
+    })
+
+    var deleteItem = classNames({
+      'answer-item-share': true,
       'is-hidden': !this.props.editable || this.props.type == 'FirstItem'
     })
 
@@ -48,7 +53,7 @@ class AnswerItem extends React.Component {
               <div className='answer-item-share' onClick={this.displaySharingUrl.bind(this)}>
                 SHARE
               </div>
-              <div className={editItem} onClick={this.handleDeletion.bind(this)}>
+              <div className={deleteItem} onClick={this.handleDeletion.bind(this)}>
                 DELETE
               </div>
             </div>
