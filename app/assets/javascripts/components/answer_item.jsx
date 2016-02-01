@@ -64,6 +64,7 @@ class AnswerItem extends React.Component {
               className='answer-form-edit'
               ref='editForm'
               defaultValue={this.state.originalContent}
+              onChange={this.handleChange}
             />
             <div className='button button-success' onClick={this.updateAnswer.bind(this)}>
               Edit your answer
@@ -104,6 +105,10 @@ class AnswerItem extends React.Component {
 
   handleEditionMode() {
     this.setState({ isEditing: !this.state.isEditing })
+  }
+
+  handleChange() {
+    // TODO: show autocomplete table with github usernames (next to names)
   }
 
   handleDeletion() {
