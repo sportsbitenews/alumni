@@ -5,8 +5,7 @@ class AnswerItem extends React.Component {
       highlighted: false,
       isEditing: false,
       content: this.props.content,
-      originalContent: this.props.original_content,
-      isDeleted: false
+      originalContent: this.props.original_content
     }
   }
 
@@ -22,8 +21,7 @@ class AnswerItem extends React.Component {
 
     var answerItemClasses = classNames({
       'answer-item': true,
-      'is-editing': this.state.isEditing,
-      'hidden': this.state.isDeleted
+      'is-editing': this.state.isEditing
     });
 
     return(
@@ -105,7 +103,9 @@ class AnswerItem extends React.Component {
 
   handleDeletion() {
     if (this.props.type != 'FirstItem') {
-      AnswerActions.delete(this.props.id)
+      if (confirm('Are you sure you want to delete this comment?')) {
+        AnswerActions.delete(this.props.id)
+      }
     }
   }
 

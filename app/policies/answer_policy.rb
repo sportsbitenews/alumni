@@ -10,7 +10,7 @@ class AnswerPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user ? record.user.id == user.id || user.admin? : false
+    update?
   end
 
   def create?

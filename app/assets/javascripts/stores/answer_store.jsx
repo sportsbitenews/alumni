@@ -2,18 +2,12 @@ class AnswerStoreClass {
   constructor() {
     this.new_answer = null;
     this.updated_answer = null;
-    this.deleted_answer = null;
     // this.answers = {}
 
     this.bindListeners({
       updatePreviewAnswer: AnswerActions.preview,
-      updateUpdatedAnswer: AnswerActions.update,
-      deleteAnswer: AnswerActions.delete
+      updateUpdatedAnswer: AnswerActions.update
     });
-  }
-
-  deleteAnswer(answer) {
-    this.deleted_answer = answer
   }
 
   updatePreviewAnswer(answer) {
