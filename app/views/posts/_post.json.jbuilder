@@ -17,3 +17,8 @@ if user_signed_in?
   json.up_voted current_user.voted_for? post
 end
 
+json.users do
+  json.array! User.all do |user|
+    json.partial! "posts/user", user: user
+  end
+end

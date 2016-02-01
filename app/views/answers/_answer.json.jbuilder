@@ -11,4 +11,3 @@ json.user do
   json.extract! answer.user, :id, :thumbnail, :github_nickname
   json.connected_to_slack answer.user.connected_to_slack
 end
-

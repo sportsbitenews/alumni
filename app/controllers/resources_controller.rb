@@ -16,7 +16,6 @@ class ResourcesController < ApplicationController
   end
 
   def show
-    authorize @resource
   end
 
   def create
@@ -40,6 +39,7 @@ class ResourcesController < ApplicationController
 
   def set_resource
     @resource = Resource.find(params[:id])
+    authorize @resource
   end
 
   def resource_params
