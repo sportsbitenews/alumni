@@ -3,7 +3,7 @@ require 'whatlanguage'
 class AnswersController < ApplicationController
   include PostScope
   skip_after_action :verify_authorized, only: [ :preview, :language ]
-  before_action :set_answer, only: [:update]
+  before_action :set_answer, only: [:update, :destroy]
   before_action :set_post_without_authorize, only: :create
 
   def preview
@@ -23,6 +23,11 @@ class AnswersController < ApplicationController
     else
       NotifyAnswerInSlack.perform_later(answer.id)
     end
+  end
+
+  def destroy
+    @post = @answer.answerable
+    @answer.destroy
   end
 
   def language

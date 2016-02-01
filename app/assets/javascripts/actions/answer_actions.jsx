@@ -18,6 +18,11 @@ class AnswerActionsClass {
     axios.railsPatch(Routes.answer_path(answer_id, { format: 'json' }), {"content": content })
       .then((response) => this.dispatch(response.data))
   }
+
+  delete(answer_id) {
+    axios.railsDelete(Routes.answer_path(answer_id, { format: 'json' }))
+      .then((response) => this.dispatch(response.data))
+  }
 }
 
 AnswerActions = alt.createActions(AnswerActionsClass);

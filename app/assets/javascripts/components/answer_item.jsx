@@ -16,13 +16,13 @@ class AnswerItem extends React.Component {
 
     var editItem = classNames({
       'answer-item-share': true,
-      'is-hidden': !this.props.editable
+      'is-hidden': !this.props.editable || this.props.type == 'FirstItem'
     })
 
     var answerItemClasses = classNames({
       'answer-item': true,
       'is-editing': this.state.isEditing
-    })
+    });
 
     return(
       <div className={answerItemClasses} id={answerItemId}>
@@ -47,6 +47,9 @@ class AnswerItem extends React.Component {
               </div>
               <div className='answer-item-share' onClick={this.displaySharingUrl.bind(this)}>
                 SHARE
+              </div>
+              <div className={editItem} onClick={this.handleDeletion.bind(this)}>
+                DELETE
               </div>
             </div>
           </div>
@@ -98,6 +101,14 @@ class AnswerItem extends React.Component {
     this.setState({ isEditing: !this.state.isEditing })
   }
 
+  handleDeletion() {
+    if (this.props.type != 'FirstItem') {
+      if (confirm('Are you sure you want to delete this comment?')) {
+        AnswerActions.delete(this.props.id)
+      }
+    }
+  }
+
   updateAnswer() {
     if (this.props.type == 'FirstItem') {
       PostActions.update(React.findDOMNode(this.refs.editForm).value, this.props.post_type, this.props.id)
@@ -111,7 +122,7 @@ class AnswerItem extends React.Component {
       post = store.getPost(this.props.post_type, this.props.id);
       this.setState({
         isEditing: false,
-        original_content: post.original_content,
+        originalContent: post.original_content,
         content: post.content
       })
     } else {
@@ -119,7 +130,7 @@ class AnswerItem extends React.Component {
       if (updatedAnswer && updatedAnswer.id == this.props.id) {
         this.setState ({
           isEditing: false,
-          original_content: updatedAnswer.original_content,
+          originalContent: updatedAnswer.original_content,
           content: updatedAnswer.content
         })
       }
@@ -135,13 +146,5 @@ class AnswerItem extends React.Component {
     }
     window.prompt("Copy to clipboard", link);
   }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      content: this.props.content
-    })
-  }
-
-
 
 }

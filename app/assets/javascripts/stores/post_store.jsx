@@ -9,7 +9,7 @@ class PostStoreClass {
     this.end = {};
 
     this.bindListeners({
-      updatePost: [ AnswerActions.post, PostActions.update, PostActions.upVote ],
+      updatePost: [ AnswerActions.post, AnswerActions.delete, PostActions.update, PostActions.upVote ],
       updatePosts: PostActions.search,
       appendPosts: PostActions.fetchPage,
       fill: PostActions.fillStore
