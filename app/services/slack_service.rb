@@ -93,6 +93,14 @@ class SlackService
     end
   end
 
+  def notify_mention(answer, user)
+    post = answer.answerable
+    answerer = answer.user
+    channel = "@#{slack_username(user)}"
+    attributes = slack_attributes(answer, channel, :mention)
+    send_slack_notif(post, attributes)
+  end
+
   private
 
   def send_slack_notif(post, attributes)
@@ -120,6 +128,13 @@ class SlackService
       attributes[:author_icon] = instance.user.thumbnail
       attributes[:fallback] = "@#{instance.user.github_nickname} commented on #{instance.answerable.slack_title}:"
       attributes[:pretext] = ""
+      attributes[:text] = "<@#{slack_username(instance.user)}> _said_ #{instance.slack_content_preview}"
+    elsif notif_purpose == :mention
+      attributes[:title] = ":wave: #{instance.answerable.slack_title}"
+      attributes[:author_name] = "#{instance.user.name} mentioned you in a comment!"
+      attributes[:author_link] = profile_url(instance.user.github_nickname)
+      attributes[:author_icon] = instance.user.thumbnail
+      attributes[:fallback] = "#{instance.user.name} mentioned you in a comment!"
       attributes[:text] = "<@#{slack_username(instance.user)}> _said_ #{instance.slack_content_preview}"
     end
     return attributes
