@@ -17,14 +17,14 @@ class AnswerItem extends React.Component {
 
     var editItem = classNames({
       'answer-item-share': true,
-      'is-hidden': !this.props.editable
+      'is-hidden': !this.props.editable || this.props.type == 'FirstItem'
     })
 
     var answerItemClasses = classNames({
       'answer-item': true,
       'is-editing': this.state.isEditing,
       'hidden': this.state.isDeleted
-    })
+    });
 
     return(
       <div className={answerItemClasses} id={answerItemId}>
