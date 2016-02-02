@@ -441,6 +441,7 @@ module.exports = React.createClass({
 
     // refresh suggestions queries
     var el = this.refs.input;
+    // debugger
     if (ev.target.selectionStart === ev.target.selectionEnd) {
       this.updateMentionsQueries(el.value, ev.target.selectionStart);
     } else {
@@ -455,7 +456,6 @@ module.exports = React.createClass({
 
   handleKeyDown: function handleKeyDown(ev) {
     var keyHandlers = {};
-    debugger
     // do not intercept key events if the suggestions overlay is not shown
     var suggestionsCount = 0;
     for (var prop in this.state.suggestions) {

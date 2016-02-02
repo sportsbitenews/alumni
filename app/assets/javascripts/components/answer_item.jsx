@@ -70,17 +70,7 @@ class AnswerItem extends React.Component {
             </div>
           </div>
           <div className='answer-content' dangerouslySetInnerHTML={{__html: this.state.content}}></div>
-          <div className='answer-edit'>
-            <ReactMentions.MentionsInput className='answer-form-edit' value={this.state.value} onChange={this.handleChange}>
-              <ReactMentions.Mention
-                trigger="@"
-                data={ this.props.users }
-                renderSuggestion={this.renderUserSuggestion} />
-            </ReactMentions.MentionsInput>
-            <div className='button button-success' onClick={this.updateAnswer.bind(this)}>
-              Edit your answer
-            </div>
-          </div>
+          <GhNicknameMention {...this.props} />
         </div>
       </div>
     )
@@ -128,14 +118,6 @@ class AnswerItem extends React.Component {
       if (confirm('Are you sure you want to delete this comment?')) {
         AnswerActions.delete(this.props.id)
       }
-    }
-  }
-
-  updateAnswer() {
-    if (this.props.type == 'FirstItem') {
-      PostActions.update(React.findDOMNode(this.refs.editForm).value, this.props.post_type, this.props.id)
-    } else {
-      AnswerActions.update(this.props.id, React.findDOMNode(this.refs.editForm).value)
     }
   }
 
