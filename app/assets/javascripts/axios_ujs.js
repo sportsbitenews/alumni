@@ -10,6 +10,10 @@ axios.railsDelete = function(url) {
   return axios._action('DELETE', url);
 }
 
+axios.railsGet = function(url) {
+  return axios._action('GET', url);
+}
+
 axios._action = function(verb, url, data) {
   return axios({
     method: verb,

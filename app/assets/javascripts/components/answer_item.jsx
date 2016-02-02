@@ -5,7 +5,18 @@ class AnswerItem extends React.Component {
       highlighted: false,
       isEditing: false,
       content: this.props.content,
-      originalContent: this.props.original_content
+      originalContent: this.props.original_content,
+      value: this.props.original_content,
+      users: [
+        {
+          display: "Eschults",
+          id: "Edward Schults"
+        },
+        {
+          display: "ssaunier",
+          id: "Sebastien Saunier"
+        }
+      ]
     }
   }
 
@@ -60,12 +71,12 @@ class AnswerItem extends React.Component {
           </div>
           <div className='answer-content' dangerouslySetInnerHTML={{__html: this.state.content}}></div>
           <div className='answer-edit'>
-            <textarea
-              className='answer-form-edit'
-              ref='editForm'
-              defaultValue={this.state.originalContent}
-              onChange={this.handleChange}
-            />
+            <ReactMentions.MentionsInput className='answer-form-edit' value={this.state.value} onChange={this.handleChange}>
+              <ReactMentions.Mention
+                trigger="@"
+                data={ this.props.users }
+                renderSuggestion={this.renderUserSuggestion} />
+            </ReactMentions.MentionsInput>
             <div className='button button-success' onClick={this.updateAnswer.bind(this)}>
               Edit your answer
             </div>
@@ -107,9 +118,10 @@ class AnswerItem extends React.Component {
     this.setState({ isEditing: !this.state.isEditing })
   }
 
-  handleChange() {
-    // TODO: show autocomplete table with github usernames (next to names)
-  }
+  // handleChange() {
+  //   // TODO: show autocomplete table with github usernames (next to names)
+  //   this.setState({ value: ""})
+  // }
 
   handleDeletion() {
     if (this.props.type != 'FirstItem') {

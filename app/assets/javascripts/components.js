@@ -5,6 +5,7 @@
 //= require pubsub-js
 //= require react_bootstrap
 //= require react-swipe-views
+//= require react-mentions
 
 //= require ./init
 //= require_tree ./helpers
