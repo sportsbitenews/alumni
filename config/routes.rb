@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # API routing
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      resource :statistics,    only: :show
       resources :cities,       only: [ :index, :show ] do
         collection do
           get "slugs"

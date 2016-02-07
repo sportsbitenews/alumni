@@ -49,6 +49,8 @@ class Batch < ActiveRecord::Base
   after_save :push_to_kitt, if: :slug_set?
   monetize :price_cents
 
+  scope :completed_or_in_progress, -> { where('starts_at <= ?', Date.today) }
+
   # TODO(ssaunier):
   # after_create :create_trello_board
 
@@ -59,6 +61,10 @@ class Batch < ActiveRecord::Base
 
   def set_ends_at
     self.ends_at = self.starts_at + 9.weeks - 3.days if self.starts_at
+  end
+
+  def user_count
+    users.size
   end
 
   def slack_channel_name
