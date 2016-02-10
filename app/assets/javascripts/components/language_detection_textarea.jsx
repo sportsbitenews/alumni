@@ -14,8 +14,8 @@ class LanguageDetectionTextarea extends React.Component {
   componentDidMount() {
     AnswerStore.listen(this.onStoreChange.bind(this));
     PubSub.subscribe('focusRealInput', () => {
-      this.content().focus()
-      this.content().value = ''
+      this.contentDOMNode().focus()
+      this.contentDOMNode().value = ''
     })
   }
 
@@ -63,7 +63,7 @@ class LanguageDetectionTextarea extends React.Component {
     e.preventDefault();
     this.setState({ preview: true })
     if (!this.state.blank) {
-      AnswerActions.preview(this.content().value);
+      AnswerActions.preview(this.contentDOMNode().value);
     }
   }
 
@@ -77,7 +77,7 @@ class LanguageDetectionTextarea extends React.Component {
   }
 
   onKeyUp() {
-    var content = this.content().value;
+    var content = this.contentDOMNode().value;
     this.isFrenchContent(content)
     if (this.props.setContent) {
       this.props.setContent(content)
@@ -104,11 +104,10 @@ class LanguageDetectionTextarea extends React.Component {
   }
 
   resetForm() {
-    this.content().value = "";
+    this.contentDOMNode().value = "";
   }
 
   isFrenchContent(content) {
-    console.log(content[content.length - 1]);
     if (!this.state.pendingDetection && content[content.length - 1].match(/[^A-z]/)) {  // Only check for new words
       this.setState({ pendingDetection: true });
       axios.get(`${Routes.language_answers_path()}?content=${content}`)
@@ -126,7 +125,7 @@ class LanguageDetectionTextarea extends React.Component {
     }
   }
 
-  content() {
-    return React.findDOMNode(this.refs.content.getContent());
+  contentDOMNode() {
+    return React.findDOMNode(this.refs.content.getContentRef());
   }
 }

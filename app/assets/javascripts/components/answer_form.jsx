@@ -38,14 +38,20 @@ class AnswerForm extends React.Component {
           onFocus=       {this.onFocusInput.bind(this)}
           onKeyDown=     {this.onKeyDown.bind(this)}
           setContent=    {this.setContent.bind(this)}
-          onCancelClick= {this.closeForm.bind(this)}
-          onSubmitClick= {this.postAnswer.bind(this)}
         />
         <textarea
           className=   {fakeTextAreaClasses}
           onFocus=     {this.onFocusInput.bind(this)}
           placeholder= 'Say something nice!'
         />
+        <div className='answer-form-actions-submit'>
+          <div className='answer-form-submit button button-discret' onClick={this.closeForm.bind(this)}>
+            Cancel
+          </div>
+          <div className='answer-form-submit button button-success' onClick={this.postAnswer.bind(this)}>
+            Submit your answer
+          </div>
+        </div>
       </div>
     )
   }
@@ -81,9 +87,8 @@ class AnswerForm extends React.Component {
     if (e.which === 13 && (e.metaKey || e.ctrlKey)) {
       this.postAnswer()
     }
-    else if (e.which === 27 && this.state.blank) {
-      this.resetForm();
-      this.content().blur();
+    else if (e.which === 27) {
+      this.closeForm();
     }
   }
 

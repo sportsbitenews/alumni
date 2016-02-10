@@ -3,16 +3,17 @@
   z-index: 1;
   border: 1px solid rgba(0, 0, 0, 0.15);
   background-color: white;
-  margin-top: 28px;
-  margin-left: 13px;
+  margin-top: 31px;
+  margin-left: 12px;
   font-size: 10pt;
   min-width: 100px;
-  -webkit-box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
-  -khtml-box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
-  -moz-box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
-  -ms-box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
-  -o-box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
-  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  -khtml-box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  -ms-box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  -o-box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 .suggestions ul {
   margin: 0;
@@ -28,5 +29,6 @@
   border-bottom: none;
 }
 .suggestions ul li.focus {
-  background-color: #cee4e5;
+  background-color: #4078c0;
+  color: white;
 }

@@ -14,15 +14,6 @@ GhNicknameMention = React.createClass({
       actionButtons = <div className='button button-success' onClick={this.updateAnswer}>
                         Edit your answer
                       </div>
-    } else {
-      actionButtons =   <div className='answer-form-actions-submit'>
-                          <div className='answer-form-submit button button-discret' onClick={this.handleCancel}>
-                            Cancel
-                          </div>
-                          <div className='answer-form-submit button button-success' onClick={this.handleSubmit}>
-                            Submit your answer
-                          </div>
-                        </div>
     }
     var divClasses = classNames({
       'answer-edit': this.props.edit
@@ -41,7 +32,8 @@ GhNicknameMention = React.createClass({
           displayTransform={this.displayTransform}
           className={textareaClasses}
           ref='mentionInput'
-          onKeyUp={this.props.onKeyUp}>
+          onKeyUp={this.props.onKeyUp}
+          onKeyDown={this.props.onKeyDown}>
 
           <ReactMentions.Mention
             type="user"
@@ -105,7 +97,7 @@ GhNicknameMention = React.createClass({
     );
   },
 
-  getContent: function() {
+  getContentRef: function() {
     return this.refs.mentionInput.getTextareaRef();
   }
 
