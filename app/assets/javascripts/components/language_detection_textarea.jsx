@@ -43,20 +43,21 @@ class LanguageDetectionTextarea extends React.Component {
             Markdown supported
           </a>
         </div>
-        <textarea
-          placeholder={this.props.placeholder}
-          onFocus={this.props.onFocus}
-          ref="content"
-          defaultValue={this.props.defaultValue}
-          name={this.props.name}
-          className='answer-form-input answer-form-input-ui'
-          onKeyUp={this.onKeyUp.bind(this)}
-          onKeyDown={this.props.onKeyDown}
-        />
+        <GhNicknameMention {...this.props} ref='content' onKeyUp={this.onKeyUp.bind(this)} />
         <div className='answer-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}}></div>
       </div>
     )
   }
+  // <textarea
+  //   placeholder={this.props.placeholder}
+  //   onFocus={this.props.onFocus}
+  //   ref="content"
+  //   defaultValue={this.props.defaultValue}
+  //   name={this.props.name}
+  //   className='answer-form-input answer-form-input-ui'
+  //   onKeyUp={this.onKeyUp.bind(this)}
+  //   onKeyDown={this.props.onKeyDown}
+  // />
 
   onPreviewClick(e) {
     e.preventDefault();
@@ -75,13 +76,13 @@ class LanguageDetectionTextarea extends React.Component {
     }
   }
 
-  onKeyUp(e) {
+  onKeyUp() {
     var content = this.content().value;
     this.isFrenchContent(content)
     if (this.props.setContent) {
       this.props.setContent(content)
     }
-    if (this.content().value == "") {
+    if (content == "") {
       this.setState({
         blank: true
       })
@@ -126,6 +127,6 @@ class LanguageDetectionTextarea extends React.Component {
   }
 
   content() {
-    return React.findDOMNode(this.refs.content);
+    return React.findDOMNode(this.refs.content.getContent());
   }
 }

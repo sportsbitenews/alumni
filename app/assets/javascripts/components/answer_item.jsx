@@ -33,7 +33,7 @@ class AnswerItem extends React.Component {
     var mentionComponent;
 
     if(this.state.isEditing) {
-      mentionComponent = <GhNicknameMention {...this.props} />
+      mentionComponent = <GhNicknameMention {...this.props} edit={true} />
     }
 
     return(
@@ -103,11 +103,6 @@ class AnswerItem extends React.Component {
   handleEditionMode() {
     this.setState({ isEditing: !this.state.isEditing })
   }
-
-  // handleChange() {
-  //   // TODO: show autocomplete table with github usernames (next to names)
-  //   this.setState({ value: ""})
-  // }
 
   handleDeletion() {
     if (this.props.type != 'FirstItem') {

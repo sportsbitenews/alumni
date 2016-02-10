@@ -25,28 +25,27 @@ class AnswerForm extends React.Component {
       'hidden': this.state.editing
     })
 
+    var mentionComponent;
+
+    if(this.state.isEditing) {
+      mentionComponent = <GhNicknameMention {...this.props} />
+    }
+
     return(
       <div className={formClasses}>
         <LanguageDetectionTextarea
-          placeholder={"Say something nice, in english please."}
-          onFocus=    {this.onFocusInput.bind(this)}
-          onKeyDown=  {this.onKeyDown.bind(this)}
-          setContent= {this.setContent.bind(this)}
+          placeholder=   {"Say something nice, in english please."}
+          onFocus=       {this.onFocusInput.bind(this)}
+          onKeyDown=     {this.onKeyDown.bind(this)}
+          setContent=    {this.setContent.bind(this)}
+          onCancelClick= {this.closeForm.bind(this)}
+          onSubmitClick= {this.postAnswer.bind(this)}
         />
         <textarea
-          className=  {fakeTextAreaClasses}
-          onFocus=    {this.onFocusInput.bind(this)}
-          placeholder='Say something nice!'
+          className=   {fakeTextAreaClasses}
+          onFocus=     {this.onFocusInput.bind(this)}
+          placeholder= 'Say something nice!'
         />
-
-        <div className='answer-form-actions-submit'>
-          <div className='answer-form-submit button button-discret' onClick={this.closeForm.bind(this)}>
-            Cancel
-          </div>
-          <div className='answer-form-submit button button-success' onClick={this.postAnswer.bind(this)}>
-            Submit your answer
-          </div>
-        </div>
       </div>
     )
   }
@@ -92,8 +91,8 @@ class AnswerForm extends React.Component {
     this.setState({ content: content })
   }
 
-  postAnswer() {
-    AnswerActions.post(this.props.type, this.props.post_id, this.state.content);
+  postAnswer(content) {
+    AnswerActions.post(this.props.type, this.props.post_id, content);
     this.setState({ pendingPost: true })
   }
 

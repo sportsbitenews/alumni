@@ -43,7 +43,8 @@
   }
 }
 
-.answer-form-input {
+textarea.answer-form-input,
+.answer-form-input textarea {
   display: block;
   resize: none;
   width: 100%;
@@ -54,9 +55,11 @@
   border-radius: 4px;
   padding: 10px;
 
-  &-ui { display: none }
   &:focus { outline: 0 }
 }
+.answer-form-input-ui {
+  display: none
+ }
 
 .answer-form-preview {
   display: none;
