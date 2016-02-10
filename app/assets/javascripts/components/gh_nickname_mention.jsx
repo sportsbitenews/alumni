@@ -1,12 +1,12 @@
 GhNicknameMention = React.createClass({
 
+  mixins: [MentionsMixin],
+
   getInitialState: function() {
     return {
       value: this.props.original_content
     };
   },
-
-
 
   render: function() {
     return (
@@ -14,31 +14,41 @@ GhNicknameMention = React.createClass({
         <ReactMentions.MentionsInput
           value={this.state.value}
           onChange={this.handleChange}
-          markup="@[__display__](__type__:__id__)"
           placeholder={"Mention people using '@'"}
-          className="answer-form-edit">
+          displayTransform={this.displayTransform}
+          className="answer-form-edit"
+          ref='mentionInput'>
 
           <ReactMentions.Mention
             type="user"
             trigger="@"
-            data={ this.props.data }
+            data={ this.onNewUserCharacter }
             renderSuggestion={this.renderSuggestion}
             onAdd={this.handleAdd}
             onRemove={this.handleRemove} />
         </ReactMentions.MentionsInput>
-        <div className='button button-success' onClick={this.updateAnswer.bind(this)}>
+        <div className='button button-success' onClick={this.updateAnswer}>
           Edit your answer
         </div>
       </div>
     );
   },
 
+  onNewUserCharacter: function(query, callback) {
+    UserActions.getUsers(query, callback);
+  },
+
   updateAnswer: function() {
+    var value = React.findDOMNode(this.refs.mentionInput.getTextareaRef()).value;
     if (this.props.type == 'FirstItem') {
-      PostActions.update(React.findDOMNode(this.refs.editForm).value, this.props.post_type, this.props.id)
+      PostActions.update(value, this.props.post_type, this.props.id)
     } else {
-      AnswerActions.update(this.props.id, React.findDOMNode(this.refs.editForm).value)
+      AnswerActions.update(this.props.id, value)
     }
+  },
+
+  displayTransform: function(id, display) {
+    return '@' + id;
   },
 
   handleRemove: function() {
@@ -55,12 +65,6 @@ GhNicknameMention = React.createClass({
         { highlightedDisplay }
       </div>
     );
-  },
-
-  handleChange: function(ev, value) {
-    this.setState({
-      value: value
-    })
   }
 
 });

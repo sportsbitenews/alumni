@@ -6,17 +6,7 @@ class AnswerItem extends React.Component {
       isEditing: false,
       content: this.props.content,
       originalContent: this.props.original_content,
-      value: this.props.original_content,
-      users: [
-        {
-          display: "Eschults",
-          id: "Edward Schults"
-        },
-        {
-          display: "ssaunier",
-          id: "Sebastien Saunier"
-        }
-      ]
+      value: this.props.original_content
     }
   }
 
@@ -39,6 +29,12 @@ class AnswerItem extends React.Component {
       'answer-item': true,
       'is-editing': this.state.isEditing
     });
+
+    var mentionComponent;
+
+    if(this.state.isEditing) {
+      mentionComponent = <GhNicknameMention {...this.props} />
+    }
 
     return(
       <div className={answerItemClasses} id={answerItemId}>
@@ -70,7 +66,7 @@ class AnswerItem extends React.Component {
             </div>
           </div>
           <div className='answer-content' dangerouslySetInnerHTML={{__html: this.state.content}}></div>
-          <GhNicknameMention {...this.props} />
+          {mentionComponent}
         </div>
       </div>
     )

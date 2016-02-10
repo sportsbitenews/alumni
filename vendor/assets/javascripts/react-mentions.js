@@ -143,7 +143,6 @@ module.exports = React.createClass({
     return {
       selectionStart: null,
       selectionEnd: null,
-
       suggestions: {}
     };
   },
@@ -179,6 +178,10 @@ module.exports = React.createClass({
       ),
       this.renderSuggestionsOverlay()
     );
+  },
+
+  getTextareaRef: function() {
+    return this.refs.input;
   },
 
   renderInput: function renderInput(props) {
@@ -441,9 +444,8 @@ module.exports = React.createClass({
 
     // refresh suggestions queries
     var el = this.refs.input;
-    // debugger
     if (ev.target.selectionStart === ev.target.selectionEnd) {
-      this.updateMentionsQueries(el.value, ev.target.selectionStart);
+      this.updateMentionsQueries(el.props.value, ev.target.selectionStart);
     } else {
       this.clearSuggestions();
     }
@@ -456,6 +458,7 @@ module.exports = React.createClass({
 
   handleKeyDown: function handleKeyDown(ev) {
     var keyHandlers = {};
+
     // do not intercept key events if the suggestions overlay is not shown
     var suggestionsCount = 0;
     for (var prop in this.state.suggestions) {
@@ -507,10 +510,10 @@ module.exports = React.createClass({
   updateSuggestionsPosition: function updateSuggestionsPosition() {
     if (!this.refs.caret || !this.refs.suggestions) return;
 
-    var containerEl = this.refs.container;
-    var caretEl = this.refs.caret;
+    var containerEl = this.refs.container.getDOMNode();
+    var caretEl = this.refs.caret.getDOMNode();
     var suggestionsEl = React.findDOMNode(this.refs.suggestions);
-    var highligherEl = this.refs.highlighter;
+    var highligherEl = this.refs.highlighter.getDOMNode();
     if (!suggestionsEl) return;
 
     var leftPos = caretEl.offsetLeft - highligherEl.scrollLeft;
@@ -521,6 +524,7 @@ module.exports = React.createClass({
       suggestionsEl.style.left = leftPos + "px";
     }
     suggestionsEl.style.top = caretEl.offsetTop - highligherEl.scrollTop + "px";
+    // debugger
   },
 
   updateHighlighterScroll: function updateHighlighterScroll() {
@@ -640,7 +644,7 @@ module.exports = React.createClass({
     var newValue = utils.spliceString(value, start, end, insert);
 
     // Refocus input and set caret position to end of mention
-    this.refs.input.focus();
+    this.refs.input.getDOMNode().focus();
 
     var displayValue = this.props.displayTransform(suggestion.id, suggestion.display, mentionDescriptor.props.type);
     var newCaretPosition = querySequenceStart + displayValue.length;
@@ -903,7 +907,6 @@ module.exports = React.createClass({
 
   shiftFocus: function shiftFocus(delta) {
     var suggestionsCount = this.countSuggestions();
-
     this.setState({
       focusIndex: (suggestionsCount + this.state.focusIndex + delta) % suggestionsCount
     });
@@ -2356,3 +2359,11 @@ module.exports = warning;
 },{"./emptyFunction":16}]},{},[4])
 (4)
 });
+
+var MentionsMixin = {
+  handleChange: function(ev, value) {
+    this.setState({
+      value: value
+    });
+  }
+}

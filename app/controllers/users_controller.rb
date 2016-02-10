@@ -4,8 +4,12 @@ class UsersController < ApplicationController
 
   before_action :set_user, only: %i(update confirm delete)
   def index
-    ids = params[:ids] || []
-    @users = policy_scope(User).where(id: ids.map(&:to_i))
+    query = params[:query]
+    if query.blank?
+      @users = policy_scope(User).none
+    else
+      @users = policy_scope(User).where('github_nickname ILIKE ?', query + "%").select(:first_name, :last_name, :github_nickname)
+    end
   end
 
   def show
