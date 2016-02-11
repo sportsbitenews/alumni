@@ -50,7 +50,7 @@ class MilestoneForm extends React.Component {
             <label htmlFor='milestone[title]' className='hidden-xs'>
               <i className='mdi mdi-format-text'></i>Title
             </label>
-            <input ref='title' defaultValue={this.props.milestone.title} placeholder="What's news bro ?" name='milestone[title]' />
+            <input ref='title' defaultValue={this.props.milestone.title} placeholder="What's new bro?" name='milestone[title]' />
             <div className='errors'>
               {errorTitle}
             </div>
@@ -69,7 +69,7 @@ class MilestoneForm extends React.Component {
                   Markdown supported
                 </a>
               </div>
-              <textarea ref='content' defaultValue={this.props.milestone.content} placeholder='Give us crispy details :)' name='milestone[content]' />
+              <GhNicknameMention {...this.props} ref='content' placeholder='Give us crispy details :)' name='milestone[content]' />
               <div className='question-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}} />
             </div>
             <div className='errors'>

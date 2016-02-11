@@ -200,7 +200,7 @@ module.exports = React.createClass({
       position: "absolute",
       top: 0,
       boxSizing: "border-box",
-      background: "transparent",
+      background: "white",
       font: "inherit"
     };
 
