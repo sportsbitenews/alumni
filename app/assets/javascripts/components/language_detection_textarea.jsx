@@ -62,9 +62,7 @@ class LanguageDetectionTextarea extends React.Component {
   onPreviewClick(e) {
     e.preventDefault();
     this.setState({ preview: true })
-    if (!this.state.blank) {
-      AnswerActions.preview(this.contentDOMNode().value);
-    }
+    AnswerActions.preview(this.contentDOMNode().value);
   }
 
   onStoreChange(store) {
@@ -81,15 +79,6 @@ class LanguageDetectionTextarea extends React.Component {
     this.isFrenchContent(content)
     if (this.props.setContent) {
       this.props.setContent(content)
-    }
-    if (content == "") {
-      this.setState({
-        blank: true
-      })
-    } else if (this.state.blank) {
-      this.setState({
-        blank: false
-      })
     }
   }
 

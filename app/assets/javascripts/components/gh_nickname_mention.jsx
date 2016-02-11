@@ -31,7 +31,9 @@ GhNicknameMention = React.createClass({
           placeholder={this.props.placeholder}
           displayTransform={this.displayTransform}
           className={textareaClasses}
-          ref='mentionInput'>
+          ref='mentionInput'
+          onKeyUp={this.props.onKeyUp}
+          onKeyDown={this.props.onKeyDown}>
 
           <ReactMentions.Mention
             type="user"
@@ -57,14 +59,6 @@ GhNicknameMention = React.createClass({
   handleSubmit: function() {
     this.props.onSubmitClick(React.findDOMNode(this.refs.mentionInput.getTextareaRef()).value)
   },
-
-  // handleKeyUp: function() {
-  //   this.props.onKeyUp(React.findDOMNode(this.refs.mentionInput.getTextareaRef()).value)
-  // },
-
-  // handleKeyDown: function(e) {
-  //   this.props.onKeyDown(e)
-  // },
 
   updateAnswer: function() {
     var value = React.findDOMNode(this.refs.mentionInput.getTextareaRef()).value;
