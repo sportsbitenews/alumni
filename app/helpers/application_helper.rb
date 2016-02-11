@@ -40,7 +40,7 @@ module ApplicationHelper
 
   def enriched_content(string)
     dup = string.dup
-    string.scan(/\B@\S*/).flatten.uniq.each do |mention|
+    string.scan(/\B@\S*\b/).flatten.uniq.each do |mention|
       if User.find_by_github_nickname(mention[1..-1])
         dup.gsub!(/\B#{mention}/, "**[#{mention}](/#{mention[1..-1]})**")
       end

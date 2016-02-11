@@ -87,6 +87,9 @@ class LanguageDetectionTextarea extends React.Component {
   resetForm() {
     this.refs.content.setState({
       value: ""
+    })
+    this.setState({
+      preview: false
     });
   }
 
