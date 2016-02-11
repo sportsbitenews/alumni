@@ -94,11 +94,13 @@ class SlackService
   end
 
   def notify_mention(answer, user)
-    post = answer.answerable
-    answerer = answer.user
-    channel = "@#{slack_username(user)}"
-    attributes = slack_attributes(answer, channel, :mention)
-    send_slack_notif(post, attributes)
+    unless user.slack_uid.blank?
+      post = answer.answerable
+      answerer = answer.user
+      channel = "@#{slack_username(user)}"
+      attributes = slack_attributes(answer, channel, :mention)
+      send_slack_notif(post, attributes)
+    end
   end
 
   private
