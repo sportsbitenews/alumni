@@ -38,6 +38,14 @@ module ApplicationHelper
     raw rendered_markdown
   end
 
+  def enriched_content(string)
+    dup = string.dup
+    string.scan(/\B@\S*/).flatten.uniq.each do |mention|
+      dup.gsub!(/\B#{mention}/, "**[#{mention}](/#{mention[1..-1]})**").gsub(/\r\n/, "\n")
+    end
+    return dup
+  end
+
   class PygmentizeHTML < Redcarpet::Render::HTML
     def initialize(extensions = {})
       super extensions.merge(link_attributes: { target: "_blank" })

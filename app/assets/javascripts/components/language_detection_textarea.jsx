@@ -48,16 +48,6 @@ class LanguageDetectionTextarea extends React.Component {
       </div>
     )
   }
-  // <textarea
-  //   placeholder={this.props.placeholder}
-  //   onFocus={this.props.onFocus}
-  //   ref="content"
-  //   defaultValue={this.props.defaultValue}
-  //   name={this.props.name}
-  //   className='answer-form-input answer-form-input-ui'
-  //   onKeyUp={this.onKeyUp.bind(this)}
-  //   onKeyDown={this.props.onKeyDown}
-  // />
 
   onPreviewClick(e) {
     e.preventDefault();

@@ -40,9 +40,7 @@ GhNicknameMention = React.createClass({
             type="user"
             trigger="@"
             data={ this.onNewUserCharacter }
-            renderSuggestion={this.renderSuggestion}
-            onAdd={this.handleAdd}
-            onRemove={this.handleRemove} />
+            renderSuggestion={this.renderSuggestion} />
         </ReactMentions.MentionsInput>
         {actionButtons}
       </div>
@@ -72,14 +70,6 @@ GhNicknameMention = React.createClass({
 
   displayTransform: function(id, display) {
     return '@' + id;
-  },
-
-  handleRemove: function() {
-    console.log("removed a mention", arguments);
-  },
-
-  handleAdd: function() {
-    console.log("added a new mention", arguments);
   },
 
   renderSuggestion: function(id, display, search, highlightedDisplay) {
