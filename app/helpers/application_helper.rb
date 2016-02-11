@@ -41,7 +41,8 @@ module ApplicationHelper
   def enriched_content(string)
     dup = string.dup
     string.scan(/\B@\S*/).flatten.uniq.each do |mention|
-      dup.gsub!(/\B#{mention}/, "**[#{mention}](/#{mention[1..-1]})**").gsub!(/\r\n/, "\n") if dup.gsub!(/\B#{mention}/, "**[#{mention}](/#{mention[1..-1]})**")
+      temporary_transformed = dup.gsub!(/\B#{mention}/, "**[#{mention}](/#{mention[1..-1]})**")
+      temporary_transformed.gsub!(/\r\n/, "\n") if temporary_transformed
     end
     return dup
   end
