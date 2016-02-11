@@ -74,11 +74,14 @@ class LanguageDetectionTextarea extends React.Component {
     }
   }
 
-  onKeyUp() {
-    var content = this.contentDOMNode().value;
-    this.isFrenchContent(content)
-    if (this.props.setContent) {
-      this.props.setContent(content)
+  onKeyUp(e) {
+    if(e.which != '40' && e.which != '38') {
+      var content = this.contentDOMNode().value;
+      this.isFrenchContent(content)
+      if (this.props.setContent) {
+        debugger
+        this.props.setContent(content)
+      }
     }
   }
 

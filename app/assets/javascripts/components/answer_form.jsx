@@ -96,8 +96,8 @@ class AnswerForm extends React.Component {
     this.setState({ content: content })
   }
 
-  postAnswer(content) {
-    AnswerActions.post(this.props.type, this.props.post_id, content);
+  postAnswer() {
+    AnswerActions.post(this.props.type, this.props.post_id, this.state.content);
     this.setState({ pendingPost: true })
   }
 
