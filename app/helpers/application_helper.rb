@@ -41,10 +41,11 @@ module ApplicationHelper
   def enriched_content(string)
     dup = string.dup
     string.scan(/\B@\S*/).flatten.uniq.each do |mention|
-      dup.gsub!(/\B#{mention}/, "**[#{mention}](/#{mention[1..-1]})**")
-      dup.gsub!(/\r\n/, "\n")
+      if User.find_by_github_nickname(mention[1..-1])
+        dup.gsub!(/\B#{mention}/, "**[#{mention}](/#{mention[1..-1]})**")
+      end
     end
-    return dup
+    return dup.gsub(/\r\n/, "\n")
   end
 
   class PygmentizeHTML < Redcarpet::Render::HTML
