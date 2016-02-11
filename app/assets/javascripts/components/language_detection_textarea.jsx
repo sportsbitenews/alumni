@@ -79,7 +79,6 @@ class LanguageDetectionTextarea extends React.Component {
       var content = this.contentDOMNode().value;
       this.isFrenchContent(content)
       if (this.props.setContent) {
-        debugger
         this.props.setContent(content)
       }
     }
@@ -96,7 +95,9 @@ class LanguageDetectionTextarea extends React.Component {
   }
 
   resetForm() {
-    this.contentDOMNode().value = "";
+    this.refs.content.setState({
+      value: ""
+    });
   }
 
   isFrenchContent(content) {

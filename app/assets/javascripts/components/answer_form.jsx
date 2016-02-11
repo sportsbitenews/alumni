@@ -34,10 +34,11 @@ class AnswerForm extends React.Component {
     return(
       <div className={formClasses}>
         <LanguageDetectionTextarea
-          placeholder=   {"Say something nice, in english please."}
-          onFocus=       {this.onFocusInput.bind(this)}
-          onKeyDown=     {this.onKeyDown.bind(this)}
-          setContent=    {this.setContent.bind(this)}
+          placeholder={"Say something nice, in english please."}
+          onFocus=    {this.onFocusInput.bind(this)}
+          onKeyDown=  {this.onKeyDown.bind(this)}
+          setContent= {this.setContent.bind(this)}
+          ref=        'languageDetection'
         />
         <textarea
           className=   {fakeTextAreaClasses}
@@ -68,6 +69,7 @@ class AnswerForm extends React.Component {
 
   closeForm() {
     this.setState(this.initialState());
+    this.resetForm();
   }
 
   goToBottom(e) {
@@ -80,6 +82,7 @@ class AnswerForm extends React.Component {
         editing: false,
         pendingPost: false
       })
+      this.resetForm();
     }
   }
 
@@ -107,5 +110,9 @@ class AnswerForm extends React.Component {
       editing: false,
       content: ''
     };
+  }
+
+  resetForm() {
+    return this.refs.languageDetection.resetForm();
   }
 }

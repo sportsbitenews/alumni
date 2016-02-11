@@ -91,6 +91,10 @@ GhNicknameMention = React.createClass({
 
   getContentRef: function() {
     return this.refs.mentionInput.getTextareaRef();
+  },
+
+  setContent: function(content) {
+    this.state.value = content;
   }
 
 });
