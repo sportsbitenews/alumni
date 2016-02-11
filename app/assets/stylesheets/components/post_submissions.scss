@@ -209,7 +209,10 @@
   align-items: center;
 }
 
-.post-submissions-row .answer-form-input-ui { display: block }
+.post-submissions-row .answer-form-input-ui {
+  display: block;
+  height: 150px;
+}
 
 .post-submissions-row {
   textarea {

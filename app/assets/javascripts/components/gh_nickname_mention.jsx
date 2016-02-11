@@ -33,7 +33,8 @@ GhNicknameMention = React.createClass({
           className={textareaClasses}
           ref='mentionInput'
           onKeyUp={this.props.onKeyUp}
-          onKeyDown={this.props.onKeyDown}>
+          onKeyDown={this.props.onKeyDown}
+          name={this.props.name}>
 
           <ReactMentions.Mention
             type="user"
