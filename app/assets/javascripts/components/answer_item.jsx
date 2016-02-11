@@ -5,7 +5,8 @@ class AnswerItem extends React.Component {
       highlighted: false,
       isEditing: false,
       content: this.props.content,
-      originalContent: this.props.original_content
+      originalContent: this.props.original_content,
+      value: this.props.original_content
     }
   }
 
@@ -28,6 +29,12 @@ class AnswerItem extends React.Component {
       'answer-item': true,
       'is-editing': this.state.isEditing
     });
+
+    var mentionComponent;
+
+    if(this.state.isEditing) {
+      mentionComponent = <GhNicknameMention {...this.props} edit={true} />
+    }
 
     return(
       <div className={answerItemClasses} id={answerItemId}>
@@ -59,16 +66,7 @@ class AnswerItem extends React.Component {
             </div>
           </div>
           <div className='answer-content' dangerouslySetInnerHTML={{__html: this.state.content}}></div>
-          <div className='answer-edit'>
-            <textarea
-              className='answer-form-edit'
-              ref='editForm'
-              defaultValue={this.state.originalContent}
-            />
-            <div className='button button-success' onClick={this.updateAnswer.bind(this)}>
-              Edit your answer
-            </div>
-          </div>
+          {mentionComponent}
         </div>
       </div>
     )
@@ -111,14 +109,6 @@ class AnswerItem extends React.Component {
       if (confirm('Are you sure you want to delete this comment?')) {
         AnswerActions.delete(this.props.id)
       }
-    }
-  }
-
-  updateAnswer() {
-    if (this.props.type == 'FirstItem') {
-      PostActions.update(React.findDOMNode(this.refs.editForm).value, this.props.post_type, this.props.id)
-    } else {
-      AnswerActions.update(this.props.id, React.findDOMNode(this.refs.editForm).value)
     }
   }
 

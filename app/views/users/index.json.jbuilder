@@ -1,3 +1,5 @@
 json.array! @users do |user|
-  json.partial! 'user', user: user
+  # React Mentions needs id & display
+  json.id user.github_nickname
+  json.display "@#{user.github_nickname} - #{user.name}"
 end

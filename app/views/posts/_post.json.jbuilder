@@ -16,4 +16,3 @@ end
 if user_signed_in?
   json.up_voted current_user.voted_for? post
 end
-

@@ -25,6 +25,12 @@ class AnswerForm extends React.Component {
       'hidden': this.state.editing
     })
 
+    var mentionComponent;
+
+    if(this.state.isEditing) {
+      mentionComponent = <GhNicknameMention {...this.props} />
+    }
+
     return(
       <div className={formClasses}>
         <LanguageDetectionTextarea
@@ -32,13 +38,13 @@ class AnswerForm extends React.Component {
           onFocus=    {this.onFocusInput.bind(this)}
           onKeyDown=  {this.onKeyDown.bind(this)}
           setContent= {this.setContent.bind(this)}
+          ref=        'languageDetection'
         />
         <textarea
-          className=  {fakeTextAreaClasses}
-          onFocus=    {this.onFocusInput.bind(this)}
-          placeholder='Say something nice!'
+          className=   {fakeTextAreaClasses}
+          onFocus=     {this.onFocusInput.bind(this)}
+          placeholder= 'Say something nice!'
         />
-
         <div className='answer-form-actions-submit'>
           <div className='answer-form-submit button button-discret' onClick={this.closeForm.bind(this)}>
             Cancel
@@ -63,6 +69,7 @@ class AnswerForm extends React.Component {
 
   closeForm() {
     this.setState(this.initialState());
+    this.resetForm();
   }
 
   goToBottom(e) {
@@ -75,6 +82,7 @@ class AnswerForm extends React.Component {
         editing: false,
         pendingPost: false
       })
+      this.resetForm();
     }
   }
 
@@ -82,9 +90,8 @@ class AnswerForm extends React.Component {
     if (e.which === 13 && (e.metaKey || e.ctrlKey)) {
       this.postAnswer()
     }
-    else if (e.which === 27 && this.state.blank) {
-      this.resetForm();
-      this.content().blur();
+    else if (e.which === 27) {
+      this.closeForm();
     }
   }
 
@@ -103,5 +110,9 @@ class AnswerForm extends React.Component {
       editing: false,
       content: ''
     };
+  }
+
+  resetForm() {
+    return this.refs.languageDetection.resetForm();
   }
 }

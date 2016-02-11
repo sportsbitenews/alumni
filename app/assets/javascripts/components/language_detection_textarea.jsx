@@ -14,8 +14,8 @@ class LanguageDetectionTextarea extends React.Component {
   componentDidMount() {
     AnswerStore.listen(this.onStoreChange.bind(this));
     PubSub.subscribe('focusRealInput', () => {
-      this.content().focus()
-      this.content().value = ''
+      this.contentDOMNode().focus()
+      this.contentDOMNode().value = ''
     })
   }
 
@@ -43,16 +43,7 @@ class LanguageDetectionTextarea extends React.Component {
             Markdown supported
           </a>
         </div>
-        <textarea
-          placeholder={this.props.placeholder}
-          onFocus={this.props.onFocus}
-          ref="content"
-          defaultValue={this.props.defaultValue}
-          name={this.props.name}
-          className='answer-form-input answer-form-input-ui'
-          onKeyUp={this.onKeyUp.bind(this)}
-          onKeyDown={this.props.onKeyDown}
-        />
+        <GhNicknameMention {...this.props} ref='content' onKeyUp={this.onKeyUp.bind(this)} />
         <div className='answer-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}}></div>
       </div>
     )
@@ -61,9 +52,7 @@ class LanguageDetectionTextarea extends React.Component {
   onPreviewClick(e) {
     e.preventDefault();
     this.setState({ preview: true })
-    if (!this.state.blank) {
-      AnswerActions.preview(this.content().value);
-    }
+    AnswerActions.preview(this.contentDOMNode().value);
   }
 
   onStoreChange(store) {
@@ -76,19 +65,12 @@ class LanguageDetectionTextarea extends React.Component {
   }
 
   onKeyUp(e) {
-    var content = this.content().value;
-    this.isFrenchContent(content)
-    if (this.props.setContent) {
-      this.props.setContent(content)
-    }
-    if (this.content().value == "") {
-      this.setState({
-        blank: true
-      })
-    } else if (this.state.blank) {
-      this.setState({
-        blank: false
-      })
+    if(e.which != '40' && e.which != '38') {
+      var content = this.contentDOMNode().value;
+      this.isFrenchContent(content)
+      if (this.props.setContent) {
+        this.props.setContent(content)
+      }
     }
   }
 
@@ -103,11 +85,12 @@ class LanguageDetectionTextarea extends React.Component {
   }
 
   resetForm() {
-    this.content().value = "";
+    this.refs.content.setState({
+      value: ""
+    });
   }
 
   isFrenchContent(content) {
-    console.log(content[content.length - 1]);
     if (!this.state.pendingDetection && content[content.length - 1].match(/[^A-z]/)) {  // Only check for new words
       this.setState({ pendingDetection: true });
       axios.get(`${Routes.language_answers_path()}?content=${content}`)
@@ -125,7 +108,7 @@ class LanguageDetectionTextarea extends React.Component {
     }
   }
 
-  content() {
-    return React.findDOMNode(this.refs.content);
+  contentDOMNode() {
+    return React.findDOMNode(this.refs.content.getContentRef());
   }
 }

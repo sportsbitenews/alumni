@@ -13,6 +13,7 @@ class AnswersController < ApplicationController
   def update
     @answer.content = params[:content]
     @answer.save
+    detect_mentions_and_notify(@answer)
   end
 
   def create
@@ -22,6 +23,7 @@ class AnswersController < ApplicationController
       @post.answers.delete(answer)
     else
       NotifyAnswerInSlack.perform_later(answer.id)
+      detect_mentions_and_notify(answer)
     end
   end
 
@@ -40,5 +42,13 @@ class AnswersController < ApplicationController
   def set_answer
     @answer = Answer.find(params[:id])
     authorize @answer
+  end
+
+  def detect_mentions_and_notify(answer)
+    mentions = answer.content.scan(/\B@\S*/).uniq.flatten
+    mentions.each do |mention|
+      mentioned_user = User.find_by(github_nickname: mention[1..-1])
+      NotifyMentionInSlack.perform_later(answer.id, mentioned_user.id) if mentioned_user
+    end
   end
 end
