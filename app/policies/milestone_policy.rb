@@ -10,7 +10,7 @@ class MilestonePolicy < PostPolicy
   end
 
   def update?
-    user ? record.user.id == user.id || user.admin? : false
+    user ? record.user_id == user.id || user.admin? : false
   end
 
   def create?

@@ -1,6 +1,6 @@
 class MilestonesController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
-  before_action :set_milestone, only: [:show]
+  before_action :set_milestone, only: [:show, :update]
   def new
     @milestone = Milestone.new
     authorize @milestone
@@ -11,9 +11,7 @@ class MilestonesController < ApplicationController
 
   def update
     #TODO : handle all columns update
-    @milestone.content = params[:content]
-    @milestone.save
-    authorize @milestone
+    @milestone.update! content: params[:content]
   end
 
   def create
