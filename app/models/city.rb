@@ -35,6 +35,8 @@
 #  company_purpose_and_registration :string
 #  training_address                 :string
 #  apply_facebook_pixel             :string
+#  mailchimp_list_id                :string
+#  mailchimp_api_key                :string
 #
 # Indexes
 #
@@ -69,6 +71,13 @@ class City < ActiveRecord::Base
 
   def open_batches
     batches.where(open_for_registration: true).order(:starts_at)
+  end
+
+  def encrypted_mailchimp_api_key
+    return nil if mailchimp_api_key.blank?
+    key   = ActiveSupport::KeyGenerator.new(ENV['ALUMNI_WWW_ENCRYPING_KEY']).generate_key(self.id.to_s)
+    crypt = ActiveSupport::MessageEncryptor.new(key)
+    crypt.encrypt_and_sign(mailchimp_api_key)
   end
 
   %i(teachers users projects).each do |method|
