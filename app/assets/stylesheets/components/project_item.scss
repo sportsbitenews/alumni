@@ -6,8 +6,15 @@
 
 .project-item {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 15px;
+  position: relative;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  @media(min-width: $screen-sm-min) {
+    padding: 15px;
+  }
 
   &:hover {
     background: #f7f7fa;
@@ -35,6 +42,24 @@
 .project-item-makers {
   margin-left: auto;
   display: flex;
+}
+
+@media (max-width: $screen-xs) {
+  .project-item-makers {
+    position: absolute;
+    right: 15px;
+    top: 30px;
+    order: 2;
+  }
+  .project-thumbnail {
+    width: 100%;
+    padding-bottom: 52%;  /* 80 / 153 */
+    order: 1;
+  }
+  .project-item-infos {
+    margin-top: 15px;
+    order: 3;
+  }
 }
 
 .project-item-maker {

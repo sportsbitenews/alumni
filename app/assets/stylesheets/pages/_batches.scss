@@ -120,7 +120,10 @@ h1.batches-list-title {
 
 .batch-detail-main {
   .section-title {
-    padding: 20px 34px;
+    @media (min-width: $screen-md-min) {
+      padding: 20px 34px;
+    }
+
     .section-title-h {
       margin-left: inherit;
       padding-left: 5px;
@@ -167,8 +170,10 @@ h1.batches-list-title {
   }
 }
 
-.iframe-container {
-  padding: 0 34px;
+@media (min-width: $screen-md-min) {
+  .iframe-container {
+    padding: 0 34px;
+  }
 }
 
 .video-container {
@@ -205,7 +210,8 @@ h1.batches-list-title {
   background: #469ae0;
   font-weight: lighter;
   text-align: center;
-  line-height: 90px;
+  line-height: 24px;
+  padding: 24px;
   color: white;
   font-size: 17px;
 }

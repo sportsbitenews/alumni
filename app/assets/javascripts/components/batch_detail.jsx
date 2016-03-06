@@ -44,14 +44,14 @@ class BatchDetail extends React.Component {
       <div>
         <div className='batch-detail-header'>
           <div className='batch-detail-name'>
-            Batch #{this.props.slug} - {this.props.city}
+            Batch #{this.props.slug}
           </div>
           <div className='batch-detail-header-footer'>
             <div className='batch-detail-dates batch-detail-footer-item '>
               {this.props.starts_at} - {this.props.ends_at}
             </div>
             <div className='batch-detail-city batch-detail-footer-item '>
-              {this.props.city} CAMP
+              {this.props.city}
             </div>
           </div>
         </div>
@@ -61,7 +61,6 @@ class BatchDetail extends React.Component {
             <div className='batch-members-count section-title'>
               <i className='mdi mdi-cube-outline' />
               <div className='section-title-h'>{this.props.projects.length} PRODUCTS</div>
-              <div className='section-title-h ranked-by-milestone'>RANKED BY MILESTONE</div>
             </div>
 
             <div className='projects-list'>
