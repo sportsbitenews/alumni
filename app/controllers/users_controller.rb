@@ -29,10 +29,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user.onboarding = true
     if @user.update_attributes(user_params)
       redirect_to root_path
     else
-      # TODO: handle error
+      render 'batches/register'
     end
   end
 
@@ -63,7 +64,8 @@ class UsersController < ApplicationController
       :last_name,
       :birth_day,
       :phone,
-      :school
+      :school,
+      :private_bio
     )
   end
 end
