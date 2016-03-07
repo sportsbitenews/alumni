@@ -16,6 +16,13 @@ class BatchDetail extends React.Component {
       'is-collapsed': this.state.sidebarHeight != "100%"
     })
 
+    var coverStyle;
+    if (this.props.cover_image) {
+      coverStyle = {
+        backgroundImage: `url(${this.props.cover_image})`
+      };
+    }
+
     if (this.props.youtube_id) {
       var live = null;
       if (this.props.live) {
@@ -42,7 +49,7 @@ class BatchDetail extends React.Component {
     }
     return(
       <div>
-        <div className='batch-detail-header'>
+        <div className='batch-detail-header' style={coverStyle}>
           <div className='batch-detail-name'>
             Batch #{this.props.slug}
           </div>

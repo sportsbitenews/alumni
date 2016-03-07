@@ -4,16 +4,16 @@ GhNicknameMention = React.createClass({
 
   getInitialState: function() {
     return {
-      value: this.props.original_content
+      value: this.props.originalContent
     };
   },
 
   render: function() {
     var actionButtons;
     if(this.props.edit) {
-      actionButtons = <div className='button button-success' onClick={this.updateAnswer}>
+      actionButtons = <button className='button button-success' onClick={this.updateAnswer}>
                         Edit your answer
-                      </div>
+                      </button>
     }
     var divClasses = classNames({
       'answer-edit': this.props.edit

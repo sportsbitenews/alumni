@@ -11,13 +11,13 @@
 .button {
   padding: 10px 20px;
   margin-top: 10px;
-  cursor: pointer;
   border-radius: 20em;
   color: white;
   opacity: 0.8;
   border: none;
 
   &:hover {
+    cursor: pointer;
     opacity: 1;
   }
 }
@@ -29,7 +29,10 @@
 .button-success {
   background: $green;
 
-  &:hover, &:focus { color: white }
+  &:hover, &:focus {
+    color: white;
+    outline: none;
+  }
 }
 .button-resource { background: $resource-gradient }
 .button-question { background: $question-gradient }

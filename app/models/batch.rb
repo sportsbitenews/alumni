@@ -2,28 +2,32 @@
 #
 # Table name: batches
 #
-#  id                      :integer          not null, primary key
-#  slug                    :string
-#  city_id                 :integer
-#  starts_at               :date
-#  ends_at                 :date
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  onboarding              :boolean          default(FALSE), not null
-#  slack_id                :string
-#  youtube_id              :string
-#  live                    :boolean          default(FALSE), not null
-#  meta_image_file_name    :string
-#  meta_image_content_type :string
-#  meta_image_file_size    :integer
-#  meta_image_updated_at   :datetime
-#  last_seats              :boolean          default(FALSE), not null
-#  full                    :boolean          default(FALSE), not null
-#  time_zone               :string           default("Paris")
-#  open_for_registration   :boolean          default(FALSE), not null
-#  trello_inbox_list_id    :string
-#  price_cents             :integer          default(0), not null
-#  price_currency          :string           default("EUR"), not null
+#  id                       :integer          not null, primary key
+#  slug                     :string
+#  city_id                  :integer
+#  starts_at                :date
+#  ends_at                  :date
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  onboarding               :boolean          default(FALSE), not null
+#  slack_id                 :string
+#  youtube_id               :string
+#  live                     :boolean          default(FALSE), not null
+#  meta_image_file_name     :string
+#  meta_image_content_type  :string
+#  meta_image_file_size     :integer
+#  meta_image_updated_at    :datetime
+#  last_seats               :boolean          default(FALSE), not null
+#  full                     :boolean          default(FALSE), not null
+#  time_zone                :string           default("Paris")
+#  open_for_registration    :boolean          default(FALSE), not null
+#  trello_inbox_list_id     :string
+#  price_cents              :integer          default(0), not null
+#  price_currency           :string           default("EUR"), not null
+#  cover_image_file_name    :string
+#  cover_image_content_type :string
+#  cover_image_file_size    :integer
+#  cover_image_updated_at   :datetime
 #
 # Indexes
 #
@@ -57,6 +61,10 @@ class Batch < ActiveRecord::Base
   has_attached_file :meta_image,
     styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }, processors: [ :thumbnail, :paperclip_optimizer ]
   validates_attachment_content_type :meta_image,
+    content_type: /\Aimage\/.*\z/
+  has_attached_file :cover_image,
+    styles: { large: "1500x844>" }, processors: [ :thumbnail ]
+  validates_attachment_content_type :cover_image,
     content_type: /\Aimage\/.*\z/
 
   def set_ends_at

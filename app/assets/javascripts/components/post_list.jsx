@@ -48,6 +48,10 @@ class PostList extends React.Component {
     var addPostClasses = classNames({
       'hidden': !this.props.current_user.can_post
     })
+    var searchBarClasses = classNames({
+      'search-bar-overlay': true,
+      'is-active': this.state.searchBarActive
+    })
     return (
       <div ref='postList'>
         <SwipeViews>
