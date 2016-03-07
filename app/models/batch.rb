@@ -63,7 +63,7 @@ class Batch < ActiveRecord::Base
   validates_attachment_content_type :meta_image,
     content_type: /\Aimage\/.*\z/
   has_attached_file :cover_image,
-    styles: { large: "1500x340>" }, processors: [ :thumbnail, :paperclip_optimizer ]
+    styles: { large: "1500x844>" }, processors: [ :thumbnail ]
   validates_attachment_content_type :cover_image,
     content_type: /\Aimage\/.*\z/
 
