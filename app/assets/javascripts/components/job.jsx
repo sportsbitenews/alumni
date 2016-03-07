@@ -31,7 +31,7 @@ class Job extends React.Component {
       <div className='post-detail'>
         <div className='post-detail-header job-detail'>
           <div className='post-detail-header-main'>
-            <div className='post-detail-name post-detail-name-reduce'>{this.props.company} <span className='text-readable'>is hiring a {remote}</span> {this.props.title} {inCity} </div>
+            <div className='post-detail-name post-detail-name-reduce'>{this.props.company} <span className='text-readable'>is hiring a {remote}</span> {this.props.title} {this.props.contract} {inCity} </div>
             <div className='post-detail-header-action'>
               <div className='post-detail-upvote'>
                 <Upvote {...this.props} />
