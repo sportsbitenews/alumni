@@ -4,6 +4,7 @@ json.ends_at @batch.ends_at.strftime('%B %Y')
 json.city @batch.city.name
 json.live @batch.live
 json.youtube_id @batch.youtube_id
+json.cover_image @cover_image
 
 json.students do
   json.array! @batch.users.sort_by(&:sidebar_order).each do |user|

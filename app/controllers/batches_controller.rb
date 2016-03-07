@@ -6,6 +6,8 @@ class BatchesController < ApplicationController
   skip_after_action :verify_authorized, only: :onboarding
 
   def show
+    @cover_image = @batch.cover_image.url(:large)
+    @cover_image = nil if @cover_image =~ /.*missing.png$/
   end
 
   def new
