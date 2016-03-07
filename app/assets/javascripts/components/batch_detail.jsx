@@ -19,7 +19,7 @@ class BatchDetail extends React.Component {
     var coverStyle;
     if (this.props.cover_image) {
       coverStyle = {
-        backgroundImage: 'url(' + this.props.cover_image + ')'
+        backgroundImage: `url(${this.props.cover_image})`
       };
     }
 
