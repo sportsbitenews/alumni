@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   private
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.includes(:batch).find(params[:id])
     authorize @project
   end
 end

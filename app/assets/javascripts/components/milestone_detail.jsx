@@ -9,7 +9,12 @@ class MilestoneDetail extends React.Component {
               <div className='post-detail-upvote'>
                 <Upvote {...this.props} />
               </div>
-
+              <a href={Routes.project_path(this.props.project_id)}>
+                <div className='post-detail-project'>
+                  <i className="mdi mdi-information-outline"></i>&nbsp;
+                  {this.props.project_name}
+                </div>
+              </a>
               <div className='post-detail-author'>
                 <a href={Routes.profile_path(this.props.user.github_nickname)}>
                   <div>
@@ -23,7 +28,6 @@ class MilestoneDetail extends React.Component {
         <PostDetailBody {...this.props} />
         <PostDetailFooter {...this.props} />
       </div>
-
     )
   }
 }

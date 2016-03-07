@@ -28,7 +28,7 @@ class MilestonesController < ApplicationController
   private
 
   def set_milestone
-    @milestone = Milestone.find(params[:id])
+    @milestone = Milestone.includes(:project).find(params[:id])
     authorize @milestone
   end
 
