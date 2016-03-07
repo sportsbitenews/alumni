@@ -28,6 +28,9 @@
       <row class="post-submissions-row-in">
         <%= f.input :school, label: "<i class='mdi mdi-school'></i> Studies".html_safe, placeholder: 'Which graduate school did you go to?', required: true %>
       </row>
+      <row class="post-submissions-row-in">
+        <%= f.input :private_bio, label: "<i class='mdi mdi-routes'></i> Bio".html_safe, placeholder: 'Tell us about yourself and what you did so far! (min 140 char)', required: true, input_html: {minlength: 140} %>
+      </row>
       <div class="text-center">
         <%= f.submit 'Submit', class: 'button button-success' %>
       </div>

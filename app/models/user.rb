@@ -41,6 +41,7 @@
 #  role                   :string
 #  twitter_nickname       :string
 #  noindex                :boolean          default(FALSE), not null
+#  private_bio            :text
 #
 # Indexes
 #
@@ -58,6 +59,14 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:github, :slack]
 
   validates :github_nickname, uniqueness: { allow_nil: false }
+
+  attr_accessor :onboarding
+  validates :first_name, presence: true, if: ->(u) { u.onboarding }
+  validates :last_name, presence: true, if: ->(u) { u.onboarding }
+  validates :birth_day, presence: true, if: ->(u) { u.onboarding }
+  validates :phone, presence: true, if: ->(u) { u.onboarding }
+  validates :school, presence: true, if: ->(u) { u.onboarding }
+  validates :private_bio, length: {minimum: 140}, if: ->(u) { u.onboarding }
 
   belongs_to :batch
   has_many :resources

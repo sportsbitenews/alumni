@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307105303) do
+ActiveRecord::Schema.define(version: 20160307173750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -288,6 +288,7 @@ ActiveRecord::Schema.define(version: 20160307105303) do
     t.string   "role"
     t.string   "twitter_nickname"
     t.boolean  "noindex",                default: false, null: false
+    t.text     "private_bio"
   end
 
   add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree
