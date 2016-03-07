@@ -16,11 +16,11 @@ class BatchDetail extends React.Component {
       'is-collapsed': this.state.sidebarHeight != "100%"
     })
 
-    var coverStyle
+    var coverStyle;
     if (this.props.cover_image) {
       coverStyle = {
         backgroundImage: 'url(' + this.props.cover_image + ')'
-      }
+      };
     }
 
     if (this.props.youtube_id) {
