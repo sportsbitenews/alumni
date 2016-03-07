@@ -7,7 +7,7 @@ class BatchesController < ApplicationController
 
   def show
     @cover_image = @batch.cover_image.url(:large)
-    @cover_image = nil unless @batch.cover_image.url(:large).exists?
+    @cover_image = nil unless @batch.cover_image.exists?
   end
 
   def new
