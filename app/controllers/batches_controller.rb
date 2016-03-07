@@ -7,7 +7,7 @@ class BatchesController < ApplicationController
 
   def show
     @cover_image = @batch.cover_image.url(:large)
-    @cover_image = nil if @cover_image =~ /.*missing.png$/
+    @cover_image = nil unless @batch.cover_image.url(:large).exists?
   end
 
   def new
