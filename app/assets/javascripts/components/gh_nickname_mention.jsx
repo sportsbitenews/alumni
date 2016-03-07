@@ -4,7 +4,7 @@ GhNicknameMention = React.createClass({
 
   getInitialState: function() {
     return {
-      value: this.props.original_content
+      value: this.props.originalContent
     };
   },
 

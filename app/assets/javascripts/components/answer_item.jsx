@@ -33,7 +33,7 @@ class AnswerItem extends React.Component {
     var mentionComponent;
 
     if(this.state.isEditing) {
-      mentionComponent = <GhNicknameMention {...this.props} edit={true} />
+      mentionComponent = <GhNicknameMention {...this.props} originalContent={this.state.originalContent} edit={true} />
     }
 
     return(
