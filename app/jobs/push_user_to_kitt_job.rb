@@ -8,7 +8,7 @@ class PushUserToKittJob < ActiveJob::Base
       camp: {
         slug: user.batch.slug
       },
-      user: user.slice(:github_nickname, :uid, :email, :first_name, :last_name, :gravatar_url, :phone)
+      user: user.slice(:github_nickname, :uid, :email, :first_name, :last_name, :gravatar_url, :phone, :private_bio)
     }
     client.post(payload.to_json, content_type: :json)
   end
