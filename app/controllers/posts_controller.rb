@@ -45,6 +45,6 @@ class PostsController < ApplicationController
     @resources  = Resource.list
     @questions  = Question.list
     @jobs       = Job.list
-    @milestones = Milestone.list
+    @milestones = Milestone.includes(:project).list
   end
 end
