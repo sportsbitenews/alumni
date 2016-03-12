@@ -1,33 +1,41 @@
 class PostActionsClass {
   fillStore(posts) {
-    this.dispatch(posts);
+    return posts;
   }
 
   upVote(type, id) {
-    axios.railsPost(Routes.up_vote_post_path(id, { format: 'json' }), { type: type })
-      .then((response) => {
-          this.dispatch(response.data);
-        }
-      ).catch((response) => {
-        if (response.status === 401) {
-          PubSub.publish('displayModal', {post_id: id, post_type: type, scenario: 'upvote'})
-        }
-      });
+    return (dispatch) => {
+      axios.railsPost(Routes.up_vote_post_path(id, { format: 'json' }), { type: type })
+        .then((response) => {
+            dispatch(response.data);
+          }
+        ).catch((response) => {
+          if (response.status === 401) {
+            PubSub.publish('displayModal', {post_id: id, post_type: type, scenario: 'upvote'})
+          }
+        });
+    }
   }
 
   update(content, type, id) {
-    axios.railsPatch(Routes[`${type.toLowerCase()}_path`](id, { format: 'json' }), { content: content })
-      .then((response) => this.dispatch(response.data))
+    return (dispatch) => {
+      axios.railsPatch(Routes[`${type.toLowerCase()}_path`](id, { format: 'json' }), { content: content })
+        .then((response) => dispatch(response.data))
+    }
   }
 
   search(keywords) {
-    axios.railsPost(Routes.search_posts_path({ format: 'json' }), { keywords: keywords })
-      .then((response) => this.dispatch(response.data))
+    return (dispatch) => {
+      axios.railsPost(Routes.search_posts_path({ format: 'json' }), { keywords: keywords })
+        .then((response) => dispatch(response.data))
+    }
   }
 
   fetchPage(type, page) {
-    axios.get(Routes.next_posts_path({ format: 'json', page: page, type: type}))
-      .then((response) => this.dispatch({ type: type, posts: response.data }));
+    return (dispatch) => {
+      axios.get(Routes.next_posts_path({ format: 'json', page: page, type: type}))
+        .then((response) => dispatch({ type: type, posts: response.data }));
+    }
   }
 }
 
