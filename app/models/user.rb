@@ -139,6 +139,8 @@ class User < ActiveRecord::Base
 
   def thumbnail(style = :medium)
     picture.exists? ? picture.url(style) : gravatar_url
+  rescue SocketError
+    gravatar_url
   end
 
   def ready_for_validation?
