@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307173750) do
+ActiveRecord::Schema.define(version: 20160314112041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -234,9 +234,11 @@ ActiveRecord::Schema.define(version: 20160307173750) do
     t.string   "title_fr"
     t.text     "summary_fr"
     t.text     "summary_en"
+    t.string   "slug"
   end
 
   add_index "stories", ["company_id"], name: "index_stories_on_company_id", using: :btree
+  add_index "stories", ["slug"], name: "index_stories_on_slug", unique: true, using: :btree
   add_index "stories", ["user_id"], name: "index_stories_on_user_id", using: :btree
 
   create_table "testimonials", force: :cascade do |t|

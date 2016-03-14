@@ -19,7 +19,11 @@ Rails.application.routes.draw do
       resources :projects,     only: [ :index ]
       resources :alumni,       only: [ :index ]
       resources :staff,        only: [ :index ]
-      resources :stories,      only: [ :index, :show ]
+      resources :stories,      only: [ :index, :show ] do
+        collection do
+          get "sample"
+        end
+      end
       resources :testimonials, only: [ :index ]
       resources :users,        only: [] do
         put :picture, on: :collection

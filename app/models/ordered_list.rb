@@ -12,7 +12,7 @@
 
 class OrderedList < ActiveRecord::Base
   include Cacheable
-  ELEMENT_TYPES = %w(User Project City)
+  ELEMENT_TYPES = %w(User Project City Story)
   validates :element_type, inclusion: { in: ELEMENT_TYPES }
   validate :slugs_exist?
 
