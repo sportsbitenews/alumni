@@ -1,4 +1,5 @@
 json.id story.id
+json.slug story.slug
 
 if story.company
   json.company do
