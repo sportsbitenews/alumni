@@ -157,6 +157,12 @@ class User < ActiveRecord::Base
     find_by_github_nickname slug
   end
 
+  def lewagon_role
+    return "Staff" if self.staff
+    return "Teacher" if self.teacher || self.teacher_assistant
+    return "Alumni" if self.alumni
+  end
+
   private
 
   def octokit_client

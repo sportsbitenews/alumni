@@ -38,3 +38,46 @@
 .button-question { background: $question-gradient }
 .button-job { background: $job-gradient }
 .button-milestone { background: $milestone-gradient }
+
+.share-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: space-between;
+  justify-content: center;
+}
+.share-link {
+  flex: 0 0 50px;
+  color: white;
+  font-size: 20px;
+  padding: 5px 0;
+  margin: 5px 5px;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+  &:hover {
+    color: white;
+  }
+}
+.bg-text {
+  background: #4a4a4a;
+}
+.bg-email {
+  background: #DD4D40;
+}
+.bg-twitter {
+  background: #00a3e1;
+}
+.bg-facebook {
+  background: #3b5998;
+}
+.bg-linkedin {
+  background: #1884BC;
+}
+.bg-github {
+  background: #FFFFFF;
+  color: black !important;
+}
+.bg-slack {
+  background: #66A594;
+}

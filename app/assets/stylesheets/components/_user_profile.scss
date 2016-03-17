@@ -1,6 +1,6 @@
 .user-profile-header {
   background: linear-gradient(180deg, #606c88 10%, #3f4c6b 90%);
-  padding: 60px 0;
+  padding: 80px 0;
 }
 
 .user-profile-avatar {
@@ -38,7 +38,6 @@
       border-radius: 2px;
     }
   }
-
 }
 
 .user-profile-header-footer {
@@ -50,4 +49,14 @@
 
   a { margin-left: 20px; }
   a:first-child { margin-left: 0 }
+}
+
+.user-profile-mood {
+  color: #C8CCD5;
+  font-style: italic;
+}
+
+.user-profile-history {
+  background-color: #F4F4F4;
+  padding: 60px 0;
 }

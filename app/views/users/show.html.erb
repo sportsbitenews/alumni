@@ -1,5 +1,3 @@
-<%= react_component_with_jbuilder "UserProfile" %>
-
 <% content_for(:title) do %>
   <% if @user.alumni %>
     <%= @user.name %> is a Wagon alumni
@@ -30,3 +28,71 @@
     <meta name="robots" content="noindex, nofollow, noimageindex" />
   <% end %>
 <% end %>
+
+<div class="container-fluid">
+  <div class="user-profile-header">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="badge-container user-profile-avatar">
+          <%= image_tag @user.gravatar_url, class: "avatar-square"%>
+          <div class="badge <%= @user.lewagon_role.downcase %>">
+            <%= @user.lewagon_role %>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 text-center">
+        <div class="user-profile-name">
+          <%= @user.name %>
+        </div>
+        <div class="user-profile-mood padded-1em">
+          "<%= @user.mood %>"
+        </div>
+        <div class="share-links">
+          <a href="http://github.com/<%= @user.github_nickname%>" class="share-link bg-github" target='_blank'>
+            <i class="fa fa-github"></i>
+          </a>
+          <a href="<%= @user.user_messages_slack_url %>" class="share-link bg-slack" target='_blank'>
+            <i class="fa fa-slack"></i>
+          </a>
+          <%= mail_to @user.email, class: "share-link bg-email", target: '_blank' do %>
+            <i class="fa fa-envelope-o"></i>
+          <% end %>
+          <a href="#" class="share-link bg-text" target='_blank'>
+            <i class="fa fa-mobile"></i>
+          </a>
+          <a href="https://www.facebook.com/<%= @user.facebook_nickname %>" class="share-link bg-facebook" target='_blank'>
+            <i class="fa fa-facebook"></i>
+          </a>
+          <a href="https://twitter.com/<%= @user.twitter_nickname %>" class="share-link bg-twitter" target='_blank'>
+            <i class="fa fa-twitter"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/<%= @user.linkedin_nickname %>" class="share-link bg-linkedin">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="user-profile-summary hidden-xs">
+    <div class="cartouche-container">
+      <div class="cartouche-tank">
+        <% if locale == "fr" %>
+          <%= @user.bio_fr %>
+        <% else %>
+          <%= @user.bio_en %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="user-profile-history">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+
+        <div class="experience-tank">
+          <div class="experience-logo"></div>
+          <div class="experience-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
