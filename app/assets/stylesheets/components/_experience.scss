@@ -1,0 +1,67 @@
+.experience-tank {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  height: 60px;
+  &.between {
+    height: 30px;
+  }
+}
+
+.experience-logo {
+  height: 60px;
+  width: 60px;
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 5%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+  &.experience-wagon {
+    border-radius: 50%;
+    background: linear-gradient(180deg, #606c88 10%, #3f4c6b 90%);
+    padding-top: 12px;
+    svg {
+      width: 75%;
+      path {
+        fill: white;
+      }
+    }
+  }
+}
+
+.experience-body {
+  flex: 1 2 60%;
+  padding-left: 1em;
+}
+
+.experience-link {
+  height: 30px;
+  width: 30px;
+  border-right: 2px solid $gray-light;
+}
+
+.experience-sublink {
+  align-self: flex-start;
+  height: 15px;
+  width: 30px;
+  &.sublink-right {
+    border-right: 1px solid $gray-light;
+  }
+  &.sublink-bottom {
+    width: 15px;
+    border-bottom: 1px solid $gray-light;
+  }
+}
+
+.experience-project {
+  flex: 1 2 60%;
+  padding-left: 1em;
+  height: 30px;
+  img {
+    height: 30px;
+    width: 30px;
+  }
+}

@@ -20,6 +20,8 @@ class UsersController < ApplicationController
           if params[:github_nickname] != @user.github_nickname
             redirect_to profile_path(@user.github_nickname)
           end
+          @pre_experiences = @user.pre_wagon_experiences.sort_by! { |exp| exp["rank"] }.reverse
+          @post_experiences = @user.post_wagon_experiences.sort_by! { |exp| exp["rank"] }.reverse
         else
           render_404
         end
