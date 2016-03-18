@@ -20,8 +20,16 @@ class UsersController < ApplicationController
           if params[:github_nickname] != @user.github_nickname
             redirect_to profile_path(@user.github_nickname)
           end
-          @pre_experiences = @user.pre_wagon_experiences.sort_by! { |exp| exp["rank"] }.reverse
-          @post_experiences = @user.post_wagon_experiences.sort_by! { |exp| exp["rank"] }.reverse
+          if @user.pre_wagon_experiences.nil?
+            @pre_experiences = []
+          else
+            @pre_experiences = @user.pre_wagon_experiences.sort_by! { |exp| exp["rank"] }.reverse
+          end
+          if @user.pre_wagon_experiences.nil?
+            @post_experiences = []
+          else
+            @post_experiences = @user.post_wagon_experiences.sort_by! { |exp| exp["rank"] }.reverse
+          end
         else
           render_404
         end
