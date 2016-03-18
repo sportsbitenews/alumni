@@ -63,4 +63,10 @@
 .user-profile-history {
   background-color: #F4F4F4;
   padding: 1em 0;
+  a {
+    color: #333333;
+    &:hover {
+      color: $gray-light;
+    }
+  }
 }

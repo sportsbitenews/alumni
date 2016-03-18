@@ -1,6 +1,6 @@
 <div class="experience-tank">
   <div class="experience-logo">
-    <% if exp['name'] == "AE" %>
+    <% if exp['name'] == "AE" || exp['name'] == "Freelance" %>
       <%= image_tag @user.gravatar_url %>
     <% else %>
       <a href="http://<%= exp["name"].downcase.delete(' ') %>.com">

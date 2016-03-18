@@ -105,7 +105,7 @@
           <div class="experience-sublink sublink-right"></div>
           <div class="experience-sublink sublink-bottom"></div>
           <div class="experience-project">
-            Project: <%= link_to @user.projects.first.name, project_path(@user.projects.first) %>
+            Project : <%= link_to @user.projects.first.name, project_path(@user.projects.first) %>
             <span class="hidden-xs">
               with
               <% @user.projects.first.users.select { |user| user != @user }.each do |buddy| %>
