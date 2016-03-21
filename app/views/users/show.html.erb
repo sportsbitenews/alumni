@@ -34,7 +34,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="badge-container user-profile-avatar">
-          <%= image_tag @user.gravatar_url, class: "avatar-square"%>
+          <%= image_tag @user.thumbnail, class: "avatar-square"%>
           <div class="badge <%= @user.lewagon_role.downcase %>">
             <%= @user.lewagon_role %>
           </div>
@@ -45,77 +45,97 @@
           <%= @user.name %>
         </div>
         <div class="user-profile-mood padded-1em">
-          "<%= @user.mood %>"
+          <% if @user.mood %>
+            "<%= @user.mood %>"
+          <% else %>
+            "Change life, learn to code"
+          <% end %>
         </div>
         <div class="share-links">
           <a href="http://github.com/<%= @user.github_nickname%>" class="share-link bg-github" target='_blank'>
             <i class="fa fa-github"></i>
           </a>
-          <a href="<%= @user.user_messages_slack_url %>" class="share-link bg-slack" target='_blank'>
-            <i class="fa fa-slack"></i>
-          </a>
+          <% unless @user.user_messages_slack_url.blank? %>
+            <a href="<%= @user.user_messages_slack_url %>" class="share-link bg-slack" target='_blank'>
+              <i class="fa fa-slack"></i>
+            </a>
+          <% end %>
           <%= mail_to @user.email, class: "share-link bg-email", target: '_blank' do %>
             <i class="fa fa-envelope-o"></i>
           <% end %>
-          <a href="#" class="share-link bg-text" target='_blank'>
-            <i class="fa fa-mobile"></i>
-          </a>
-          <a href="https://www.facebook.com/<%= @user.facebook_nickname %>" class="share-link bg-facebook" target='_blank'>
-            <i class="fa fa-facebook"></i>
-          </a>
-          <a href="https://twitter.com/<%= @user.twitter_nickname %>" class="share-link bg-twitter" target='_blank'>
-            <i class="fa fa-twitter"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/<%= @user.linkedin_nickname %>" class="share-link bg-linkedin" target='_blank'>
-            <i class="fa fa-linkedin"></i>
-          </a>
+          <% if @user.staff == false &&  @user.phone.blank? == false %>
+            <a href="tel:<%= @user.phone %>" class="share-link bg-text" target='_blank'>
+              <i class="fa fa-mobile"></i>
+            </a>
+          <% end %>
+          <% unless @user.facebook_nickname.blank? %>
+            <a href="https://www.facebook.com/<%= @user.facebook_nickname %>" class="share-link bg-facebook" target='_blank'>
+              <i class="fa fa-facebook"></i>
+            </a>
+          <% end %>
+          <% unless @user.twitter_nickname.blank? %>
+            <a href="https://twitter.com/<%= @user.twitter_nickname %>" class="share-link bg-twitter" target='_blank'>
+              <i class="fa fa-twitter"></i>
+            </a>
+          <% end %>
+          <% unless @user.linkedin_nickname.blank? %>
+            <a href="https://www.linkedin.com/in/<%= @user.linkedin_nickname %>" class="share-link bg-linkedin" target='_blank'>
+              <i class="fa fa-linkedin"></i>
+            </a>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-  <div class="user-profile-summary hidden-xs">
-    <div class="cartouche-container">
-      <div class="cartouche-tank">
-        <% if locale == "fr" %>
-          <%= @user.bio_fr %>
-        <% else %>
-          <%= @user.bio_en %>
-        <% end %>
+  <% unless @user.private_bio.blank? %>
+    <div class="user-profile-summary hidden-xs">
+      <div class="cartouche-container">
+        <div class="cartouche-tank">
+          <%= render_markdown(@user.private_bio) %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
   <div class="user-profile-history">
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
         <% @post_experiences.each do |exp| %>
           <%= render 'experience', exp: exp %>
         <% end %>
-        <div class="experience-tank">
-          <div class="experience-logo experience-wagon text-center">
-            <%= render "shared/logo" %>
-          </div>
-          <div class="experience-body">
-            <%= link_to batch_path(@user.batch) do %>
-              <h4>Batch #<%= @user.batch.slug %> - <small><%= @user.batch.city.name %></small></h4>
-            <% end %>
-          </div>
-        </div>
-        <div class="experience-tank between">
-          <div class="experience-link"></div>
-          <div class="experience-sublink sublink-right"></div>
-          <div class="experience-sublink sublink-bottom"></div>
-          <div class="experience-project">
-            Project : <%= link_to @user.projects.first.name, project_path(@user.projects.first) %>
-            <span class="hidden-xs">
-              with
-              <% @user.projects.first.users.select { |user| user != @user }.each do |buddy| %>
-                <%= link_to user_path(buddy) do %>
-                  <%= image_tag buddy.gravatar_url, class: "avatar-square" %>
-                <% end %>
+        <% if @user.alumni %>
+          <div class="experience-tank">
+            <div class="experience-logo experience-wagon text-center">
+              <%= render "shared/logo" %>
+            </div>
+            <div class="experience-body">
+              <%= link_to batch_path(@user.batch) do %>
+                <h4>Batch #<%= @user.batch.slug %> - <small><%= @user.batch.city.name %></small></h4>
               <% end %>
-            </span>
+            </div>
           </div>
-        </div>
+          <% unless @user.projects.empty? %>
+            <% @user.projects.each do |project| %>
+              <div class="experience-tank between">
+                <div class="experience-link"></div>
+                <div class="experience-sublink sublink-right"></div>
+                <div class="experience-sublink sublink-bottom"></div>
+                <div class="experience-project">
+                  Project : <%= link_to project.name, project_path(project) %>
+                  <% if project.users.count > 1 %>
+                    <span class="hidden-xs">
+                      with
+                      <% project.users.select { |user| user != @user }.each do |buddy| %>
+                        <%= link_to user_path(buddy) do %>
+                          <%= image_tag buddy.thumbnail, class: "avatar-square" %>
+                        <% end %>
+                      <% end %>
+                    </span>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
         <div class="experience-tank between">
           <div class="experience-link"></div>
         </div>

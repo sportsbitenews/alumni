@@ -1,7 +1,7 @@
 <div class="experience-tank">
   <div class="experience-logo">
     <% if exp['name'] == "AE" || exp['name'] == "Freelance" %>
-      <%= image_tag @user.gravatar_url %>
+      <%= image_tag @user.thumbnail %>
     <% else %>
       <a href="http://<%= exp["name"].downcase.delete(' ') %>.com">
         <img src="//logo.clearbit.com/<%= exp["name"].downcase.delete(' ') %>.com" alt="<%= exp["name"].split(' ').map { |word| word.first.upcase }.join('') %>">
