@@ -2,9 +2,13 @@
   <div class="experience-logo">
     <% if exp['name'] == "AE" || exp['name'] == "Freelance" %>
       <%= image_tag @user.thumbnail %>
-    <% else %>
+    <% elsif exp['url'].blank? %>
       <a href="http://<%= exp["name"].downcase.delete(' ') %>.com">
-        <img src="//logo.clearbit.com/<%= exp["name"].downcase.delete(' ') %>.com" alt="<%= exp["name"].split(' ').map { |word| word.first.upcase }.join('') %>">
+        <img src="//logo.clearbit.com/<%= exp["name"].downcase.delete(' ') %>.com" onerror="this.src='Default.jpg'" alt="<%= exp["name"].split(' ').map { |word| word.first.upcase }.join('') %>">
+      </a>
+    <% else %>
+      <a href="<%= exp['url'] %>">
+        <img src="//logo.clearbit.com/<%= exp['url'] %>" alt="<%= exp["name"].split(' ').map { |word| word.first.upcase }.join('') %>">
       </a>
     <% end %>
   </div>

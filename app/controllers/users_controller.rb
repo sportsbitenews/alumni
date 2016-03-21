@@ -23,12 +23,12 @@ class UsersController < ApplicationController
           if @user.pre_wagon_experiences.nil?
             @pre_experiences = []
           else
-            @pre_experiences = @user.pre_wagon_experiences.sort_by! { |exp| exp["rank"] }.reverse
+            @pre_experiences = @user.pre_wagon_experiences
           end
           if @user.pre_wagon_experiences.nil?
             @post_experiences = []
           else
-            @post_experiences = @user.post_wagon_experiences.sort_by! { |exp| exp["rank"] }.reverse
+            @post_experiences = @user.post_wagon_experiences
           end
         else
           render_404

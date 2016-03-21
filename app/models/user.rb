@@ -159,7 +159,8 @@ class User < ActiveRecord::Base
 
   def lewagon_role
     return "Staff" if self.staff
-    return "Teacher" if self.teacher || self.teacher_assistant
+    return "Teacher" if self.teacher
+    return "TA" if self.teacher_assistant
     return "Alumni" if self.alumni
   end
 
