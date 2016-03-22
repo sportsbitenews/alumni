@@ -4,6 +4,11 @@ var AlumniDirectory = React.createClass({
   },
 
   render: function() {
-    return <AlumniList users={this.state.alumni} />;
+    return (
+      <div>
+        <AlumniSearch />
+        <AlumniList users={this.state.alumni} />
+      </div>
+    );
   }
 });
