@@ -191,6 +191,8 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    letter_avatar (0.1.11)
+      posix-spawn (>= 0.3.0)
     letter_opener (1.4.1)
       launchy (~> 2.2)
     link_thumbnailer (3.0.2)
@@ -263,6 +265,7 @@ GEM
       paperclip (>= 3.4)
     pdf-core (0.6.0)
     pg (0.18.2)
+    posix-spawn (0.3.11)
     prawn (2.0.2)
       pdf-core (~> 0.6.0)
       ttfunk (~> 1.4.0)
@@ -482,6 +485,7 @@ DEPENDENCIES
   jquery-rails
   js-routes
   kaminari
+  letter_avatar
   letter_opener
   link_thumbnailer
   lodash-rails
