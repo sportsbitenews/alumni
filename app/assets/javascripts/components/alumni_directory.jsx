@@ -1,9 +1,9 @@
 var AlumniDirectory = React.createClass({
   getInitialState: function() {
-    return { alumni: users };
+    return { alumni: this.props.users };
   },
 
   render: function() {
     return <AlumniList users={this.state.alumni} />;
   }
-}
+});
