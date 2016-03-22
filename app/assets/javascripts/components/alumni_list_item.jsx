@@ -22,6 +22,16 @@ var AlumniListItem = React.createClass({
         </a>
       );
     }
+    var batch = null;
+    if (this.props.user.batch) {
+      var batch = (
+        <p>
+          <a href={Routes.batch_path(this.props.user.batch.id)}>
+            Batch#{this.props.user.batch.slug} - {this.props.user.batch.city}
+          </a>
+        </p>
+      );
+    }
     return (
       <div className="alumni-card">
         <div className="row padded-1em">
@@ -38,11 +48,7 @@ var AlumniListItem = React.createClass({
                 </a>
               </h5>
               <div className='hidden-xs'>
-                <p>
-                  <a href={Routes.batch_path(this.props.user.batch.id)}>
-                    Batch#{this.props.user.batch.slug} - {this.props.user.batch.city}
-                  </a>
-                </p>
+                {batch}
                 {mood}
               </div>
             </div>
