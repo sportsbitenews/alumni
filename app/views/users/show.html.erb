@@ -64,7 +64,7 @@
           <%= mail_to @user.email, class: "share-link bg-email", target: '_blank' do %>
             <i class="fa fa-envelope-o"></i>
           <% end %>
-          <% if @user.staff == false &&  @user.phone.blank? == false %>
+          <% if !@user.staff &&  @user.phone.present? %>
             <a href="tel:<%= @user.phone %>" class="share-link bg-text" target='_blank'>
               <i class="fa fa-mobile"></i>
             </a>
@@ -122,11 +122,11 @@
                 <div class="experience-sublink sublink-bottom"></div>
                 <div class="experience-project">
                   Project : <%= link_to project.name, project_path(project) %>
-                  <% if project.users.count > 1 %>
+                  <% if project.users.size > 1 %>
                     <span class="hidden-xs">
                       with
                       <% project.users.select { |user| user != @user }.each do |buddy| %>
-                        <%= link_to user_path(buddy) do %>
+                        <%= link_to "/#{buddy.github_nickname}", title: buddy.name do %>
                           <%= image_tag buddy.thumbnail, class: "avatar-square" %>
                         <% end %>
                       <% end %>
@@ -147,3 +147,13 @@
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $('#edit-user-mood-button').click(function() {
+        $('.user-profile-mood').html("<%= j render 'users/mood_form' %>");
+      });
+    });
+  <% end %>
+<% end %>
