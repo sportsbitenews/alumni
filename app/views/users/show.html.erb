@@ -44,13 +44,14 @@
         <div class="user-profile-name">
           <%= @user.name %>
         </div>
-        <div class="user-profile-mood padded-1em">
-          <% if @user.mood %>
+        <% if @user.mood %>
+          <div class="user-profile-mood padded-1em">
             "<%= @user.mood %>"
-          <% else %>
-            "Change life, learn to code"
-          <% end %>
-        </div>
+            <% if @user == current_user %>
+              <span id="edit-user-mood-button"><i class="fa fa-pencil"></i></span>
+            <% end %>
+          </div>
+        <% end %>
         <div class="share-links">
           <a href="http://github.com/<%= @user.github_nickname%>" class="share-link bg-github" target='_blank'>
             <i class="fa fa-github"></i>

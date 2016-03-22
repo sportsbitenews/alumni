@@ -54,6 +54,12 @@
 .user-profile-mood {
   color: #C8CCD5;
   font-style: italic;
+  #edit-user-mood-button {
+    cursor: pointer;
+    &:hover {
+      color: white;
+    }
+  }
 }
 
 .user-profile-summary {
