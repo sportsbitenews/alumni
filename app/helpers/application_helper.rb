@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include LetterAvatar::AvatarHelper
+
   def react_component_with_jbuilder(component, options = {})
     options[:prerender] = prerender? if options[:prerender].nil?
     path = options[:path] || "#{controller_name}/#{action_name}"
