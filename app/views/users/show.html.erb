@@ -35,7 +35,7 @@
       <div class="col-xs-12">
         <div class="badge-container user-profile-avatar">
           <%= image_tag @user.thumbnail, class: "avatar-square"%>
-          <div class="badge <%= @user.lewagon_role.downcase %>">
+          <div class="badge <%= @user.lewagon_role.dasherize.downcase %>">
             <%= @user.lewagon_role %>
           </div>
         </div>
@@ -44,14 +44,9 @@
         <div class="user-profile-name">
           <%= @user.name %>
         </div>
-        <% if @user.mood %>
-          <div class="user-profile-mood padded-1em">
-            "<%= @user.mood %>"
-            <% if @user == current_user %>
-              <span id="edit-user-mood-button"><i class="fa fa-pencil"></i></span>
-            <% end %>
-          </div>
-        <% end %>
+        <div class="user-profile-mood padded-1em">
+          <%= react_component "Mood", render(template: 'users/show.json.jbuilder') %>
+        </div>
         <div class="share-links">
           <a href="http://github.com/<%= @user.github_nickname%>" class="share-link bg-github" target='_blank'>
             <i class="fa fa-github"></i>
@@ -147,13 +142,3 @@
     </div>
   </div>
 </div>
-
-<% content_for :after_js do %>
-  <%= javascript_tag do %>
-    $(document).ready(function() {
-      $('#edit-user-mood-button').click(function() {
-        $('.user-profile-mood').html("<%= j render 'users/mood_form' %>");
-      });
-    });
-  <% end %>
-<% end %>
