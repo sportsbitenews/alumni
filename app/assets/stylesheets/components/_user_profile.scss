@@ -54,7 +54,7 @@
 .user-profile-mood {
   color: #C8CCD5;
   font-style: italic;
-  #edit-user-mood-button {
+  .is-editable {
     cursor: pointer;
     &:hover {
       color: white;

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_after_action :verify_authorized, only: :show
 
-  before_action :set_user, only: %i(update confirm delete)
+  before_action :set_user, only: %i(update confirm delete update_profile)
   def index
     query = params[:query]
     if query.blank?
@@ -47,6 +47,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_profile
+    @user.update_attributes(user_params)
+  end
+
   def delete
     @user.destroy!
     render nothing: true
@@ -75,7 +79,8 @@ class UsersController < ApplicationController
       :birth_day,
       :phone,
       :school,
-      :private_bio
+      :private_bio,
+      :mood
     )
   end
 end

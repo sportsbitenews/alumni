@@ -20,6 +20,7 @@ JsRoutes.setup do |config|
 
     /^users$/,
     /^profile$/,
+    /^edit_profile$/,
     /^destroy_user_session$/,
 
     /^preview_answers$/,
