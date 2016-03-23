@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @user = User.where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
+        @user = User.includes(:batch).where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
         if @user
           if params[:github_nickname] != @user.github_nickname
             redirect_to profile_path(@user.github_nickname)
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.includes(:batch).find(params[:id])
     authorize @user
   end
 

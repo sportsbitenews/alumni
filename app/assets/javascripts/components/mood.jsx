@@ -29,7 +29,7 @@ var Mood = React.createClass({
           {mood}
         </div>
         <div className={userMoodFormClasses}>
-          <input ref="mood" type="text" onKeyDown={this.handleKeydown} placeholder="Write something about your mood ..." />
+          <input ref="mood" type="text" onKeyDown={this.handleKeydown} placeholder="Write something about your mood ..." className="form-control" />
         </div>
       </div>
     );
@@ -42,19 +42,14 @@ var Mood = React.createClass({
   handleKeydown(e) {
     if (e.which == 13 && this.state.isMoodHidden) {
       var moodValue = React.findDOMNode(this.refs.mood).value;
-      UserActions.update_profile(this.props.current_user.id, {"mood": moodValue})
+      axios.railsPatch(Routes.edit_profile_path(this.props.current_user.id, { format: 'json' }), {"mood": moodValue})
+        .then((response) => {
+          this.setState({
+            content: response.data.mood,
+            isEditable: response.data.current_user.github_nickname == response.data.github_nickname,
+            isMoodHidden: false
+          })
+        })
     }
-  },
-
-  componentDidMount() {
-    MoodStore.listen(this.onStoreChange.bind(this))
-  },
-
-  onStoreChange(store) {
-    this.setState({
-      isEditing: false,
-      originalContent: post.original_content,
-      content: post.content
-    })
   }
 });
