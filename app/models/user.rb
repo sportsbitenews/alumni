@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
 
   acts_as_voter
 
-  algoliasearch do
+  algoliasearch index_name: "AlumniDirectory" do
     attribute :first_name,
               :last_name,
               :github_nickname,

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   before_action :set_user, only: %i(update confirm delete)
   def index
-    @users = policy_scope(User).includes(:batch).where.not(last_name: nil).order(:last_name)
+    @users = policy_scope(User).includes(:batch).where.not(last_name: nil).order(:last_name).first(20)
     # query = params[:query]
     # if query.blank?
     #   @users = policy_scope(User).none
