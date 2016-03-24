@@ -104,7 +104,8 @@ class User < ActiveRecord::Base
               :school,
               :private_bio,
               :pre_wagon_experiences,
-              :post_wagon_experiences
+              :post_wagon_experiences,
+              :id
   end
 
   # after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }

@@ -14,7 +14,7 @@ var AlumniSearch = React.createClass({
       var query = React.findDOMNode(this.refs.query).value;
       console.log(query);
       this.props.index.search(query, {hitsPerPage: 20}, function(err, content) {
-        console.log(content);
+        console.log(content.hits);
       });
     }
   }
