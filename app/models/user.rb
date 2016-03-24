@@ -105,7 +105,22 @@ class User < ActiveRecord::Base
               :private_bio,
               :pre_wagon_experiences,
               :post_wagon_experiences,
-              :id
+              :id,
+              :badge,
+              :connected_to_slack,
+              :thumbnail,
+              :user_messages_slack_url,
+              :batch,
+              :position,
+              :projects
+
+    attribute :batch do
+      algolia_batch
+    end
+
+    attribute :projects do
+      algolia_projects
+    end
   end
 
   # after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }
@@ -170,7 +185,57 @@ class User < ActiveRecord::Base
     find_by_github_nickname slug
   end
 
+  def badge
+    if self.staff
+      'staff'
+    elsif self.teacher
+      'teacher'
+    elsif self.teacher_assistant
+      'teacher assistant'
+    else
+      'alumni'
+    end
+  end
+
+  def position
+    if self.post_wagon_experiences.nil?
+      { title: "Alumni",
+        company: "Le Wagon",
+        url: "lewagon.com" }
+    else
+      position_title = self.post_wagon_experiences.first['title']
+      unless self.post_wagon_experiences.first['title'] == 'Freelance'
+        position_company = self.post_wagon_experiences.first['name']
+        if self.post_wagon_experiences.first['url'].present?
+          position_url = self.post_wagon_experiences.first['url']
+        else
+          position_url = "#{self.post_wagon_experiences.first['name'].downcase.delete(' ')}.com"
+        end
+      end
+      { title: position_title,
+        company: position_company,
+        url: position_url }
+    end
+  end
+
+  def algolia_batch
+    if self.batch
+      { city: self.batch.city.name,
+        id: self.batch.id,
+        slug: self.batch.slug,
+        name: "batch#" + self.batch.slug }
+    end
+  end
+
   private
+
+  def algolia_projects
+    hash = {}
+    self.projects.each do |project|
+      hash[project.id.to_s.to_sym] = project.name
+    end
+    hash
+  end
 
   def octokit_client
     @octokit_client ||= Octokit::Client.new(access_token: github_token)

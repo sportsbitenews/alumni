@@ -9,10 +9,14 @@ var AlumniDirectory = React.createClass({
      };
   },
 
+  pushSearchResultToDirectory: function(result) {
+    this.setState({alumni: result});
+  },
+
   render: function() {
     return (
       <div>
-        <AlumniSearch index={this.state.index} />
+        <AlumniSearch index={this.state.index} pushResult={this.pushSearchResultToDirectory} />
         <AlumniList users={this.state.alumni} />
       </div>
     );
