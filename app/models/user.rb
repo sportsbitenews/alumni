@@ -58,6 +58,8 @@
 
 class User < ActiveRecord::Base
   include Cacheable
+  include AlgoliaSearch
+
   PUBLIC_PROPERTIES = %i(id github_nickname first_name last_name thumbnail)
   PRIVATE_PROPERTIES = %i(email slack_uid connected_to_slack)
 
@@ -94,6 +96,16 @@ class User < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
 
   acts_as_voter
+
+  algoliasearch do
+    attribute :first_name,
+              :last_name,
+              :github_nickname,
+              :school,
+              :private_bio,
+              :pre_wagon_experiences,
+              :post_wagon_experiences
+  end
 
   # after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }
 
