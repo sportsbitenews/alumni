@@ -164,6 +164,27 @@ class User < ActiveRecord::Base
     return "Alumni" if self.alumni
   end
 
+  def position
+    if self.post_wagon_experiences.nil?
+      { title: "Alumni",
+        company: "Le Wagon",
+        url: "lewagon.com" }
+    else
+      position_title = self.post_wagon_experiences.first['title']
+      unless self.post_wagon_experiences.first['title'] == 'Freelance'
+        position_company = self.post_wagon_experiences.first['name']
+        if self.post_wagon_experiences.first['url'].present?
+          position_url = self.post_wagon_experiences.first['url']
+        else
+          position_url = "#{self.post_wagon_experiences.first['name'].downcase.delete(' ')}.com"
+        end
+      end
+      { title: position_title,
+        company: position_company,
+        url: position_url }
+    end
+  end
+
   private
 
   def octokit_client

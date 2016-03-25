@@ -32,18 +32,29 @@
 <div class="container-fluid">
   <div class="user-profile-header">
     <div class="row">
-      <div class="col-xs-12">
-        <div class="badge-container user-profile-avatar">
-          <%= image_tag @user.thumbnail, class: "avatar-square"%>
-          <div class="badge <%= @user.lewagon_role.dasherize.downcase %>">
-            <%= @user.lewagon_role %>
+      <div class="col-xs-10 col-xs-offset-1">
+        <div class="user-profile-header-tank">
+          <div class="badge-container user-profile-avatar">
+            <%= image_tag @user.thumbnail, class: "avatar-square"%>
+            <div class="badge <%= @user.lewagon_role.dasherize.downcase %>">
+              <%= @user.lewagon_role %>
+            </div>
+          </div>
+          <div class="user-profile-summary">
+            <h3><%= @user.name %></h3>
+            <h4>
+              <span><%= render "display_logo", experience: @user.position %></span>
+              <% if @user.position["title"] == "Freelance" %>
+                currently <%= @user.position["title"] %>
+              <% elsif @user.position["url"].present? %>
+                currently <%= @user.position["title"] %> at <a href="http://<%= @user.position['url'] %>"><%= @user.position["name"] %></a>
+              <% end %>
+            </h4>
           </div>
         </div>
       </div>
       <div class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 text-center">
-        <div class="user-profile-name">
-          <%= @user.name %>
-        </div>
+
         <div class="user-profile-mood padded-1em">
           <%= react_component "Mood", render(template: 'users/show.json.jbuilder') %>
         </div>

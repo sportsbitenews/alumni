@@ -1,0 +1,7 @@
+<% if experience['name'] == "Freelance" %>
+  <img src="<%= letter_avatar_url("Freelance".downcase, 200) %>">
+<% elsif experience['url'].blank? %>
+  <img src="//logo.clearbit.com/<%= experience["name"].downcase.delete(' ') %>.com" onerror="this.src='<%= letter_avatar_url(experience['name'].downcase, 200) %>'">
+<% else %>
+  <img src="//logo.clearbit.com/<%= experience['url'] %>">
+<% end %>
