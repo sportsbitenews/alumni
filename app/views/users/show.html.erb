@@ -44,12 +44,52 @@
             <h3><%= @user.name %></h3>
             <h4>
               <span><%= render "display_logo", experience: @user.position %></span>
-              <% if @user.position["title"] == "Freelance" %>
-                currently <%= @user.position["title"] %>
-              <% elsif @user.position["url"].present? %>
-                currently <%= @user.position["title"] %> at <a href="http://<%= @user.position['url'] %>"><%= @user.position["name"] %></a>
+              <% if @user.position[:title] == "Freelance" %>
+                currently <%= @user.position[:title] %>
+              <% elsif @user.position[:url].present? %>
+                currently <%= @user.position[:title] %> at <a href="http://<%= @user.position[:url] %>"><%= @user.position[:company] %></a>
               <% end %>
             </h4>
+            <div class="user-profile-contact">
+              <div class="user-profile-contact-icons">
+                <ul>
+                  <li>
+                    <% if @user.slack_uid.present? %>
+                      <i class="mdi mdi-slack"></i>
+                    <% end %>
+                  </li>
+                  <li><i class="mdi mdi-github-circle"></i></li>
+                  <li><i class="mdi mdi-email-outline"></i></li>
+                  <li><i class="mdi mdi-map-marker-radius"></i></li>
+                </ul>
+              </div>
+              <div class="user-profile-contact-links">
+                <ul>
+                  <li>
+                    <% if @user.slack_uid.present? %>
+                      <a href="<%= @user.user_messages_slack_url %>" target='_blank'>
+                        @<%= SlackService.new.slack_username(@user) %>
+                      </a>
+                    <% end %>
+                  </li>
+                  <li>
+                    <a href="http://github.com/<%= @user.github_nickname%>"  target='_blank'>
+                      <%= @user.github_nickname %>
+                    </a>
+                  </li>
+                  <li>
+                    <%= mail_to @user.email, target: '_blank' do %>
+                      <%= @user.email %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= @user.cities.reduce('') { |cities, city| cities+="#{city.name} " } %>
+                  </li>
+                </ul>
+              </div>
+
+              </p>
+            </div>
           </div>
         </div>
       </div>
