@@ -9,18 +9,24 @@ var Mood = React.createClass({
 
   render: function() {
     var userMoodClasses = classNames({
-      'is-editable': this.state.isEditable,
       'hidden': this.state.isMoodHidden
     })
     var userMoodFormClasses = classNames({
       'hidden': !this.state.isMoodHidden
     })
+    var userMoodPenClasses = classNames({
+      'is-editable': this.state.isEditable,
+      'mdi mdi-pencil': true,
+      'hidden': !this.state.isEditable
+    })
 
     var mood = null;
     if (this.state.content) {
-      var mood = (<p>{'"' + this.state.content + '"'}</p>);
+      var mood = (<p>{this.state.content} <i className={userMoodPenClasses}></i></p>);
     } else if (this.props.current_user.github_nickname == this.props.github_nickname) {
-      var mood = (<p>"Write something about your mood ..."</p>);
+      var mood = (<p>What you look for/ what you bring ... <i className={userMoodPenClasses}></i></p>);
+    } else {
+      var mood = (<p>Change life, learn to code</p>);
     }
 
     return (
@@ -29,7 +35,7 @@ var Mood = React.createClass({
           {mood}
         </div>
         <div className={userMoodFormClasses}>
-          <input ref="mood" type="text" onKeyDown={this.handleKeydown} placeholder="Write something about your mood ..." className="form-control" />
+          <input ref="mood" type="text" onKeyDown={this.handleKeydown} placeholder="What you look for/ what you bring ..." className="form-control" />
         </div>
       </div>
     );

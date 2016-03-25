@@ -34,115 +34,99 @@
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1">
         <div class="user-profile-header-tank">
-          <div class="badge-container user-profile-avatar">
-            <%= image_tag @user.thumbnail, class: "avatar-square"%>
-            <div class="badge <%= @user.lewagon_role.dasherize.downcase %>">
-              <%= @user.lewagon_role %>
+          <div class="user-profile-avatar">
+            <div class="badge-container">
+              <%= image_tag @user.thumbnail, class: "avatar"%>
+              <div class="badge <%= @user.lewagon_role.dasherize.downcase %>">
+                <%= @user.lewagon_role %>
+              </div>
             </div>
           </div>
           <div class="user-profile-summary">
-            <h3><%= @user.name %></h3>
-            <h4>
+            <h4><%= @user.name %></h4>
+            <h5>
               <span><%= render "display_logo", experience: @user.position %></span>
               <% if @user.position[:title] == "Freelance" %>
                 currently <%= @user.position[:title] %>
               <% elsif @user.position[:url].present? %>
-                currently <%= @user.position[:title] %> at <a href="http://<%= @user.position[:url] %>"><%= @user.position[:company] %></a>
+                currently <span id="title"><%= @user.position[:title] %></span> at <a href="http://<%= @user.position[:url] %>"><%= @user.position[:company] %></a>
               <% end %>
-            </h4>
+            </h5>
             <div class="user-profile-contact">
-              <div class="user-profile-contact-icons">
-                <ul>
-                  <li>
-                    <% if @user.slack_uid.present? %>
-                      <i class="mdi mdi-slack"></i>
-                    <% end %>
-                  </li>
-                  <li><i class="mdi mdi-github-circle"></i></li>
-                  <li><i class="mdi mdi-email-outline"></i></li>
-                  <li><i class="mdi mdi-map-marker-radius"></i></li>
-                </ul>
-              </div>
-              <div class="user-profile-contact-links">
-                <ul>
-                  <li>
-                    <% if @user.slack_uid.present? %>
-                      <a href="<%= @user.user_messages_slack_url %>" target='_blank'>
-                        @<%= SlackService.new.slack_username(@user) %>
+              <ul class="list-unstyled">
+                <li>
+                  <div class="user-profile-contact-tank">
+                    <div class="user-profile-contact-icons">
+                      <% if @user.slack_uid.present? %>
+                        <i class="mdi mdi-slack"></i>
+                      <% end %>
+                    </div>
+                    <div class="user-profile-contact-links">
+                      <% if @user.slack_uid.present? %>
+                        <a href="<%= @user.user_messages_slack_url %>" target='_blank'>
+                          @<%= SlackService.new.slack_username(@user) %>
+                        </a>
+                      <% end %>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="user-profile-contact-tank">
+                    <div class="user-profile-contact-icons">
+                      <i class="mdi mdi-github-circle"></i>
+                    </div>
+                    <div class="user-profile-contact-links">
+                      <a href="http://github.com/<%= @user.github_nickname%>"  target='_blank'>
+                        <%= @user.github_nickname %>
                       </a>
-                    <% end %>
-                  </li>
-                  <li>
-                    <a href="http://github.com/<%= @user.github_nickname%>"  target='_blank'>
-                      <%= @user.github_nickname %>
-                    </a>
-                  </li>
-                  <li>
-                    <%= mail_to @user.email, target: '_blank' do %>
-                      <%= @user.email %>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= @user.cities.reduce('') { |cities, city| cities+="#{city.name} " } %>
-                  </li>
-                </ul>
-              </div>
-
-              </p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="user-profile-contact-tank">
+                    <div class="user-profile-contact-icons">
+                      <i class="mdi mdi-email-outline"></i>
+                    </div>
+                    <div class="user-profile-contact-links">
+                      <%= mail_to @user.email, target: '_blank' do %>
+                        <%= @user.email %>
+                      <% end %>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="user-profile-contact-tank">
+                    <div class="user-profile-contact-icons">
+                      <i class="mdi mdi-map-marker-radius"></i>
+                    </div>
+                    <div class="user-profile-contact-links">
+                      <%= @user.cities.reduce('') { |cities, city| cities+="#{city.name} " } %>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 text-center">
-
-        <div class="user-profile-mood padded-1em">
-          <%= react_component "Mood", render(template: 'users/show.json.jbuilder') %>
-        </div>
-        <div class="share-links">
-          <a href="http://github.com/<%= @user.github_nickname%>" class="share-link bg-github" target='_blank'>
-            <i class="fa fa-github"></i>
-          </a>
-          <% unless @user.user_messages_slack_url.blank? %>
-            <a href="<%= @user.user_messages_slack_url %>" class="share-link bg-slack" target='_blank'>
-              <i class="fa fa-slack"></i>
-            </a>
-          <% end %>
-          <%= mail_to @user.email, class: "share-link bg-email", target: '_blank' do %>
-            <i class="fa fa-envelope-o"></i>
-          <% end %>
-          <% if !@user.staff &&  @user.phone.present? %>
-            <a href="tel:<%= @user.phone %>" class="share-link bg-text" target='_blank'>
-              <i class="fa fa-mobile"></i>
-            </a>
-          <% end %>
-          <% unless @user.facebook_nickname.blank? %>
-            <a href="https://www.facebook.com/<%= @user.facebook_nickname %>" class="share-link bg-facebook" target='_blank'>
-              <i class="fa fa-facebook"></i>
-            </a>
-          <% end %>
-          <% unless @user.twitter_nickname.blank? %>
-            <a href="https://twitter.com/<%= @user.twitter_nickname %>" class="share-link bg-twitter" target='_blank'>
-              <i class="fa fa-twitter"></i>
-            </a>
-          <% end %>
-          <% unless @user.linkedin_nickname.blank? %>
-            <a href="https://www.linkedin.com/in/<%= @user.linkedin_nickname %>" class="share-link bg-linkedin" target='_blank'>
-              <i class="fa fa-linkedin"></i>
-            </a>
-          <% end %>
-        </div>
+    </div>
+  </div>
+  <div class="user-profile-mood">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+       <%= react_component "Mood", render(template: 'users/show.json.jbuilder') %>
       </div>
     </div>
   </div>
-  <% unless @user.private_bio.blank? %>
-    <div class="user-profile-summary hidden-xs">
+  <%# unless @user.private_bio.blank? %>
+<!--     <div class="user-profile-summary hidden-xs">
       <div class="cartouche-container">
         <div class="cartouche-tank">
-          <%= render_markdown(@user.private_bio) %>
+          <%#= render_markdown(@user.private_bio) %>
         </div>
       </div>
-    </div>
-  <% end %>
+    </div> -->
+  <%# end %>
   <div class="user-profile-history">
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">

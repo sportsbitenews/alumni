@@ -1,14 +1,74 @@
 .user-profile-header {
   background: #FAFAFA;
-  padding-top: 1em;
+  color: $gray-dark;
+  padding-top: 2em;
   padding-bottom: 1em;
 }
 
+.user-profile-header-tank {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .user-profile-avatar {
-  width: 180px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-  margin: auto;
-  display: block;
+  width: 100px;
+}
+
+.user-profile-summary {
+  padding-left: 2em;
+  h4, h5 {
+    margin: 0px;
+  }
+  h4 {
+    padding-top: 5px;
+    font-size: 25px;
+  }
+  h5 {
+    color: $gray-light;
+    font-weight: 200;
+    padding-top: 5px;
+    #title {
+      color: $gray-dark;
+      font-weight: 500;
+    }
+    a {
+      color: $blue;
+      font-weight: 500;
+    }
+  }
+}
+
+.user-profile-contact {
+  padding-top: 1.5em;
+  padding-bottom: 1em;
+}
+
+.user-profile-contact-tank {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile-contact-icons {
+  border-right: 1px solid #CCCCCC;
+  padding-right: 0.5em;
+  font-size: 16px;
+  font-weight: 200;
+  color: #CCCCCC;
+}
+
+.user-profile-contact-links {
+  padding-left: 0.5em;
+  color: #9D9D9D;
+  font-size: 11px;
+  font-weight: 500;
+  a {
+    color: #9D9D9D;
+    &:hover {
+      color: #CCCCCC;
+    }
+  }
 }
 
 .user-profile-name {
@@ -53,23 +113,17 @@
 }
 
 .user-profile-mood {
-  color: #C8CCD5;
-  font-style: italic;
+  background-color: white;
+  color: $gray-dark;
+  padding-top: 1em;
+  padding-bottom: 1em;
   .is-editable {
     cursor: pointer;
+    color: $gray-light;
     &:hover {
-      color: white;
+      color: $gray-dark;
     }
   }
-  input {
-    background-color: transparent;
-    border: none;
-    color: white;
-  }
-}
-
-.user-profile-summary {
-  height: 90px;
 }
 
 .user-profile-history {

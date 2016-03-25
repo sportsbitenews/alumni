@@ -1,7 +1,7 @@
 <% if experience[:title] == "Freelance" %>
-  <img src="<%= letter_avatar_url("Freelance".downcase, 200) %>">
+  <img class="avatar avatar-mini-logo" src="<%= letter_avatar_url("Freelance".downcase, 200) %>">
 <% elsif experience[:url].blank? %>
-  <img src="//logo.clearbit.com/<%= experience[:company].downcase.delete(' ') %>.com" onerror="this.src='<%= letter_avatar_url(experience[:company].downcase, 200) %>'">
+  <img class="avatar avatar-mini-logo" src="//logo.clearbit.com/<%= experience[:company].downcase.delete(' ') %>.com" onerror="this.src='<%= letter_avatar_url(experience[:company].downcase, 200) %>'">
 <% else %>
-  <img src="//logo.clearbit.com/<%= experience[:url] %>" onerror="this.src='<%= letter_avatar_url(experience[:company].downcase, 200) %>'">
+  <img class="avatar avatar-mini-logo" src="//logo.clearbit.com/<%= experience[:url] %>" onerror="this.src='<%= letter_avatar_url(experience[:company].downcase, 200) %>'">
 <% end %>
