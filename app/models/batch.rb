@@ -48,7 +48,7 @@ class Batch < ActiveRecord::Base
   has_many :projects, -> { order(position: :asc) }
   has_and_belongs_to_many :teachers, class_name: "User", foreign_key: "batch_id"
 
-  before_validation :set_ends_at, unless: ->(batch) { batch.ends_at_changed? }
+  before_validation :set_ends_at, if: ->(batch) { batch.starts_at_changed? && !batch.ends_at_changed? }
   after_save :create_slack_channel, if: :slug_set?
   after_save :push_to_kitt, if: :slug_set?
   monetize :price_cents
