@@ -1,6 +1,5 @@
 batch6:
   slug: "6"
-  id: 6
   starts_at: <%= DateTime.now - 100 %>
   ends_at: <%= DateTime.now - 31 %>
-  city_id: 1
+  city: paris
