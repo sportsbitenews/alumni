@@ -54,7 +54,7 @@
             </h5>
             <div class="user-profile-contact">
               <ul class="list-unstyled">
-                <% unless current_user %>
+                <% unless current_user.nil? %>
                   <li>
                     <div class="user-profile-contact-tank">
                       <div class="user-profile-contact-icons">
@@ -64,7 +64,7 @@
                       </div>
                       <div class="user-profile-contact-links">
                         <% if @user.slack_uid.present? %>
-                          <a href="<%= @user.user_messages_slack_url %>" target='_blank'>
+                          <a href="<%= @user.user_messages_slack_url %>" target='_blank' id:"user-slack">
                             @<%= SlackService.new.slack_username(@user) %>
                           </a>
                         <% end %>
@@ -84,7 +84,7 @@
                     </div>
                   </div>
                 </li>
-                <% unless current_user %>
+                <% unless current_user.nil? %>
                   <li>
                     <div class="user-profile-contact-tank">
                       <div class="user-profile-contact-icons">

@@ -8,6 +8,6 @@ class UserTest < ActiveSupport::TestCase
 
   test "User is invalid without a github nickname" do
     user = User.new(github_nickname: nil)
-    refute user.valid?
+    refute user.valid?, user.errors.full_messages
   end
 end
