@@ -88,6 +88,7 @@ group :development, :test do
   gem "pry-rails"
   gem "bullet"
   gem "letter_opener"
+  gem 'minitest-reporters'
 end
 
 group :production do

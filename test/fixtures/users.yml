@@ -1,0 +1,6 @@
+boris:
+  first_name: Boris
+  last_name: Paillard
+  github_nickname: Papillard
+  email: boris@lewagon.org
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>

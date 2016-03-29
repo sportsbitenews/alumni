@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="user-profile-summary">
-            <h4><%= @user.name %></h4>
+            <h1><%= @user.name %></h1>
             <h5>
               <span><%= render "display_logo", experience: @user.position %></span>
               <% if @user.position[:title] == "Freelance" %>
@@ -88,7 +88,7 @@
                       <i class="mdi mdi-email-outline"></i>
                     </div>
                     <div class="user-profile-contact-links">
-                      <%= mail_to @user.email, target: '_blank' do %>
+                      <%= mail_to @user.email, target: '_blank', id: 'user-email' do %>
                         <%= @user.email %>
                       <% end %>
                     </div>

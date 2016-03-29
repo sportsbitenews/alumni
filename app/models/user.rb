@@ -158,25 +158,32 @@ class User < ActiveRecord::Base
   end
 
   def lewagon_role
-    return "Staff" if self.staff
-    return "Teacher" if self.teacher
-    return "TA" if self.teacher_assistant
-    return "Alumni" if self.alumni
+    if staff
+      "Staff"
+    elsif teacher
+      "Teacher"
+    elsif teacher_assistant
+      "TA"
+    elsif alumni
+      "Alumni"
+    else
+      ""
+    end
   end
 
   def position
-    if self.post_wagon_experiences.nil?
+    if post_wagon_experiences.nil?
       { title: "Alumni",
         company: "Le Wagon",
         url: "lewagon.com" }
     else
-      position_title = self.post_wagon_experiences.first['title']
-      unless self.post_wagon_experiences.first['title'] == 'Freelance'
-        position_company = self.post_wagon_experiences.first['name']
-        if self.post_wagon_experiences.first['url'].present?
-          position_url = self.post_wagon_experiences.first['url']
+      position_title = post_wagon_experiences.first['title']
+      unless post_wagon_experiences.first['title'] == 'Freelance'
+        position_company = post_wagon_experiences.first['name']
+        if post_wagon_experiences.first['url'].present?
+          position_url = post_wagon_experiences.first['url']
         else
-          position_url = "#{self.post_wagon_experiences.first['name'].downcase.delete(' ')}.com"
+          position_url = "#{post_wagon_experiences.first['name'].downcase.delete(' ')}.com"
         end
       end
       { title: position_title,
