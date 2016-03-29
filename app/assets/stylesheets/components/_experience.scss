@@ -2,29 +2,54 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   padding-left: 1em;
   padding-right: 1em;
-  height: 60px;
-  &.between {
-    height: 30px;
+  background-color: white;
+  border: 1px solid $gray-lighter;
+  h2 {
+    margin-top: 11px;
+    font-size: 16px;
+  }
+  &.experience-tank-wagon {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: transparent;
+    border: none;
+    color: white;
+    h2 {
+      font-size: 20px;
+      font-weight: 400;
+    }
+    p {
+      color: $gray-light;
+      font-weight: lighter;
+    }
+    a {
+      color: white;
+      &:hover {
+        color: $gray-lighter;
+      }
+    }
   }
 }
 
 .experience-logo {
-  height: 60px;
-  width: 60px;
+  height: 100px;
+  width: 100px;
   img {
     height: 100%;
     width: 100%;
-    border-radius: 5%;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   }
   &.experience-wagon {
+    height: 75px;
+    width: 75px;
     border-radius: 50%;
-    background: linear-gradient(180deg, #606c88 10%, #3f4c6b 90%);
-    padding-top: 12px;
+    background: #CA2929;
+    padding-top: 20px;
     svg {
-      width: 75%;
+      width: 65%;
       path {
         fill: white;
       }
@@ -34,13 +59,15 @@
 
 .experience-body {
   flex: 1 2 60%;
-  padding-left: 1em;
+  padding-left: 2em;
 }
 
 .experience-link {
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: 30px;
-  width: 30px;
-  border-right: 2px solid $gray-light;
+  width: 50%;
+  border-right: 1px solid $gray-lighter;
 }
 
 .experience-sublink {
@@ -57,11 +84,15 @@
 }
 
 .experience-project {
-  flex: 1 2 60%;
-  padding-left: 1em;
-  height: 30px;
-  img {
-    height: 30px;
-    width: 30px;
+  p {
+    font-size: 15px;
+  }
+  .experience-buddies {
+    display: flex;
+    img {
+      margin-right: 10px;
+      height: 40px;
+      width: 40px;
+    }
   }
 }

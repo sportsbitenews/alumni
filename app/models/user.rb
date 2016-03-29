@@ -173,22 +173,26 @@ class User < ActiveRecord::Base
 
   def position
     if post_wagon_experiences.nil?
-      { title: "Alumni",
-        company: "Le Wagon",
-        url: "lewagon.com" }
+      if staff
+        { title: "Staff Member",
+          company: "Le Wagon"}
+      elsif teacher
+        { title: "Teacher",
+          company: "Le Wagon"}
+      elsif teacher_assistant
+        { title: "Teacher Assistant",
+          company: "Le Wagon"}
+      else
+        { title: "Alumni",
+        company: "Le Wagon"}
+      end
     else
       position_title = post_wagon_experiences.first['title']
       unless post_wagon_experiences.first['title'] == 'Freelance'
         position_company = post_wagon_experiences.first['name']
-        if post_wagon_experiences.first['url'].present?
-          position_url = post_wagon_experiences.first['url']
-        else
-          position_url = "#{post_wagon_experiences.first['name'].downcase.delete(' ')}.com"
-        end
       end
       { title: position_title,
-        company: position_company,
-        url: position_url }
+        company: position_company}
     end
   end
 
