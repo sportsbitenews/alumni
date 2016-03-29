@@ -54,22 +54,24 @@
             </h5>
             <div class="user-profile-contact">
               <ul class="list-unstyled">
-                <li>
-                  <div class="user-profile-contact-tank">
-                    <div class="user-profile-contact-icons">
-                      <% if @user.slack_uid.present? %>
-                        <i class="mdi mdi-slack"></i>
-                      <% end %>
+                <% unless current_user %>
+                  <li>
+                    <div class="user-profile-contact-tank">
+                      <div class="user-profile-contact-icons">
+                        <% if @user.slack_uid.present? %>
+                          <i class="mdi mdi-slack"></i>
+                        <% end %>
+                      </div>
+                      <div class="user-profile-contact-links">
+                        <% if @user.slack_uid.present? %>
+                          <a href="<%= @user.user_messages_slack_url %>" target='_blank'>
+                            @<%= SlackService.new.slack_username(@user) %>
+                          </a>
+                        <% end %>
+                      </div>
                     </div>
-                    <div class="user-profile-contact-links">
-                      <% if @user.slack_uid.present? %>
-                        <a href="<%= @user.user_messages_slack_url %>" target='_blank'>
-                          @<%= SlackService.new.slack_username(@user) %>
-                        </a>
-                      <% end %>
-                    </div>
-                  </div>
-                </li>
+                  </li>
+                <% end %>
                 <li>
                   <div class="user-profile-contact-tank">
                     <div class="user-profile-contact-icons">
@@ -82,18 +84,20 @@
                     </div>
                   </div>
                 </li>
-                <li>
-                  <div class="user-profile-contact-tank">
-                    <div class="user-profile-contact-icons">
-                      <i class="mdi mdi-email-outline"></i>
+                <% unless current_user %>
+                  <li>
+                    <div class="user-profile-contact-tank">
+                      <div class="user-profile-contact-icons">
+                        <i class="mdi mdi-email-outline"></i>
+                      </div>
+                      <div class="user-profile-contact-links">
+                        <%= mail_to @user.email, target: '_blank', id: 'user-email' do %>
+                          <%= @user.email %>
+                        <% end %>
+                      </div>
                     </div>
-                    <div class="user-profile-contact-links">
-                      <%= mail_to @user.email, target: '_blank', id: 'user-email' do %>
-                        <%= @user.email %>
-                      <% end %>
-                    </div>
-                  </div>
-                </li>
+                  </li>
+                <% end %>
                 <li>
                   <div class="user-profile-contact-tank">
                     <div class="user-profile-contact-icons">
@@ -111,13 +115,8 @@
       </div>
     </div>
   </div>
-  <div class="user-profile-mood">
-    <div class="row">
-      <div class="col-xs-10 col-xs-offset-1">
-       <%= react_component "Mood", render(template: 'users/show.json.jbuilder') %>
-      </div>
-    </div>
-  </div>
+  <%= react_component "Mood", render(template: 'users/show.json.jbuilder') %>
+
   <%# unless @user.private_bio.blank? %>
 <!--     <div class="user-profile-summary hidden-xs">
       <div class="cartouche-container">

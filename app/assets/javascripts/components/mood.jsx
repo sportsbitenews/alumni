@@ -26,7 +26,7 @@ var Mood = React.createClass({
     } else if (this.props.current_user.github_nickname == this.props.github_nickname) {
       var mood = (<p>What you look for/ what you bring ... <i className={userMoodPenClasses}></i></p>);
     } else {
-      var mood = (<p>Change life, learn to code</p>);
+      var mood = (<p></p>);
     }
 
     return (
