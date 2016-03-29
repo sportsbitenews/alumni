@@ -115,9 +115,16 @@
       </div>
     </div>
   </div>
-  <%= react_component "Mood", render(template: 'users/show.json.jbuilder') %>
-
-  <%# unless @user.private_bio.blank? %>
+  <% if @user.mood %>
+    <div class="user-profile-mood">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+         <%= react_component "Mood", render(template: 'users/show.json.jbuilder') %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%# unless @user.prexitivate_bio.blank? %>
 <!--     <div class="user-profile-summary hidden-xs">
       <div class="cartouche-container">
         <div class="cartouche-tank">
