@@ -115,7 +115,7 @@
       </div>
     </div>
   </div>
-  <% if @user.mood %>
+  <% unless @user.mood.blank? %>
     <div class="user-profile-mood">
       <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
