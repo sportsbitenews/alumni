@@ -70,19 +70,6 @@
   border-right: 1px solid $gray-lighter;
 }
 
-.experience-sublink {
-  align-self: flex-start;
-  height: 15px;
-  width: 30px;
-  &.sublink-right {
-    border-right: 1px solid $gray-light;
-  }
-  &.sublink-bottom {
-    width: 15px;
-    border-bottom: 1px solid $gray-light;
-  }
-}
-
 .experience-project {
   p {
     font-size: 15px;
