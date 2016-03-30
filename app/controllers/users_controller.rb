@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html do
         @user = User.includes(:batch).where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
+        @projects = @user.projects.order(created_at: :desc)
         if @user
           if params[:github_nickname] != @user.github_nickname
             redirect_to profile_path(@user.github_nickname)

@@ -124,15 +124,6 @@
       </div>
     </div>
   <% end %>
-  <%# unless @user.prexitivate_bio.blank? %>
-<!--     <div class="user-profile-summary hidden-xs">
-      <div class="cartouche-container">
-        <div class="cartouche-tank">
-          <%#= render_markdown(@user.private_bio) %>
-        </div>
-      </div>
-    </div> -->
-  <%# end %>
   <div class="user-profile-history">
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
@@ -142,10 +133,10 @@
       </div>
     </div>
     <% if @user.alumni %>
-      <% unless @user.projects.empty? %>
+      <% unless @projects.empty? %>
         <div class="row">
           <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-            <% @user.projects.each do |project| %>
+            <% @projects.each do |project| %>
               <div class="experience-tank experience-project">
                 <div class="experience-logo">
                   <a href="<%= project.url %>">
