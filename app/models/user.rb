@@ -132,6 +132,10 @@ class User < ActiveRecord::Base
     @user_messages_slack_url ||= SlackService.new.user_messages_slack_url(self)
   end
 
+  def slack_nickname
+    SlackService.new.slack_username(self)
+  end
+
   def legit?
     admin || staff || teacher || teacher_assistant || alumni
   end
@@ -172,27 +176,32 @@ class User < ActiveRecord::Base
   end
 
   def position
-    if post_wagon_experiences.nil?
-      if staff
+    if staff
+      if role.blank?
         { title: "Staff Member",
           company: "Le Wagon"}
-      elsif teacher
-        { title: "Teacher",
-          company: "Le Wagon"}
-      elsif teacher_assistant
-        { title: "Teacher Assistant",
-          company: "Le Wagon"}
       else
+        { title: role,
+          company: "Le Wagon"}
+      end
+    elsif teacher
+      { title: "Teacher",
+        company: "Le Wagon"}
+    elsif teacher_assistant
+      { title: "Teacher Assistant",
+        company: "Le Wagon"}
+    else
+      if post_wagon_experiences.nil?
         { title: "Alumni",
         company: "Le Wagon"}
+      else
+        position_title = post_wagon_experiences.first['title']
+        unless post_wagon_experiences.first['title'] == 'Freelance'
+          position_company = post_wagon_experiences.first['name']
+        end
+        { title: position_title,
+          company: position_company}
       end
-    else
-      position_title = post_wagon_experiences.first['title']
-      unless post_wagon_experiences.first['title'] == 'Freelance'
-        position_company = post_wagon_experiences.first['name']
-      end
-      { title: position_title,
-        company: position_company}
     end
   end
 

@@ -65,7 +65,7 @@
                       <div class="user-profile-contact-links">
                         <% if @user.slack_uid.present? %>
                           <a href="<%= @user.user_messages_slack_url %>" target='_blank' id:"user-slack">
-                            @<%= SlackService.new.slack_username(@user) %>
+                            @<%= @user.slack_nickname %> <span class="badge-connected <%= 'is-active' if @user.connected_to_slack %>"></span>
                           </a>
                         <% end %>
                       </div>
