@@ -12,3 +12,10 @@ json.users do
 end
 json.algolia_application_id ENV['ALGOLIA_APPLICATION_ID']
 json.algolia_search_only_api_key "0b73f9c31bbddd46c23022b339086f97"
+unless current_user.nil?
+ json.current_user do
+   json.github_nickname current_user.github_nickname
+   json.user_signed_in user_signed_in?
+   json.id current_user.id
+ end
+end

@@ -1,7 +1,13 @@
 json.extract! user, *user_properties
 
-json.connected_to_slack user.connected_to_slack
-json.user_messages_slack_url user.user_messages_slack_url
+json.cities user.cities.reduce('') { |cities, city| cities+="#{city.name} " }
+
+json.slack do
+  json.connected user.connected_to_slack
+  json.messages_url user.user_messages_slack_url
+  json.nickname SlackService.new.slack_username(user)
+  json.uid user.slack_uid
+end
 
 json.badge user.badge
 
