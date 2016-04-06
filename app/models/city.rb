@@ -37,6 +37,7 @@
 #  apply_facebook_pixel             :string
 #  mailchimp_list_id                :string
 #  mailchimp_api_key                :string
+#  slack_channel_id                 :string
 #
 # Indexes
 #
