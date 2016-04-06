@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314112041) do
+ActiveRecord::Schema.define(version: 20160406084933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20160314112041) do
     t.string   "apply_facebook_pixel"
     t.string   "mailchimp_list_id"
     t.string   "mailchimp_api_key"
+    t.string   "slack_channel_id"
   end
 
   add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
