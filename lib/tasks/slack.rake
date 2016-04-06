@@ -23,17 +23,17 @@ namespace :slack do
     puts "Still #{User.where(slack_uid: nil).count} users without slack uid"
   end
 
-  task :invite_users_to_city_channel, [:city_slug] => :environment do |t, args|
-    city = City.find_by(slug: args[:city_slug])
-    if city && !city.slack_channel_id.blank?
-      puts "Beginning invitations to #{city.name} slack channel..."
-      users_slack_uids = city.users.map { |user| { user.name => user.slack_uid } }.reject { |hash| hash.values.first.blank? }
+  task :invite_users_to_city_channel, [:batch_slug] => :environment do |t, args|
+    batch = Batch.find_by_slug(args[:batch_slug])
+    if batch && !batch.city.slack_channel_id.blank?
+      puts "Inviting #{batch.name} to #{batch.city.name} slack channel..."
+      users_slack_uids = batch.users.map { |user| { user.name => user.slack_uid } }.reject { |hash| hash.values.first.blank? }
       users_slack_uids.each do |users_slack_uid|
-        RestClient.post "https://slack.com/api/channels.invite?token=#{ENV["SLACK_ALUMNI_ADMIN_TOKEN"]}&channel=#{city.slack_channel_id}&user=#{users_slack_uid.values.first}&pretty=1", {}
-        puts "Invited #{users_slack_uid.values.first} to #{city.name} channel..."
+        RestClient.post "https://slack.com/api/channels.invite?token=#{ENV["SLACK_ALUMNI_ADMIN_TOKEN"]}&channel=#{batch.city.slack_channel_id}&user=#{users_slack_uid.values.first}&pretty=1", {}
+        puts "Invited #{users_slack_uid.keys.first} to #{batch.city.name} channel..."
       end
       puts "All invites sent"
-      puts "#{city.users.where(slack_uid: nil.count)} users not invited (no slack uid)"
+      puts "#{batch.users.where(slack_uid: nil).count} users not invited (no slack uid)"
     end
   end
 end
