@@ -1,5 +1,3 @@
-<%= react_component_with_jbuilder "UserProfile" %>
-
 <% content_for(:title) do %>
   <% if @user.alumni %>
     <%= @user.name %> is a Wagon alumni
@@ -30,3 +28,156 @@
     <meta name="robots" content="noindex, nofollow, noimageindex" />
   <% end %>
 <% end %>
+
+<div class="container-fluid">
+  <div class="user-profile-header">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+        <div class="user-profile-header-tank">
+          <div class="user-profile-avatar">
+            <div class="badge-container">
+              <%= image_tag @user.thumbnail, class: "avatar"%>
+            </div>
+          </div>
+          <div class="user-profile-summary">
+            <h1><%= @user.name %></h1>
+            <h2>
+              <%= render "display_logo", experience: @user.position %>
+              <span>
+                <% if @user.position[:title] == "Freelance" %>
+                  <%= @user.position[:title] %>
+                <% else %>
+                  <span id="title"><%= @user.position[:title] %></span> at <a class="user-profile-blue-link" href="http://<%= @user.position[:company].downcase.delete(' ') %>"><%= @user.position[:company] %></a>
+                <% end %>
+              </span>
+            </h2>
+            <div class="user-profile-contact">
+              <% unless current_user.nil? %>
+                <div class="user-profile-contact-tank">
+                  <div class="user-profile-contact-icons">
+                    <% if @user.slack_uid.present? %>
+                      <i class="mdi mdi-slack"></i>
+                    <% end %>
+                  </div>
+                  <div class="user-profile-contact-links">
+                    <% if @user.slack_uid.present? %>
+                      <a href="<%= @user.user_messages_slack_url %>" target='_blank' id:"user-slack">
+                        @<%= @user.slack_nickname %>
+                      </a>
+                      <span class="badge-connected <%= 'is-active' if @user.connected_to_slack %>"></span>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="user-profile-contact-pipe"></div>
+              <% end %>
+              <div class="user-profile-contact-tank">
+                <div class="user-profile-contact-icons">
+                  <i class="mdi mdi-github-circle"></i>
+                </div>
+                <div class="user-profile-contact-links">
+                  <a href="http://github.com/<%= @user.github_nickname%>"  target='_blank'>
+                    <%= @user.github_nickname %>
+                  </a>
+                </div>
+              </div>
+              <div class="user-profile-contact-pipe"></div>
+              <% unless current_user.nil? %>
+                <div class="user-profile-contact-tank">
+                  <div class="user-profile-contact-icons">
+                    <i class="mdi mdi-email-outline"></i>
+                  </div>
+                  <div class="user-profile-contact-links">
+                    <%= mail_to @user.email, target: '_blank', id: 'user-email' do %>
+                      <%= @user.email %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="user-profile-contact-pipe"></div>
+              <% end %>
+              <div class="user-profile-contact-tank">
+                <div class="user-profile-contact-icons">
+                  <i class="mdi mdi-map-marker-radius"></i>
+                </div>
+                <div class="user-profile-contact-links">
+                  <%= @user.cities.reduce('') { |cities, city| cities+="#{city.name} " } %><%= "batch##{@user.batch.slug}" if @user.alumni %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if !@user.mood.blank? || @user == current_user %>
+    <div class="user-profile-mood">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+         <%= react_component "Mood", render(template: 'users/show.json.jbuilder') %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="user-profile-history">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+        <% @post_experiences.each do |exp| %>
+          <%= render 'experience', exp: exp %>
+        <% end %>
+      </div>
+    </div>
+    <% if @user.alumni %>
+      <% unless @projects.empty? %>
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+            <% @projects.each do |project| %>
+              <div class="experience-tank experience-project">
+                <div class="experience-logo">
+                  <a href="<%= project.url %>">
+                    <img src="//logo.clearbit.com/<%= project.url.gsub(/https?:\/\//, '').gsub(/\/\z/, '') %>" one1rror="this.src='<%= letter_avatar_url(project.name.downcase, 200) %>'">
+                  </a>
+                </div>
+                <div class="experience-body">
+                  <h2>
+                    Fullstack Ruby on Rails Developer - <a class="user-profile-blue-link" href="<%= project.url %>"><%= project.name %></a>
+                  </h2>
+                  <p><%= project.tagline_en %></p>
+                  <div class="experience-buddies">
+                    <% project.users.select { |user| user != @user }.each do |buddy| %>
+                      <%= link_to "/#{buddy.github_nickname}" do %>
+                        <%= react_component "BuddyAvatar", {name: buddy.name, thumb: buddy.thumbnail} %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="experience-link"></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div class="row bg-gray">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+          <div class="experience-tank experience-tank-wagon">
+            <div class="experience-logo experience-wagon text-center">
+              <%= render "shared/logo" %>
+            </div>
+            <div class="experience-body">
+              <%= link_to batch_path(@user.batch) do %>
+                <h2>Batch #<%= @user.batch.slug %>, <%= @user.batch.city.name %></h2>
+              <% end %>
+              <p><%= batch_period(@user.batch) %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+        <div class="experience-link"></div>
+        <% @pre_experiences.each do |exp| %>
+          <%= render 'experience', exp: exp %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

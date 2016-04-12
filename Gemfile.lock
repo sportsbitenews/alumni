@@ -50,6 +50,7 @@ GEM
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
+    ansi (1.5.0)
     appsignal (1.0.0)
       rack
       thread_safe
@@ -222,6 +223,11 @@ GEM
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    minitest-reporters (1.1.8)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     monetize (1.1.0)
       money (~> 6.5.0)
     money (6.5.1)
@@ -318,7 +324,7 @@ GEM
     rails-assets-alt (0.18.2)
     rails-assets-axios (0.5.4)
     rails-assets-classnames (2.1.3)
-    rails-assets-mdi (1.1.70)
+    rails-assets-mdi (1.5.54)
     rails-assets-pubsub-js (1.5.2)
     rails-assets-react (0.13.3)
     rails-assets-react-swipe-views (0.0.9)
@@ -379,6 +385,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    ruby-progressbar (1.7.5)
     rufus-scheduler (3.1.4)
     safe_yaml (1.0.4)
     sass (3.4.16)
@@ -498,6 +505,7 @@ DEPENDENCIES
   link_thumbnailer
   lodash-rails
   meetup_client
+  minitest-reporters
   money-rails
   octicons-rails
   octokit
@@ -520,7 +528,7 @@ DEPENDENCIES
   rails-assets-alt!
   rails-assets-axios!
   rails-assets-classnames!
-  rails-assets-mdi!
+  rails-assets-mdi (= 1.5.54)!
   rails-assets-pubsub-js!
   rails-assets-react-swipe-views!
   rails-i18n

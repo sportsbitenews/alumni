@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   devise :trackable, :database_authenticatable
   devise :omniauthable, :omniauth_providers => [:github, :slack]
 
-  validates :github_nickname, uniqueness: { allow_nil: false }
+  validates :github_nickname, presence: true, uniqueness: { allow_nil: false }
 
   attr_accessor :onboarding
   validates :first_name, presence: true, if: ->(u) { u.onboarding }
@@ -160,6 +160,10 @@ class User < ActiveRecord::Base
     @user_messages_slack_url ||= SlackService.new.user_messages_slack_url(self)
   end
 
+  def slack_nickname
+    SlackService.new.slack_username(self)
+  end
+
   def legit?
     admin || staff || teacher || teacher_assistant || alumni
   end
@@ -186,14 +190,16 @@ class User < ActiveRecord::Base
   end
 
   def badge
-    if self.staff
-      'staff'
-    elsif self.teacher
-      'teacher'
-    elsif self.teacher_assistant
-      'teacher assistant'
+    if staff
+      "Staff"
+    elsif teacher
+      "Teacher"
+    elsif teacher_assistant
+      "TA"
+    elsif alumni
+      "Alumni"
     else
-      'alumni'
+      ""
     end
   end
 
