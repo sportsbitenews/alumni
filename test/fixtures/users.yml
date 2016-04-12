@@ -1,0 +1,23 @@
+boris:
+  first_name: Boris
+  last_name: Paillard
+  github_nickname: Papillard
+  email: boris@lewagon.org
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  staff: true
+
+nico:
+  first_name: Nico
+  last_name: Filzi
+  github_nickname: nfilzi
+  email: nfilzi@lewagon.org
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  teacher_assistant: true
+
+arthur:
+  first_name: Arthur
+  last_name: Hagiage
+  github_nickname: Arthurhge
+  email: arthur@krawd.com
+  alumni: true
+  batch: batch6

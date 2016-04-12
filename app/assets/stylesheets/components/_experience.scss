@@ -1,0 +1,93 @@
+.experience-tank {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  background-color: white;
+  border: 1px solid $gray-lighter;
+  box-shadow: 1px 1px 2px whitesmoke;
+  font-weight: 100;
+  color: grey;
+  font-size: 13px;
+  h2 {
+    margin-top: 11px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6B6B6B;
+  }
+  &.experience-tank-wagon {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: transparent;
+    border: none;
+    color: white;
+    box-shadow: none;
+    h2 {
+      font-size: 20px;
+      font-weight: 400;
+      color: white;
+    }
+    p {
+      opacity: 0.6;
+      font-weight: lighter;
+    }
+    a {
+      color: white;
+      &:hover {
+        color: $gray-lighter;
+      }
+    }
+  }
+}
+
+.experience-logo {
+  height: 60px;
+  width: 60px;
+  img {
+    height: 100%;
+    width: 100%;
+  }
+  &.experience-wagon {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    background: #CA2929;
+    padding-top: 20px;
+    svg {
+      width: 65%;
+      path {
+        fill: white;
+      }
+    }
+  }
+}
+
+.experience-body {
+  flex: 1 2 60%;
+  padding-left: 2em;
+}
+
+.experience-link {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 20px;
+  width: 50%;
+  border-right: 1px solid $gray-lighter;
+}
+
+.experience-project {
+  p {
+    font-size: 15px;
+  }
+  .experience-buddies {
+    display: flex;
+    img {
+      margin-right: 10px;
+      height: 40px;
+      width: 40px;
+    }
+  }
+}

@@ -38,6 +38,7 @@ gem 'money-rails'
 gem 'gibbon'
 gem 'friendly_id', '~> 5.1.0'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'letter_avatar'
 
 
 gem 'redcarpet'
@@ -74,7 +75,7 @@ source "https://rails-assets.org" do
   gem "rails-assets-classnames"
   gem 'rails-assets-pubsub-js'
   gem 'rails-assets-react-swipe-views'
-  gem 'rails-assets-mdi' # material design icons
+  gem 'rails-assets-mdi', "1.5.54" # material design icons
 end
 
 group :development, :test do
@@ -87,6 +88,7 @@ group :development, :test do
   gem "pry-rails"
   gem "bullet"
   gem "letter_opener"
+  gem 'minitest-reporters'
 end
 
 group :production do

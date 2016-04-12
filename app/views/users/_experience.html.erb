@@ -1,0 +1,22 @@
+<div class="experience-tank">
+  <div class="experience-logo">
+    <% if exp['name'] == "Freelance" %>
+      <img src="<%= letter_avatar_url("Freelance".downcase, 200) %>">
+    <% elsif exp["education"] %>
+      <a href="http://<%= school_url(exp["name"]) %>">
+        <img src="//logo.clearbit.com/<%= school_url(exp["name"]) %>" onerror="this.src='<%= letter_avatar_url(exp['name'].downcase, 200) %>'">
+      </a>
+    <% else %>
+      <a href="http://<%= exp["name"].downcase.delete(' ') %>.com">
+        <img src="//logo.clearbit.com/<%= exp["name"].downcase.delete(' ') %>.com" onerror="this.src='<%= letter_avatar_url(exp['name'].downcase, 200) %>'">
+      </a>
+    <% end %>
+  </div>
+  <div class="experience-body">
+    <h2>
+      <%= exp["title"] %> - <a class="user-profile-blue-link" href="http://<%= exp['name'].downcase.delete(' ') %>"><%= exp['name'] %></a>
+    </h2>
+  </div>
+</div>
+<div class="experience-link"></div>
+
