@@ -1,25 +1,17 @@
 json.extract! user, *user_properties
 
-json.connected_to_slack user.connected_to_slack
-json.user_messages_slack_url user.user_messages_slack_url
+json.cities user.cities.reduce('') { |cities, city| cities+="#{city.name} " }
 
-if user.staff
-  json.badge 'staff'
-elsif user.teacher
-  json.badge 'teacher'
-elsif user.teacher_assistant
-  json.badge 'teacher assistant'
-else
-  json.badge 'alumni'
+json.slack do
+  json.connected user.connected_to_slack
+  json.messages_url user.user_messages_slack_url
+  json.nickname SlackService.new.slack_username(user)
+  json.uid user.slack_uid
 end
 
-if user.batch
-  json.batch do
-    json.id user.batch.id
-    json.slug user.batch.slug
-    json.city user.batch.city.name
-  end
-end
+json.badge user.badge
+
+json.batch user.algolia_batch
 
 # json.votes do
 #   json.array! user.votes.each do |vote|

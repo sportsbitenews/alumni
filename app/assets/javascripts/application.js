@@ -11,6 +11,7 @@
 //= require axios
 //= require ./axios_ujs
 //= require components
+//= require algolia/v3/algoliasearch.min
 //= require_tree ./app
 
 

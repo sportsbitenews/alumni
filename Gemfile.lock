@@ -41,6 +41,12 @@ GEM
       activerecord (>= 3.0)
     acts_as_votable (0.10.0)
     addressable (2.3.8)
+    algoliasearch (1.7.0)
+      httpclient (~> 2.4)
+      json (>= 1.5.1)
+    algoliasearch-rails (1.14.1)
+      algoliasearch (>= 1.2.14)
+      json (>= 1.5.1)
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
@@ -157,6 +163,7 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    httpclient (2.7.1)
     i18n (0.7.0)
     i18n_data (0.7.0)
     image_info (1.1.0)
@@ -469,6 +476,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   acts_as_votable (~> 0.10.0)
+  algoliasearch-rails
   annotate
   appsignal
   autoprefixer-rails
