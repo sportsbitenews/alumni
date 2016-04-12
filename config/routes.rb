@@ -82,6 +82,8 @@ Rails.application.routes.draw do
     end
   end
 
+  patch "profile/:id", to: "users#update_profile", as: :edit_profile
+
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'

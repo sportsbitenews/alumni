@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_after_action :verify_authorized, only: :show
 
-  before_action :set_user, only: %i(update confirm delete)
+  before_action :set_user, only: %i(update confirm delete update_profile)
   def index
     query = params[:query]
     if query.blank?
@@ -15,10 +15,21 @@ class UsersController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @user = User.where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
+        @user = User.includes(:batch).where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
+        @projects = @user.projects.order(created_at: :desc)
         if @user
           if params[:github_nickname] != @user.github_nickname
             redirect_to profile_path(@user.github_nickname)
+          end
+          if @user.pre_wagon_experiences.nil?
+            @pre_experiences = []
+          else
+            @pre_experiences = @user.pre_wagon_experiences
+          end
+          if @user.pre_wagon_experiences.nil?
+            @post_experiences = []
+          else
+            @post_experiences = @user.post_wagon_experiences
           end
         else
           render_404
@@ -35,6 +46,10 @@ class UsersController < ApplicationController
     else
       render 'batches/register'
     end
+  end
+
+  def update_profile
+    @user.update_attributes(user_params)
   end
 
   def delete
@@ -54,7 +69,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.includes(:batch).find(params[:id])
     authorize @user
   end
 
@@ -65,7 +80,8 @@ class UsersController < ApplicationController
       :birth_day,
       :phone,
       :school,
-      :private_bio
+      :private_bio,
+      :mood
     )
   end
 end

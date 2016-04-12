@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   devise :trackable, :database_authenticatable
   devise :omniauthable, :omniauth_providers => [:github, :slack]
 
-  validates :github_nickname, uniqueness: { allow_nil: false }
+  validates :github_nickname, presence: true, uniqueness: { allow_nil: false }
 
   attr_accessor :onboarding
   validates :first_name, presence: true, if: ->(u) { u.onboarding }
@@ -132,6 +132,10 @@ class User < ActiveRecord::Base
     @user_messages_slack_url ||= SlackService.new.user_messages_slack_url(self)
   end
 
+  def slack_nickname
+    SlackService.new.slack_username(self)
+  end
+
   def legit?
     admin || staff || teacher || teacher_assistant || alumni
   end
@@ -155,6 +159,50 @@ class User < ActiveRecord::Base
 
   def self.find_by_slug(slug)
     find_by_github_nickname slug
+  end
+
+  def lewagon_role
+    if staff
+      "Staff"
+    elsif teacher
+      "Teacher"
+    elsif teacher_assistant
+      "TA"
+    elsif alumni
+      "Alumni"
+    else
+      ""
+    end
+  end
+
+  def position
+    if staff
+      if role.blank?
+        { title: "Staff Member",
+          company: "Le Wagon"}
+      else
+        { title: role,
+          company: "Le Wagon"}
+      end
+    elsif teacher
+      { title: "Teacher",
+        company: "Le Wagon"}
+    elsif teacher_assistant
+      { title: "Teacher Assistant",
+        company: "Le Wagon"}
+    else
+      if post_wagon_experiences.nil?
+        { title: "Alumni",
+        company: "Le Wagon"}
+      else
+        position_title = post_wagon_experiences.first['title']
+        unless post_wagon_experiences.first['title'] == 'Freelance'
+          position_company = post_wagon_experiences.first['name']
+        end
+        { title: position_title,
+          company: position_company}
+      end
+    end
   end
 
   private
