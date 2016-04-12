@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root 'posts#index'
+  root 'users#index'
 
   # API routing
   namespace :api, defaults: { format: :json } do
