@@ -11,6 +11,10 @@ $ PRERENDER=false rails s
 
 ## Dependencies
 
+```
+brew install imagemagick
+```
+
 You need both **Redis** and **Elasticsearch** running on your computer.
 
 ## Sidekiq
