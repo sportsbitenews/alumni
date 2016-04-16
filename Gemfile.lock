@@ -44,9 +44,6 @@ GEM
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
-    appsignal (1.0.0)
-      rack
-      thread_safe
     arel (6.0.3)
     autoprefixer-rails (5.2.1.1)
       execjs
@@ -156,6 +153,9 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     i18n_data (0.7.0)
     image_info (1.1.0)
@@ -349,6 +349,10 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.5.0)
+    raygun4ruby (1.1.9)
+      httparty (~> 0.11)
+      json
+      rack
     react-bootstrap-rails (0.23.7)
       rails (>= 3.1)
     react-rails (1.6.0)
@@ -460,7 +464,6 @@ DEPENDENCIES
   acts_as_list
   acts_as_votable (~> 0.10.0)
   annotate
-  appsignal
   autoprefixer-rails
   aws-sdk (< 2.0)
   babosa
@@ -514,6 +517,7 @@ DEPENDENCIES
   rails-i18n
   rails_12factor
   rails_admin
+  raygun4ruby
   react-bootstrap-rails
   react-rails (= 1.6.0)
   redcarpet

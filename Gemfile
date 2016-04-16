@@ -26,7 +26,7 @@ gem "slack-api"
 gem 'octicons-rails'
 gem 'rails_admin'
 gem 'rest-client'
-gem 'appsignal'
+gem 'raygun4ruby'
 gem 'whatlanguage'
 gem 'searchkick'
 gem 'typhoeus'
