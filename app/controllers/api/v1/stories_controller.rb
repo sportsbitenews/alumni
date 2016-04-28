@@ -20,6 +20,8 @@ class Api::V1::StoriesController < Api::V1::BaseController
     end
   end
   def show
-    @story = Story.find_by_slug(params[:id])
+    unless @story = Story.find_by_slug(params[:id])
+      render json: { errors: "no story found with slug #{params[:id]}" }, status: 404
+    end
   end
 end
