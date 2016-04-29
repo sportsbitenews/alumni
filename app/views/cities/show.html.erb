@@ -16,11 +16,13 @@
     </div>
 
     <div class="cities-list batches-list">
-      <% @city.batches.order(starts_at: :desc).each do |batch| %>
+      <% @city.batches.where.not(slug: [nil, '']).order(starts_at: :desc).each do |batch| %>
           <div class="city-item batch-item">
             <h3>
               <%= link_to "Batch ##{batch.slug}", batch %>
-              <small class='batch-item-actions'><%= link_to 'Edit', edit_batch_path(batch) %></small>
+              <% if policy(batch).edit? %>
+                <small class='batch-item-actions'><%= link_to 'Edit', edit_batch_path(batch) %></small>
+              <% end %>
             </h3>
             <div class="bacth-item-dates">
               <span class='mdi mdi-calendar-multiple'></span>

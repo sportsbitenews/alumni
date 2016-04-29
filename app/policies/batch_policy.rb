@@ -10,11 +10,11 @@ class BatchPolicy < ApplicationPolicy
   end
 
   def update?
-    admin_or_city_user?
+    user.admin
   end
 
   def create?
-    admin_or_city_user?
+    user.admin
   end
 
   def register?
