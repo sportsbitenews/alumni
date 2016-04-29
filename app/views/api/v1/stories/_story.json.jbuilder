@@ -29,3 +29,4 @@ json.alumni do
   json.slug user.batch.slug if user.batch
   json.city user.batch.city.name if user.batch
 end
+
