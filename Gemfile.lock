@@ -293,7 +293,6 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rack-timeout (0.2.4)
     rails (4.2.5.1)
       actionmailer (= 4.2.5.1)
       actionpack (= 4.2.5.1)
@@ -506,7 +505,6 @@ DEPENDENCIES
   pygmentize
   quiet_assets
   rack-cors
-  rack-timeout
   rails (= 4.2.5.1)
   rails-assets-alt!
   rails-assets-axios!
