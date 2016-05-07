@@ -28,6 +28,7 @@
 #  cover_image_content_type :string
 #  cover_image_file_size    :integer
 #  cover_image_updated_at   :datetime
+#  waiting_list             :boolean          default(FALSE), not null
 #
 # Indexes
 #
