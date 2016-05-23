@@ -1,0 +1,31 @@
+<div class='cities-list-overlay is-not-flex'>
+  <div class='cities-icon-container'>
+  <%= link_to cities_path do %>
+    <i class='mdi mdi-city'></i>
+  <% end %>
+  <div class="cities-icon-container">
+    <%= link_to city_path(@city) do %>
+      <i class='mdi mdi-undo-variant'></i>
+    <% end %>
+  </div>
+  </div>
+  <div class="cities-list-container">
+    <div class="cities-list-title ">
+      <h1 class='batches-list-title'><%= @city.name %> <small>Specifics</small></h1>
+    </div>
+  </div>
+</div>
+<div class="container padded">
+  <%= simple_form_for @city do |f| %>
+    <%= f.input :specifics, placeholder: "Customize city page on www with your specific content (markdown accepted)", label: false %>
+    <%= f.button :submit, "Update", class: "hidden" %>
+  <% end %>
+  <div class="text-right padded-1em">
+    <button class="btn btn-default button-discret">Preview</button>
+    <button class="btn btn-default button-discret" onclick="document.getElementsByClassName('edit_city')[0].submit();">Update</button>
+  </div>
+</div>
+
+<% content_for(:title) do %>
+  <%= @city.name %> - Le Wagon Alumni
+<% end %>
