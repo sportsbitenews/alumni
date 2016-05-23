@@ -100,5 +100,8 @@
 .city-actions {
   a {
     opacity: .4;
+    &:hover {
+      opacity: .8;
+    }
   }
 }

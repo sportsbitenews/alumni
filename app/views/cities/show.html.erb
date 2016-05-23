@@ -8,11 +8,15 @@
   <div class="cities-list-container">
     <div class="cities-list-title ">
       <h1 class='batches-list-title'><%= @city.name %></h1>
-      <!--
-      <div class="city-actions">
-        <%# link_to "New batch", new_city_batch_path(@city) %>
-      </div>
-      -->
+      <h1>
+        <small class="city-actions">
+          <% if @city.specifics.blank? %>
+            <%= link_to "add specific content on www", edit_city_path(@city) %>
+          <% else %>
+            <%= link_to "modify specific content on www", edit_city_path(@city) %>
+          <% end %>
+        </small>
+      </h1>
     </div>
 
     <div class="cities-list batches-list">
