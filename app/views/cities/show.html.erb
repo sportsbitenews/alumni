@@ -10,11 +10,7 @@
       <h1 class='batches-list-title'><%= @city.name %></h1>
       <h1>
         <small class="city-actions">
-          <% if @city.specifics.blank? %>
-            <%= link_to "add specific content on www", edit_city_path(@city) %>
-          <% else %>
-            <%= link_to "modify specific content on www", edit_city_path(@city) %>
-          <% end %>
+          <%= link_to "add specific content on www", edit_city_path(@city) %>
         </small>
       </h1>
     </div>

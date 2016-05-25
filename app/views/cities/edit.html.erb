@@ -16,11 +16,12 @@
   </div>
 </div>
 <%= react_component "CityForm", {
-  placeholder: "Customize city page on www with your specific content (markdown accepted)",
   city: @city.slug,
-  specifics: @city.specifics ? @city.specifics : nil,
+  logistic_specifics: @city.logistic_specifics ? @city.logistic_specifics : nil,
+  marketing_specifics: @city.marketing_specifics ? @city.marketing_specifics : nil,
   renderedContent: 'Nothing to preview.',
-  token: form_authenticity_token
+  token: form_authenticity_token,
+  placeholder: 'Customize city page on www (markdown accepted)'
 }%>
 
 <% content_for(:title) do %>
