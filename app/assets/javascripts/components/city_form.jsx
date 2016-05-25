@@ -7,12 +7,18 @@ var CityForm = React.createClass({
     }
   },
   render: function() {
+    var cityClasses = classNames({
+      'language-detection-textarea': true,
+      'has-french-content': this.state.frenchSpeaking,
+      'is-previewed': this.state.preview
+    }),
     return (
       <div className="container padded">
         <form action="" className="simple_form edit_city" id="edit_city" method="post">
           <div className="form-group city_specifics text optional">
             <textarea name="city[specifics]" id="city_specifics" rows="20" className="text optional form-control" placeholder={this.props.placeholder} defaultValue={this.props.specifics} ></textarea>
           </div>
+          <div className='city-form-preview' dangerouslySetInnerHTML={{__html: this.state.renderedContent}}></div>
           <div className="text-right padded-1em form-group form-inline">
             <button className="btn btn-default button-discret form-control" onClick={this.onPreviewClick}>Preview</button>
             <input type="submit" className="btn btn-default button-discret form-control" value="Update" />
