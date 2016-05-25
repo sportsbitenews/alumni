@@ -42,6 +42,12 @@
 #  twitter_nickname       :string
 #  noindex                :boolean          default(FALSE), not null
 #  private_bio            :text
+#  status                 :string
+#  mood                   :text
+#  linkedin_nickname      :string
+#  facebook_nickname      :string
+#  pre_wagon_experiences  :jsonb            is an Array
+#  post_wagon_experiences :jsonb            is an Array
 #
 # Indexes
 #
@@ -76,6 +82,8 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :milestones
   has_one  :story
+  has_many :positions
+  has_many :companies, through: :positions
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :cities
   has_and_belongs_to_many :batches

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507180124) do
+ActiveRecord::Schema.define(version: 20160525141433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,6 +174,17 @@ ActiveRecord::Schema.define(version: 20160507180124) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "positions", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "positions", ["company_id"], name: "index_positions_on_company_id", using: :btree
+  add_index "positions", ["user_id"], name: "index_positions_on_user_id", using: :btree
+
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
@@ -293,6 +304,12 @@ ActiveRecord::Schema.define(version: 20160507180124) do
     t.string   "twitter_nickname"
     t.boolean  "noindex",                default: false, null: false
     t.text     "private_bio"
+    t.string   "status"
+    t.text     "mood"
+    t.string   "linkedin_nickname"
+    t.string   "facebook_nickname"
+    t.jsonb    "pre_wagon_experiences",                               array: true
+    t.jsonb    "post_wagon_experiences",                              array: true
   end
 
   add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree
@@ -319,6 +336,8 @@ ActiveRecord::Schema.define(version: 20160507180124) do
   add_foreign_key "jobs", "users"
   add_foreign_key "milestones", "projects"
   add_foreign_key "milestones", "users"
+  add_foreign_key "positions", "companies"
+  add_foreign_key "positions", "users"
   add_foreign_key "projects", "batches"
   add_foreign_key "questions", "users"
   add_foreign_key "resources", "users"

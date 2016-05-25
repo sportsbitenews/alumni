@@ -18,6 +18,8 @@ class Company < ActiveRecord::Base
 
   validates :name, presence: true
   has_many :stories
+  has_many :positions
+  has_many :employees, through: :positions, class_name: User, source: :user
 
   has_attached_file :logo,
     styles: { thumbnail: { geometry: "400x400>", format: 'png' } }, processors: [ :thumbnail, :paperclip_optimizer ]
