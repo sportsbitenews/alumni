@@ -28,7 +28,8 @@
 
 <%= react_component "CityForm", {
   placeholder: "Customize city page on www with your specific content (markdown accepted)",
-  city: @city.slug
+  city: @city.slug,
+  specifics: @city.specifics ? @city.specifics : nil
 }%>
 
 <% content_for(:title) do %>
