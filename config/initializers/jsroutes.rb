@@ -32,7 +32,9 @@ JsRoutes.setup do |config|
 
     /^confirm_user$/,
     /^delete_user$/,
-    /^solve_question$/
+    /^solve_question$/,
+
+    /^city$/
 
   ]
 end

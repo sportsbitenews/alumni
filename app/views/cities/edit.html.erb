@@ -15,21 +15,12 @@
     </div>
   </div>
 </div>
-<!-- <div class="container padded">
-  <%#= simple_form_for @city do |f| %>
-    <%#= f.input :specifics, placeholder: "Customize city page on www with your specific content (markdown accepted)", label: false %>
-    <%#= f.button :submit, "Update", class: "hidden" %>
-  <%# end %>
-  <div class="text-right padded-1em">
-    <button class="btn btn-default button-discret">Preview</button>
-    <button class="btn btn-default button-discret" onclick="document.getElementsByClassName('edit_city')[0].submit();">Update</button>
-  </div>
-</div> -->
-
 <%= react_component "CityForm", {
   placeholder: "Customize city page on www with your specific content (markdown accepted)",
   city: @city.slug,
-  specifics: @city.specifics ? @city.specifics : nil
+  specifics: @city.specifics ? @city.specifics : nil,
+  renderedContent: 'Nothing to preview.',
+  token: form_authenticity_token
 }%>
 
 <% content_for(:title) do %>
