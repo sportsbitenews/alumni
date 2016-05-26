@@ -42,12 +42,6 @@
 #  twitter_nickname       :string
 #  noindex                :boolean          default(FALSE), not null
 #  private_bio            :text
-#  status                 :string
-#  mood                   :text
-#  linkedin_nickname      :string
-#  facebook_nickname      :string
-#  pre_wagon_experiences  :jsonb            is an Array
-#  post_wagon_experiences :jsonb            is an Array
 #
 # Indexes
 #

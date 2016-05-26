@@ -12,6 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20160525141433) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -304,12 +305,6 @@ ActiveRecord::Schema.define(version: 20160525141433) do
     t.string   "twitter_nickname"
     t.boolean  "noindex",                default: false, null: false
     t.text     "private_bio"
-    t.string   "status"
-    t.text     "mood"
-    t.string   "linkedin_nickname"
-    t.string   "facebook_nickname"
-    t.jsonb    "pre_wagon_experiences",                               array: true
-    t.jsonb    "post_wagon_experiences",                              array: true
   end
 
   add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree
