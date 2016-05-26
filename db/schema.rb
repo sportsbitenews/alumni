@@ -12,7 +12,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20160525141433) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,7 +91,7 @@ ActiveRecord::Schema.define(version: 20160525141433) do
     t.integer  "classroom_picture_file_size"
     t.datetime "classroom_picture_updated_at"
     t.string   "course_locale"
-    t.text     "specifics"
+    t.text     "logistic_specifics"
     t.string   "company_name"
     t.string   "company_nature"
     t.string   "company_hq"
@@ -102,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160525141433) do
     t.string   "mailchimp_list_id"
     t.string   "mailchimp_api_key"
     t.string   "slack_channel_id"
+    t.text     "marketing_specifics"
   end
 
   add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree

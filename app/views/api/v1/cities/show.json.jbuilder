@@ -1,5 +1,5 @@
 json.city do
-  json.extract! @city, :id, :name, :slug, :location, :specifics, :course_locale, :apply_facebook_pixel, :mailchimp_list_id, :encrypted_mailchimp_api_key
+  json.extract! @city, :id, :name, :slug, :location, :logistic_specifics, :marketing_specifics, :course_locale, :apply_facebook_pixel, :mailchimp_list_id, :encrypted_mailchimp_api_key
   json.description do
     json.fr @city.description_fr
     json.en @city.description_en
