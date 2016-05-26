@@ -60,6 +60,7 @@ var CityFormSpecificsArea = React.createClass({
   onPreviewClick(e) {
     e.preventDefault();
     this.setState({ preview: true });
+    console.log(this.refs[this.props.area_ref]);
     AnswerActions.preview(React.findDOMNode(this.refs[this.props.area_ref]).value);
   },
   onWriteClick(e) {
