@@ -28,7 +28,7 @@
 #  classroom_picture_file_size      :integer
 #  classroom_picture_updated_at     :datetime
 #  course_locale                    :string
-#  specifics                        :text
+#  logistic_specifics               :text
 #  company_name                     :string
 #  company_nature                   :string
 #  company_hq                       :string
@@ -38,6 +38,7 @@
 #  mailchimp_list_id                :string
 #  mailchimp_api_key                :string
 #  slack_channel_id                 :string
+#  marketing_specifics              :text
 #
 # Indexes
 #

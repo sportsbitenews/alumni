@@ -100,5 +100,17 @@
 .city-actions {
   a {
     opacity: .4;
+    &:hover {
+      opacity: .8;
+    }
   }
+}
+
+form.edit_city textarea {
+  height: 300px
+}
+
+.city-form-preview {
+  border: 1px solid #ccc;
+  padding: 1em;
 }
