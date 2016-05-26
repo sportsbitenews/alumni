@@ -13,6 +13,10 @@ class CityPolicy < ApplicationPolicy
     user_is_manager_or_admin?
   end
 
+  def markdown_preview?
+    user_is_manager_or_admin?
+  end
+
   private
 
   def user_is_manager_or_admin?

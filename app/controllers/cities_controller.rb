@@ -19,6 +19,11 @@ class CitiesController < ApplicationController
     end
   end
 
+  def markdown_preview
+    @content = params[:content]
+    authorize(City)
+  end
+
   private
 
   def set_city

@@ -13,7 +13,6 @@ var CityForm = React.createClass({
                 area_id='city_marketing_specifics'
                 placeholder={this.props.placeholder}
                 area_label='Marketing specifics'
-                area_ref='marketing_specifics'
             />
           </div>
           <hr />
@@ -25,11 +24,10 @@ var CityForm = React.createClass({
                 area_id='city_logistic_specifics'
                 placeholder={this.props.placeholder}
                 area_label='Logistic specifics'
-                area_ref='logistic_specifics'
             />
           </div>
-          <div className="text-right padded-1em form-group">
-            <input type="submit" className="btn btn-default button-discret" value="Update" />
+          <div className="padded-1em form-group">
+            <input type="submit" className="btn btn-primary" value="Update" />
           </div>
         </form>
       </div>

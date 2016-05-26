@@ -72,6 +72,9 @@ Rails.application.routes.draw do
     end
   end
   resources :cities, only: %i(index show edit update) do
+    collection do
+      get :markdown_preview
+    end
     resources :batches, only: %i(new create)
   end
 
