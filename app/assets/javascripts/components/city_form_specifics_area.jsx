@@ -14,7 +14,7 @@ var CityFormSpecificsArea = React.createClass({
       'text optional': true
     })
     var specificsPreviewClasses = classNames({
-      'hidden': this.state.preview == false,
+      'hidden': !this.state.preview,
       'city-form-preview': true
     })
     var specificsPreviewButtonClasses = classNames({
@@ -26,7 +26,7 @@ var CityFormSpecificsArea = React.createClass({
       'pull-right': true
     })
     var specificsWriteButtonClasses = classNames({
-      'hidden': this.state.preview == false,
+      'hidden': !this.state.preview,
       'btn': true,
       'btn-default': true,
       'button-discret': true,
