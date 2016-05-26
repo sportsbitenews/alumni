@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       resources :users,        only: [] do
         put :picture, on: :collection
       end
+      resources :positions, only: [ :index ]
     end
   end
 
