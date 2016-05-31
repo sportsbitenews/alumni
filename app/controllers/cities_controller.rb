@@ -27,7 +27,11 @@ class CitiesController < ApplicationController
 
   def set_manager
     @user = User.find_by_slug(params[:slug])
-    @user.cities << @city
+    if @user
+      @user.cities << @city
+    else
+      render :show
+    end
   end
 
   private
