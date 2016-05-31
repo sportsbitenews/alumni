@@ -78,7 +78,6 @@
   }
 }
 
-
 .cities-list {
   display: flex;
   flex: 1;
@@ -113,4 +112,31 @@ form.edit_city textarea {
 .city-form-preview {
   border: 1px solid #ccc;
   padding: 1em;
+}
+
+.manager-box {
+  display: flex;
+  align-items: center;
+  padding-top: 0.5em;
+}
+.manager-username {
+  padding-left: 10px;
+}
+#add-manager-box {
+  display: flex;
+  align-items: center;
+}
+#add-manager-button {
+  border: none;
+  background: none;
+  opacity: .4;
+  padding: 0;
+  margin-left: 5px;
+  cursor: pointer;
+  &:hover {
+    opacity: .8;
+  }
+  i {
+    font-size: 25px;
+  }
 }
