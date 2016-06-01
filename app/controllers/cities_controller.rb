@@ -26,12 +26,16 @@ class CitiesController < ApplicationController
   end
 
   def set_manager
-    @user = User.find_by_slug(params[:slug])
-    if @user
-      @user.cities << @city
+    @github_nickname = params[:github_nickname]
+    @user = User.find_by_slug(@github_nickname)
+    if params[:kill]
+      @user.cities.delete(@city)
     else
-      render :show
+      if @user
+        @user.cities << @city
+      end
     end
+    @managers = User.joins(:cities).where(cities: { slug: @city.slug})
   end
 
   private

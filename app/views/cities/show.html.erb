@@ -16,20 +16,7 @@
       <% if current_user.admin %>
         <div class="manager-admin padded-1em">
           <h3>Managers</h3>
-          <% @managers.each do |manager| %>
-            <div class="manager-box">
-              <div class="manager-avatar">
-                <img class="avatar" src=<%= manager.gravatar_url %> alt="">
-              </div>
-              <div class="manager-username">
-                @<%= manager.github_nickname %>
-              </div>
-            </div>
-          <% end %>
-          <%= react_component "ManagerForm", {
-            token: form_authenticity_token,
-            city: @city.slug
-          }%>
+          <%= react_component_with_jbuilder("ManagerList") %>
         </div>
       <% end %>
     </div>

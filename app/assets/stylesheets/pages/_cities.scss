@@ -113,7 +113,10 @@ form.edit_city textarea {
   border: 1px solid #ccc;
   padding: 1em;
 }
-
+.manager-form-errors {
+  color: red;
+  font-size: 14px;
+}
 .manager-box {
   display: flex;
   align-items: center;
@@ -126,7 +129,7 @@ form.edit_city textarea {
   display: flex;
   align-items: center;
 }
-#add-manager-button {
+.manager-button {
   border: none;
   background: none;
   opacity: .4;
@@ -136,7 +139,10 @@ form.edit_city textarea {
   &:hover {
     opacity: .8;
   }
-  i {
+  &-add i {
     font-size: 25px;
+  }
+  &-kill i {
+    font-size: 15px;
   }
 }
