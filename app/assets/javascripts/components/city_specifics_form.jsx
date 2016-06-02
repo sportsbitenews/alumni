@@ -1,4 +1,10 @@
-var CityForm = React.createClass({
+var CitySpecificsForm = React.createClass({
+  getInitialState: function() {
+    return {
+      area_name: 'city[' + this.props.name + ']',
+      area_id: 'city_' + this.props.name
+    };
+  },
   render: function() {
     return (
       <div className="container">
@@ -7,23 +13,12 @@ var CityForm = React.createClass({
           <input type='hidden' name='authenticity_token' value={this.props.token} />
           <div className="form-group padded-1em">
             <CityFormSpecificsArea
-                specifics={this.props.marketing_specifics}
+                specifics={this.props.specifics}
                 renderedContent='Nothing to preview.'
-                area_name='city[marketing_specifics]'
-                area_id='city_marketing_specifics'
+                area_name={this.state.area_name}
+                area_id={this.state.area_id}
                 placeholder={this.props.placeholder}
-                area_label='Marketing specifics'
-            />
-          </div>
-          <hr />
-          <div className="form-group">
-            <CityFormSpecificsArea
-                specifics={this.props.logistic_specifics}
-                renderedContent='Nothing to preview.'
-                area_name='city[logistic_specifics]'
-                area_id='city_logistic_specifics'
-                placeholder={this.props.placeholder}
-                area_label='Logistic specifics'
+                area_label={this.props.area_label}
             />
           </div>
           <div className="padded-1em form-group">

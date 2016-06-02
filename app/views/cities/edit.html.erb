@@ -11,19 +11,31 @@
   </div>
   <div class="cities-list-container">
     <div class="cities-list-title ">
-      <h1 class='batches-list-title'><%= @city.name %> <small>Specifics</small></h1>
+      <h1 class='batches-list-title'><%= @city.name %> <small>City page management</small></h1>
     </div>
   </div>
 </div>
-<%= react_component "CityForm", {
+<%= react_component "CitySpecificsForm", {
   city: @city.slug,
-  logistic_specifics: @city.logistic_specifics,
-  marketing_specifics: @city.marketing_specifics,
+  specifics: @city.marketing_specifics,
+  name: 'marketing_specifics',
+  area_label: 'Marketing specifics',
   renderedContent: 'Nothing to preview.',
   token: form_authenticity_token,
   placeholder: 'Customize city page on www (markdown accepted)'
 }%>
 
+<%= react_component "CityTeamForms" %>
+
+<%= react_component "CitySpecificsForm", {
+  city: @city.slug,
+  specifics: @city.logistic_specifics,
+  name: 'logistic_specifics',
+  area_label: 'Logistic specifics',
+  renderedContent: 'Nothing to preview.',
+  token: form_authenticity_token,
+  placeholder: 'Customize city page on www (markdown accepted)'
+}%>
 <% content_for(:title) do %>
   <%= @city.name %> - Le Wagon Alumni
 <% end %>
