@@ -17,6 +17,10 @@ class CityPolicy < ApplicationPolicy
     user_is_manager_or_admin?
   end
 
+  def set_manager?
+    user_is_manager_or_admin?
+  end
+
   private
 
   def user_is_manager_or_admin?
