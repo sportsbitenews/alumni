@@ -12,12 +12,12 @@ var ManagerForm = React.createClass({
     })
     var errorContent = this.state.errorContent
     return (
-      <form action="" className="simple_form">
+      <form action="" className="simple_form" onSubmit={this.handleSubmit}>
         <div className="padded-1em" id='add-manager-box'>
           <div>
             <input className='form-control' ref='managerSlug' type='text' name='github_nickname' placeholder='a github nickname' />
           </div>
-          <button className='manager-button manager-button-add' type='submit' onClick={this.handleSubmit}>
+          <button className='manager-button manager-button-add' type='submit' >
             <i className="mdi mdi-plus" />
           </button>
         </div>

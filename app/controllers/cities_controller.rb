@@ -28,7 +28,7 @@ class CitiesController < ApplicationController
   def set_manager
     @github_nickname = params[:github_nickname]
     @user = User.find_by_slug(@github_nickname)
-    if params[:kill]
+    if params[:remove]
       @user.cities.delete(@city)
     else
       if @user

@@ -13,7 +13,7 @@
           <%= link_to "add specific content on www", edit_city_path(@city) %>
         </small>
       </h1>
-      <% if current_user.admin %>
+      <% if current_user.admin || current_user.cities.include?(@city) %>
         <div class="manager-admin padded-1em">
           <h3>Managers</h3>
           <%= react_component_with_jbuilder("ManagerList") %>
