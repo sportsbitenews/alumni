@@ -76,6 +76,9 @@ Rails.application.routes.draw do
     collection do
       get :markdown_preview
     end
+    member do
+      post :set_manager
+    end
     resources :batches, only: %i(new create)
   end
 

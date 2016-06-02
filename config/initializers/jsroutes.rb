@@ -35,7 +35,8 @@ JsRoutes.setup do |config|
     /^solve_question$/,
 
     /^city$/,
-    /^markdown_preview_cities$/
+    /^markdown_preview_cities$/,
+    /^set_manager_city$/
 
   ]
 end
