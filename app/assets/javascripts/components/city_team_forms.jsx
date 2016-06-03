@@ -5,13 +5,11 @@ var CityTeamForms = React.createClass({
   },
   render: function() {
     return (
-      <div className="team-forms">
-        <div className="staff-list">
-
-        </div>
-        <div className="ta-list">
-
-        </div>
+      <div>
+        <h2>Teachers in {this.props.city}</h2>
+        <CityTeacherList teachers={this.props.teachers}/>
+        <h2>Beloved Teaching Assistants</h2>
+        <CityTeachingAssistantList tas={this.props.tas} />
       </div>
     )
   }
