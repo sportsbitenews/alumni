@@ -1,11 +1,12 @@
 class CitiesController < ApplicationController
-  before_action :set_city, only: [:show, :edit, :update]
+  before_action :set_city, only: [:show, :edit, :update, :set_manager]
 
   def index
     @cities = policy_scope(City)
   end
 
   def show
+    @managers = User.joins(:cities).where(cities: { slug: @city.slug})
   end
 
   def edit
@@ -22,6 +23,19 @@ class CitiesController < ApplicationController
   def markdown_preview
     @content = params[:content]
     authorize(City)
+  end
+
+  def set_manager
+    @github_nickname = params[:github_nickname]
+    @user = User.find_by_slug(@github_nickname)
+    if params[:remove]
+      @user.cities.delete(@city)
+    else
+      if @user
+        @user.cities << @city
+      end
+    end
+    @managers = User.joins(:cities).where(cities: { slug: @city.slug})
   end
 
   private
