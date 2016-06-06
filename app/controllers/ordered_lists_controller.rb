@@ -6,12 +6,14 @@ class OrderedListsController < ApplicationController
     @role = params[:role]
     ol = OrderedList.find_by_name("#{@city.slug}_#{@role}s")
     authorize ol
-    if params[:add]
-      ol.slugs << @github_nickname
-      ol.save
-    elsif params[:remove]
-      ol.slugs.delete(@github_nickname)
-      ol.save
+    if @user
+      if params[:add]
+        ol.slugs << @github_nickname
+        ol.save
+      elsif params[:remove]
+        ol.slugs.delete(@github_nickname)
+        ol.save
+      end
     end
     @teachers = User.where(github_nickname: ol.slugs).sort_by {|t| ol.slugs.index(t.github_nickname) }
     @teacher_assistants = User.where(github_nickname: ol.slugs).sort_by {|t| ol.slugs.index(t.github_nickname) }
