@@ -78,6 +78,7 @@ Rails.application.routes.draw do
     end
     member do
       post :set_manager
+      post :set_team_member
     end
     resources :batches, only: %i(new create)
   end

@@ -9,7 +9,7 @@ json.teachers do
     json.gravatar_url teacher.gravatar_url
   end
 end
-json.tas do
+json.teaching_assistants do
   json.array! @teacher_assistants do |ta|
     json.full_name ta.first_name + ' ' + ta.last_name
     json.github_nickname ta.github_nickname
