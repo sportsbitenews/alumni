@@ -9,6 +9,12 @@ var CityMembersList = React.createClass({
     this.setState({members: members});
   },
   render: function() {
+    var additionalFields = null;
+    if (this.props.role == 'teacher') {
+      additionalFields = (
+        // a form with all additional fields for a teacher
+      );
+    }
     return (
       <div className="row">
         {this.state.members.map((member, index) => {
