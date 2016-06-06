@@ -31,14 +31,15 @@ var TeamMemberForm = React.createClass({
       Routes.city_ordered_lists_path(this.props.city_id, { format: 'json' }),
       {
         'github_nickname': React.findDOMNode(this.refs.memberSlug).value,
-        'role': this.props.memberRole
+        'role': this.props.memberRole,
+        'add': true
       }
     ).then((response) => {
       this.setState({
         errors: response.data.errors,
         errorContent: response.data.error_content
       });
-      this.props.updateMember(response.data.members);
+      this.props.updateMembersList(response.data.members);
       React.findDOMNode(this.refs.memberSlug).value = '';
     });
   }

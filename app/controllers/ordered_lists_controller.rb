@@ -5,6 +5,7 @@ class OrderedListsController < ApplicationController
     @user = User.find_by_slug(@github_nickname)
     @role = params[:role]
     ol = OrderedList.find_by_name("#{@city.slug}_#{@role}s")
+    authorize ol
     if params[:add]
       ol.slugs << @github_nickname
       ol.save
