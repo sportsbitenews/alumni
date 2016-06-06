@@ -1,6 +1,6 @@
 class OrderedListsController < ApplicationController
   def update
-    @city = City.find(params[:city_id])
+    @city = City.find_by_slug(params[:city_id])
     @github_nickname = params[:github_nickname]
     @user = User.find_by_slug(@github_nickname)
     @role = params[:role]

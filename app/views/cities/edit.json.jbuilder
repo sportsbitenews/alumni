@@ -7,6 +7,7 @@ json.teachers do
     json.github_nickname teacher.github_nickname
     json.twitter_nickname teacher.twitter_nickname
     json.gravatar_url teacher.gravatar_url
+    json.city @city.slug
   end
 end
 json.teaching_assistants do
@@ -14,10 +15,10 @@ json.teaching_assistants do
     json.full_name ta.first_name + ' ' + ta.last_name
     json.github_nickname ta.github_nickname
     json.gravatar_url ta.gravatar_url
+    json.city @city.slug
   end
 end
 json.city do
   json.name @city.name
   json.slug @city.slug
-  json.id @city.id
 end

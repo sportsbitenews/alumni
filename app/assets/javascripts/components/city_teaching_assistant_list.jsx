@@ -1,7 +1,8 @@
 var CityTeachingAssistantList = React.createClass({
   getInitialState() {
     return {
-      members: this.props.teaching_assistants
+      members: this.props.teaching_assistants,
+      role: this.props.role
     };
   },
   updateMembersList: function(members) {
@@ -27,22 +28,23 @@ var CityTeachingAssistantList = React.createClass({
           )
         })}
         <TeamMemberForm
-          city_id={this.props.city_id}
-          memberRole='teacher_assistant'
+          city={this.props.city}
+          memberRole={this.props.role}
           updateMembersList={this.updateMembersList} />
       </div>
     );
   },
-  handleRemoveClick(e, manager) {
+  handleRemoveClick(e, member) {
     e.preventDefault();
-    axios.railsPost(
-      Routes.set_manager_city_path(manager.city, { format: 'json' }),
+    axios.railsPatch(
+      Routes.city_ordered_lists_path(member.city, { format: 'json' }),
       {
-        'github_nickname': manager.github_nickname,
+        'github_nickname': member.github_nickname,
+        'role': this.props.role,
         'remove': true
       }
     ).then((response) => {
-      this.updateManagersList(response.data.managers);
+      this.updateMembersList(response.data.members);
     });
   }
 });
