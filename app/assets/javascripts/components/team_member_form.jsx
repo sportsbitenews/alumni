@@ -27,8 +27,8 @@ var TeamMemberForm = React.createClass({
   },
   handleSubmit(e) {
     e.preventDefault();
-    axios.railsPost(
-      Routes.set_team_member_city_path(this.props.city, { format: 'json' }),
+    axios.railsPatch(
+      Routes.city_ordered_lists_path(this.props.city_id, { format: 'json' }),
       {
         'github_nickname': React.findDOMNode(this.refs.memberSlug).value,
         'role': this.props.memberRole
@@ -38,8 +38,8 @@ var TeamMemberForm = React.createClass({
         errors: response.data.errors,
         errorContent: response.data.error_content
       });
-      this.props.updateManagers(response.data.managers);
-      React.findDOMNode(this.refs.managerSlug).value = '';
+      this.props.updateMember(response.data.members);
+      React.findDOMNode(this.refs.memberSlug).value = '';
     });
   }
 });

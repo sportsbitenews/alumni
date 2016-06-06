@@ -27,10 +27,9 @@ var CityTeachingAssistantList = React.createClass({
           )
         })}
         <TeamMemberForm
-          city={this.props.city_slug}
-          url={Routes.set_member_city_path(this.props.city, { format: 'json' })}
-          memberRole='teaching_assistant'
-          updateManagers={this.updateMembersList} />
+          city_id={this.props.city_id}
+          memberRole='teacher_assistant'
+          updateMembersList={this.updateMembersList} />
       </div>
     );
   },

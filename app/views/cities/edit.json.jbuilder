@@ -19,4 +19,5 @@ end
 json.city do
   json.name @city.name
   json.slug @city.slug
+  json.id @city.id
 end
