@@ -3,9 +3,9 @@ var CityTeamForms = React.createClass({
     return (
       <div>
         <h2 className="text-center">Teachers in {this.props.city.name}</h2>
-        <CityTeacherList teachers={this.props.teachers} city={this.props.city.slug} role='teachers' />
+        <CityMembersList members={this.props.teachers} city={this.props.city.slug} role='teacher' />
         <h2 className="text-center">Beloved Teaching Assistants</h2>
-        <CityTeachingAssistantList teaching_assistants={this.props.teaching_assistants} city={this.props.city.slug} role='teacher_assistant' />
+        <CityMembersList members={this.props.teaching_assistants} city={this.props.city.slug} role='teacher_assistant' />
       </div>
     )
   }

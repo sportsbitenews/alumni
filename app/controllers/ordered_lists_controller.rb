@@ -10,9 +10,13 @@ class OrderedListsController < ApplicationController
       if params[:add]
         ol.slugs << @github_nickname
         ol.save
+        @user[@role.to_sym] = true
+        @user.save
       elsif params[:remove]
         ol.slugs.delete(@github_nickname)
         ol.save
+        @user[@role.to_sym] = false
+        @user.save
       end
     end
     @teachers = User.where(github_nickname: ol.slugs).sort_by {|t| ol.slugs.index(t.github_nickname) }

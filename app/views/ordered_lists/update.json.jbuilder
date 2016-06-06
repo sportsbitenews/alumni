@@ -24,7 +24,7 @@ elsif @role == 'teacher'
       json.github_nickname teacher.github_nickname
       json.twitter_nickname teacher.twitter_nickname
       json.gravatar_url teacher.gravatar_url
-      son.city @city.slug
+      json.city @city.slug
     end
   end
 end
