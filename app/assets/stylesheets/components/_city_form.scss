@@ -66,3 +66,30 @@
     font-weight: 900;
   }
 }
+.city_edit_teacher_info {
+  margin-top: 10px;
+  form {
+    background-color: white;
+  }
+  .flex {
+    justify-content: space-around;
+  }
+  .teacher_info_input {
+    display: flex;
+    align-items: center;
+  }
+  .teacher_info_label {
+    margin-right: 10px;
+    &.twitter {
+      color: $blue;
+    }
+  }
+  .teacher_info_area {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    textarea {
+      height: 100px;
+    }
+  }
+}
