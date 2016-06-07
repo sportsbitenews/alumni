@@ -305,11 +305,6 @@ ActiveRecord::Schema.define(version: 20160525141433) do
     t.string   "twitter_nickname"
     t.boolean  "noindex",                default: false, null: false
     t.text     "private_bio"
-    t.text     "mood"
-    t.string   "linkedin_nickname"
-    t.string   "facebook_nickname"
-    t.jsonb    "pre_wagon_experiences",                               array: true
-    t.jsonb    "post_wagon_experiences",                              array: true
   end
 
   add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree
