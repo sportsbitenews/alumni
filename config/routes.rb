@@ -90,6 +90,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :city_admin do
+    resources :users, only: %i(update)
+  end
+
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'

@@ -38,6 +38,6 @@ JsRoutes.setup do |config|
     /^markdown_preview_cities$/,
     /^set_manager_city$/,
     /^city_ordered_lists$/
-
+    /^city_admin_user$/,
   ]
 end

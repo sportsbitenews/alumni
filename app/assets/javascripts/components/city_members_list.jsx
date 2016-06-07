@@ -35,31 +35,31 @@ var CityMembersList = React.createClass({
             additionalFields = (
               <div className='hidden' ref={'edit_'+ member.github_nickname}>
                 <div className='city_edit_teacher_info'>
-                  <form action="" className="simple_form padded-1em side-padded-1em" onSubmit={this.handleSubmit}>
+                  <form action="" className="simple_form padded-1em side-padded-1em" onSubmit={(e) => { this.handleSubmit(e, member) }}>
                     <div className='bottom-padded-05em flex'>
                       <div className='teacher_info_input'>
                         <div className='teacher_info_label'>Role</div>
                         <div className=''>
-                          <input className='form-control' type="text" name='role' defaultValue={member.role} />
+                          <input className='form-control' type="text" name='role' defaultValue={member.role} ref={member.github_nickname+'_role'} />
                         </div>
                       </div>
                       <div className='teacher_info_input'>
                         <div className='teacher_info_label twitter'><i className="mdi mdi-twitter" /></div>
                         <div className=''>
-                          <input className='form-control' type="text" name='twitter_nickname' defaultValue={member.twitter_nickname} />
+                          <input className='form-control' type="text" name='twitter_nickname' defaultValue={member.twitter_nickname} ref={member.github_nickname+'_twitter_nickname'} />
                         </div>
                       </div>
                     </div>
                     <div className='bottom-padded-05em flex'>
                       <div className='teacher_info_area'>
                         <div className='teacher_info_label'>Bio 🇫🇷</div>
-                        <textarea className='form-control' type="text" name='bio_fr' defaultValue={member.bio_fr} />
+                        <textarea className='form-control' type="text" name='bio_fr' defaultValue={member.bio_fr} ref={member.github_nickname+'_bio_fr'} />
                       </div>
                     </div>
                     <div className='bottom-padded-05em flex'>
                       <div className='teacher_info_area'>
                         <div className='teacher_info_label'>Bio 🇬🇧</div>
-                        <textarea className='form-control' type="text" name='bio_en' defaultValue={member.bio_en} />
+                        <textarea className='form-control' type="text" name='bio_en' defaultValue={member.bio_en} ref={member.github_nickname+'_bio_en'} />
                       </div>
                     </div>
                     <button className='btn btn-primary' type='submit'>Update</button>
@@ -96,22 +96,25 @@ var CityMembersList = React.createClass({
       </div>
     );
   },
-  handleSubmit(e) {
+  handleSubmit(e, member) {
     e.preventDefault();
     axios.railsPatch(
-      Routes.city_ordered_lists_path(this.props.city, { format: 'json' }),
+      Routes.user_path(member.github_nickname, { format: 'json' }),
       {
-        'github_nickname': React.findDOMNode(this.refs.memberSlug).value,
-        'role': this.props.memberRole,
-        'add': true
+        'twitter_nickname': React.findDOMNode(this.refs[member.github_nickname+'_twitter_nickname']).value,
+        'role': React.findDOMNode(this.refs[member.github_nickname+'_role']).value,
+        'bio_en': React.findDOMNode(this.refs[member.github_nickname+'_bio_en']).value,
+        'bio_fr': React.findDOMNode(this.refs[member.github_nickname+'_bio_fr']).value,
+        'from_back_office': true
       }
     ).then((response) => {
-      this.setState({
-        errors: response.data.errors,
-        errorContent: response.data.error_content
-      });
-      this.props.updateMembersList(response.data.members);
-      React.findDOMNode(this.refs.memberSlug).value = '';
+      handleCloseClick(e, member);
+      // this.setState({
+      //   errors: response.data.errors,
+      //   errorContent: response.data.error_content
+      // });
+      // this.props.updateMembersList(response.data.members);
+      // React.findDOMNode(this.refs.memberSlug).value = '';
     });
   },
   handleEditClick(e, member) {

@@ -80,6 +80,14 @@
 </div>
 
 <div class="container" id="city_edit_team">
+  <h2 className="text-center">Teachers in <%= @city.name %></h2>
+  <!-- <CityMembersList members={this.props.teachers} city={this.props.city.slug} role='teacher' /> -->
+  <%= react_component "UserOrderedList", render(template: "cities/edit.json.jbuilder") %>
+</div>
+
+<div class="container" id="city_edit_team">
+  <h2 className="text-center">Beloved Teaching Assistants</h2>
+  <CityMembersList members={this.props.teaching_assistants} city={this.props.city.slug} role='teacher_assistant' />
   <%= react_component_with_jbuilder "CityTeamForms" %>
 </div>
 
