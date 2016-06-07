@@ -8,6 +8,7 @@
 //= require react
 //= require react_ujs
 
+
 //= require axios
 //= require ./axios_ujs
 //= require components
