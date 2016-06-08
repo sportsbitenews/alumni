@@ -28,10 +28,10 @@ var TeamMemberForm = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     axios.railsPatch(
-      Routes.city_ordered_lists_path(this.props.city, { format: 'json' }),
+      Routes.ordered_list_path(this.props.orderedListId, { format: 'json' }),
       {
         'github_nickname': React.findDOMNode(this.refs.memberSlug).value,
-        'role': this.props.memberRole,
+        'position': this.props.position,
         'add': true
       }
     ).then((response) => {

@@ -80,8 +80,8 @@ Rails.application.routes.draw do
       post :set_manager
     end
     resources :batches, only: %i(new create)
-    resource :ordered_lists, only: :update
   end
+  resources :ordered_lists, only: :update
 
   resources :users, only: %i(index update) do
     member do

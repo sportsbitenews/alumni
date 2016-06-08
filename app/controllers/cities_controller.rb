@@ -10,10 +10,10 @@ class CitiesController < ApplicationController
   end
 
   def edit
-    teachers = OrderedList.find_by_name "#{params[:id]}_teachers"
-    teacher_assistants = OrderedList.find_by_name "#{params[:id]}_teacher_assistants"
-    @teachers = User.where(github_nickname: teachers.slugs).sort_by {|t| teachers.slugs.index(t.github_nickname) }
-    @teacher_assistants = User.where(github_nickname: teacher_assistants.slugs).sort_by {|t| teacher_assistants.slugs.index(t.github_nickname) }
+    @teacher_ordered_list = OrderedList.find_by_name "#{params[:id]}_teachers"
+    @teaching_assistant_ordered_list = OrderedList.find_by_name "#{params[:id]}_teacher_assistants"
+    @teachers = User.where(github_nickname: @teacher_ordered_list.slugs).sort_by {|t| @teacher_ordered_list.slugs.index(t.github_nickname) }
+    @teaching_assistants = User.where(github_nickname: @teaching_assistant_ordered_list.slugs).sort_by {|t| @teaching_assistant_ordered_list.slugs.index(t.github_nickname) }
   end
 
   def update

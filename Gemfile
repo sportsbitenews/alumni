@@ -74,7 +74,7 @@ source "https://rails-assets.org" do
   gem "rails-assets-classnames"
   gem 'rails-assets-pubsub-js'
   gem 'rails-assets-react-swipe-views'
-  gem 'rails-assets-mdi' # material design icons
+  gem 'rails-assets-mdi' # material design ico
 end
 
 group :development, :test do

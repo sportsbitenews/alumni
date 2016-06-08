@@ -39,7 +39,7 @@
         this.handleTouchEvents(event);
 
         var self = this;
-        var target = event.currentTarget;
+        var target = event.currentTarget.parentElement.parentElement;  // Child element must have a onMouseDown handler defined on the first child of the ListItem
         var rect = target.getBoundingClientRect();
 
         this.setState({
@@ -87,8 +87,8 @@
         var downPos = {
           clientY: event.clientY,
           clientX: event.clientX,
-          scrollTop: ReactDOM.findDOMNode(self).scrollTop,
-          scrollLeft: ReactDOM.findDOMNode(self).scrollLeft
+          scrollTop: React.findDOMNode(self).scrollTop,
+          scrollLeft: React.findDOMNode(self).scrollLeft
         };
 
         this.setState({
@@ -126,7 +126,7 @@
 
         // Reorder callback
         if (this.state.held && this.state.dragged && typeof this.props.callback === 'function') {
-          var listElements = this.nodesToArray(ReactDOM.findDOMNode(this).childNodes);
+          var listElements = this.nodesToArray(React.findDOMNode(this).childNodes);
           var newIndex = listElements.indexOf(this.state.dragged.target);
 
           this.props.callback(event, this.state.dragged.item, this.state.dragged.index, newIndex, this.state.list);
@@ -161,7 +161,7 @@
         return Math.max(Math.min(value / 4, this.constants.SCROLL_AREA), this.constants.SCROLL_AREA / 5);
       },
       dragScrollY: function () {
-        var element = ReactDOM.findDOMNode(this);
+        var element = React.findDOMNode(this);
         var rect = element.getBoundingClientRect();
         var scrollArea = this.getScrollArea(rect.height);
 
@@ -175,7 +175,7 @@
         }
       },
       dragScrollX: function () {
-        var element = ReactDOM.findDOMNode(this);
+        var element = React.findDOMNode(this);
         var rect = element.getBoundingClientRect();
         var scrollArea = this.getScrollArea(rect.width);
 
@@ -189,7 +189,7 @@
         }
       },
       handleDragScrollY: function (event) {
-        var rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
+        var rect = React.findDOMNode(this).getBoundingClientRect();
 
         if (!this.scrollIntervalY && this.props.lock !== 'vertical') {
           if (event.clientY < rect.top + this.constants.SCROLL_AREA) {
@@ -205,7 +205,7 @@
         }
       },
       handleDragScrollX: function (event) {
-        var rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
+        var rect = React.findDOMNode(this).getBoundingClientRect();
 
         if (!this.scrollIntervalX && this.props.lock !== 'horizontal') {
           if (event.clientX < rect.left + this.constants.SCROLL_AREA) {
@@ -241,7 +241,7 @@
           event.preventDefault();
           this.setDraggedPosition(event);
 
-          var listElements = this.nodesToArray(ReactDOM.findDOMNode(this).childNodes);
+          var listElements = this.nodesToArray(React.findDOMNode(this).childNodes);
           var collision = this.findCollision(listElements, event);
 
           if (collision) {
@@ -413,11 +413,12 @@
       render: function () {
         var self = this;
 
-        var getPropsTemplate = function (item) {
+        var getPropsTemplate = function (item, index) {
           if (self.props.template) {
             return React.createElement(self.props.template, {
               item: item,
-              sharedProps: self.props.sharedProps
+              sharedProps: self.props.sharedProps,
+              onMouseDown: self.itemDown.bind(self, item, index)
             });
           }
           return item;
@@ -429,9 +430,9 @@
           return React.createElement('div', {
             key: itemKey,
             className: itemClass,
-            onMouseDown: self.itemDown.bind(self, item, index),
-            onTouchStart: self.itemDown.bind(self, item, index),
-          }, getPropsTemplate(item));
+            // onMouseDown: self.itemDown.bind(self, item, index),
+            // onTouchStart: self.itemDown.bind(self, item, index),
+          }, getPropsTemplate(item, index));
         });
 
         var targetClone = function () {
@@ -472,9 +473,9 @@
     exports.Reorder = getReorderComponent(React, ReactDOM);
   } else if (typeof root !== 'undefined' &&
     typeof root.React !== 'undefined' &&
-    typeof root.ReactDOM !== 'undefined') {
+    typeof root.React.DOM !== 'undefined') {
     // Add to root object
-    root.Reorder = getReorderComponent(root.React, root.ReactDOM);
+    root.Reorder = getReorderComponent(root.React, root.React.DOM);
   }
 
   // Define for requirejs
