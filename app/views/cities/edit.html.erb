@@ -28,7 +28,7 @@
   city: @city.slug,
   specifics: @city.marketing_specifics,
   name: 'marketing_specifics',
-  area_label: 'Marketing specifics',
+  title: 'Custom content',
   renderedContent: 'Nothing to preview.',
   token: form_authenticity_token,
   placeholder: 'Here you can inject any content you want to promote (video of your last Demo-Day, hot press release, ...)'
@@ -77,8 +77,9 @@
   </div>
 </div>
 
-<div class="container" id="city_edit_team">
+<div class="container padded" id="city_edit_team">
   <h2 class="text-center">Teachers in <%= @city.name %></h2>
+  <p class="text-center red">Drag&drop pictures to reorder teachers</p>
   <%= react_component "UserOrderedList", render(
     template: 'cities/_members.json.jbuilder',
     locals: {
@@ -89,8 +90,9 @@
     }) %>
 </div>
 
-<div class="container" id="city_edit_team">
+<div class="container padded" id="city_edit_team">
   <h2 class="text-center">Beloved Teaching Assistants</h2>
+  <p class="text-center red">Drag&drop pictures to reorder teaching assistants</p>
   <%= react_component "UserOrderedList", render(
     template: 'cities/_members.json.jbuilder',
     locals: {
@@ -105,7 +107,7 @@
   city: @city.slug,
   specifics: @city.logistic_specifics,
   name: 'logistic_specifics',
-  area_label: 'Logistic specifics',
+  title: "Tips in #{@city.name}" ,
   renderedContent: 'Nothing to preview.',
   token: form_authenticity_token,
   placeholder: 'Customize city page on www (markdown accepted)'

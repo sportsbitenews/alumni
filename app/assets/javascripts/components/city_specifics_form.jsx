@@ -7,19 +7,18 @@ var CitySpecificsForm = React.createClass({
   },
   render: function() {
     return (
-      <div className="container">
-        <h2>Custom section</h2>
+      <div className="container padded">
+        <h2 className='text-center city-specifics-form-title'>{this.props.title}</h2>
         <form action={Routes.city_path(this.props.city)} className="simple_form edit_city" id="edit_city" method="post">
           <input type="hidden" name="_method" value="patch" />
           <input type='hidden' name='authenticity_token' value={this.props.token} />
-          <div className="form-group padded-1em">
+          <div className="form-group">
             <CityFormSpecificsArea
                 specifics={this.props.specifics}
                 renderedContent='Nothing to preview.'
                 area_name={this.state.area_name}
                 area_id={this.state.area_id}
                 placeholder={this.props.placeholder}
-                area_label={this.props.area_label}
             />
           </div>
           <span className="octicon octicon-markdown"></span> Markdown supported

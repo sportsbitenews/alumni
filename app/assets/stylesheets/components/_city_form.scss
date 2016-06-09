@@ -13,6 +13,10 @@
     font-size: 25px;
   }
 }
+.city-specifics-form-title {
+  font-size: 30px;
+  font-weight: 900;
+}
 #city_edit_features {
   .feature-icon {
     font-size: 50px;
@@ -98,4 +102,10 @@
     margin: auto;
   }
 }
-
+.user-ordered-list-form {
+  display:flex;
+  justify-content: space-around;
+}
+.user-ordered-list-item-selected {
+  background: $gray-darker;
+}

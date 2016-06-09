@@ -10,11 +10,10 @@ var UserOrderedList = React.createClass({
   render: function() {
     var membersListClasses = classNames({
       'col-xs-12': true,
-      'col-sm-3': this.props.position == 'teaching_assistant'
+      'col-sm-3': this.props.inner_component_name == null
     })
 
     var members = this.state.members;
-
     members.forEach((member) => {
       member.updateMembersList = this.updateMembersList;
       if (this.props.inner_component_name !== null) {
@@ -51,10 +50,12 @@ var UserOrderedList = React.createClass({
             // Allows reordering to be disabled
             disableReorder={false} />
         </div>
-        <UserOrederedListForm
-          orderedListId={this.props.ordered_list_id}
-          position={this.props.position}
-          updateMembersList={this.updateMembersList} />
+        <div className="user-ordered-list-form">
+          <UserOrederedListForm
+            orderedListId={this.props.ordered_list_id}
+            position={this.props.position}
+            updateMembersList={this.updateMembersList} />
+        </div>
       </div>
     )
   },
