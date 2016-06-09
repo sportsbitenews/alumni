@@ -1,4 +1,4 @@
-var TeamMemberForm = React.createClass({
+var UserOrederedListForm = React.createClass({
   getInitialState() {
     return {
       errors: false,

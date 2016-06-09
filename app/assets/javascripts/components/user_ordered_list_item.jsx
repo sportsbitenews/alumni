@@ -1,4 +1,4 @@
-var UserOrderedListItem = React.createClass({
+ var UserOrderedListItem = React.createClass({
   render: function() {
     return (
       <div className="manager-box">
