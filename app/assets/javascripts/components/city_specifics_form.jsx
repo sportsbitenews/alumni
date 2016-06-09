@@ -8,6 +8,7 @@ var CitySpecificsForm = React.createClass({
   render: function() {
     return (
       <div className="container">
+        <h2>Custom section</h2>
         <form action={Routes.city_path(this.props.city)} className="simple_form edit_city" id="edit_city" method="post">
           <input type="hidden" name="_method" value="patch" />
           <input type='hidden' name='authenticity_token' value={this.props.token} />
@@ -21,6 +22,7 @@ var CitySpecificsForm = React.createClass({
                 area_label={this.props.area_label}
             />
           </div>
+          <span className="octicon octicon-markdown"></span> Markdown supported
           <div className="padded-1em form-group">
             <input type="submit" className="btn btn-primary" value="Update" />
           </div>

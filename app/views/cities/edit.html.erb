@@ -9,15 +9,14 @@
     <% end %>
   </div>
   </div>
-  <div class="cities-list-container">
-    <div class="cities-list-title ">
-      <h1 class='batches-list-title'><%= @city.name %> <small>City page management</small></h1>
-      <br>
-    </div>
+</div>
+<div class="container">
+  <div class="cities-list-title ">
+    <h1 class='batches-list-title'><%= @city.name %> <small>City page management</small></h1>
+    <br>
   </div>
 </div>
-
-<div class="container text-center" id="city_edit_banner" style="background-image: url('<%= image_url @city.city_picture.url(:cover) %>')">
+<div class="container text-center" id="city_edit_banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_url @city.city_picture.url(:cover) %>');">
   <div class="banner-content">
     <h1>Change your life: <strong>learn to code</strong></h1>
     <h2>Join Le Wagon FullStack program in <strong><%= @city.name %></strong></h2>
@@ -32,7 +31,7 @@
   area_label: 'Marketing specifics',
   renderedContent: 'Nothing to preview.',
   token: form_authenticity_token,
-  placeholder: 'Customize city page on www (markdown accepted)'
+  placeholder: 'Here you can inject any content you want to promote (video of your last Demo-Day, hot press release, ...)'
 }%>
 
 <div class="container text-center" id="city_edit_features">
@@ -48,7 +47,6 @@
       <div class="feature-icon green"><i class="mdi mdi-source-pull"></i></div>
     </div>
   </div>
-  <h3>Read full program</h3>
 </div>
 
 <div class="container-fluid" id="city_edit_classroom" style="background-image: url('<%= image_url @city.classroom_picture.url(:cover) %>')"></div>

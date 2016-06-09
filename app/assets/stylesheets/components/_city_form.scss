@@ -2,27 +2,15 @@
   margin-right: 10px;
 }
 #city_edit_banner {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   padding-top: 4em;
   padding-bottom: 4em;
-  width: 90%;
   color: white;
   h2 {
+    margin-top: 0px;
     font-size: 25px;
-  }
-  .banner-content {
-    position: relative;
-    z-index: 2;
-  }
-  .banner-gradient {
-    position: absolute;
-    background-color: black;
-    opacity: 0.4;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
   }
 }
 #city_edit_features {
@@ -96,6 +84,18 @@
     margin-right: 10px;
   }
 }
-.city_admin_users_forms {
-
+.teacher-draggable {
+  width: 60%;
+  margin: auto;
+  background: white;
+  padding-bottom: 10px;
+  text-align: center;
+  margin-bottom: 5px;
+  .manager-box {
+    display: flex;
+    justify-content: space-around;
+    max-width: 200px;
+    margin: auto;
+  }
 }
+
