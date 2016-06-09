@@ -5,5 +5,5 @@ else
   json.errors true
   json.error_content @error_content
 end
-json.partial! 'cities/members', members: @members, ordered_list: @ordered_list, position: @position
+json.partial! 'cities/members', members: @members, ordered_list: @ordered_list, position: @position, inner_component_name: @inner_component_name
 

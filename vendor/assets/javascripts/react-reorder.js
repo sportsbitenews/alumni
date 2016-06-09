@@ -39,7 +39,7 @@
         this.handleTouchEvents(event);
 
         var self = this;
-        var target = event.currentTarget.parentElement.parentElement;  // Child element must have a onMouseDown handler defined on the first child of the ListItem
+        var target = event.currentTarget.parentElement.parentElement.parentElement;  // Child element must have a onMouseDown handler defined on the first child of the ListItem
         var rect = target.getBoundingClientRect();
 
         this.setState({
