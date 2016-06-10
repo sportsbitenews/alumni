@@ -10,16 +10,14 @@ var UserOrderedList = React.createClass({
   render: function() {
     var membersListClasses = classNames({
       'col-xs-12': true,
-      'col-sm-3': this.props.inner_component_name == null
+      'col-sm-3': this.props.position != 'teacher'
     })
 
     var members = this.state.members;
     members.forEach((member) => {
       member.updateMembersList = this.updateMembersList;
-      if (this.props.inner_component_name !== null) {
-        member.innerComponent = React.createElement(eval(this.props.inner_component_name), {
-          member: member
-        });
+      if (this.props.position == 'teacher') {
+        member.innerComponent = <CityAdminUsersForm member={member} />
       }
     });
 

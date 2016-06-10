@@ -2,7 +2,6 @@
   render: function() {
     var draggableClasses = classNames({
       'teacher-draggable': this.props.item.innerComponent != null,
-      'bg-white': true
     });
     return (
       <div className={draggableClasses}>
@@ -30,7 +29,6 @@
       {
         'github_nickname': this.props.item.github_nickname,
         'position': this.props.item.position,
-        'inner_component_name': this.props.inner_component_name,
         'remove': true
       }
     ).then((response) => {

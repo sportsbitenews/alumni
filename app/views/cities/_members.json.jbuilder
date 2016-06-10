@@ -11,5 +11,4 @@ json.members do
   end
 end
 json.position position
-json.inner_component_name inner_component_name
 json.ordered_list_id ordered_list.id

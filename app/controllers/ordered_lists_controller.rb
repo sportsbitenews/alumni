@@ -4,7 +4,6 @@ class OrderedListsController < ApplicationController
     authorize @ordered_list
     @error_content = ''
     @position = params[:position]
-    @inner_component_name = params[:inner_component_name]
     if params[:github_nickname]
       @github_nickname = params[:github_nickname]
       user = User.find_by_slug(@github_nickname)
