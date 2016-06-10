@@ -1,7 +1,11 @@
  var UserOrderedListItem = React.createClass({
   render: function() {
+    var draggableClasses = classNames({
+      'teacher-draggable': this.props.item.innerComponent != null,
+      'bg-white': true
+    });
     return (
-      <div className="teacher-draggable">
+      <div className={draggableClasses}>
         <div className="manager-box">
           <div className="manager-avatar" onMouseDown={this.props.onMouseDown}>
             <img className="avatar" src={this.props.item.gravatar_url} alt="" />
