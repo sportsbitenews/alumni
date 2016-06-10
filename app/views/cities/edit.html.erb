@@ -9,21 +9,107 @@
     <% end %>
   </div>
   </div>
-  <div class="cities-list-container">
-    <div class="cities-list-title ">
-      <h1 class='batches-list-title'><%= @city.name %> <small>Specifics</small></h1>
+</div>
+<div class="container">
+  <div class="cities-list-title ">
+    <h1 class='batches-list-title'><%= @city.name %> <small>City page management</small></h1>
+    <br>
+  </div>
+</div>
+<div class="container text-center" id="city_edit_banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_url @city.city_picture.url(:cover) %>');">
+  <div class="banner-content">
+    <h1>Change your life: <strong>learn to code</strong></h1>
+    <h2>Join Le Wagon FullStack program in <strong><%= @city.name %></strong></h2>
+  </div>
+  <div class="banner-gradient"></div>
+</div>
+
+<%= react_component "CitySpecificsForm", {
+  city: @city.slug,
+  specifics: @city.marketing_specifics,
+  name: 'marketing_specifics',
+  title: 'Custom content',
+  renderedContent: 'Nothing to preview.',
+  token: form_authenticity_token,
+  placeholder: 'Here you can inject any content you want to promote (video of your last Demo-Day, hot press release, ...)'
+}%>
+
+<div class="container text-center" id="city_edit_features">
+  <h2>Code the startup way</h2>
+  <div class="row padded-1em">
+    <div class="col-xs-12 col-sm-4">
+      <div class="feature-icon yellow"><i class="mdi mdi-laptop"></i></div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="feature-icon purple"><i class="mdi mdi-keyboard-variant"></i></div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="feature-icon green"><i class="mdi mdi-source-pull"></i></div>
     </div>
   </div>
 </div>
-<%= react_component "CityForm", {
+
+<div class="container-fluid" id="city_edit_classroom" style="background-image: url('<%= image_url @city.classroom_picture.url(:cover) %>')"></div>
+
+<div class="container-fluid padded" id="city_edit_reviews">
+  <h2 class="text-center">Students Reviews</h2>
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <div class="city_review_card">
+            <p>Very cool stuff, useful and smart</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="city_review_card">
+            <p>Very cool stuff, useful and smart</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="city_review_card">
+            <p>Very cool stuff, useful and smart</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container padded" id="city_edit_team">
+  <h2 class="text-center">Teachers in <%= @city.name %></h2>
+  <p class="text-center red">Drag&drop pictures to reorder teachers</p>
+  <%= react_component "UserOrderedList", render(
+    template: 'cities/_members.json.jbuilder',
+    locals: {
+      members: @teachers,
+      ordered_list: @teacher_ordered_list,
+      position: 'teacher'
+    }) %>
+</div>
+
+<div class="container padded" id="city_edit_team">
+  <h2 class="text-center">Beloved Teaching Assistants</h2>
+  <p class="text-center red">Drag&drop pictures to reorder teaching assistants</p>
+  <%= react_component "UserOrderedList", render(
+    template: 'cities/_members.json.jbuilder',
+    locals: {
+      members: @teaching_assistants,
+      ordered_list: @teaching_assistant_ordered_list,
+      position: 'teaching_assistant'
+    }) %>
+</div>
+
+<%= react_component "CitySpecificsForm", {
   city: @city.slug,
-  logistic_specifics: @city.logistic_specifics,
-  marketing_specifics: @city.marketing_specifics,
+  specifics: @city.logistic_specifics,
+  name: 'logistic_specifics',
+  title: "Tips in #{@city.name}" ,
   renderedContent: 'Nothing to preview.',
   token: form_authenticity_token,
-  placeholder: 'Customize city page on www (markdown accepted)'
+  placeholder: 'Customize city page tips on www'
 }%>
-
 <% content_for(:title) do %>
   <%= @city.name %> - Le Wagon Alumni
 <% end %>

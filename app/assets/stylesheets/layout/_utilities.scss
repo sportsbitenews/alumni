@@ -1,3 +1,4 @@
+
 /* -------------------------------------
  * Utilities classes
  * These are examples of utilities classes
@@ -59,4 +60,27 @@ html {
 .padded-1em {
  padding-top: 1em;
  padding-bottom: 1em;
+}
+.side-padded-1em {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.bottom-padded-05em {
+  padding-bottom: 0.5em;
+}
+.bottom-padded-1em {
+  padding-bottom: 1em;
+}
+
+.yellow {
+  color: $yellow;
+}
+.purple {
+  color: $purple;
+}
+.green {
+  color: $green;
+}
+.red {
+  color: $red;
 }

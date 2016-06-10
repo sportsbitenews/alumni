@@ -1,3 +1,109 @@
 .city_label {
   margin-right: 10px;
 }
+#city_edit_banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 4em;
+  padding-bottom: 4em;
+  color: white;
+  h2 {
+    margin-top: 0px;
+    font-size: 25px;
+  }
+}
+.city-specifics-form-title {
+  font-size: 30px;
+  font-weight: 900;
+}
+#city_edit_features {
+  .feature-icon {
+    font-size: 50px;
+  }
+  h2 {
+    font-size: 30px;
+    font-weight: 900;
+  }
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+}
+#city_edit_classroom {
+  height: 300px;
+  background-position: center;
+  background-size: cover;
+  margin-top: 2em;
+}
+#city_edit_reviews {
+  background-color: white;
+  h2 {
+    font-size: 30px;
+    font-weight: 900;
+  }
+  .city_review_card {
+    height: 175px;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 2em;
+  }
+}
+#city_edit_team {
+  h2 {
+    font-size: 30px;
+    font-weight: 900;
+  }
+}
+.city_edit_teacher_info {
+  margin-top: 10px;
+  form {
+    background-color: white;
+  }
+  .flex {
+    justify-content: space-around;
+  }
+  .teacher_info_input {
+    display: flex;
+    align-items: center;
+  }
+  .teacher_info_label {
+    margin-right: 10px;
+    &.twitter {
+      color: $blue;
+    }
+  }
+  .teacher_info_area {
+    width: 100%;
+    textarea {
+      height: 100px;
+    }
+  }
+  button {
+    margin-right: 10px;
+  }
+}
+.teacher-draggable {
+  width: 60%;
+  margin: auto;
+  background: white;
+  padding-bottom: 10px;
+  text-align: center;
+  margin-bottom: 5px;
+  .manager-box {
+    display: flex;
+    justify-content: space-around;
+    max-width: 200px;
+    margin: auto;
+  }
+}
+.user-ordered-list-form {
+  display:flex;
+  justify-content: space-around;
+}
+.user-ordered-list-item-selected {
+  background: $gray-darker;
+}

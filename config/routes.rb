@@ -81,12 +81,17 @@ Rails.application.routes.draw do
     end
     resources :batches, only: %i(new create)
   end
+  resources :ordered_lists, only: :update
 
   resources :users, only: %i(index update) do
     member do
       post :confirm
       post :delete
     end
+  end
+
+  namespace :city_admin do
+    resources :users, only: %i(update)
   end
 
   require "sidekiq/web"

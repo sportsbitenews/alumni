@@ -35,8 +35,7 @@ var CityFormSpecificsArea = React.createClass({
     })
     return (
       <div className='form-group'>
-        <div className="padded-1em form-group form-inline">
-          <label className='city_label'>{this.props.area_label}:</label>
+        <div className="form-group form-inline">
           <button className={specificsPreviewButtonClasses} onClick={this.onPreviewClick}>Preview</button>
           <button className={specificsWriteButtonClasses} onClick={this.onWriteClick}>Edit</button>
         </div>
