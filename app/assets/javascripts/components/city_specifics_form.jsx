@@ -1,10 +1,4 @@
 var CitySpecificsForm = React.createClass({
-  getInitialState: function() {
-    return {
-      area_name: 'city[' + this.props.name + ']',
-      area_id: 'city_' + this.props.name
-    };
-  },
   render: function() {
     return (
       <div className="container padded">
@@ -16,8 +10,8 @@ var CitySpecificsForm = React.createClass({
             <CityFormSpecificsArea
                 specifics={this.props.specifics}
                 renderedContent='Nothing to preview.'
-                area_name={this.state.area_name}
-                area_id={this.state.area_id}
+                area_name={'city[' + this.props.name + ']'}
+                area_id={'city_' + this.props.name}
                 placeholder={this.props.placeholder}
             />
           </div>

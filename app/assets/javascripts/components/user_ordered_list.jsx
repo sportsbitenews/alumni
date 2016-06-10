@@ -36,7 +36,7 @@ var UserOrderedList = React.createClass({
             // A template to display for each list item
             template={UserOrderedListItem}
             // Function that is called once a reorder has been performed
-            callback={this.callback}
+            callback={this.reorderCallback}
             // Class to be applied to the outer list element
             listClass='row'
             // Class to be applied to each list items wrapper element
@@ -60,11 +60,8 @@ var UserOrderedList = React.createClass({
     )
   },
 
-  callback(e) {
-    var userOrderedListSlugs = [];
-    this.state.members.map(member => {
-      userOrderedListSlugs.push(member.github_nickname);
-    });
+  reorderCallback(e) {
+    var userOrderedListSlugs = _.map(this.state.members, function(member){ return member.github_nickname; });
     axios.railsPatch(
       Routes.ordered_list_path(this.props.ordered_list_id, { format: 'json' }),
       {
