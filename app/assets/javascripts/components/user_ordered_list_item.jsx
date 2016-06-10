@@ -7,7 +7,7 @@
       <div className={draggableClasses}>
         <div className="manager-box">
           <div className="manager-avatar" onMouseDown={this.props.onMouseDown}>
-            <img className="avatar" src={this.props.item.gravatar_url} alt="" />
+            <img className="avatar" src={this.props.item.thumbnail} alt="" />
           </div>
           <div className="manager-username">
             {this.props.item.github_nickname}
