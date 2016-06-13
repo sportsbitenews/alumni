@@ -5,10 +5,11 @@ var TestimonialList = React.createClass({
       new: false
     };
   },
-  updateTestimonialList: function(testimonials, errors) {
-    if (!errors) {
-      this.setState({testimonials: testimonials, new: false});
-    }
+  updateTestimonialList: function(testimonials) {
+    this.setState({testimonials: testimonials});
+  },
+  cancelTestimonialForm: function() {
+    this.setState({new: false});
   },
   render: function() {
     var formClasses = classNames({
@@ -39,7 +40,10 @@ var TestimonialList = React.createClass({
           </div>
         </div>
         <div className={formClasses} id="testimonial-list-form">
-          <TestimonialListItemForm city_slug={this.props.city_slug} updateTestimonialList={this.updateTestimonialList} />
+          <TestimonialListItemForm
+            city_slug={this.props.city_slug}
+            updateTestimonialList={this.updateTestimonialList}
+            cancelTestimonialForm={this.cancelTestimonialForm} />
         </div>
       </div>
     );

@@ -10,7 +10,7 @@ class CitiesController < ApplicationController
   end
 
   def edit
-    @testimonials = Testimonial.joins(user: { batch: :city }).where(cities: { slug: @city.slug})
+    @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: @city.slug})
     @teacher_ordered_list = OrderedList.find_by_name "#{params[:id]}_teachers"
     @teaching_assistant_ordered_list = OrderedList.find_by_name "#{params[:id]}_teacher_assistants"
     @teachers = User.where(github_nickname: @teacher_ordered_list.slugs).sort_by {|t| @teacher_ordered_list.slugs.index(t.github_nickname) }

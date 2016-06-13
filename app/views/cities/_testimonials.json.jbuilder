@@ -6,6 +6,7 @@ json.testimonials do
     json.user do
       json.slug testimonial.user.github_nickname
       json.full_name testimonial.user.first_name + ' ' + testimonial.user.last_name
+      json.thumbnail testimonial.user.thumbnail
       json.batch testimonial.user.batch.slug
       json.city testimonial.user.batch.city.name
     end

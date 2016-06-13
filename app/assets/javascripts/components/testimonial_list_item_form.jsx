@@ -29,6 +29,7 @@ var TestimonialListItemForm = React.createClass({
           </select>
         </div>
         <button type="submit" className="btn btn-primary">Add</button>
+        <div className="btn btn-primary" onClick={this.onCancelClick}>Cancel</div>
       </form>
     );
   },
@@ -47,7 +48,14 @@ var TestimonialListItemForm = React.createClass({
         errors: response.data.errors,
         error_content: response.data.error_content
       });
-      this.props.updateTestimonialList(response.data.testimonials, response.data.errors);
+      if (!this.state.errors) {
+        this.props.cancelTestimonialForm();
+        this.props.updateTestimonialList(response.data.testimonials);
+      }
     });
+  },
+  onCancelClick(e) {
+    e.preventDefault();
+    this.props.cancelTestimonialForm();
   }
 });

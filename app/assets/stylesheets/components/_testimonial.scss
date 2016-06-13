@@ -2,6 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  .btn {
+    margin-right: 5px;
+  }
 }
 .testimonial-list-item {
   padding-bottom: 1em;
@@ -19,6 +22,6 @@
   }
 }
 #testimonial-list-form {
-  width: 100%;
+  width: 80%;
   padding-top: 1em;
 }
