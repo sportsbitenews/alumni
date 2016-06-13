@@ -14,7 +14,6 @@ class CreateTrelloBoard < ActiveJob::Base
     response = JSON.parse(
       RestClient.post url, payload.to_json,
         content_type: :json,
-        accept: :json,
         :'X-CRM-TOKEN' => ENV['CRM_TOKEN']
     )
 

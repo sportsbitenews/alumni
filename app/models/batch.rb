@@ -58,8 +58,7 @@ class Batch < ActiveRecord::Base
 
   scope :completed_or_in_progress, -> { where('starts_at <= ?', Date.today) }
 
-  # TODO(ssaunier):
-  # after_create :create_trello_board
+  after_save :update_trello_board, if: :crm_property_updated?
 
   has_attached_file :meta_image,
     styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }, processors: [ :thumbnail, :paperclip_optimizer ]
@@ -83,7 +82,7 @@ class Batch < ActiveRecord::Base
   end
 
   def create_trello_board
-    CreateTrelloBoard.set(wait: 10.seconds).perform_later(id)
+    CreateTrelloBoardJob.set(wait: 10.seconds).perform_later(id)
   end
 
   def create_slack_channel
@@ -94,11 +93,19 @@ class Batch < ActiveRecord::Base
     CreateCampInKitt.set(wait: 10.seconds).perform_later(id)
   end
 
+  def update_trello_board
+    UpdateTrelloBoardJob.perform_later(id)
+  end
+
   def name
     "Batch #{slug} - #{city.try(:name)}"
   end
 
   def slug_set?
     !slug.empty? && (id_changed? || slug_changed?)
+  end
+
+  def crm_property_updated?
+    starts_at_changed?
   end
 end
