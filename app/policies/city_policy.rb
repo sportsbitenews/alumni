@@ -1,7 +1,11 @@
 class CityPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if user.admin
+        scope.all.order(name: :asc)
+      else
+        user.cities
+      end
     end
   end
 

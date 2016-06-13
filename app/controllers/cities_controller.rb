@@ -2,7 +2,13 @@ class CitiesController < ApplicationController
   before_action :set_city, only: [:show, :edit, :update, :set_manager]
 
   def index
-    @cities = policy_scope(City)
+    @cities = policy_scope(City).order(name: :asc)
+    if @cities.blank?
+      flash[:alert] = "Sorry, you do not manage any city"
+      redirect_to root_path
+    elsif @cities.size == 1
+      redirect_to city_path(@cities.first)
+    end
   end
 
   def show

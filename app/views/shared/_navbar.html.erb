@@ -13,8 +13,11 @@
       <div class='navbar-right'>
         <% if user_signed_in? %>
             <%= react_component 'AvatarNavbar', {
-              user: current_user.slice(:github_nickname, :thumbnail)
-              } %>
+              user: current_user.slice(:github_nickname, :thumbnail),
+              impersonating: current_user && true_user != current_user,
+              current_path: request.env['PATH_INFO'],
+              cities: (current_user.admin? ? City.all : current_user.cities).map(&:slug)
+            } %>
           <hr class='search-icon-hr'>
           <%= react_component 'SearchIcon' %>
           <hr>

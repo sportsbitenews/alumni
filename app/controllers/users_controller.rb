@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
-  skip_after_action :verify_authorized, only: :show
+  skip_after_action :verify_authorized, only: %i(show)
 
   before_action :set_user, only: %i(update confirm delete)
   def index
@@ -49,6 +49,19 @@ class UsersController < ApplicationController
       OnboardUserJob.perform_later(@user.id)
     end
     render nothing: true
+  end
+
+  def impersonate
+    authorize current_user
+    user = User.where(id: params[:id]).first || User.where('lower(github_nickname) = ?', params[:id].downcase).first
+    impersonate_user(user)
+    redirect_to profile_path(user.github_nickname)
+  end
+
+  def stop_impersonating
+    authorize true_user
+    stop_impersonating_user
+    redirect_to params[:return_to]
   end
 
   private

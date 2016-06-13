@@ -67,6 +67,7 @@ gem 'sidekiq-cron'
 
 gem 'prawn'
 gem 'prawn-table'
+gem "pretender"
 
 source "https://rails-assets.org" do
   gem "rails-assets-axios"

@@ -75,7 +75,6 @@
   &:last-of-type {
     border-bottom: none;
   }
-
 }
 
 .post-submissions-row,
@@ -85,10 +84,14 @@
   width: 100%;
   justify-content: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 40px 20px;
+  padding: 30px 15px;
 
   abbr {
     display: none;
+  }
+
+  &.boolean {
+    justify-content: start;
   }
 
   .errors {
@@ -104,9 +107,9 @@
   }
 
   label {
-    flex: 0 0 200px;
+    flex: 1 1 140px;
+    white-space: nowrap;
     color: darkgrey;
-    align-self: flex-start;
     margin: 0;
 
     i {
@@ -115,12 +118,13 @@
   }
 
   input {
-    flex: 1;
+    flex: 1 1 auto;
     border: none;
     outline: 0;
     background-color: transparent;
     box-shadow: none;
-
+    padding:0;
+    text-align: right;
   }
 
   textarea {

@@ -16,4 +16,12 @@ class UserPolicy < ApplicationPolicy
   def update?
     record == user
   end
+
+  def impersonate?
+    record.admin?
+  end
+
+  def stop_impersonating?
+    impersonate?
+  end
 end

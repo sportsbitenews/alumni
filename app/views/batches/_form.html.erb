@@ -1,14 +1,24 @@
-<%= simple_form_for(resource)do |f|%>
+<%= simple_form_for(resource) do |f|%>
   <row class="post-submissions-row-in">
-    <%= f.input :slug, :label => "<i class='mdi mdi-format-text'></i> Slug".html_safe, placeholder: '3' %>
+    <%= f.input :starts_at, order: [ :day, :month, :year ] %>
   </row>
   <row class="post-submissions-row-in">
-    <%= f.input :starts_at %>
+    <%= f.input :time_zone, priority: /Paris/ %>
   </row>
   <row class="post-submissions-row-in">
-    <%= f.input :onboarding %>
+    <%= f.input :price_cents, as: 'string', label: "Price (cents)" %>
+    <%= f.input :price_currency, label: "Currency", placeholder: 'EUR', collection: Money::Currency.table.keys.map(&:upcase), selected: f.object.price_currency %>
+  </row>
+  <row class="post-submissions-row-in">
+    <%= f.input :open_for_registration, label: 'Apply open' %>
+    <%= f.input :last_seats %>
+    <%= f.input :waiting_list %>
+    <%= f.input :full %>
+  </row>
+  <row class="post-submissions-row-in">
+    <%= f.input :onboarding, label: 'Onboarding users (First Day)' %>
   </row>
   <div class="text-center">
-    <%= f.submit 'Submit', class: 'button button-success' %>
+    <%= f.submit resource.is_a?(Array) ? "Create this batch and its Trello board" : "Update batch", class: 'button button-success' %>
   </div>
 <% end %>

@@ -1,0 +1,5 @@
+<% if current_user.admin? || current_user.cities.size > 1 %>
+  <%= link_to cities_path do %>
+    <i class='mdi mdi-city'></i>
+  <% end %>
+<% end %>

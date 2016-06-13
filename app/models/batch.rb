@@ -42,7 +42,7 @@ class Batch < ActiveRecord::Base
   validates :city, presence: true
   validates :starts_at, presence: true
   validates :time_zone, presence: true
-  validates :price_cents, numericality: { greater_than: 3_000_00 }  # cents
+  validates :price_cents, numericality: { greater_than_or_equal_to: 4_500_00 }  # cents
 
   belongs_to :city
   has_many :users  # Students
@@ -70,7 +70,8 @@ class Batch < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
 
   def set_ends_at
-    self.ends_at = self.starts_at + 9.weeks - 3.days if self.starts_at
+    duration = self.city.slug == 'amsterdam' ? 12.weeks : 9.weeks
+    self.ends_at = self.starts_at + duration - 3.days if self.starts_at
   end
 
   def user_count

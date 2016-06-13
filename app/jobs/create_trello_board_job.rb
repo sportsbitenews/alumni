@@ -1,4 +1,4 @@
-class CreateTrelloBoard < ActiveJob::Base
+class CreateTrelloBoardJob < ActiveJob::Base
   def perform(batch_id)
     batch = Batch.find(batch_id)
 

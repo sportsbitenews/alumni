@@ -99,6 +99,9 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  get '/impersonate/:id', to: 'users#impersonate'
+  get '/stop_impersonating', to: 'users#stop_impersonating', as: :stop_impersonating
+
   # Keep this route at the bottom.
   get '/:github_nickname', to: 'users#show', as: :profile
 end
