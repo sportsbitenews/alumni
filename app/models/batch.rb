@@ -103,7 +103,7 @@ class Batch < ActiveRecord::Base
   end
 
   def slug_set?
-    !slug.empty? && (id_changed? || slug_changed?)
+    !slug.blank? && (id_changed? || slug_changed?)
   end
 
   def crm_property_updated?
