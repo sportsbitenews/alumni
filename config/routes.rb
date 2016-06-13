@@ -24,7 +24,7 @@ Rails.application.routes.draw do
           get "sample"
         end
       end
-      resources :testimonials, only: [ :index ]
+      resources :testimonials, only: [ :index]
       resources :users,        only: [] do
         put :picture, on: :collection
       end
@@ -89,6 +89,8 @@ Rails.application.routes.draw do
       post :delete
     end
   end
+
+  resources :testimonials, only: [:create, :update]
 
   namespace :city_admin do
     resources :users, only: %i(update)

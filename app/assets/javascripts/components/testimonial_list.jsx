@@ -1,29 +1,50 @@
 var TestimonialList = React.createClass({
   getInitialState() {
     return {
-      testimonials: this.props.testimonials
+      testimonials: this.props.testimonials,
+      new: false
     };
   },
-  updateTestimonialList: function(testimonials) {
-    this.setState({testimonials: testimonials});
+  updateTestimonialList: function(testimonials, errors) {
+    if (!errors) {
+      this.setState({testimonials: testimonials, new: false});
+    }
   },
   render: function() {
-    <div class="testimonial-list">
-      {this.state.testimonials.map((testimonial, index) => {
-        return (
-          <div className="testimonial-list-item" key={index}>
-            <TestimonialListItem testimonial={testimonial} updateTestimonialList={this.updateTestimonialList} />
+    var formClasses = classNames({
+      'hidden': !this.state.new
+    });
+    var addTestimonialListItemClasses = classNames({
+      'hidden': this.state.new,
+      'testimonial-list-item': true
+    });
+    var addTestimonialCardClasses = classNames({
+      'hidden': this.state.new,
+      'city_review_card': true
+    });
+    return (
+      <div className="testimonial-list">
+        {this.state.testimonials.map((testimonial, index) => {
+          return (
+            <div className="testimonial-list-item" key={index}>
+              <TestimonialListItem testimonial={testimonial} updateTestimonialList={this.updateTestimonialList} />
+            </div>
+          )
+        })}
+        <div className={addTestimonialListItemClasses}>
+          <div className={addTestimonialCardClasses} onClick={this.onAddClick}>
+            <div id="testimonial-add-list-item" className="text-center">
+              <i className="mdi mdi-plus" />
+            </div>
           </div>
-        )
-      })}
-      <div className="testimonial-list-item">
-        <div id="testimonial-add-list-item">
-          <i className="mdi mdi-plus" />
         </div>
-        <div className="hidden">
-          <TestimonialListItemForm updateTestimonialList={this.updateTestimonialList} />
+        <div className={formClasses} id="testimonial-list-form">
+          <TestimonialListItemForm city_slug={this.props.city_slug} updateTestimonialList={this.updateTestimonialList} />
         </div>
       </div>
-    </div>
+    );
+  },
+  onAddClick(e) {
+    this.setState({new: true})
   }
 });
