@@ -11,10 +11,12 @@ class CreateTrelloBoard < ActiveJob::Base
       }
     }
 
-    response = RestClient.post url, payload.to_json,
-      content_type: :json,
-      accept: :json,
-      :'X-CRM-TOKEN' => ENV['CRM_TOKEN']
+    response = JSON.parse(
+      RestClient.post url, payload.to_json,
+        content_type: :json,
+        accept: :json,
+        :'X-CRM-TOKEN' => ENV['CRM_TOKEN']
+    )
 
     batch.trello_inbox_list_id = response["inbox_list_id"]
     batch.save!
