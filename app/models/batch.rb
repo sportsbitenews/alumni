@@ -58,7 +58,7 @@ class Batch < ActiveRecord::Base
 
   scope :completed_or_in_progress, -> { where('starts_at <= ?', Date.today) }
 
-  after_save :update_trello_board, if: :crm_property_updated?
+  after_update :update_trello_board, if: :crm_property_updated?
 
   has_attached_file :meta_image,
     styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }, processors: [ :thumbnail, :paperclip_optimizer ]
