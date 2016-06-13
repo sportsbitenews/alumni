@@ -83,7 +83,7 @@ class Batch < ActiveRecord::Base
   end
 
   def create_trello_board
-    CreateTrelloBoardJob.set(wait: 10.seconds).perform_later(id)
+    CreateTrelloBoardJob.set(wait: 5.seconds).perform_later(id)
   end
 
   def create_slack_channel
@@ -95,7 +95,7 @@ class Batch < ActiveRecord::Base
   end
 
   def update_trello_board
-    UpdateTrelloBoardJob.perform_later(id)
+    UpdateTrelloBoardJob.set(wait: 5.seconds).perform_later(id)
   end
 
   def name
