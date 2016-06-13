@@ -50,6 +50,8 @@ class Batch < ActiveRecord::Base
   has_and_belongs_to_many :teachers, class_name: "User", foreign_key: "batch_id"
 
   before_validation :set_ends_at, if: ->(batch) { batch.starts_at_changed? && !batch.ends_at_changed? }
+
+  after_create :create_trello_board
   after_save :create_slack_channel, if: :slug_set?
   after_save :push_to_kitt, if: :slug_set?
   monetize :price_cents
@@ -78,6 +80,10 @@ class Batch < ActiveRecord::Base
 
   def slack_channel_name
     "batch-#{slug}-#{city.name.downcase.gsub(/[ -]/, "")}"
+  end
+
+  def create_trello_board
+    CreateTrelloBoard.set(wait: 10.seconds).perform_later(id)
   end
 
   def create_slack_channel
