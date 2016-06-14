@@ -2,25 +2,25 @@ var TestimonialList = React.createClass({
   getInitialState() {
     return {
       testimonials: this.props.testimonials,
-      new: false
+      isFormOpen: false
     };
   },
   updateTestimonialList: function(testimonials) {
     this.setState({testimonials: testimonials});
   },
-  cancelTestimonialForm: function() {
-    this.setState({new: false});
+  closeTestimonialForm: function() {
+    this.setState({isFormOpen: false});
   },
   render: function() {
     var formClasses = classNames({
-      'hidden': !this.state.new
+      'hidden': !this.state.isFormOpen
     });
     var addTestimonialListItemClasses = classNames({
-      'hidden': this.state.new,
+      'hidden': this.state.isFormOpen,
       'testimonial-list-item': true
     });
     var addTestimonialCardClasses = classNames({
-      'hidden': this.state.new,
+      'hidden': this.state.isFormOpen,
       'city_review_card': true
     });
     return (
@@ -28,7 +28,11 @@ var TestimonialList = React.createClass({
         {this.state.testimonials.map((testimonial, index) => {
           return (
             <div className="testimonial-list-item" key={index}>
-              <TestimonialListItem testimonial={testimonial} updateTestimonialList={this.updateTestimonialList} />
+              <TestimonialListItem
+                testimonial={testimonial}
+                city_slug={this.props.city_slug}
+                updateTestimonialList={this.updateTestimonialList}
+                closeTestimonialForm={this.closeTestimonialForm} />
             </div>
           )
         })}
@@ -43,12 +47,13 @@ var TestimonialList = React.createClass({
           <TestimonialListItemForm
             city_slug={this.props.city_slug}
             updateTestimonialList={this.updateTestimonialList}
-            cancelTestimonialForm={this.cancelTestimonialForm} />
+            closeTestimonialForm={this.closeTestimonialForm}
+            testimonial={null} />
         </div>
       </div>
     );
   },
   onAddClick(e) {
-    this.setState({new: true})
+    this.setState({isFormOpen: true});
   }
 });

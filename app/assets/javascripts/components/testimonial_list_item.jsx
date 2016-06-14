@@ -4,6 +4,9 @@ var TestimonialListItem = React.createClass({
       editing: false
     };
   },
+  closeTestimonialForm: function() {
+    this.setState({editing: false});
+  },
   render: function() {
     var flag = null;
     if (this.props.testimonial.locale == "en") {
@@ -43,8 +46,8 @@ var TestimonialListItem = React.createClass({
         <div className={formClasses}>
           <TestimonialListItemForm
             city_slug={this.props.city_slug}
-            updateTestimonialList={this.updateTestimonialList}
-            cancelTestimonialForm={this.cancelTestimonialForm}
+            updateTestimonialList={this.props.updateTestimonialList}
+            closeTestimonialForm={this.closeTestimonialForm}
             testimonial={this.props.testimonial} />
         </div>
       </div>
