@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.3.0"
+ruby "2.3.1"
 
 gem "rails", "4.2.5.1"
 gem "pg"
@@ -67,6 +67,7 @@ gem 'sidekiq-cron'
 
 gem 'prawn'
 gem 'prawn-table'
+gem "pretender"
 
 source "https://rails-assets.org" do
   gem "rails-assets-axios"

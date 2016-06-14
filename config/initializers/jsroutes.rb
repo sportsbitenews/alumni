@@ -18,6 +18,7 @@ JsRoutes.setup do |config|
     /^search_posts$/,
     /^next_posts$/,
 
+    /^stop_impersonating$/,
     /^users$/,
     /^profile$/,
     /^destroy_user_session$/,
@@ -35,6 +36,7 @@ JsRoutes.setup do |config|
     /^solve_question$/,
 
     /^city$/,
+    /^cities$/,
     /^markdown_preview_cities$/,
     /^set_manager_city$/,
     /^ordered_list$/,

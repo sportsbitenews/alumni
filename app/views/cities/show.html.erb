@@ -1,19 +1,22 @@
 <div class='cities-list-overlay is-not-flex'>
   <div class='cities-icon-container'>
-  <%= link_to cities_path do %>
-    <i class='mdi mdi-city'></i>
-  <% end %>
-  <i class='mdi mdi-clipboard-text is-active'></i>
+    <%= render 'index_menu_item' %>
+    <i class='mdi mdi-clipboard-text is-active'></i>
   </div>
+
   <div class="cities-list-container">
     <div class="cities-list-title ">
       <h1 class='batches-list-title'><%= @city.name %></h1>
-      <h1>
-        <small class="city-actions">
-          <%= link_to "add specific content on www", edit_city_path(@city) %>
-        </small>
-      </h1>
-      <% if current_user.admin || current_user.cities.include?(@city) %>
+
+      <div class="city-actions">
+        <%= link_to "Manage lewagon.com/#{@city.slug}", edit_city_path(@city) %>
+
+        <% if policy(@city.batches.build).new? %>
+          <%= link_to "New batch", new_city_batch_path(@city) %>
+        <% end %>
+      </div>
+
+      <% if policy(@city).set_manager? %>
         <div class="manager-admin padded-1em">
           <h3>Managers</h3>
           <%= react_component_with_jbuilder("ManagerList") %>
@@ -22,17 +25,18 @@
     </div>
 
     <div class="cities-list batches-list">
-      <% @city.batches.where.not(slug: [nil, '']).order(starts_at: :desc).each do |batch| %>
+      <% @city.batches.order(starts_at: :desc).each do |batch| %>
           <div class="city-item batch-item">
             <h3>
-              <%= link_to "Batch ##{batch.slug}", batch %>
+              <%= link_to batch.slug.blank? ? "Future Batch" : "Batch ##{batch.slug}", batch %>
               <% if policy(batch).edit? %>
                 <small class='batch-item-actions'><%= link_to 'Edit', edit_batch_path(batch) %></small>
               <% end %>
             </h3>
             <div class="bacth-item-dates">
               <span class='mdi mdi-calendar-multiple'></span>
-              <%= batch.starts_at.strftime('%b %d, %Y') %> → <%= batch.ends_at.strftime('%b %d, %Y') %>
+              <strong><%= batch.starts_at.strftime('%d %b %Y') %></strong>
+                → <%= batch.ends_at.strftime('%d %b %Y') %>
             </div>
             <div class="batch-item-students-count">
               <span class="mdi mdi-account-multiple"></span>

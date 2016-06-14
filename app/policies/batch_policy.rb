@@ -9,12 +9,12 @@ class BatchPolicy < ApplicationPolicy
     true
   end
 
-  def update?
-    user.admin
+  def create?
+    admin_or_city_user?
   end
 
-  def create?
-    user.admin
+  def update?
+    admin_or_city_user?
   end
 
   def register?
@@ -28,6 +28,6 @@ class BatchPolicy < ApplicationPolicy
   private
 
   def admin_or_city_user?
-    user.admin || record.city.users.include?(user)
+    user.admin || user.cities.include?(record.city)
   end
 end

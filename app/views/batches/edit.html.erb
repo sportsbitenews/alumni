@@ -1,13 +1,12 @@
 <div class='cities-list-overlay'>
   <div class='cities-icon-container'>
-  <%= link_to cities_path do %>
-    <i class='mdi mdi-city'></i>
-  <% end %>
-  <%= link_to city_path(params[:id]) do %>
-    <i class='mdi mdi-clipboard-text'></i>
-  <% end %>
-  <i class='mdi mdi-account-multiple-plus is-active'></i>
+    <%= render 'cities/index_menu_item' %>
 
+    <%= link_to city_path(@batch.city) do %>
+      <i class='mdi mdi-clipboard-text'></i>
+    <% end %>
+    <i class='mdi mdi-account-multiple-plus is-active'></i>
   </div>
+
   <%= render 'form', resource: @batch %>
 </div>

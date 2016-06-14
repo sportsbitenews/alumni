@@ -42,7 +42,7 @@ class Batch < ActiveRecord::Base
   validates :city, presence: true
   validates :starts_at, presence: true
   validates :time_zone, presence: true
-  validates :price_cents, numericality: { greater_than: 3_000_00 }  # cents
+  validates :price_cents, numericality: { greater_than_or_equal_to: 4_500_00 }  # cents
 
   belongs_to :city
   has_many :users  # Students
@@ -50,14 +50,15 @@ class Batch < ActiveRecord::Base
   has_and_belongs_to_many :teachers, class_name: "User", foreign_key: "batch_id"
 
   before_validation :set_ends_at, if: ->(batch) { batch.starts_at_changed? && !batch.ends_at_changed? }
+
+  after_create :create_trello_board
   after_save :create_slack_channel, if: :slug_set?
   after_save :push_to_kitt, if: :slug_set?
   monetize :price_cents
 
   scope :completed_or_in_progress, -> { where('starts_at <= ?', Date.today) }
 
-  # TODO(ssaunier):
-  # after_create :create_trello_board
+  after_update :update_trello_board, if: :crm_property_updated?
 
   has_attached_file :meta_image,
     styles: { facebook: { geometry: "1410x738>", format: 'jpg' } }, processors: [ :thumbnail, :paperclip_optimizer ]
@@ -69,7 +70,8 @@ class Batch < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
 
   def set_ends_at
-    self.ends_at = self.starts_at + 9.weeks - 3.days if self.starts_at
+    duration = self.city.slug == 'amsterdam' ? 12.weeks : 9.weeks
+    self.ends_at = self.starts_at + duration - 3.days if self.starts_at
   end
 
   def user_count
@@ -80,6 +82,10 @@ class Batch < ActiveRecord::Base
     "batch-#{slug}-#{city.name.downcase.gsub(/[ -]/, "")}"
   end
 
+  def create_trello_board
+    CreateTrelloBoardJob.set(wait: 5.seconds).perform_later(id)
+  end
+
   def create_slack_channel
     CreateSlackChannelJob.set(wait: 10.seconds).perform_later(id) if slack_id.blank?
   end
@@ -88,11 +94,19 @@ class Batch < ActiveRecord::Base
     CreateCampInKitt.set(wait: 10.seconds).perform_later(id)
   end
 
+  def update_trello_board
+    UpdateTrelloBoardJob.set(wait: 5.seconds).perform_later(id)
+  end
+
   def name
     "Batch #{slug} - #{city.try(:name)}"
   end
 
   def slug_set?
-    !slug.empty? && (id_changed? || slug_changed?)
+    !slug.blank? && (id_changed? || slug_changed?)
+  end
+
+  def crm_property_updated?
+    starts_at_changed?
   end
 end

@@ -72,10 +72,6 @@
 
 .cities-list-title {
   flex: 1;
-
-  a {
-    color: black;
-  }
 }
 
 .cities-list {
@@ -97,10 +93,14 @@
 }
 
 .city-actions {
+  margin-top: 1em;
+
   a {
-    opacity: .4;
+    opacity: .9;
+    display: block;
+    margin-bottom: 0.5em;
     &:hover {
-      opacity: .8;
+      opacity: 1;
     }
   }
 }

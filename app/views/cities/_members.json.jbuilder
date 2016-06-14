@@ -6,7 +6,7 @@ json.members do
     json.role member.role
     json.github_nickname member.github_nickname
     json.twitter_nickname member.twitter_nickname
-    json.gravatar_url member.gravatar_url
+    json.thumbnail member.thumbnail
     json.ordered_list_id ordered_list.id
   end
 end

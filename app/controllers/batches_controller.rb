@@ -11,8 +11,10 @@ class BatchesController < ApplicationController
   end
 
   def new
-    next_monday = Date.today + ((1 - Dat.today.wday) % 7)
+    next_monday = Date.today + ((1 - Date.today.wday) % 7)
     @batch = @city.batches.build(starts_at: next_monday)
+    @batch.price = Money.new(590000, 'EUR')
+    @batch.open_for_registration = true
     authorize @batch
   end
 
@@ -31,7 +33,7 @@ class BatchesController < ApplicationController
 
   def update
     if @batch.update(batch_params)
-      redirect_to @batch.city
+      redirect_to city_path(@batch.city)
     else
       render :edit
     end
@@ -67,10 +69,16 @@ class BatchesController < ApplicationController
   end
 
   def set_city
-    @city = City.find(params[:city_id])
+    @city = City.find_by(slug: params[:city_id])
   end
 
   def batch_params
-    params.require(:batch).permit(:slug, :onboarding, :starts_at)
+    params.require(:batch).permit(
+      :starts_at,
+      :time_zone,
+      :price_cents,
+      :price_currency,
+      :open_for_registration, :last_seats, :waiting_list, :full,
+      :onboarding)
   end
 end
