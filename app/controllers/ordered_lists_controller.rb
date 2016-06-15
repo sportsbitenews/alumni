@@ -16,7 +16,7 @@ class OrderedListsController < ApplicationController
           @ordered_list.save
         end
       else
-        @error_content ='"' + @github_nickname + '" is not a valid github nickname.'
+        @error_content ='"' + @github_nickname + '" is not a valid member of alumni.lewagon.org.'
       end
     elsif params[:member_slugs]
       @ordered_list.update(slugs: params[:member_slugs])
