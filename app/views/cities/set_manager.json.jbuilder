@@ -3,7 +3,7 @@ if @user
   json.error_content ''
 else
   json.errors true
-  json.error_content '"' + @github_nickname + '" is not a valid GitHub nickname'
+  json.error_content '"' + @github_nickname + '" is not a valid member of alumni.lewagon.org.'
 end
 json.managers do
   json.array! @managers do |manager|
