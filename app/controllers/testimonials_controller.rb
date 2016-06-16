@@ -8,7 +8,7 @@ class TestimonialsController < ApplicationController
     testimonial.user = user
     authorize testimonial
     if !testimonial.save
-      @error_content = "'" + github_nickname +"' is not an authorized GitHub nickname"
+      @error_content = testimonial.errors.full_messages.join(", ")
     end
     set_testimonials
   end
@@ -18,8 +18,9 @@ class TestimonialsController < ApplicationController
     user = User.find_by_slug(github_nickname)
     testimonial = Testimonial.find(params[:id])
     authorize testimonial
-    if !testimonial.update(content: params[:content], locale: params[:locale], user_id: user.id)
-      @error_content = "'" + github_nickname +"' is not an authorized GitHub nickname"
+    testimonial.user = user
+    if !testimonial.update(content: params[:content], locale: params[:locale])
+      @error_content = testimonial.errors.full_messages.join(", ")
     end
     set_testimonials
   end

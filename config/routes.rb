@@ -24,7 +24,7 @@ Rails.application.routes.draw do
           get "sample"
         end
       end
-      resources :testimonials, only: [ :index]
+      resources :testimonials, only: [ :index ]
       resources :users,        only: [] do
         put :picture, on: :collection
       end
