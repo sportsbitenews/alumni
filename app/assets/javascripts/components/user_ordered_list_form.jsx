@@ -1,4 +1,4 @@
-var UserOrederedListForm = React.createClass({
+var UserOrderedListForm = React.createClass({
   getInitialState() {
     return {
       errors: false,
@@ -25,7 +25,7 @@ var UserOrederedListForm = React.createClass({
       </form>
     );
   },
-  handleSubmit(e) {
+  handleSubmit: function(e) {
     e.preventDefault();
     axios.railsPatch(
       Routes.ordered_list_path(this.props.orderedListId, { format: 'json' }),

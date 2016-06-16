@@ -17,8 +17,8 @@ class CitiesController < ApplicationController
 
   def edit
     @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: @city.slug})
-    @teacher_ordered_list = OrderedList.find_by_name "#{params[:id]}_teachers"
-    @teaching_assistant_ordered_list = OrderedList.find_by_name "#{params[:id]}_teacher_assistants"
+    @teacher_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teachers", element_type: 'User')
+    @teaching_assistant_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teacher_assistants", element_type: 'User')
     @teachers = User.where(github_nickname: @teacher_ordered_list.slugs).sort_by {|t| @teacher_ordered_list.slugs.index(t.github_nickname) }
     @teaching_assistants = User.where(github_nickname: @teaching_assistant_ordered_list.slugs).sort_by {|t| @teaching_assistant_ordered_list.slugs.index(t.github_nickname) }
   end
@@ -39,14 +39,14 @@ class CitiesController < ApplicationController
   def set_manager
     @github_nickname = params[:github_nickname]
     @user = User.find_by_slug(@github_nickname)
-    if params[:remove]
-      @user.cities.delete(@city)
-    else
-      if @user
+    if @user
+      if params[:remove]
+        @user.cities.delete(@city)
+      else
         @user.cities << @city
       end
     end
-    @managers = User.joins(:cities).where(cities: { slug: @city.slug})
+    @managers = User.joins(:cities).where(cities: { slug: @city.slug })
   end
 
   private

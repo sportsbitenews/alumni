@@ -49,7 +49,7 @@ var UserOrderedList = React.createClass({
             disableReorder={false} />
         </div>
         <div className="user-ordered-list-form">
-          <UserOrederedListForm
+          <UserOrderedListForm
             orderedListId={this.props.ordered_list_id}
             position={this.props.position}
             updateMembersList={this.updateMembersList} />

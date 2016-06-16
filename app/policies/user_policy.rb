@@ -17,6 +17,10 @@ class UserPolicy < ApplicationPolicy
     record == user
   end
 
+  def admin_update?
+    user.admin || user.cities.any?
+  end
+
   def impersonate?
     record.admin?
   end

@@ -20,6 +20,6 @@ class MilestoneListElement extends PostListElement {
           <Upvote {...this.props} />
         </div>
       </div>
-    )
+    );
   }
 }
