@@ -38,14 +38,14 @@ class CitiesController < ApplicationController
   def set_manager
     @github_nickname = params[:github_nickname]
     @user = User.find_by_slug(@github_nickname)
-    if params[:remove]
-      @user.cities.delete(@city)
-    else
-      if @user
+    if @user
+      if params[:remove]
+        @user.cities.delete(@city)
+      else
         @user.cities << @city
       end
     end
-    @managers = User.joins(:cities).where(cities: { slug: @city.slug})
+    @managers = User.joins(:cities).where(cities: { slug: @city.slug })
   end
 
   private
