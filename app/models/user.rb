@@ -58,7 +58,8 @@ class User < ActiveRecord::Base
   devise :trackable, :database_authenticatable
   devise :omniauthable, :omniauth_providers => [:github, :slack]
 
-  validates :github_nickname, uniqueness: { allow_nil: false }
+  validates :github_nickname, uniqueness: { allow_nil: false, case_sensitive: false }
+  validates :email, uniqueness: { allow_blank: false, case_sensitive: false }
 
   attr_accessor :onboarding
   validates :first_name, presence: true, if: ->(u) { u.onboarding }
