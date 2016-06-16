@@ -17,30 +17,36 @@ var TestimonialListItem = React.createClass({
     }
     var formClasses = classNames({
       'hidden': !this.state.editing,
-      'city_review_card_edit': true
+      'city_review_card': true
+    });
+    var reviewClasses = classNames({
+      'hidden': this.state.editing,
+      'city_review_card': true
     });
     return (
-      <div className="city_review_card">
-        <div className="city_review_card_headings">
-          <div className="">
-            {flag}
-          </div>
-          <div className="city_review_card_button" onClick={this.onEditClick}>
+      <div className="">
+        <div className={reviewClasses}>
+          <div className="city_review_card_headings">
             <div className="">
-              <i className="mdi mdi-lead-pencil" />
+              {flag}
+            </div>
+            <div className="city_review_card_button" onClick={this.onEditClick}>
+              <div className="">
+                <i className="mdi mdi-lead-pencil" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="city_review_card_content">
-          {this.props.testimonial.content}
-        </div>
-        <div className="city_review_card_user_infos">
-          <div className="city_review_card_user_avatar">
-            <img className="avatar" src={this.props.testimonial.user.thumbnail} />
+          <div className="city_review_card_content">
+            {this.props.testimonial.content}
           </div>
-          <div className="">
-            {this.props.testimonial.user.full_name}
+          <div className="city_review_card_user_infos">
+            <div className="city_review_card_user_avatar">
+              <img className="avatar" src={this.props.testimonial.user.thumbnail} />
+            </div>
+            <div className="">
+              {this.props.testimonial.user.full_name}
+            </div>
           </div>
         </div>
         <div className={formClasses}>

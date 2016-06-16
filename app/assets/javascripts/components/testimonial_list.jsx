@@ -13,11 +13,8 @@ var TestimonialList = React.createClass({
   },
   render: function() {
     var formClasses = classNames({
-      'hidden': !this.state.isFormOpen
-    });
-    var addTestimonialListItemClasses = classNames({
-      'hidden': this.state.isFormOpen,
-      'testimonial-list-item': true
+      'hidden': !this.state.isFormOpen,
+      'city_review_card': true
     });
     var addTestimonialCardClasses = classNames({
       'hidden': this.state.isFormOpen,
@@ -36,19 +33,20 @@ var TestimonialList = React.createClass({
             </div>
           )
         })}
-        <div className={addTestimonialListItemClasses}>
+        <div className='testimonial-list-item'>
           <div className={addTestimonialCardClasses} onClick={this.onAddClick}>
             <div id="testimonial-add-list-item" className="text-center">
               <i className="mdi mdi-plus" />
             </div>
           </div>
-        </div>
-        <div className={formClasses} id="testimonial-list-form">
-          <TestimonialListItemForm
-            city_slug={this.props.city_slug}
-            updateTestimonialList={this.updateTestimonialList}
-            closeTestimonialForm={this.closeTestimonialForm}
-            testimonial={null} />
+          <div className={formClasses} id="testimonial-list-form">
+            <TestimonialListItemForm
+              city_slug={this.props.city_slug}
+              updateTestimonialList={this.updateTestimonialList}
+              closeTestimonialForm={this.closeTestimonialForm}
+              testimonial={null}
+              alumnusDefaultPicture={this.props.alumnus_default_picture} />
+          </div>
         </div>
       </div>
     );

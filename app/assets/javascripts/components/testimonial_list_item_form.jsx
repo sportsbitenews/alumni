@@ -15,33 +15,43 @@ var TestimonialListItemForm = React.createClass({
       var contentDefaultValue = '';
       var localeDefaultValue = 'en';
       var submitBtnText = 'Add';
+      var alumnusPicture = this.props.alumnusDefaultPicture;
     }
     else {
       var githubNicknameDefaultValue = this.props.testimonial.user.slug;
       var contentDefaultValue = this.props.testimonial.content;
       var localeDefaultValue = this.props.testimonial.locale;
       var submitBtnText = 'Update';
+      var alumnusPicture = this.props.testimonial.user.thumbnail;
     }
     return (
       <form action="" className="simple_form" onSubmit={this.handleSubmit}>
-        <div className="form-group bottom-padded-1em">
-          <label>{"Author's GitHub nickname"}</label>
-          <input type="text" ref="github_nickname" className="form-control" defaultValue={githubNicknameDefaultValue} />
-          <div className={errorClasses}><em>{this.state.error_content}</em></div>
+        <div className="city_review_card_headings">
+          <div className="">
+            <select ref="locale" className="form-control input-sm" defaultValue={localeDefaultValue}>
+              <option value="fr">🇫🇷</option>
+              <option value="en">🇬🇧</option>
+            </select>
+          </div>
+          <div className="city_review_card_button" onClick={this.onCancelClick}>
+            <div className="">
+              <i className="mdi mdi-window-close" />
+            </div>
+          </div>
         </div>
-        <div className="form-group bottom-padded-1em">
-          <label>Content</label>
-          <textarea type="text" ref="content" className="form-control" defaultValue={contentDefaultValue} />
+
+        <div className="city_review_card_content">
+          <textarea type="text" ref="content" className="form-control" defaultValue={contentDefaultValue} placeholder="This 9 weeks were crazy..." />
         </div>
-        <div className="form-group bottom-padded-1em">
-          <label>Locale</label>
-          <select ref="locale" className="form-control" defaultValue={localeDefaultValue}>
-            <option value="fr">fr</option>
-            <option value="en">en</option>
-          </select>
+        <div className="city_review_card_user_infos">
+          <div className="city_review_card_user_avatar">
+            <img className="avatar" src={alumnusPicture} />
+          </div>
+          <div className="">
+            <input type="text" ref="github_nickname" className="form-control input-sm" defaultValue={githubNicknameDefaultValue} placeholder="a GitHub nickname" />
+            <div className={errorClasses}><em>{this.state.error_content}</em></div>
+          </div>
         </div>
-        <button type="submit" className="btn btn-primary">{submitBtnText}</button>
-        <div className="btn btn-primary" onClick={this.onCancelClick}>Cancel</div>
       </form>
     );
   },

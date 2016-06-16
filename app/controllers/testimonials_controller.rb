@@ -1,28 +1,36 @@
 class TestimonialsController < ApplicationController
+  before_action :set_city
+
   def create
-    @city = City.find_by_slug(params[:city_slug])
-    @github_nickname = params[:github_nickname]
-    @user = User.find_by_slug(@github_nickname)
-    if @user
-      testimonial = Testimonial.new(content: params[:content], locale: params[:locale])
-      testimonial.user = @user
-      authorize testimonial
-      testimonial.save
+    github_nickname = params[:github_nickname]
+    user = User.find_by_slug(github_nickname)
+    testimonial = Testimonial.new(content: params[:content], locale: params[:locale])
+    testimonial.user = user
+    authorize testimonial
+    if !testimonial.save
+      @error_content = "'" + github_nickname +"' is not an authorized GitHub nickname"
     end
-    @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: params[:city_slug]})
-    authorize @testimonials, :create?
+    set_testimonials
   end
 
   def update
-    @city = City.find_by_slug(params[:city_slug])
-    @github_nickname = params[:github_nickname]
-    @user = User.find_by_slug(@github_nickname)
-    if @user
-      testimonial = Testimonial.find(params[:id])
-      authorize testimonial
-      testimonial.update(content: params[:content], locale: params[:locale], user_id: @user.id)
+    github_nickname = params[:github_nickname]
+    user = User.find_by_slug(github_nickname)
+    testimonial = Testimonial.find(params[:id])
+    authorize testimonial
+    if !testimonial.update(content: params[:content], locale: params[:locale], user_id: user.id)
+      @error_content = "'" + github_nickname +"' is not an authorized GitHub nickname"
     end
+    set_testimonials
+  end
+
+  private
+
+  def set_city
+    @city = City.find_by_slug(params[:city_slug])
+  end
+
+  def set_testimonials
     @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: params[:city_slug]})
-    authorize @testimonials, :update?
   end
 end
