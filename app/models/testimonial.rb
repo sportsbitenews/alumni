@@ -17,7 +17,7 @@
 class Testimonial < ActiveRecord::Base
   include Cacheable
   belongs_to :user
-  validates :user, presence: true, message: "This GitHub nickname is not authorized."
+  validates :user, presence: { message: "'s GitHub nickname is not authorized." }
   validates :content, presence: true
   validates :locale, presence: true
 end

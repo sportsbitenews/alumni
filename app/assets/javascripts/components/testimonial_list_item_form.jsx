@@ -10,6 +10,9 @@ var TestimonialListItemForm = React.createClass({
       'hidden': !this.state.errors,
       'manager-form-errors': true
     });
+    var userInputClasses = classNames({
+      'hidden': this.props.testimonial != null
+    });
     if (this.props.testimonial == null) {
       var githubNicknameDefaultValue = '';
       var contentDefaultValue = '';
@@ -47,7 +50,7 @@ var TestimonialListItemForm = React.createClass({
           <div className="city_review_card_user_avatar">
             <img className="avatar" src={alumnusPicture} />
           </div>
-          <div className="">
+          <div className={userInputClasses}>
             <input type="text" ref="github_nickname" className="form-control input-sm" defaultValue={githubNicknameDefaultValue} placeholder="a GitHub nickname" />
             <div className={errorClasses}><em>{this.state.error_content}</em></div>
           </div>
