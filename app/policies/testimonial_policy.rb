@@ -16,6 +16,6 @@ class TestimonialPolicy < ApplicationPolicy
   private
 
   def user_is_admin_or_manager?
-    user.admin || user.cities.include?(record.user.batch.city)
+    user.admin || !user.cities.empty?
   end
 end
