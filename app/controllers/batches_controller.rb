@@ -45,6 +45,7 @@ class BatchesController < ApplicationController
 
   def register
     @user = current_user
+    @user.batch = @batch
   end
 
   def signing_sheet

@@ -6,8 +6,8 @@
     <%= f.input :time_zone, priority: /Paris/ %>
   </row>
   <row class="post-submissions-row-in">
-    <%= f.input :price_cents, as: 'string', label: "Price (cents)" %>
-    <%= f.input :price_currency, label: "Currency", placeholder: 'EUR', collection: Money::Currency.table.keys.map(&:upcase), selected: f.object.price_currency %>
+    <%= f.input :price_cents, as: 'string', label: "Price (cents)", label_html: { style: 'flex-basis: 110px' } %>
+    <%= f.input :price_currency, label: "€ / £ / $", placeholder: 'EUR', collection: Money::Currency.table.keys.map(&:upcase), selected: f.object.price_currency, label_html: { style: 'flex-basis: 110px' } %>
   </row>
   <row class="post-submissions-row-in">
     <%= f.input :open_for_registration, label: 'Apply open' %>

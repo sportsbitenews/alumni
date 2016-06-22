@@ -55,7 +55,7 @@ class StudentItem extends React.Component {
   }
 
   handleDelete() {
-    if (confirm("Are you sure") === true) {
+    if (confirm("Are you sure?") === true) {
       axios.railsPost(Routes.delete_user_path(this.props.student.id))
         .then((response) => {this.setState({ removed: true })
       })

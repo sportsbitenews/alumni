@@ -9,14 +9,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           sign_in @user, :event => :authentication
           flash[:notice] = "Welcome to the Alumni :) Start browsing these resources"
           redirect_to root_path
-        elsif @user.teacher || @user.staff || @user.admin
-          sign_in @user, :event => :authentication
-          flash[:alert] = "You cannot onboard a Batch, you're Staff! ;)"
-          redirect_to root_path
         else
-          @user.alumni = false
-          @user.batch = batch
-          @user.save!
           sign_in @user, :event => :authentication
           redirect_to register_batch_path(batch)
         end

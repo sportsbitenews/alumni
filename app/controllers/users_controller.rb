@@ -38,7 +38,13 @@ class UsersController < ApplicationController
   end
 
   def delete
-    @user.destroy!
+    if @user.legit?
+      @user.alumni = false
+      @user.batch = nil
+      @user.save
+    else
+      @user.destroy!
+    end
     render nothing: true
   end
 
@@ -78,7 +84,8 @@ class UsersController < ApplicationController
       :birth_day,
       :phone,
       :school,
-      :private_bio
+      :private_bio,
+      :batch_id
     )
   end
 end
