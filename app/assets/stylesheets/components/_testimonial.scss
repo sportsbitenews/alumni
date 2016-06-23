@@ -2,9 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  .btn {
-    margin-right: 5px;
-  }
+  // .btn {
+  //   margin-right: 5px;
+  // }
 }
 .testimonial-list-item {
   padding-bottom: 1em;
@@ -21,7 +21,11 @@
     opacity: .4;
   }
 }
-#testimonial-list-form {
-  width: 80%;
-  padding-top: 1em;
+.testimonial-submit-container {
+  display: flex;
+  flex-grow: 2;
+  justify-content: flex-end;
+}
+.testimonial-submit-button  {
+  margin-left: 5px;
 }

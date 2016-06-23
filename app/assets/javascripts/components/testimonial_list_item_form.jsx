@@ -19,6 +19,7 @@ var TestimonialListItemForm = React.createClass({
       var localeDefaultValue = 'en';
       var submitBtnText = 'Add';
       var alumnusPicture = this.props.alumnusDefaultPicture;
+      var alumnusName = null;
     }
     else {
       var githubNicknameDefaultValue = this.props.testimonial.user.slug;
@@ -26,6 +27,7 @@ var TestimonialListItemForm = React.createClass({
       var localeDefaultValue = this.props.testimonial.locale;
       var submitBtnText = 'Update';
       var alumnusPicture = this.props.testimonial.user.thumbnail;
+      var alumnusName = this.props.testimonial.user.full_name;
     }
     return (
       <form action="" className="simple_form" onSubmit={this.handleSubmit}>
@@ -51,8 +53,16 @@ var TestimonialListItemForm = React.createClass({
             <img className="avatar" src={alumnusPicture} />
           </div>
           <div className={userInputClasses}>
-            <input type="text" ref="github_nickname" className="form-control input-sm" defaultValue={githubNicknameDefaultValue} placeholder="a GitHub nickname" />
+            <input type="text" ref="github_nickname" className="form-control input-sm" defaultValue={githubNicknameDefaultValue} placeholder="GitHub nickname" />
             <div className={errorClasses}><em>{this.state.error_content}</em></div>
+          </div>
+          <div>
+            {alumnusName}
+          </div>
+          <div className="testimonial-submit-container">
+            <div className="testimonial-submit-button" >
+              <input className="btn btn-primary btn-sm" type="submit" value="OK" />
+            </div>
           </div>
         </div>
       </form>
