@@ -54,26 +54,8 @@
 <div class="container-fluid padded" id="city_edit_reviews">
   <h2 class="text-center">Students Reviews</h2>
   <br>
-  <div class="row">
-    <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1">
-      <div class="row">
-        <div class="col-xs-12 col-sm-4">
-          <div class="city_review_card">
-            <p>Very cool stuff, useful and smart</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-          <div class="city_review_card">
-            <p>Very cool stuff, useful and smart</p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-          <div class="city_review_card">
-            <p>Very cool stuff, useful and smart</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="container">
+    <%= react_component "TestimonialList", render(template: 'cities/_testimonials.json.jbuilder') %>
   </div>
 </div>
 

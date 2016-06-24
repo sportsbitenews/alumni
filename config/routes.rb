@@ -90,6 +90,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :testimonials, only: [:create, :update]
+
   namespace :city_admin do
     resources :users, only: %i(update)
   end
