@@ -32,6 +32,6 @@ class TestimonialsController < ApplicationController
   end
 
   def set_testimonials
-    @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: params[:city_slug]})
+    @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: params[:city_slug]}).order(:id)
   end
 end

@@ -16,7 +16,7 @@ class CitiesController < ApplicationController
   end
 
   def edit
-    @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: @city.slug})
+    @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: @city.slug}).order(:id)
     @teacher_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teachers", element_type: 'User')
     @teaching_assistant_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teacher_assistants", element_type: 'User')
     @teachers = User.where(github_nickname: @teacher_ordered_list.slugs).sort_by {|t| @teacher_ordered_list.slugs.index(t.github_nickname) }
