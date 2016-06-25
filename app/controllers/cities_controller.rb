@@ -25,6 +25,7 @@ class CitiesController < ApplicationController
 
   def update
     if @city.update(city_params)
+      flash[:notice] = 'Your city has been updated :)'
       redirect_to city_path(@city)
     else
       render :edit
@@ -57,6 +58,11 @@ class CitiesController < ApplicationController
   end
 
   def city_params
-    params.require(:city).permit(:logistic_specifics, :marketing_specifics)
+    params.require(:city).permit(
+      :logistic_specifics,
+      :marketing_specifics,
+      :contact_phone_number,
+      :contact_phone_number_displayed,
+      :contact_phone_number_name)
   end
 end

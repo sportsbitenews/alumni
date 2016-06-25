@@ -39,6 +39,9 @@
 #  mailchimp_api_key                :string
 #  slack_channel_id                 :string
 #  marketing_specifics              :text
+#  contact_phone_number             :string
+#  contact_phone_number_displayed   :boolean          default(FALSE), not null
+#  contact_phone_number_name        :string
 #
 # Indexes
 #

@@ -24,6 +24,19 @@
   <div class="banner-gradient"></div>
 </div>
 
+<div class="container">
+  <h3 class="text-center">
+    Contact Phone
+  </h3>
+  <%= simple_form_for @city do |f| %>
+    <%= f.input :contact_phone_number, label: 'Phone Number', placeholder: '+33 612 345 678' %>
+    <%= f.input :contact_phone_number_displayed, label: 'Displayed?' %>
+    <%= f.input :contact_phone_number_name, label: 'First Name', placeholder: 'George' %>
+    <br>
+    <%= f.submit class: 'btn btn-primary', label: 'Update contact phone information' %>
+  <% end %>
+</div>
+
 <%= react_component "CitySpecificsForm", {
   city: @city.slug,
   specifics: @city.marketing_specifics,
