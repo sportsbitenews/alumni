@@ -22,6 +22,7 @@ class Resource < ActiveRecord::Base
   COLOR_TO = '#ffcc33'
 
   validates :tagline, presence: true
+  before_validation :normalize_url
   validates :url, presence: true, url: true, uniqueness: true
 
   def search_data
@@ -42,5 +43,12 @@ class Resource < ActiveRecord::Base
 
   def slack_text
     tagline
+  end
+
+  private
+
+  def normalize_url
+    uri = URI.parse url.strip
+    self.url = uri.normalize
   end
 end
