@@ -9,7 +9,10 @@ class CreateCampInKitt < ActiveJob::Base
         slug: batch.slug,
         starts_at: batch.starts_at,
         time_zone: batch.time_zone,
-        city: batch.city.name
+        city: {
+          name: batch.city.name,
+          slug: batch.city.slug
+        }
       }
     }
     client.post(payload.to_json, content_type: :json)
