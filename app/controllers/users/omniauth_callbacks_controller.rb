@@ -3,7 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_for_github_oauth(request.env["omniauth.auth"])
     omniauth_params = request.env["omniauth.params"]
     if omniauth_params.has_key? "batch"
-      batch = Batch.find(omniauth_params['batch'])
+      batch = Batch.find_by(slug: omniauth_params['batch'])
       if batch.onboarding
         if @user.alumni
           sign_in @user, :event => :authentication

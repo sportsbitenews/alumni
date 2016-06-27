@@ -87,10 +87,6 @@
   padding-left: 0 !important;
   margin-top: 20px;
 
-  &:hover {
-    .batch-item-actions { visibility: visible }
-  }
-
   &:first-child {
     margin-top: 0;
   }
@@ -100,7 +96,6 @@
 }
 
 .batch-item-actions {
-  visibility: hidden;
   a {
     font-size: 14px;
     opacity: 0.4;

@@ -28,7 +28,7 @@
       <% @city.batches.order(starts_at: :desc).each do |batch| %>
           <div class="city-item batch-item">
             <h3>
-              <%= link_to batch.slug.blank? ? "Future Batch" : "Batch ##{batch.slug}", batch %>
+              <%= batch.slug.blank? ? "Future Batch" : "Batch ##{batch.slug}" %>
               <% if policy(batch).edit? %>
                 <small class='batch-item-actions'><%= link_to 'Edit', edit_batch_path(batch) %></small>
               <% end %>
