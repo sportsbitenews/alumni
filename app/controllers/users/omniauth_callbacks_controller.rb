@@ -11,7 +11,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           redirect_to root_path
         else
           sign_in @user, :event => :authentication
-          redirect_to register_batch_path(batch)
+          redirect_to register_batch_path(batch.slug)
         end
       else
         flash[:alert] = "The registration period is over for this batch."

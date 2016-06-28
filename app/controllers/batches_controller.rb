@@ -1,6 +1,6 @@
 class BatchesController < ApplicationController
-  before_action :set_batch, only: %i(edit update register)
-  before_action :set_batch_from_slug, only: %i(show signing_sheet)
+  before_action :set_batch, only: %i(edit update)
+  before_action :set_batch_from_slug, only: %i(show register signing_sheet)
   before_action :set_city, only: %i(new create)
   skip_before_action :authenticate_user!, only: %i(onboarding show)
   skip_after_action :verify_authorized, only: :onboarding
