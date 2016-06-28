@@ -54,6 +54,7 @@ Rails.application.routes.draw do
     member do
       get :register
       get :signing_sheet
+      patch :signing_sheet
     end
   end
 

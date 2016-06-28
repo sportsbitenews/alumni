@@ -47,19 +47,37 @@ class SigningSheet < Prawn::Document
   end
 
   def draw_footer
-    bounding_box([0, cursor - 20], width: 130, height: 110, padding: 10) do
+    bounding_box([0, cursor - 10], width: 130, height: 110, padding: 10) do
       transparent(0.5) { stroke_bounds }
       move_down 5
       text "Date", align: :center
     end
 
-    bounding_box([150, cursor + 110], width: 170, height: 110, padding: 10) do
+    bounding_box([150, cursor + 50], width: 170, height: 50, padding: 10) do
       transparent(0.5) { stroke_bounds }
       move_down 5
-      text "Nom & Signature Formateur", align: :center
+      text "Formateur (15 - 19h)", align: :center
+      move_down 25
+      font_size(8) do
+        transparent(0.3) do
+          text "Nom + Signature", align: :center
+        end
+      end
     end
 
-    bounding_box([340, cursor + 110], width: 190, height: 110, padding: 10) do
+    bounding_box([150, cursor + 110], width: 170, height: 50, padding: 10) do
+      transparent(0.5) { stroke_bounds }
+      move_down 5
+      text "Formateur (9h - 13h)", align: :center
+      move_down 25
+      font_size(8) do
+        transparent(0.3) do
+          text "Nom + Signature", align: :center
+        end
+      end
+    end
+
+    bounding_box([340, cursor + 50], width: 190, height: 110, padding: 10) do
       transparent(0.5) { stroke_bounds }
       move_down 5
       text "Cachet de l'organisme de formation", align: :center
@@ -74,7 +92,7 @@ class SigningSheet < Prawn::Document
     move_down 20
 
     draw_context
-    move_down 10
+    move_down 5
 
     draw_students_table
 
