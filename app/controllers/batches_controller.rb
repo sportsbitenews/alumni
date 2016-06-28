@@ -49,11 +49,21 @@ class BatchesController < ApplicationController
   end
 
   def signing_sheet
-    sheet = SigningSheet.new(@batch)
-    send_data sheet.render,
-      filename: "Batch ##{@batch.slug} - Émargement.pdf",
-      type: "application/pdf",
-      disposition: :inline
+    respond_to do |format|
+      format.html
+      format.pdf do
+        if params[:city]  # In case we receive a PATCH request from the form.
+          @batch.city.update(params.require(:city).permit(
+            :company_name, :company_nature, :company_hq, :company_purpose_and_registration, :training_address))
+        end
+
+        sheet = SigningSheet.new(@batch)
+        send_data sheet.render,
+          filename: "Batch ##{@batch.slug} - Émargement.pdf",
+          type: "application/pdf",
+          disposition: :inline
+      end
+    end
   end
 
   private

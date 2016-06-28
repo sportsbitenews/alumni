@@ -22,7 +22,7 @@ class BatchPolicy < ApplicationPolicy
   end
 
   def signing_sheet?
-    admin_or_city_user?
+    admin_or_city_user? && record.slug.present?
   end
 
   private

@@ -1,0 +1,32 @@
+<div class='cities-list-overlay'>
+  <div class='cities-icon-container'>
+    <%= render 'cities/index_menu_item' %>
+
+    <%= link_to city_path(@batch.city) do %>
+      <i class='mdi mdi-clipboard-text'></i>
+    <% end %>
+    <i class='mdi mdi-file-pdf is-active'></i>
+  </div>
+
+  <%= simple_form_for(@batch.city, url: signing_sheet_batch_path(@batch.slug, format: :pdf)) do |f| %>
+    <row class="post-submissions-row-in">
+      <%= f.input :company_name, label: 'Nom de la société' %>
+    </row>
+    <row class="post-submissions-row-in">
+      <%= f.input :company_nature, label: 'Nature', placeholder: 'SAS au capital de...' %>
+    </row>
+    <row class="post-submissions-row-in">
+      <%= f.input :company_hq, label: 'Siège social', placeholder: 'Adresse + RCS' %>
+    </row>
+    <row class="post-submissions-row-in">
+      <%= f.input :company_purpose_and_registration, label: 'OF / DiRECCTE / n°', placeholder: 'Organisme de formation enregistré auprès de la DIRECCTE ____ sous le n° ___' %>
+    </row>
+    <row class="post-submissions-row-in">
+      <%= f.input :training_address, label: 'Lieu de la formation', placeholder: 'Adresse' %>
+    </row>
+
+    <div class="text-center">
+      <%= f.submit "Télécharger la feuille d'émargement", class: 'button button-success' %>
+    </div>
+  <% end %>
+</div>

@@ -29,6 +29,12 @@
           <div class="city-item batch-item">
             <h3>
               <%= batch.slug.blank? ? "Future Batch" : "Batch ##{batch.slug}" %>
+              <% if policy(batch).signing_sheet? %>
+                <small class="batch-item-actions">
+                  <%= link_to 'Signing Sheet', signing_sheet_batch_path(batch.slug) %>
+                  |
+                </small>
+              <% end %>
               <% if policy(batch).edit? %>
                 <small class='batch-item-actions'><%= link_to 'Edit', edit_batch_path(batch) %></small>
               <% end %>
