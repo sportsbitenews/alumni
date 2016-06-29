@@ -12,6 +12,6 @@ class OrderedListPolicy < ApplicationPolicy
   private
 
   def user_is_manager_or_admin?
-    user.admin || user.cities.map(&:slug).include?(record.name.match(/([a-z]+)/)[1])
+    user.admin || user.cities.map(&:slug).include?(record.name.match(/([a-z-]+)/)[1])
   end
 end
