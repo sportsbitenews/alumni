@@ -12,8 +12,8 @@ class UpdateTrelloBoardJob < ActiveJob::Base
         :'X-CRM-TOKEN' => ENV['CRM_TOKEN']
     )
 
-    batch.trello_inbox_list_id = response["inbox_list_id"]
-    batch.save!
+    # batch.trello_inbox_list_id = response["inbox_list_id"]
+    # batch.save!
   end
 
   private
