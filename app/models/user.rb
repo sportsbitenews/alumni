@@ -58,8 +58,9 @@ class User < ActiveRecord::Base
   devise :trackable, :database_authenticatable
   devise :omniauthable, :omniauth_providers => [:github, :slack]
 
-  validates :github_nickname, uniqueness: { allow_nil: false, case_sensitive: false }
-  validates :email, uniqueness: { allow_blank: false, case_sensitive: false }
+  validates :github_nickname, presence: true, uniqueness: { allow_nil: false, case_sensitive: false }
+  validate :github_nickname_exists?
+  validates :email, presence: true, uniqueness: true
 
   attr_accessor :onboarding
   validates :first_name, presence: true, if: ->(u) { u.onboarding }
@@ -158,5 +159,20 @@ class User < ActiveRecord::Base
 
   def octokit_client
     @octokit_client ||= Octokit::Client.new(access_token: github_token)
+  end
+
+  def github_nickname_exists?
+    return if Rails.env.test?
+
+    client = Octokit::Client.new
+    begin
+      github_user = client.user(self.github_nickname)
+      self.github_nickname = github_user.login
+      self.uid = github_user.id if uid.blank?
+      self.gravatar_url = github_user.gravatar_url if gravatar_url.blank?
+      self.email = github_user.email if email.blank?
+    rescue Octokit::NotFound => e
+      errors.add :github_nickname, "This github user does not exist"
+    end
   end
 end
