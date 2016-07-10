@@ -31,6 +31,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.save
       sign_in @user, :event => :authentication
       redirect_to after_sign_in
+    elsif !@user.alumni && session[:onboarding]
+      redirect_to onboarding_path
     else
       flash[:alert] = "Sorry, this website is reserved to the Wagon alumni."
       redirect_to new_user_session_path

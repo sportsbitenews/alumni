@@ -31,6 +31,7 @@ class UsersController < ApplicationController
   def update
     @user.onboarding = true
     if @user.update_attributes(user_params)
+      session[:onboarding] = nil
       redirect_to root_path
     else
       render 'batches/register'
