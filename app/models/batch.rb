@@ -42,14 +42,12 @@ class Batch < ActiveRecord::Base
   validates :city, presence: true
   validates :starts_at, presence: true
   validates :time_zone, presence: true
-  validates :price_cents, numericality: { greater_than_or_equal_to: 4_500_00 }  # cents
+  validates :price_cents, numericality: { greater_than_or_equal_to: 1_000_00 }  # cents
 
   belongs_to :city
   has_many :users  # Students
   has_many :projects, -> { order(position: :asc) }
   has_and_belongs_to_many :teachers, class_name: "User", foreign_key: "batch_id"
-
-  before_validation :set_ends_at, if: ->(batch) { batch.starts_at_changed? && !batch.ends_at_changed? }
 
   after_create :create_trello_board
   after_save :create_slack_channel, if: :slug_set?
@@ -68,11 +66,6 @@ class Batch < ActiveRecord::Base
     styles: { large: "1500x844>" }, processors: [ :thumbnail ]
   validates_attachment_content_type :cover_image,
     content_type: /\Aimage\/.*\z/
-
-  def set_ends_at
-    duration = self.city.slug == 'amsterdam' ? 12.weeks : 9.weeks
-    self.ends_at = self.starts_at + duration - 3.days if self.starts_at
-  end
 
   def user_count
     users.size
@@ -107,6 +100,6 @@ class Batch < ActiveRecord::Base
   end
 
   def crm_property_updated?
-    starts_at_changed?
+    starts_at_changed? || ends_at_changed?
   end
 end

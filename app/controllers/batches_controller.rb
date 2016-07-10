@@ -33,7 +33,8 @@ class BatchesController < ApplicationController
 
   def update
     if @batch.update(batch_params)
-      redirect_to city_path(@batch.city)
+      flash[:notice] = 'The batch has successfully been updated!'
+      redirect_to edit_batch_path(@batch)
     else
       render :edit
     end
@@ -86,6 +87,7 @@ class BatchesController < ApplicationController
   def batch_params
     params.require(:batch).permit(
       :starts_at,
+      :ends_at,
       :time_zone,
       :price_cents,
       :price_currency,

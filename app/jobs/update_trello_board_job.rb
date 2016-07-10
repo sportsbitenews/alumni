@@ -3,7 +3,7 @@ class UpdateTrelloBoardJob < ActiveJob::Base
     batch = Batch.find(batch_id)
 
     payload = {
-      batch: batch.as_json(only: %i(starts_at))
+      batch: batch.as_json(only: %i(starts_at ends_at))
     }
 
     response = JSON.parse(
@@ -11,9 +11,6 @@ class UpdateTrelloBoardJob < ActiveJob::Base
         content_type: :json,
         :'X-CRM-TOKEN' => ENV['CRM_TOKEN']
     )
-
-    # batch.trello_inbox_list_id = response["inbox_list_id"]
-    # batch.save!
   end
 
   private

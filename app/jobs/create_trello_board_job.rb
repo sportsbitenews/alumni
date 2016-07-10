@@ -7,7 +7,8 @@ class CreateTrelloBoardJob < ActiveJob::Base
         slug: batch.city.slug
       },
       batch: {
-        starts_at: batch.starts_at
+        starts_at: batch.starts_at,
+        ends_at: batch.ends_at
       }
     }
 
