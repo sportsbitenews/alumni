@@ -8,7 +8,7 @@ if user.staff
 elsif user.teacher
   json.badge 'teacher'
 elsif user.teacher_assistant
-  json.badge 'teacher assistant'
+  json.badge 'teaching assistant'
 else
   json.badge 'alumni'
 end
