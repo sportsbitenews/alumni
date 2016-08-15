@@ -1,0 +1,42 @@
+<div class='cities-list-overlay'>
+
+  <h1>
+    Offboarding
+    <% if @user %>
+      <strong><%= @user.name %></strong>?
+    <% end %>
+  </h1>
+
+  <hr>
+
+  <% if @user %>
+    <%= image_tag @user.thumbnail, height: 200, width: 200 %>
+
+    <p style="margin-top: 1em">
+      <strong>First</strong>, go to the <a href="https://lewagon-alumni.slack.com/admin" target="_blank">Slack Admin</a> and manually disable <code><%= @user.email %></code>
+    </p>
+
+    <p style="margin-top: 1em">Then if you confirm the offboarding,</p>
+
+    <ol>
+      <li><%= @user.first_name %> will be removed from the <strong>Alumni Database</strong></li>
+      <li><%= @user.first_name %> will be removed from <strong>Kitt & Karr</strong></li>
+    </ol>
+
+    <p style="margin: 1em 0 2em 0">
+      <strong>⚠️ THIS CANNOT BE UNDONE!</strong>
+    </p>
+
+    <%= button_to "Confirm offboarding of #{@user.first_name}", offboard_user_path(@user), class: 'btn btn-danger' %>
+
+  <% else %>
+
+    <%= form_tag(offboarding_path, method: :get, class: 'form') do %>
+      <div class="form-group">
+        <label class="control-label">GitHub Nickname</label>
+        <%= text_field_tag :github_nickname, nil, class: 'form-control' %>
+      </div>
+      <%= submit_tag "Check before offboarding", class: 'btn btn-warning', style: 'margin-top: 1em' %>
+    <% end %>
+  <% end %>
+</div>
