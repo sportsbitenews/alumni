@@ -7,7 +7,7 @@ class Mailchimp
   end
 
   def subscribe_to_alumni_list(user)
-    @gibbon.lists(@list_id).members(Digest::MD5.hexdigest(user.email)).upsert(
+    mailchimp_member(user.email).upsert(
       body: {
         email_address: user.email,
         status: "subscribed",
@@ -20,5 +20,21 @@ class Mailchimp
         }
       }
     )
+  end
+
+  def remove_from_alumni_list(user)
+    mailchimp_member(user.email).delete
+  rescue Gibbon::MailChimpError => e
+    if e.message =~ /405/ || e.message =~ /404/
+      puts "Could not find member with email #{user.email}"
+    else
+      raise e
+    end
+  end
+
+  private
+
+  def mailchimp_member(email)
+    @gibbon.lists(@list_id).members(Digest::MD5.hexdigest(email))
   end
 end

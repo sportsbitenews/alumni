@@ -39,6 +39,13 @@ class SlackService
     @client.users_list["members"]
   end
 
+  def users_by_email
+    users.reduce(Hash.new) do |h, user|
+      h[user["profile"]["email"]] = user
+      h
+    end
+  end
+
   def user_messages_slack_url(user)
     username = slack_username(user)
     "https://lewagon-alumni.slack.com/messages/@#{username}" if username

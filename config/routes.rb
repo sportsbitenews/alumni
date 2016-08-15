@@ -88,8 +88,11 @@ Rails.application.routes.draw do
     member do
       post :confirm
       post :delete
+      post :offboard
     end
   end
+  get '/offboarding',                  to: 'users#offboarding'
+  get '/offboarding/:github_nickname', to: 'users#offboarding'
 
   resources :testimonials, only: [:create, :update]
 

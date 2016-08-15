@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_after_action :verify_authorized, only: %i(show)
 
-  before_action :set_user, only: %i(update confirm delete)
+  before_action :set_user, only: %i(update confirm delete offboard)
   def index
     query = params[:query]
     if query.blank?
@@ -69,6 +69,30 @@ class UsersController < ApplicationController
     authorize true_user
     stop_impersonating_user
     redirect_to params[:return_to]
+  end
+
+  def offboarding
+    authorize current_user
+    unless params[:github_nickname].blank?
+      @user = User.where('github_nickname ILIKE ?', params[:github_nickname]).first
+    end
+  end
+
+  def offboard
+    authorize current_user
+
+    # Remove from Kitt & Karr
+    client = RestClient::Resource.new("#{ENV['KITT_BASE_URL']}/api/v1/alumni/destroy_student", user: 'alumni', password: ENV['ALUMNI_PASSWORD'])
+    client.delete({ user: { uid: @user.uid } }.to_json, content_type: :json)
+
+    # Remove from Mailchimp
+    Mailchimp.new.remove_from_alumni_list(@user)
+
+    # Remove from Alumni DB
+    @user.destroy!
+
+    flash[:notice] = "#{@user.first_name} has been offboarded."
+    redirect_to offboarding_path
   end
 
   private

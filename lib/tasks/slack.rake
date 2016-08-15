@@ -7,10 +7,7 @@ namespace :slack do
   end
 
   task associate_users: :environment do
-    slack_users = SlackService.new.users.reduce(Hash.new) do |h, user|
-      h[user["profile"]["email"]] = user
-      h
-    end
+    slack_users = SlackService.new.users_by_email
 
     User.where(slack_uid: nil).each do |user|
       if slack_user = slack_users[user.email]

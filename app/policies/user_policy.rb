@@ -17,6 +17,14 @@ class UserPolicy < ApplicationPolicy
     record == user
   end
 
+  def offboarding?
+    offboard?
+  end
+
+  def offboard?
+    user.admin
+  end
+
   def admin_update?
     user.admin || user.cities.any?
   end
