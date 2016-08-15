@@ -82,8 +82,8 @@ class UsersController < ApplicationController
     authorize current_user
 
     # Remove from Kitt & Karr
-    client = RestClient::Resource.new("#{ENV['KITT_BASE_URL']}/api/v1/alumni/destroy_student", user: 'alumni', password: ENV['ALUMNI_PASSWORD'])
-    client.delete({ user: { uid: @user.uid } }.to_json, content_type: :json)
+    client = RestClient::Resource.new("#{ENV['KITT_BASE_URL']}/api/v1/alumni/student/#{@user.uid}", user: 'alumni', password: ENV['ALUMNI_PASSWORD'])
+    client.delete
 
     # Remove from Mailchimp
     Mailchimp.new.remove_from_alumni_list(@user)
