@@ -25,7 +25,7 @@ class ProjectDetail extends React.Component {
 
     var batch = null;
     if (this.props.batch) {
-      batch = (<a href={Routes.batch_path(this.props.batch.id)}>
+      batch = (<a href={Routes.batch_path(this.props.batch.slug)}>
                 <div className='project-detail-batch'>
                   {`Batch #${this.props.batch.slug} - ${this.props.batch.city}`}
                 </div>
