@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625102116) do
+ActiveRecord::Schema.define(version: 20160905110400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,8 +106,10 @@ ActiveRecord::Schema.define(version: 20160625102116) do
     t.string   "contact_phone_number"
     t.boolean  "contact_phone_number_displayed",   default: false, null: false
     t.string   "contact_phone_number_name"
+    t.integer  "city_group_id"
   end
 
+  add_index "cities", ["city_group_id"], name: "index_cities_on_city_group_id", using: :btree
   add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
 
   create_table "cities_users", id: false, force: :cascade do |t|
@@ -117,6 +119,14 @@ ActiveRecord::Schema.define(version: 20160625102116) do
 
   add_index "cities_users", ["city_id"], name: "index_cities_users_on_city_id", using: :btree
   add_index "cities_users", ["user_id"], name: "index_cities_users_on_user_id", using: :btree
+
+  create_table "city_groups", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.text     "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -331,6 +341,7 @@ ActiveRecord::Schema.define(version: 20160625102116) do
 
   add_foreign_key "answers", "users"
   add_foreign_key "batches", "cities"
+  add_foreign_key "cities", "city_groups"
   add_foreign_key "jobs", "users"
   add_foreign_key "milestones", "projects"
   add_foreign_key "milestones", "users"
