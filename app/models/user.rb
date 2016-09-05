@@ -93,6 +93,8 @@ class User < ActiveRecord::Base
 
   acts_as_voter
 
+  after_create :set_default_picture
+
   # after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }
 
   # include Devise::Controllers::Helpers
@@ -173,6 +175,13 @@ class User < ActiveRecord::Base
       self.email = github_user.email if email.blank?
     rescue Octokit::NotFound => e
       errors.add :github_nickname, "This github user does not exist"
+    end
+  end
+
+  def set_default_picture
+    unless self.gravatar_url.nil?
+      self.picture = self.gravatar_url
+      self.save
     end
   end
 end
