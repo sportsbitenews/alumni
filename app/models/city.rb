@@ -73,6 +73,7 @@ class City < ActiveRecord::Base
   after_validation :geocode, classroom_pictureif: :address_changed?
 
   has_many :batches
+  belongs_to :city_group
 
   def open_batches
     batches.where(open_for_registration: true).order(:starts_at)
