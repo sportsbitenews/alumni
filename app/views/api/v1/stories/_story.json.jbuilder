@@ -25,7 +25,8 @@ json.picture story.picture.url(:cover)
 user = User.includes(:batch).find(story.user_id)
 
 json.alumni do
-  json.extract!user , :id, :github_nickname, :thumbnail, :first_name, :last_name
+  json.extract!user , :id, :github_nickname, :first_name, :last_name
+  json.thumbnail user.thumbnail(:thumb)
   json.slug user.batch.slug if user.batch
   json.city user.batch.city.name if user.batch
 end

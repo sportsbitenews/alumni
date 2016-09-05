@@ -1,6 +1,7 @@
  json.staff do
   json.teachers @teachers.each do |teacher|
-    json.extract! teacher, :id, :github_nickname, :twitter_nickname, :thumbnail, :first_name, :last_name, :role
+    json.extract! teacher, :id, :github_nickname, :twitter_nickname, :first_name, :last_name, :role
+    json.thumbnail teacher.thumbnail(:thumb)
     json.bio do
       json.fr teacher.bio_fr
       json.en teacher.bio_en
@@ -11,7 +12,8 @@
     end
   end
   json.teacher_assistants @teacher_assistants.each do |teacher|
-    json.extract! teacher, :id, :github_nickname, :twitter_nickname, :thumbnail, :first_name, :last_name, :role
+    json.extract! teacher, :id, :github_nickname, :twitter_nickname, :first_name, :last_name, :role
+    json.thumbnail teacher.thumbnail(:thumb)
     json.bio do
       json.fr teacher.bio_fr
       json.en teacher.bio_en
