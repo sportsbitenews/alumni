@@ -1,6 +1,6 @@
 json.groups do
   json.array! @groups do |group|
-    group_ordered_list = OrderedList.find_by(name: "#{group.slug}_official_cities")
+    group_ordered_list = OrderedList.find_by(name: "#{group.slug}_cities")
     json.group group.name
     json.icon group.icon
     json.cities do
