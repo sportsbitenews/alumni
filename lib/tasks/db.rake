@@ -5,10 +5,11 @@ namespace :db do
     Bundler.with_clean_env do
       puts "[1/4] Fetching DB password from Heroku"
       db_url = `heroku config:get DATABASE_URL`
-      db_password = URI(db_url).password
+      uri = URI(db_url)
+      db_password = uri.password
 
       puts "[2/4] Dumping DB"
-      `PGPASSWORD=#{db_password} pg_dump -h #{db_url.to_s.scan(/@.*\.com/).first[1..-1]} -U alumni -d alumni -F c -b -v -f tmp/alumni_prod_rds.dump`
+      `PGPASSWORD=#{db_password} pg_dump -h #{uri.host} -U alumni -d alumni -F c -b -v -f tmp/alumni_prod_rds.dump`
 
       puts "[3/4] Restoring dump on local database"
       `pg_restore --clean --verbose --no-acl --no-owner -h localhost -d #{c["database"]} tmp/alumni_prod_rds.dump`
