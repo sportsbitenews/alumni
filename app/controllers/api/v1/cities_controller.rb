@@ -1,12 +1,12 @@
 class Api::V1::CitiesController < Api::V1::BaseController
   def index
-    @city_groups_ordered_list = OrderedList.find_by_name('city_groups')
-    if @city_groups_ordered_list
-      @groups = CityGroup.where(slug: @city_groups_ordered_list.slugs).sort_by do |group|
-        @city_groups_ordered_list.slugs.index(group.slug)
+    @city_ordered_list = OrderedList.find_by_name('official_cities')
+    if @city_ordered_list
+      @cities = City.where(slug: @city_ordered_list.slugs).sort_by do |city|
+        @city_ordered_list.slugs.index(city.slug)
       end
     else
-      @groups = CityGroup.all
+      @cities = City.all
     end
     @meetup_client = MeetupApi.new
   end

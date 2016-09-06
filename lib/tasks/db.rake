@@ -8,7 +8,7 @@ namespace :db do
       db_password = URI(db_url).password
 
       puts "[2/4] Dumping DB"
-      `PGPASSWORD=#{db_password} pg_dump -h kitt.cwtxaafignjt.eu-west-1.rds.amazonaws.com -U alumni -d alumni -F c -b -v -f tmp/alumni_prod_rds.dump`
+      `PGPASSWORD=#{db_password} pg_dump -h #{db_url.to_s.scan(/@.*\.com/).first[1..-1]} -U alumni -d alumni -F c -b -v -f tmp/alumni_prod_rds.dump`
 
       puts "[3/4] Restoring dump on local database"
       `pg_restore --clean --verbose --no-acl --no-owner -h localhost -d #{c["database"]} tmp/alumni_prod_rds.dump`
