@@ -1,4 +1,5 @@
 json.extract! user, *user_properties
+json.thumbnail user.thumbnail(width: 180, height: 180, crop: :fill)
 
 json.connected_to_slack user.connected_to_slack
 json.user_messages_slack_url user.user_messages_slack_url

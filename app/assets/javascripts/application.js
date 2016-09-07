@@ -1,9 +1,5 @@
-/*
-  Not required:
-  jquery
-  jquery_ujs
-  bootstrap-sprockets
-*/
+//= require jquery
+//= require jquery_ujs
 
 //= require react
 //= require react_ujs
@@ -11,6 +7,9 @@
 //= require axios
 //= require ./axios_ujs
 //= require components
+//= require jquery-fileupload/basic
+//= require cloudinary/jquery.cloudinary
+//= require attachinary
 //= require_tree ./app
 
 

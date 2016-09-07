@@ -52,7 +52,8 @@
 
 class User < ActiveRecord::Base
   include Cacheable
-  PUBLIC_PROPERTIES = %i(id github_nickname first_name last_name thumbnail)
+  include CloudinaryHelper
+  PUBLIC_PROPERTIES = %i(id github_nickname first_name last_name)
   PRIVATE_PROPERTIES = %i(email slack_uid connected_to_slack)
 
   devise :trackable, :database_authenticatable
@@ -90,6 +91,8 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
+
+  has_attachment :photo
 
   acts_as_voter
 
@@ -143,10 +146,10 @@ class User < ActiveRecord::Base
     )
   end
 
-  def thumbnail(style = :medium)
-    picture.exists? ? picture.url(style) : gravatar_url
-  rescue SocketError
-    gravatar_url
+  def thumbnail(options={})
+    self.photo.nil? ? gravatar_url : cloudinary_url(self.photo.path, options)
+    rescue SocketError
+      gravatar_url
   end
 
   def ready_for_validation?
@@ -180,7 +183,7 @@ class User < ActiveRecord::Base
 
   def set_default_picture
     unless self.gravatar_url.nil?
-      self.picture = self.gravatar_url
+      self.photo = open(self.gravatar_url)
       self.save
     end
   end

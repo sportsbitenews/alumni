@@ -10,7 +10,7 @@ json.projects @projects.each do |project|
     json.makers do
       json.array! project.users.each do |user|
         json.extract! user, :id, :github_nickname
-        json.thumbnail user.thumbnail(:thumb)
+        json.thumbnail user.thumbnail(width: 35, height: 35, crop: :fill)
       end
     end
     if project.batch
