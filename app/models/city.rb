@@ -42,10 +42,12 @@
 #  contact_phone_number             :string
 #  contact_phone_number_displayed   :boolean          default(FALSE), not null
 #  contact_phone_number_name        :string
+#  city_group_id                    :integer
 #
 # Indexes
 #
-#  index_cities_on_slug  (slug) UNIQUE
+#  index_cities_on_city_group_id  (city_group_id)
+#  index_cities_on_slug           (slug) UNIQUE
 #
 
 class City < ActiveRecord::Base
@@ -73,6 +75,7 @@ class City < ActiveRecord::Base
   after_validation :geocode, classroom_pictureif: :address_changed?
 
   has_many :batches
+  belongs_to :city_group
 
   def open_batches
     batches.where(open_for_registration: true).order(:starts_at)

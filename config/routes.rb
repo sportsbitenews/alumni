@@ -12,6 +12,7 @@ Rails.application.routes.draw do
           get "slugs"
         end
       end
+      resources :city_groups,  only: [ :index ]
       resources :batches,      only: [ :show ] do
         collection do
           get "live"
