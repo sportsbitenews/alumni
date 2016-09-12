@@ -27,6 +27,22 @@ ActiveRecord::Schema.define(version: 20160905110400) do
 
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
+  create_table "attachinary_files", force: :cascade do |t|
+    t.integer  "attachinariable_id"
+    t.string   "attachinariable_type"
+    t.string   "scope"
+    t.string   "public_id"
+    t.string   "version"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "format"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+
   create_table "batches", force: :cascade do |t|
     t.string   "slug"
     t.integer  "city_id"
