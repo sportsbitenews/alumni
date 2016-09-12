@@ -63,6 +63,10 @@ class CitiesController < ApplicationController
       :marketing_specifics,
       :contact_phone_number,
       :contact_phone_number_displayed,
-      :contact_phone_number_name)
+      :contact_phone_number_name,
+      :description_fr,
+      :description_en,
+      :location,
+      :address)
   end
 end

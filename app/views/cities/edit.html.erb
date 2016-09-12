@@ -33,7 +33,7 @@
     <%= f.input :contact_phone_number_displayed, label: 'Displayed?' %>
     <%= f.input :contact_phone_number_name, label: 'First Name', placeholder: 'George' %>
     <br>
-    <%= f.submit class: 'btn btn-primary', label: 'Update contact phone information' %>
+    <%= f.submit class: 'btn btn-primary', value: 'Update contact phone information' %>
   <% end %>
 </div>
 
@@ -105,6 +105,39 @@
   token: form_authenticity_token,
   placeholder: 'Customize city page tips on www'
 }%>
+
+<div class="container">
+  <h3 class="text-center">
+    Location
+  </h3>
+  <%= simple_form_for @city do |f| %>
+    <%= f.input :location, label: 'Venue', placeholder: 'Numa, Euratechnology, WeWork ...' %>
+    <%= f.input :address %>
+    <br>
+    <%= f.submit class: 'btn btn-primary', value: 'Update location' %>
+  <% end %>
+</div>
+
+<%= react_component "CitySpecificsForm", {
+  city: @city.slug,
+  specifics: @city.description_en,
+  name: 'description_en',
+  title: "English description" ,
+  renderedContent: 'Nothing to preview.',
+  token: form_authenticity_token,
+  placeholder: 'Add some description about the venue and working environment'
+}%>
+
+<%= react_component "CitySpecificsForm", {
+  city: @city.slug,
+  specifics: @city.description_fr,
+  name: 'description_fr',
+  title: "French description" ,
+  renderedContent: 'Nothing to preview.',
+  token: form_authenticity_token,
+  placeholder: "Ajouter une description du lieu et de l'environnement de travail"
+}%>
+
 <% content_for(:title) do %>
   <%= @city.name %> - Le Wagon Alumni
 <% end %>
