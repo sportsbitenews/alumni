@@ -1,8 +1,7 @@
 json.array! @testimonials.each do |testimonial|
   json.extract! testimonial, :id, :content, :locale
   json.user do
-    json.extract! testimonial.user, :github_nickname, :first_name, :last_name
-    json.thumbnail testimonial.user.thumbnail(width: 50, heigth: 50, crop: :fill)
+    json.extract! testimonial.user, :github_nickname, :first_name, :last_name, :photo_path
     json.batch do
       json.extract! testimonial.user.batch, :slug
       json.city do

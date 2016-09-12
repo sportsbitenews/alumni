@@ -53,7 +53,7 @@
 class User < ActiveRecord::Base
   include Cacheable
   include CloudinaryHelper
-  PUBLIC_PROPERTIES = %i(id github_nickname first_name last_name)
+  PUBLIC_PROPERTIES = %i(id github_nickname first_name last_name photo_path)
   PRIVATE_PROPERTIES = %i(email slack_uid connected_to_slack)
 
   devise :trackable, :database_authenticatable
@@ -150,6 +150,10 @@ class User < ActiveRecord::Base
     self.photo.nil? ? gravatar_url : cloudinary_url(self.photo.path, options)
     rescue SocketError
       gravatar_url
+  end
+
+  def photo_path
+    self.photo.path
   end
 
   def ready_for_validation?
