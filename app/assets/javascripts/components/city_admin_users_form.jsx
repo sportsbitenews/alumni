@@ -19,6 +19,12 @@ var CityAdminUsersForm = React.createClass({
         <div className={innerComponnentClasses}>
           <div className='city_edit_teacher_info text-left'>
             <form action="" className="simple_form padded-1em side-padded-1em" onSubmit={(e) => { this.handleSubmit(e, this.props.member) }}>
+              <div className='form-group attachinary bottom-padded-1em'>
+                <div className=''>Photo</div>
+                <div className=''>
+                  <input className='' type="file" name='photo' defaultValue={this.props.member.photo_path} ref='photo' />
+                </div>
+              </div>
               <div className='bottom-padded-1em form-group'>
                 <div className=''>Role</div>
                 <div className=''>
@@ -67,7 +73,8 @@ var CityAdminUsersForm = React.createClass({
         'twitter_nickname': React.findDOMNode(this.refs.twitter_nickname).value,
         'role': React.findDOMNode(this.refs.role).value,
         'bio_en': React.findDOMNode(this.refs.bio_en).value,
-        'bio_fr': React.findDOMNode(this.refs.bio_fr).value
+        'bio_fr': React.findDOMNode(this.refs.bio_fr).value,
+        'photo': React.findDOMNode(this.refs.photo).value
       }
     ).then((response) => {
       this.setState({ editing: false });

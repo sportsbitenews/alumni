@@ -3,6 +3,8 @@ class CityAdmin::UsersController < ApplicationController
     @user = User.find_by_slug(params[:id])
     authorize @user, :admin_update?
     @user.update(user_params)
+    @user.photo = open(params[:photo])
+    @user.save
   end
 
   private
