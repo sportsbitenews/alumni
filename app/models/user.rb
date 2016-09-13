@@ -178,7 +178,7 @@ class User < ActiveRecord::Base
       github_user = client.user(self.github_nickname)
       self.github_nickname = github_user.login
       self.uid = github_user.id if uid.blank?
-      self.gravatar_url = github_user.gravatar_url if gravatar_url.blank?
+      self.gravatar_url = github_user.avatar_url if gravatar_url.blank?
       self.email = github_user.email if email.blank?
     rescue Octokit::NotFound => e
       errors.add :github_nickname, "This github user does not exist"
@@ -187,7 +187,7 @@ class User < ActiveRecord::Base
 
   def set_default_picture
     unless self.gravatar_url.nil?
-      self.photo = open(self.gravatar_url)
+      self.photo_url = self.gravatar_url
       self.save
     end
   end

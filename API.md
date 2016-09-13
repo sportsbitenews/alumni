@@ -74,7 +74,7 @@
         {
           id: 1,
           github_nickname: "ssaunier",
-          thumbnail: "cloudinary_id.jpg",
+          photo\_path: "cloudinary\_id.jpg",
           first_name: "Sébastien",
           last_name: "Saunier",
           bio: {
@@ -85,7 +85,7 @@
         {
           id: 2,
           github_nickname: "Papillard",
-          thumbnail: "cloudinary_id.jpg",
+          photo\_path: "cloudinary\_id.jpg",
           first_name: "Boris",
           last_name: "Paillard",
           bio: {
@@ -98,7 +98,7 @@
         {
           id: 3,
           github_nickname: "Tchret",
-          thumbnail: "cloudinary_id.jpg",
+          photo\_path: "cloudinary_id.jpg",
           first_name: "Thomas",
           last_name: "Chrétien",
           bio: {
@@ -120,10 +120,10 @@
 {
   alumni: [
     {
-      thumbnail: "an-alumnus-from-paris-cloudinary_id.jpg",
+      photo\_path: "an-alumnus-from-paris-cloudinary_id.jpg",
     },
     {
-      thumbnail: "an-alumnus-from-brussels-cloudinary_id.jpg",
+      photo\_path: "an-alumnus-from-brussels-cloudinary_id.jpg",
     }
   ]
 }
@@ -135,7 +135,7 @@
 {
   alumni: [
     {
-      thumbnail: "an-alumnus-from-paris-cloudinary_id.jpg",
+      photo\_path: "an-alumnus-from-paris-cloudinary_id.jpg",
     }
   ]
 }
@@ -152,7 +152,7 @@
       {
         id: 1,
         github_nickname: "ssaunier",
-        thumbnail: "cloudinary_id.jpg",
+        photo\_path: "cloudinary_id.jpg",
         first_name: "Sébastien",
         last_name: "Saunier",
         bio: {
@@ -173,7 +173,7 @@
       {
         id: 4,
         github_nickname: "cveneziani",
-        thumbnail: "cloudinary_id.jpg",
+        photo\_path: "cloudinary_id.jpg",
         first_name: "Cecile",
         last_name: "Veneziani",
         bio: {
@@ -192,7 +192,7 @@
       {
         id: 3,
         github_nickname: "Tchret",
-        thumbnail: "cloudinary_id.jpg",
+        photo\_path: "cloudinary_id.jpg",
         first_name: "Thomas",
         last_name: "Chrétien",
         bio: {
@@ -220,7 +220,7 @@
       {
         id: 1,
         github_nickname: "ssaunier",
-        thumbnail: "cloudinary_id.jpg",
+        photo\_path: "cloudinary_id.jpg",
         first_name: "Sébastien",
         last_name: "Saunier",
         bio: {
@@ -243,7 +243,7 @@
       {
         id: 3,
         github_nickname: "Tchret",
-        thumbnail: "cloudinary_id.jpg",
+        photo\_path: "cloudinary_id.jpg",
         first_name: "Thomas",
         last_name: "Chrétien",
         bio: {
@@ -274,7 +274,7 @@
       url: "http://www.getkudoz.com/",
       tagline: "Tinder for job search.",
       position: 1,
-      thumbnail: "cloudinary_idjpg",
+      photo\_path: "cloudinary_id.jpg",
       makers: [ "..." ],
       batch: "1",
       city: "Paris"
@@ -284,7 +284,7 @@
       url: "http://sharkrank.co/",
       tagline: "Rate and review angel investors.",
       position: 2,
-      thumbnail: "cloudinary_idjpg",
+      photo\_path: "cloudinary_id.jpg",
       makers: [ "..." ],
       batch: "2",
       city: "Brussels"
@@ -303,7 +303,7 @@
       url: "http://www.getkudoz.com/",
       tagline: "Tinder for job search.",
       position: 1,
-      thumbnail: "cloudinary_idjpg",
+      photo\_path: "cloudinary_id.jpg",
       makers: [ "..." ],
       batch: "1",
       city: "Paris"
@@ -335,7 +335,7 @@
       alumni: {
         id: 15,
         github_nickname: "Olixier",
-        thumbnail: "cloudinary_id.jpg",
+        photo\_path: "cloudinary_id.jpg",
         first_name: "Olivier",
         last_name: "Xu",
         slug: "15",
