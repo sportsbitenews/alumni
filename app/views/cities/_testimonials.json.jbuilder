@@ -6,7 +6,7 @@ json.testimonials do
     json.user do
       json.slug testimonial.user.github_nickname
       json.full_name testimonial.user.name
-      json.thumbnail testimonial.user.thumbnail
+      json.thumbnail testimonial.user.thumbnail(width: 42, heigth: 42, crop: :fill)
       json.batch testimonial.user.batch.slug
       json.city testimonial.user.batch.city.name
     end

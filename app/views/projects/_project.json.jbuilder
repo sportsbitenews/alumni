@@ -11,6 +11,7 @@ json.thumbnail_url project.cover_picture.url(:thumbnail)
 json.makers do
   json.array! project.users.each do |maker|
     json.extract! maker, *user_properties
+    json.thumbnail maker.thumbnail(width: 53, height: 53, crop: :fill)
   end
 end
 

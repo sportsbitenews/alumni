@@ -52,7 +52,8 @@
 
 class User < ActiveRecord::Base
   include Cacheable
-  PUBLIC_PROPERTIES = %i(id github_nickname first_name last_name thumbnail)
+  include CloudinaryHelper
+  PUBLIC_PROPERTIES = %i(id github_nickname first_name last_name photo_path)
   PRIVATE_PROPERTIES = %i(email slack_uid connected_to_slack)
 
   devise :trackable, :database_authenticatable
@@ -84,6 +85,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :cities
   has_and_belongs_to_many :batches
 
+  # TODO: Remove paperclip's picture
   has_attached_file :picture,
     styles: { medium: "300x300>", thumb: "100x100>" },
     processors: [ :thumbnail, :paperclip_optimizer ]
@@ -92,6 +94,9 @@ class User < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
 
   acts_as_voter
+
+  has_attachment :photo
+  after_create :set_default_photo
 
   # after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }
 
@@ -141,10 +146,14 @@ class User < ActiveRecord::Base
     )
   end
 
-  def thumbnail(style = :medium)
-    picture.exists? ? picture.url(style) : gravatar_url
+  def thumbnail(options = {})
+    self.photo.nil? ? gravatar_url : cloudinary_url(self.photo.path, options)
   rescue SocketError
     gravatar_url
+  end
+
+  def photo_path
+    photo.nil? ? nil : photo.path
   end
 
   def ready_for_validation?
@@ -169,10 +178,16 @@ class User < ActiveRecord::Base
       github_user = client.user(self.github_nickname)
       self.github_nickname = github_user.login
       self.uid = github_user.id if uid.blank?
-      self.gravatar_url = github_user.gravatar_url if gravatar_url.blank?
+      self.gravatar_url = github_user.avatar_url if gravatar_url.blank?
       self.email = github_user.email if email.blank?
     rescue Octokit::NotFound => e
       errors.add :github_nickname, "This github user does not exist"
+    end
+  end
+
+  def set_default_photo
+    if photo.nil? && !gravatar_url.blank?
+      self.photo_url = gravatar_url
     end
   end
 end

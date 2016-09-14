@@ -8,7 +8,8 @@ json.cover_image @cover_image
 
 json.students do
   json.array! @batch.users.sort_by(&:sidebar_order).each do |user|
-    json.extract! user, :first_name, :last_name, :github_nickname, :thumbnail, :connected_to_slack
+    json.extract! user, :first_name, :last_name, :github_nickname, :connected_to_slack
+    json.thumbnail user.thumbnail(width: 42, height: 42, crop: :fill)
   end
 end
 
@@ -21,6 +22,7 @@ json.projects do
     json.makers do
       json.array! project.users.each do |user|
         json.extract! user, *user_properties
+        json.thumbnail user.thumbnail(width: 42, height: 42, crop: :fill)
       end
     end
     json.milestones do

@@ -13,7 +13,10 @@
       <div class='navbar-right'>
         <% if user_signed_in? %>
             <%= react_component 'AvatarNavbar', {
-              user: current_user.slice(:github_nickname, :thumbnail),
+              user: {
+                github_nickname: current_user.github_nickname,
+                thumbnail: current_user.thumbnail(width: 32, height: 32, crop: :fill)
+              },
               impersonating: current_user && true_user != current_user,
               current_path: request.env['PATH_INFO'],
               cities: (current_user.admin? ? City.all : current_user.cities).map(&:slug)

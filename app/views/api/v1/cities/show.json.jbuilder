@@ -10,14 +10,14 @@ json.city do
   json.classroom_picture @city.classroom_picture.present? ? @city.classroom_picture.url(:cover) : nil
   json.extract! @city, :meetup_id, :twitter_url
   json.teachers @teachers do |teacher|
-    json.extract! teacher, :id, :github_nickname, :twitter_nickname, :thumbnail, :first_name, :last_name
+    json.extract! teacher, :id, :github_nickname, :twitter_nickname, :first_name, :last_name, :photo_path
     json.bio do
       json.fr teacher.bio_fr
       json.en teacher.bio_en
     end
   end
   json.teacher_assistants @teacher_assistants do |teacher|
-    json.extract! teacher, :id, :github_nickname, :twitter_nickname, :thumbnail, :first_name, :last_name
+    json.extract! teacher, :id, :github_nickname, :twitter_nickname, :first_name, :last_name, :photo_path
     json.bio do
       json.fr teacher.bio_fr
       json.en teacher.bio_en
