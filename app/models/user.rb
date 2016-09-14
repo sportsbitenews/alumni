@@ -153,7 +153,7 @@ class User < ActiveRecord::Base
   end
 
   def photo_path
-    self.photo.path
+    photo.nil? ? nil : photo.path
   end
 
   def ready_for_validation?
