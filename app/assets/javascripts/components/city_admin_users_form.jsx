@@ -68,8 +68,12 @@ var CityAdminUsersForm = React.createClass({
   },
   handleSubmit(e, member) {
     e.preventDefault();
+    var inputPhoto = this.refs.photo.getDOMNode().files[0];
+    if (typeof(inputPhoto) === "undefined") {
+      inputPhoto = "";
+    }
     var fd = new FormData();
-    fd.append('user[photo]', this.refs.photo.getDOMNode().files[0]);
+    fd.append('user[photo]', inputPhoto);
     fd.append('user[twitter_nickname]', React.findDOMNode(this.refs.twitter_nickname).value);
     fd.append('user[role]', React.findDOMNode(this.refs.role).value);
     fd.append('user[bio_en]', React.findDOMNode(this.refs.bio_en).value);
@@ -83,6 +87,7 @@ var CityAdminUsersForm = React.createClass({
       type: 'PATCH',
       success: function(data){
         that.setState({ editing: false });
+        // TODO update photo display!!!
       }
     });
   }
