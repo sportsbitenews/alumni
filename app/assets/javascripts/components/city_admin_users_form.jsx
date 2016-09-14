@@ -13,16 +13,17 @@ var CityAdminUsersForm = React.createClass({
       'manager-button': true,
       'manager-button-edit': true
     });
+    var dataFormData = '{"timestamp":1473841029, "callback": "/attachinary/cors", "tags": "development_env, attachinary_tmp", "signature": ' + this.props.cloudinary_signature + ', "api_key": "435882535573159"}';
     return (
       <div className=''>
         <div className={editBtnClasses} onClick={this.handleEditClick}>Edit</div>
         <div className={innerComponnentClasses}>
           <div className='city_edit_teacher_info text-left'>
             <form action="" className="simple_form padded-1em side-padded-1em" onSubmit={(e) => { this.handleSubmit(e, this.props.member) }}>
-              <div className='form-group attachinary bottom-padded-1em'>
+              <div className='form-group bottom-padded-1em'>
                 <div className=''>Photo</div>
                 <div className=''>
-                  <input className='' type="file" name='photo' defaultValue={this.props.member.photo_path} ref='photo' />
+                  <input className='' type="file" name='photo' ref='photo' />
                 </div>
               </div>
               <div className='bottom-padded-1em form-group'>
@@ -67,17 +68,22 @@ var CityAdminUsersForm = React.createClass({
   },
   handleSubmit(e, member) {
     e.preventDefault();
-    axios.railsPatch(
-      Routes.city_admin_user_path(member.github_nickname, { format: 'json' }),
-      {
-        'twitter_nickname': React.findDOMNode(this.refs.twitter_nickname).value,
-        'role': React.findDOMNode(this.refs.role).value,
-        'bio_en': React.findDOMNode(this.refs.bio_en).value,
-        'bio_fr': React.findDOMNode(this.refs.bio_fr).value,
-        'photo': React.findDOMNode(this.refs.photo).value
+    var fd = new FormData();
+    fd.append('user[photo]', this.refs.photo.getDOMNode().files[0]);
+    fd.append('user[twitter_nickname]', React.findDOMNode(this.refs.twitter_nickname).value);
+    fd.append('user[role]', React.findDOMNode(this.refs.role).value);
+    fd.append('user[bio_en]', React.findDOMNode(this.refs.bio_en).value);
+    fd.append('user[bio_fr]', React.findDOMNode(this.refs.bio_fr).value);
+    var that = this;
+    $.ajax({
+      url: Routes.city_admin_user_path(member.github_nickname),
+      data: fd,
+      processData: false,
+      contentType: false,
+      type: 'PATCH',
+      success: function(data){
+        that.setState({ editing: false });
       }
-    ).then((response) => {
-      this.setState({ editing: false });
     });
   }
 });
