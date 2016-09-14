@@ -85,6 +85,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :cities
   has_and_belongs_to_many :batches
 
+  # TODO: Remove paperclip's picture
   has_attached_file :picture,
     styles: { medium: "300x300>", thumb: "100x100>" },
     processors: [ :thumbnail, :paperclip_optimizer ]
@@ -92,11 +93,10 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
 
-  has_attachment :photo
-
   acts_as_voter
 
-  after_create :set_default_picture
+  has_attachment :photo
+  after_create :set_default_photo
 
   # after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }
 
@@ -146,14 +146,14 @@ class User < ActiveRecord::Base
     )
   end
 
-  def thumbnail(options={})
+  def thumbnail(options = {})
     self.photo.nil? ? gravatar_url : cloudinary_url(self.photo.path, options)
-    rescue SocketError
-      gravatar_url
+  rescue SocketError
+    gravatar_url
   end
 
   def photo_path
-    self.photo.path
+    photo.nil? ? nil : photo.path
   end
 
   def ready_for_validation?
@@ -185,10 +185,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def set_default_picture
-    unless self.gravatar_url.nil?
-      self.photo_url = self.gravatar_url
-      self.save
+  def set_default_photo
+    if photo.nil? && !gravatar_url.blank?
+      self.photo_url = gravatar_url
     end
   end
 end
