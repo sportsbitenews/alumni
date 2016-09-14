@@ -22,7 +22,7 @@
 <% end %>
 
 <%= content_for(:meta_image_url) do %>
-  <%= @user.thumbnail %>
+  <%= @user.thumbnail(width: 200, height: 200, crop: :fill) %>
 <% end %>
 
 <% if @user.noindex %>

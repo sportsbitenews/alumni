@@ -6,7 +6,7 @@ json.members do
     json.role member.role
     json.github_nickname member.github_nickname
     json.twitter_nickname member.twitter_nickname
-    json.thumbnail member.thumbnail
+    json.thumbnail member.thumbnail(width: 42, height: 42, crop: :fill)
     json.ordered_list_id ordered_list.id
   end
 end

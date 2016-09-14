@@ -11,7 +11,7 @@ end
 user = position.user
 if user
   json.alumni do
-    json.extract! user , :id, :github_nickname, :thumbnail, :first_name, :last_name
+    json.extract! user , :id, :github_nickname, :first_name, :last_name, :photo_path
     json.slug user.batch.slug if user.batch
     json.city user.batch.city.name if user.batch
   end

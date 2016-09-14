@@ -10,7 +10,7 @@
   <hr>
 
   <% if @user %>
-    <%= image_tag @user.thumbnail, height: 200, width: 200 %>
+    <%= image_tag @user.thumbnail(height: 200, width: 200, crop: :fill), height: 200, width: 200 %>
 
     <p style="margin-top: 1em">
       <strong>First</strong>, go to the <a href="https://lewagon-alumni.slack.com/admin" target="_blank">Slack Admin</a> and manually disable <code><%= @user.email %></code>

@@ -39,7 +39,6 @@ gem 'gibbon'
 gem 'friendly_id', '~> 5.1.0'
 gem 'rack-cors', :require => 'rack/cors'
 
-
 gem 'redcarpet'
 gem 'pygmentize'
 gem 'sass-pygments-rails'
@@ -68,6 +67,11 @@ gem 'sidekiq-cron'
 gem 'prawn'
 gem 'prawn-table'
 gem "pretender"
+
+gem "cloudinary", "1.1.0"
+gem "attachinary", github: "assembler/attachinary"
+gem "jquery-fileupload-rails"
+gem "coffee-rails"
 
 source "https://rails-assets.org" do
   gem "rails-assets-axios"
