@@ -1,13 +1,9 @@
 class CityAdmin::UsersController < ApplicationController
   def update
+    @ordered_list_id = params[:ordered_list_id]
     @user = User.find_by_slug(params[:id])
     authorize @user, :admin_update?
-    photo = user_params[:photo]
-    user_params_without_photo = user_params.except(:photo)
-    @user.update(user_params_without_photo)
-    unless photo.blank?
-      @user.photo = photo
-    end
+    @user.update(user_params)
   end
 
   private

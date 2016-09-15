@@ -17,7 +17,7 @@ var UserOrderedList = React.createClass({
     members.forEach((member) => {
       member.updateMembersList = this.updateMembersList;
       if (this.props.position == 'teacher') {
-        member.innerComponent = <CityAdminUsersForm member={member} />
+        member.innerComponent = <CityAdminUsersForm member={member} updateMember={null} />
       }
     });
 

@@ -68,16 +68,16 @@ var CityAdminUsersForm = React.createClass({
   },
   handleSubmit(e, member) {
     e.preventDefault();
-    var inputPhoto = this.refs.photo.getDOMNode().files[0];
-    if (typeof(inputPhoto) === "undefined") {
-      inputPhoto = "";
-    }
     var fd = new FormData();
-    fd.append('user[photo]', inputPhoto);
+    var inputPhoto = this.refs.photo.getDOMNode().files[0];
+    if (typeof(inputPhoto) != "undefined") {
+      fd.append('user[photo]', inputPhoto);
+    }
     fd.append('user[twitter_nickname]', React.findDOMNode(this.refs.twitter_nickname).value);
     fd.append('user[role]', React.findDOMNode(this.refs.role).value);
     fd.append('user[bio_en]', React.findDOMNode(this.refs.bio_en).value);
     fd.append('user[bio_fr]', React.findDOMNode(this.refs.bio_fr).value);
+    fd.append('ordered_list_id', member.ordered_list_id)
     var that = this;
     $.ajax({
       url: Routes.city_admin_user_path(member.github_nickname),
@@ -87,7 +87,7 @@ var CityAdminUsersForm = React.createClass({
       type: 'PATCH',
       success: function(data){
         that.setState({ editing: false });
-        // TODO update photo display!!!
+        that.props.updateMember(data.member);
       }
     });
   }
