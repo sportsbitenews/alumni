@@ -19,6 +19,12 @@ var CityAdminUsersForm = React.createClass({
         <div className={innerComponnentClasses}>
           <div className='city_edit_teacher_info text-left'>
             <form action="" className="simple_form padded-1em side-padded-1em" onSubmit={(e) => { this.handleSubmit(e, this.props.member) }}>
+              <div className='form-group bottom-padded-1em'>
+                <div className=''>Photo</div>
+                <div className=''>
+                  <input className='' type="file" name='photo' ref='photo' />
+                </div>
+              </div>
               <div className='bottom-padded-1em form-group'>
                 <div className=''>Role</div>
                 <div className=''>
@@ -61,16 +67,27 @@ var CityAdminUsersForm = React.createClass({
   },
   handleSubmit(e, member) {
     e.preventDefault();
-    axios.railsPatch(
-      Routes.city_admin_user_path(member.github_nickname, { format: 'json' }),
-      {
-        'twitter_nickname': React.findDOMNode(this.refs.twitter_nickname).value,
-        'role': React.findDOMNode(this.refs.role).value,
-        'bio_en': React.findDOMNode(this.refs.bio_en).value,
-        'bio_fr': React.findDOMNode(this.refs.bio_fr).value
+    var fd = new FormData();
+    var inputPhoto = this.refs.photo.getDOMNode().files[0];
+    if (typeof(inputPhoto) != "undefined") {
+      fd.append('user[photo]', inputPhoto);
+    }
+    fd.append('user[twitter_nickname]', React.findDOMNode(this.refs.twitter_nickname).value);
+    fd.append('user[role]', React.findDOMNode(this.refs.role).value);
+    fd.append('user[bio_en]', React.findDOMNode(this.refs.bio_en).value);
+    fd.append('user[bio_fr]', React.findDOMNode(this.refs.bio_fr).value);
+    fd.append('ordered_list_id', member.ordered_list_id)
+    var that = this;
+    $.ajax({
+      url: Routes.city_admin_user_path(member.github_nickname),
+      data: fd,
+      processData: false,
+      contentType: false,
+      type: 'PATCH',
+      success: function(data){
+        that.setState({ editing: false });
+        that.props.updateMember(data.member);
       }
-    ).then((response) => {
-      this.setState({ editing: false });
     });
   }
 });
