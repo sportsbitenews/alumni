@@ -13,7 +13,6 @@ var CityAdminUsersForm = React.createClass({
       'manager-button': true,
       'manager-button-edit': true
     });
-    var dataFormData = '{"timestamp":1473841029, "callback": "/attachinary/cors", "tags": "development_env, attachinary_tmp", "signature": ' + this.props.cloudinary_signature + ', "api_key": "435882535573159"}';
     return (
       <div className=''>
         <div className={editBtnClasses} onClick={this.handleEditClick}>Edit</div>
