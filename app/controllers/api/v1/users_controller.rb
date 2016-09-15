@@ -13,7 +13,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       f.write(Base64.decode64 params[:content])
       f.rewind
       f.close
-      user.picture = File.open(f.path)
+      user.photo = File.open(f.path)
       user.save
       f.unlink
       render json: { found: true, user: { id: user.id, github_nickname: user.github_nickname, }}
