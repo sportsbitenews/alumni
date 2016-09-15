@@ -34,10 +34,6 @@
 #  staff                  :boolean          default(FALSE), not null
 #  bio_en                 :text
 #  bio_fr                 :text
-#  picture_file_name      :string
-#  picture_content_type   :string
-#  picture_file_size      :integer
-#  picture_updated_at     :datetime
 #  role                   :string
 #  twitter_nickname       :string
 #  noindex                :boolean          default(FALSE), not null
