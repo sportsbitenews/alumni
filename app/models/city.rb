@@ -57,7 +57,7 @@ class City < ActiveRecord::Base
 
   validates :slug, presence: true, uniqueness: true
   validates :name, presence: true, uniqueness: true
-  validates :course_locale, presence: true,  inclusion: { in: %w(en fr pt-BR) }
+  validates :course_locale, presence: true, inclusion: { in: %w(en fr pt-BR zh-CN) }
   has_attached_file :city_picture,
     styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "540x360>", format: 'jpg', quality: 70 } }, processors: [ :thumbnail, :paperclip_optimizer ]
   has_attached_file :location_picture,
