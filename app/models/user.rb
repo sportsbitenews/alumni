@@ -88,6 +88,8 @@ class User < ActiveRecord::Base
 
   # after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }
 
+  before_destroy :clear_from_ordered_lists
+
   # include Devise::Controllers::Helpers
   def self.properties(user_signed_in)
     PUBLIC_PROPERTIES + (user_signed_in ? PRIVATE_PROPERTIES : [])
@@ -150,6 +152,15 @@ class User < ActiveRecord::Base
 
   def self.find_by_slug(slug)
     find_by_github_nickname slug
+  end
+
+  def clear_from_ordered_lists
+    OrderedList.where(element_type: 'User').each do |ol|
+      if ol.slugs.include?(github_nickname)
+        ol.slugs.delete(github_nickname)
+        ol.save
+      end
+    end
   end
 
   private

@@ -5,8 +5,8 @@ class OrderedListsController < ApplicationController
     @error_content = ''
     @position = params[:position]
     if params[:github_nickname]
-      @github_nickname = params[:github_nickname]
-      user = User.find_by_slug(@github_nickname)
+      user = User.where('github_nickname ILIKE ?', params[:github_nickname]).first
+      @github_nickname = user.github_nickname
       if user
         if params[:add]
           @ordered_list.slugs << @github_nickname
