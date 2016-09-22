@@ -11,5 +11,6 @@
 #
 
 class CityGroup < ActiveRecord::Base
+  include Cacheable
   has_many :cities, dependent: :nullify
 end
