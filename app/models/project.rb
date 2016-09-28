@@ -16,6 +16,7 @@
 #  position                   :integer
 #  slug                       :string
 #  tagline_fr                 :string
+#  kitt_id                    :integer
 #
 # Indexes
 #
