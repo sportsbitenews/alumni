@@ -13,4 +13,13 @@ class Api::V1::ProjectsController < Api::V1::BaseController
       @projects = Project.all
     end
   end
+
+  def push
+    binding.pry
+    products = params[:products]
+    @projects = products.map do |product|
+      Project.find_by_kitt_id(product['kitt_id'])
+    end
+    render :index
+  end
 end
