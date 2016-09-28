@@ -1,4 +1,5 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
+  # skip_before_action :verify_authenticity_token, only: [ :update ]
   def index
     if params[:city].present?
       @projects = City.friendly.find(params[:city]).projects
@@ -14,12 +15,32 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     end
   end
 
-  def push
-    binding.pry
-    products = params[:products]
-    @projects = products.map do |product|
-      Project.find_by_kitt_id(product['kitt_id'])
+  def update
+    batch = Batch.find_by_slug(params[:batch_slug])
+    project_params = params.require(:project).permit!
+    @project = Project.find_by_kitt_id(params[:id]) || Projects.new(project_params)
+    if @project.id
+      @project.insert_at(params[:position].to_i)
+      if @project.update(project_params)
+        render json: { msg: "project with kitt_id #{@project.kitt_id} updated" }, status: 200
+      else
+        render json:  { kitt_id: @project.kitt_id, error: @project.errors.full_messages }, status: 304
+      end
+    else
+      @project.batch = batch
+      @project.kitt_id = params[:id]
+      @project.user = User.find_by_slug(params[:user_slug])
+      @project.set_list_position(params[:position].to_i)
+      if @project.save
+        params[:users_slugs].each do |slug|
+          maker = User.find_by_slug(slug)
+          maker.project = @project
+          maker.save
+        end
+        render json: { msg: "project with kitt_id #{@project.kitt_id} created" }, status: 200
+      else
+        render json: { kitt_id: @project.kitt_id, error: @project.errors.full_messages }, status: 304
+      end
     end
-    render :index
   end
 end
