@@ -20,7 +20,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     project_params = params.require(:project).permit!
     @project = Project.find_by_kitt_id(params[:id]) || Projects.new(project_params)
     if @project.id
-      @project.insert_at(params[:position].to_i)
+      # @project.insert_at(params[:position].to_i)
       if @project.update(project_params)
         render json: { msg: "project with kitt_id #{@project.kitt_id} updated" }, status: 200
       else
@@ -30,7 +30,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
       @project.batch = batch
       @project.kitt_id = params[:id]
       @project.user = User.find_by_slug(params[:user_slug])
-      @project.set_list_position(params[:position].to_i)
+      # @project.set_list_position(params[:position].to_i)
       if @project.save
         params[:users_slugs].each do |slug|
           maker = User.find_by_slug(slug)
@@ -40,6 +40,22 @@ class Api::V1::ProjectsController < Api::V1::BaseController
         render json: { msg: "project with kitt_id #{@project.kitt_id} created" }, status: 200
       else
         render json: { kitt_id: @project.kitt_id, error: @project.errors.full_messages }, status: 304
+      end
+    end
+
+    def positions
+      projects_params = params.require(:projects).permit!
+      projects = []
+      projects_params.map do |project_params|
+        project = Project.find_by_kitt_id(project_params[:kitt_id]
+        unless project.nil?
+          project.set_list_position(project_params[:position].to_i)
+        end
+      end
+      if projects.include? nil
+        render json: { error: "one or more projects missing" }, status: 304
+      else
+        render json: { msg: "positions set" }, status: 200
       end
     end
   end
