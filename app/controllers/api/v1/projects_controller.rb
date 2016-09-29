@@ -42,21 +42,21 @@ class Api::V1::ProjectsController < Api::V1::BaseController
         render json: { kitt_id: @project.kitt_id, error: @project.errors.full_messages }, status: 304
       end
     end
+  end
 
-    def positions
-      projects_params = params.require(:projects).permit!
-      projects = []
-      projects_params.map do |project_params|
-        project = Project.find_by_kitt_id(project_params[:kitt_id]
-        unless project.nil?
-          project.set_list_position(project_params[:position].to_i)
-        end
+  def positions
+    projects_params = params.require(:projects)
+    projects = []
+    projects_params.map do |project_params|
+      project = Project.find_by_kitt_id(project_params[:kitt_id])
+      unless project.nil?
+        project.set_list_position(project_params[:position].to_i)
       end
-      if projects.include? nil
-        render json: { error: "one or more projects missing" }, status: 304
-      else
-        render json: { msg: "positions set" }, status: 200
-      end
+    end
+    if projects.include? nil
+      render json: { error: "one or more projects missing" }, status: 304
+    else
+      render json: { msg: "positions set" }, status: 200
     end
   end
 end
