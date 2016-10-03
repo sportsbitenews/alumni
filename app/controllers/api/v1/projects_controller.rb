@@ -1,5 +1,4 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
-  # skip_before_action :verify_authenticity_token, only: [ :update ]
   def index
     if params[:city].present?
       @projects = City.friendly.find(params[:city]).projects
