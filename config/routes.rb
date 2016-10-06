@@ -18,7 +18,11 @@ Rails.application.routes.draw do
           get "live"
         end
       end
-      resources :projects,     only: [ :index ]
+      resources :projects,     only: [ :index, :update ] do
+        collection do
+          post "positions"
+        end
+      end
       resources :alumni,       only: [ :index ]
       resources :staff,        only: [ :index ]
       resources :stories,      only: [ :index, :show ] do
