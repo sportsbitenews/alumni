@@ -22,7 +22,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
       if @project.update(project_params)
         render json: { msg: "project with kitt_id #{@project.kitt_id} updated" }, status: 200
       else
-        render json:  { kitt_id: @project.kitt_id, error: @project.errors.full_messages }, status: 304
+        render json:  { kitt_id: @project.kitt_id, error: @project.errors.full_messages }, status: 422
       end
     else
       @project.batch = batch
@@ -33,7 +33,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
       if @project.save
         render json: { msg: "project with kitt_id #{@project.kitt_id} created" }, status: 200
       else
-        render json: { kitt_id: @project.kitt_id, error: @project.errors.full_messages }, status: 304
+        render json: { kitt_id: @project.kitt_id, error: @project.errors.full_messages }, status: 422
       end
     end
   end
@@ -48,7 +48,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
       end
     end
     if projects.include? nil
-      render json: { error: "one or more projects missing" }, status: 304
+      render json: { error: "one or more projects missing" }, status: 422
     else
       render json: { msg: "positions set" }, status: 200
     end
