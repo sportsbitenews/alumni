@@ -13,9 +13,10 @@ Rails.application.routes.draw do
         end
       end
       resources :city_groups,  only: [ :index ]
-      resources :batches,      only: [ :index, :show ] do
+      resources :batches,      only: [ :show ] do
         collection do
           get "live"
+          get "completed"
         end
       end
       resources :projects,     only: [ :index, :update ] do

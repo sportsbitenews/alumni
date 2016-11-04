@@ -7,7 +7,7 @@ class Api::V1::BatchesController < Api::V1::BaseController
     @batch = Batch.where(live: true).order("slug DESC").first
   end
 
-  def index
-    @batches = Batch.includes(:projects).where.not(projects: { id: nil }).where('projects.created_at < ?', Date.today).order(:slug)
+  def completed
+    @batches = Batch.includes(:projects).where.not(projects: { id: nil }, slug: nil).where('starts_at < ?', Date.today).order(:slug)
   end
 end
