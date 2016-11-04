@@ -8,6 +8,6 @@ class Api::V1::BatchesController < Api::V1::BaseController
   end
 
   def index
-    @batches = Batch.includes(:projects).where.not(projects: { id: nil }).order(:slug)
+    @batches = Batch.includes(:projects).where.not(projects: { id: nil }).where('projects.created_at < ?', Date.today).order(:slug)
   end
 end
