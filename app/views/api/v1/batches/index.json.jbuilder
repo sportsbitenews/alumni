@@ -1,9 +1,6 @@
 json.batches do
   json.array! @batches do |batch|
-    json.batch do
-      json.slug batch.slug
-      json.city batch.city.name
-    end
+    json.partial! 'batch', batch: batch
   end
 end
 
