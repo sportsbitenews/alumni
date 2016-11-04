@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :batches,      only: [ :show ] do
         collection do
           get "live"
+          get "completed"
         end
       end
       resources :projects,     only: [ :index, :update ] do
