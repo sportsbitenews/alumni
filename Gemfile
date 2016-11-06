@@ -60,6 +60,7 @@ gem "js-routes"
 
 
 gem 'sidekiq'
+gem 'sidekiq_snitch'
 gem 'sidekiq-failures'
 gem 'sinatra'  # Dependency of sidekiq
 gem 'sidekiq-cron'
