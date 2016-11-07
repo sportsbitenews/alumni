@@ -26,8 +26,7 @@ json.cities do
       end
     end
     json.batches city.open_batches do |batch|
-      json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :waiting_list, :price_cents, :price_currency
-      json.analytics_slug "#{batch.city.name.downcase.gsub(/\s/, '')}-#{batch.starts_at.strftime("%B").downcase}-#{batch.starts_at.strftime("%Y")}"
+      json.partial! 'api/v1/batches/batch', batch: batch
     end
   end
 end

@@ -1,1 +1,3 @@
-json.partial! 'batch', batch: @batch
+json.batch do
+  json.partial! 'batch', batch: @batch
+end
