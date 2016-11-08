@@ -1,6 +1,6 @@
 class Api::V1::BatchesController < Api::V1::BaseController
   def show
-    @batch = Batch.find(params[:id])
+    @batch = Batch.includes(:users, projects: :users).find(params[:id])
   end
 
   def live
