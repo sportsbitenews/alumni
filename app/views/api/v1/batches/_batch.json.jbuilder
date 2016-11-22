@@ -1,9 +1,12 @@
 json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :waiting_list, :price_cents, :price_currency, :trello_inbox_list_id
+json.city_slug "#{batch.city.name.camelcase.gsub(/\s/, '')}"
+json.schedule_slug "#{batch.starts_at.strftime("%B").camelcase} - #{batch.ends_at.strftime("%B %Y").camelcase}"
 json.analytics_slug "#{batch.city.name.downcase.gsub(/\s/, '')}-#{batch.starts_at.strftime("%B").downcase}-#{batch.starts_at.strftime("%Y")}"
 json.students do
-  json.array! @batch.users.each do |user|
-    json.extract! user, :first_name, :last_name
-    json.thumbnail user.thumbnail(width: 90, height: 90, crop: :fill)
+  json.array! @batch.users.sort.each do |user|
+    json.first_name user.first_name.capitalize
+    json.last_name user.last_name.capitalize
+    json.thumbnail user.thumbnail(width: 180, height: 180, crop: :fill)
   end
 end
 json.products do

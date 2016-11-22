@@ -23,7 +23,7 @@ json.groups do
         end
         json.extract! city, :twitter_url
         if city.meetup_id
-          groups = @meetup_client.groups(group_id: city.meetup_id)["results"]
+          groups = Rails.env.development? ? nil : @meetup_client.groups(group_id: city.meetup_id)["results"]
 
           if groups && !groups.empty?
             json.extract! city, :meetup_id
