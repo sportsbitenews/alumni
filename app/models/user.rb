@@ -172,7 +172,7 @@ class User < ActiveRecord::Base
   def github_nickname_exists?
     return if Rails.env.test?
 
-    client = Octokit::Client.new#(access_token: User.find_by(github_nickname: 'ssaunier').github_token)
+    client = Octokit::Client.new(access_token: User.find_by(github_nickname: 'ssaunier').github_token)
     begin
       github_user = client.user(self.github_nickname)
       self.github_nickname = github_user.login
