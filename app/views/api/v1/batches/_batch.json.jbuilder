@@ -4,7 +4,6 @@ json.city do
   json.slug batch.city.slug
   json.course_locale batch.city.course_locale
 end
-json.schedule_slug "#{batch.starts_at.strftime("%B").camelcase} - #{batch.ends_at.strftime("%B %Y").camelcase}"
 json.analytics_slug "#{batch.city.name.downcase.gsub(/\s/, '')}-#{batch.starts_at.strftime("%B").downcase}-#{batch.starts_at.strftime("%Y")}"
 json.students do
   json.array! @batch.users.sort.each do |user|
