@@ -16,7 +16,7 @@ end
 json.products do
   json.array! @batch.projects.each do |project|
     json.extract! project, :name, :url, :id, :tagline_en, :demoday_timestamp, :technos
-    json.batch_language project.batch.ciy.course_locale
+    json.batch_language project.batch.city.course_locale
     json.makers do
       json.array! project.users.each do |user|
         json.extract! user, :id, :first_name, :last_name
