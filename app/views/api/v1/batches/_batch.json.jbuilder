@@ -6,14 +6,14 @@ json.city do
 end
 json.analytics_slug "#{batch.city.name.downcase.gsub(/\s/, '')}-#{batch.starts_at.strftime("%B").downcase}-#{batch.starts_at.strftime("%Y")}"
 json.students do
-  json.array! @batch.users.sort.each do |user|
+  json.array! batch.users.sort.each do |user|
     json.first_name user.first_name.capitalize
     json.last_name user.last_name.capitalize
     json.thumbnail user.thumbnail(width: 180, height: 180, crop: :fill)
   end
 end
 json.products do
-  json.array! @batch.projects.each do |project|
+  json.array! batch.projects.each do |project|
     json.extract! project, :name, :url, :id, :slug, :tagline_en, :demoday_timestamp, :technos
     json.batch_language project.batch.city.course_locale
     json.makers do
