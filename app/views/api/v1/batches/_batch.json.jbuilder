@@ -1,4 +1,4 @@
-json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :waiting_list, :price_cents, :price_currency, :trello_inbox_list_id, :youtube_id
+json.extract! batch, :id, :slug, :starts_at, :ends_at, :full, :last_seats, :waiting_list, :price_cents, :price_currency, :trello_inbox_list_id, :youtube_id
 json.city do
   json.name batch.city.name
   json.slug batch.city.slug
