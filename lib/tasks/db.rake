@@ -3,7 +3,7 @@ namespace :db do
   task import_from_aws: [ :environment, :create ] do
     c = Rails.configuration.database_configuration[Rails.env]
     Bundler.with_clean_env do
-      puts "[1/4] Fetching DB password from Heroku"
+      puts "[1/4] Fetching DB password from AWS"
       db_url = `heroku config:get DATABASE_URL`
       uri = URI(db_url)
       db_password = uri.password
