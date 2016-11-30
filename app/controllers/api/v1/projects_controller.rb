@@ -29,6 +29,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     new_project = !@project.persisted?
 
     if @project.save
+      @project.users = []
       params[:users_slugs].each do |slug|
         @project.users << User.find_by_slug(slug)
       end
