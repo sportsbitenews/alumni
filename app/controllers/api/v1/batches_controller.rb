@@ -1,6 +1,10 @@
 class Api::V1::BatchesController < Api::V1::BaseController
   def show
-    @batch = Batch.includes(:users, projects: :users).find_by(slug: params[:id])
+    if params[:slug]
+      @batch = Batch.includes(:users, projects: :users).find_by(slug: params[:id])
+    else
+      @batch = Batch.includes(:users, projects: :users).find(params[:id])
+    end
   end
 
   def live
