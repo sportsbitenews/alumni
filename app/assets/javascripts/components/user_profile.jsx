@@ -72,7 +72,14 @@ class UserProfile extends React.Component {
       <div>
         <div className='user-profile-header'>
           <div className='container'>
-            <img src={this.props.thumbnail} className="img-circle user-profile-avatar" />
+            <div className=''>
+              <div className='user-profile-edit-avatar text-right'>
+                <i className='fa fa-pencil'></i>
+              </div>
+              <div className=''>
+                <img src={this.props.thumbnail} className="img-circle user-profile-avatar" />
+              </div>
+            </div>
             <h1 className='text-center user-profile-name'>
               {`${this.props.first_name} ${this.props.last_name}`} <span className={badgeConnectedClasses} />
             </h1>
