@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928091449) do
+ActiveRecord::Schema.define(version: 20161124144659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,8 +219,8 @@ ActiveRecord::Schema.define(version: 20160928091449) do
     t.string   "name"
     t.string   "url"
     t.integer  "batch_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "tagline_en"
     t.string   "cover_picture_file_name"
     t.string   "cover_picture_content_type"
@@ -230,6 +230,8 @@ ActiveRecord::Schema.define(version: 20160928091449) do
     t.string   "slug"
     t.string   "tagline_fr"
     t.integer  "kitt_id"
+    t.integer  "demoday_timestamp"
+    t.text     "technos",                    default: [],              array: true
   end
 
   add_index "projects", ["batch_id"], name: "index_projects_on_batch_id", using: :btree

@@ -17,6 +17,8 @@
 #  slug                       :string
 #  tagline_fr                 :string
 #  kitt_id                    :integer
+#  demoday_timestamp          :integer
+#  technos                    :text             default([]), is an Array
 #
 # Indexes
 #
@@ -37,6 +39,13 @@ class Project < ActiveRecord::Base
   before_create :slugify
   validates_attachment_content_type :cover_picture,
     content_type: /\Aimage\/.*\z/
+
+  rails_admin do
+    edit do
+      include_all_fields
+      field :technos, :pg_string_array
+    end
+  end
 
   def slugify
     self.slug = self.name.to_slug.normalize.to_s
