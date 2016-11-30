@@ -19,7 +19,7 @@ json.products do
     json.makers do
       json.array! project.users.each do |user|
         json.extract! user, :id, :first_name, :last_name
-        json.thumbnail user.thumbnail(width: 42, height: 42, crop: :fill)
+        json.thumbnail user.thumbnail(width: 84, height: 84, crop: :fill)
       end
     end
   end
