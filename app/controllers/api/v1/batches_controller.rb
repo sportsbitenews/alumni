@@ -1,6 +1,6 @@
 class Api::V1::BatchesController < Api::V1::BaseController
   def show
-    if params[:slug]
+    if params.has_key?(:slug)
       @batch = Batch.includes(:users, projects: :users).find_by(slug: params[:id])
     else
       @batch = Batch.includes(:users, projects: :users).find(params[:id])
