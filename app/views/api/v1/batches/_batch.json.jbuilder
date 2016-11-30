@@ -14,7 +14,8 @@ json.students do
 end
 json.products do
   json.array! batch.projects.each do |project|
-    json.extract! project, :name, :url, :id, :slug, :tagline_en, :demoday_timestamp, :technos
+    json.extract! project, :name, :url, :id, :slug, :tagline_en, :demoday_timestamp
+    json.technos project.technos.sort
     json.batch_language project.batch.city.course_locale
     json.makers do
       json.array! project.users.each do |user|
