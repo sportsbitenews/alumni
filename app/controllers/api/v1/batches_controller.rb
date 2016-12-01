@@ -12,7 +12,8 @@ class Api::V1::BatchesController < Api::V1::BaseController
   end
 
   def completed
-    @batches = Batch.includes(:projects).where.not(projects: { id: nil }, slug: nil) \
-      .where('starts_at < ?', Date.today).sort_by { |batch| batch.slug.to_i }
+    @batches = Batch.includes(:projects).where.not(youtube_id: [nil, ""])
+    @batches += Batch.includes(:projects).where.not(id: @batches.map(&:id), projects: { id: nil }, slug: nil).where('starts_at < ?', Date.today)
+    @batches = @batches.sort_by { |batch| batch.slug.to_i }
   end
 end
