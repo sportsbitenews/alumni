@@ -9,6 +9,12 @@ json.city do
   json.city_picture @city.city_picture.present? ? @city.city_picture.url(:cover) : nil
   json.classroom_picture @city.classroom_picture.present? ? @city.classroom_picture.url(:cover) : nil
   json.extract! @city, :meetup_id, :twitter_url
+  if @city.meetup_id
+    results = MeetupApi.new.groups(group_id: 16766372)["results"]
+    if results && results.first
+      json.meetup_url results.first["link"]
+    end
+  end
   json.teachers @teachers do |teacher|
     json.extract! teacher, :id, :github_nickname, :twitter_nickname, :first_name, :last_name, :photo_path
     json.bio do
