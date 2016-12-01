@@ -8,7 +8,7 @@ class BatchesController < ApplicationController
   def show
     # DEPRECATED: now go to lewagon.com/demoday/:slug
     locale = @batch.city.course_locale == 'en' ? nil : (@batch.city.course_locale + "/")
-    return redirect_to "https://www.lewagon.com/#{locale}demoday/#{params[:id]}"
+    return redirect_to "https://www.lewagon.com/#{locale}demoday/#{params[:id]}", status: 301
 
     @cover_image = @batch.cover_image.url(:large)
     @cover_image = nil unless @batch.cover_image.exists?
