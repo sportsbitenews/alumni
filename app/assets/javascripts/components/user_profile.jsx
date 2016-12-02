@@ -92,26 +92,36 @@ class UserProfile extends React.Component {
         </a>);
     }
 
+    var editPhotoButton = null;
+    var editPhotoForm = null;
+
+    if (this.props.current_user.user_signed_in && (this.props.current_user.manager || this.props.current_user.admin)) {
+      var editPhotoButton = (
+        <div className={editPhotoButtonClasses} onClick={this.handleEditPhotoClick.bind(this)}>
+          <i className='fa fa-pencil'></i>
+        </div>);
+      var editPhotoForm = (
+        <form action="" className={editPhotoFormClasses} onSubmit={(e) => {this.handleSubmit(e)}}>
+          <div className='form-group bottom-padded-1em'>
+            <div className='user-profile-edit-avatar-label'>Photo</div>
+            <input className='user-profile-edit-avatar-input' type="file" name='photo' ref='photo' />
+          </div>
+          <div className='user-profile-form-actions'>
+            <button className='btn btn-xs btn-primary' type='submit'>Update</button>
+            <div className='btn btn-xs btn-primary' onClick={this.handleCancelPhotoClick.bind(this)}>Cancel</div>
+          </div>
+        </form>);
+    }
+
     return (
       <div>
         <div className='user-profile-header'>
           <div className='container'>
             <div className=''>
-              <div className={editPhotoButtonClasses} onClick={this.handleEditPhotoClick.bind(this)}>
-                <i className='fa fa-pencil'></i>
-              </div>
+              {editPhotoButton}
               <div className=''>
                 <img src={this.state.thumbnail} className={photoClasses} />
-                <form action="" className={editPhotoFormClasses} onSubmit={(e) => {this.handleSubmit(e)}}>
-                  <div className='form-group bottom-padded-1em'>
-                    <div className='user-profile-edit-avatar-label'>Photo</div>
-                    <input className='user-profile-edit-avatar-input' type="file" name='photo' ref='photo' />
-                  </div>
-                  <div className='user-profile-form-actions'>
-                    <button className='btn btn-xs btn-primary' type='submit'>Update</button>
-                    <div className='btn btn-xs btn-primary' onClick={this.handleCancelPhotoClick.bind(this)}>Cancel</div>
-                  </div>
-                </form>
+                {editPhotoForm}
               </div>
             </div>
             <h1 className='text-center user-profile-name'>
