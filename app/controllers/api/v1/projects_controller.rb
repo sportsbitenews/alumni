@@ -23,6 +23,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
                 Project.find_by_slug(params[:project][:name].to_slug.normalize.to_s) ||
                 Project.new
     @project.kitt_id = params[:id]
+    @project.batch = batch
 
     @project.assign_attributes(project_params)
 
