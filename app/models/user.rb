@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:github, :slack]
 
   validates :github_nickname, presence: true, uniqueness: { allow_nil: false, case_sensitive: false }
-  validate :github_nickname_exists?
+  # validate :github_nickname_exists?
   validates :email, presence: true, uniqueness: true
 
   attr_accessor :onboarding

@@ -20,6 +20,7 @@ JsRoutes.setup do |config|
 
     /^stop_impersonating$/,
     /^users$/,
+    /^update_photo_users$/,
     /^profile$/,
     /^destroy_user_session$/,
 

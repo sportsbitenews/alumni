@@ -95,6 +95,12 @@ class UsersController < ApplicationController
     redirect_to offboarding_path
   end
 
+  def update_photo
+    @user = User.where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
+    authorize current_user
+    @error_message = 'An error occurred while uploading the photo' unless @user.update(user_params)
+  end
+
   private
 
   def set_user
@@ -110,7 +116,8 @@ class UsersController < ApplicationController
       :phone,
       :school,
       :private_bio,
-      :batch_id
+      :batch_id,
+      :photo
     )
   end
 end

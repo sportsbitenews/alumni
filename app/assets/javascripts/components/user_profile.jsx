@@ -2,8 +2,14 @@ class UserProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeTab: 'upvoted'
+      activeTab: 'upvoted',
+      editingPhoto: false,
+      thumbnail: this.props.thumbnail
     }
+  }
+
+  updateUserPhoto(thumbnail) {
+    this.setState({thumbnail: thumbnail});
   }
 
   render() {
@@ -36,6 +42,24 @@ class UserProfile extends React.Component {
         <div className={'badge ' + this.props.badge}>{this.props.badge}</div>
       )
     }
+
+    var editPhotoButtonClasses = classNames({
+      'user-profile-edit-avatar': true,
+      'text-right': true,
+      'hidden': this.state.editingPhoto
+    });
+
+    var editPhotoFormClasses = classNames({
+      'simple_form': true,
+      'user-profile-edit-avatar': true,
+      'hidden': !this.state.editingPhoto
+    });
+
+    var photoClasses = classNames({
+      "img-circle": true,
+      "user-profile-avatar": true,
+      "hidden": this.state.editingPhoto
+    });
 
     var batchInfo = null;
     if (this.props.batch) {
@@ -73,11 +97,21 @@ class UserProfile extends React.Component {
         <div className='user-profile-header'>
           <div className='container'>
             <div className=''>
-              <div className='user-profile-edit-avatar text-right'>
+              <div className={editPhotoButtonClasses} onClick={this.handleEditPhotoClick.bind(this)}>
                 <i className='fa fa-pencil'></i>
               </div>
               <div className=''>
-                <img src={this.props.thumbnail} className="img-circle user-profile-avatar" />
+                <img src={this.state.thumbnail} className={photoClasses} />
+                <form action="" className={editPhotoFormClasses} onSubmit={(e) => {this.handleSubmit(e)}}>
+                  <div className='form-group bottom-padded-1em'>
+                    <div className='user-profile-edit-avatar-label'>Photo</div>
+                    <input className='user-profile-edit-avatar-input' type="file" name='photo' ref='photo' />
+                  </div>
+                  <div className='user-profile-form-actions'>
+                    <button className='btn btn-xs btn-primary' type='submit'>Update</button>
+                    <div className='btn btn-xs btn-primary' onClick={this.handleCancelPhotoClick.bind(this)}>Cancel</div>
+                  </div>
+                </form>
               </div>
             </div>
             <h1 className='text-center user-profile-name'>
@@ -132,5 +166,34 @@ class UserProfile extends React.Component {
 
   handleUpvotedTabClick() {
     this.setState({ activeTab: 'upvoted' })
+  }
+
+  handleEditPhotoClick() {
+    this.setState({editingPhoto: true})
+  }
+
+  handleCancelPhotoClick() {
+    this.setState({editingPhoto: false})
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    var fd = new FormData();
+    var inputPhoto = this.refs.photo.getDOMNode().files[0];
+    if (typeof(inputPhoto) != "undefined") {
+      fd.append('user[photo]', inputPhoto);
+    }
+    var that = this;
+    $.ajax({
+      url: Routes.update_photo_users_path(this.props.github_nickname),
+      data: fd,
+      processData: false,
+      contentType: false,
+      type: 'PATCH',
+      success: function(data){
+        that.setState({ editingPhoto: false });
+        that.updateUserPhoto(data.thumbnail);
+      }
+    });
   }
 }

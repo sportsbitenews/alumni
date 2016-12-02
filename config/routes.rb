@@ -97,6 +97,9 @@ Rails.application.routes.draw do
       post :delete
       post :offboard
     end
+    collection do
+      patch ':github_nickname/update_photo', to: 'users#update_photo', as: :update_photo
+    end
   end
   get '/offboarding',                  to: 'users#offboarding'
   get '/offboarding/:github_nickname', to: 'users#offboarding'

@@ -2,12 +2,28 @@
   background: linear-gradient(180deg, #606c88 10%, #3f4c6b 90%);
   padding: 60px 0;
 }
-
+form.user-profile-edit-avatar {
+  height: 180px;
+  padding-top: 50px;
+}
 .user-profile-edit-avatar {
   width: 180px;
   color: white;
   margin: auto;
   position: relative;
+  i {
+    position: absolute;
+    bottom: -18px;
+    right: 3px;
+  }
+}
+.user-profile-edit-avatar-input, .user-profile-edit-avatar-label {
+  width: 145px;
+  margin: auto;
+}
+.user-profile-form-actions {
+  display: flex;
+  justify-content: space-around;
 }
 .user-profile-avatar {
   width: 180px;

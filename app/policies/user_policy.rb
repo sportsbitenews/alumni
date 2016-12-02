@@ -36,4 +36,8 @@ class UserPolicy < ApplicationPolicy
   def stop_impersonating?
     impersonate?
   end
+
+  def update_photo?
+    confirm?
+  end
 end
