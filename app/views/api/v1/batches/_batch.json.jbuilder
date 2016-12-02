@@ -17,6 +17,7 @@ json.products do
     json.extract! project, :name, :url, :id, :slug, :tagline_en, :demoday_timestamp
     json.technos project.technos.sort
     json.batch_language project.batch.city.course_locale
+    json.cover_url project.cover_picture.url(:cover)
     json.makers do
       json.array! project.users.each do |user|
         json.extract! user, :id, :first_name, :last_name
