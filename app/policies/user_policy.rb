@@ -38,6 +38,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update_photo?
-    confirm?
+    confirm? || record == user
   end
 end

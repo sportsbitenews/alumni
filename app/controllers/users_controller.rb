@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
   skip_after_action :verify_authorized, only: %i(show)
 
-  before_action :set_user, only: %i(update confirm delete offboard)
+  before_action :set_user, only: %i(update update_photo confirm delete offboard)
+
   def index
     query = params[:query]
     if query.blank?
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @user = User.where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
+        @user = User.includes(:resources, :jobs, :questions, :milestones).where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
         if @user
           if params[:github_nickname] != @user.github_nickname
             redirect_to profile_path(@user.github_nickname)
@@ -96,9 +97,10 @@ class UsersController < ApplicationController
   end
 
   def update_photo
-    @user = User.where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
     authorize current_user
-    @error_message = 'An error occurred while uploading the photo' unless @user.update(user_params)
+    unless @user.update(user_params)
+      @error_message = 'An error occurred while uploading the photo: ' + @user.errors.full_messages.join(", ")
+    end
   end
 
   private

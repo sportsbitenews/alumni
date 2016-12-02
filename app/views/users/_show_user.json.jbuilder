@@ -1,7 +1,10 @@
 json.partial! 'user', user: user
+
 json.current_user do
   json.user_signed_in user_signed_in?
-  json.github_nickname current_user.github_nickname
-  json.manager current_user.cities.include?(user.batch.city)
-  json.admin current_user.admin
+  if current_user
+    json.can_update_photo policy(user).update_photo?
+  else
+    json.can_update_photo false
+  end
 end

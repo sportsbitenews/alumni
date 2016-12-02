@@ -95,7 +95,7 @@ class UserProfile extends React.Component {
     var editPhotoButton = null;
     var editPhotoForm = null;
 
-    if (this.props.current_user.user_signed_in && (this.props.current_user.manager || this.props.current_user.admin)) {
+    if (this.props.current_user.can_update_photo) {
       var editPhotoButton = (
         <div className={editPhotoButtonClasses} onClick={this.handleEditPhotoClick.bind(this)}>
           <i className='fa fa-pencil'></i>
@@ -195,12 +195,12 @@ class UserProfile extends React.Component {
     }
     var that = this;
     $.ajax({
-      url: Routes.update_photo_users_path(this.props.github_nickname),
+      url: Routes.update_photo_user_path(this.props.id),
       data: fd,
       processData: false,
       contentType: false,
       type: 'PATCH',
-      success: function(data){
+      success: function(data) {
         that.setState({ editingPhoto: false });
         that.updateUserPhoto(data.thumbnail);
       }
