@@ -31,8 +31,9 @@ class Api::V1::ProjectsController < Api::V1::BaseController
 
     if @project.save
       @project.users = []
-      params[:users_slugs].each do |slug|
-        @project.users << User.find_by_slug(slug)
+      params[:user_github_nicknames].each do |github_nickname|
+        user = User.find_by_github_nickname(github_nickname)
+        @project.users << user if user
       end
 
       render json: { msg: "project #{new_project ? 'created' : 'updated'} with kitt_id #{@project.kitt_id}" }, status: 200
