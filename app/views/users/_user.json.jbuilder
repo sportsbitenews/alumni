@@ -23,10 +23,16 @@ if user.batch
 end
 
 json.votes do
-  json.array! user.votes.each do |vote|
-    post = vote.votable_type.constantize.find(vote.votable_id)
+  posts = []
+  votable_ids = user.votes.pluck(:votable_id)
+  Post::POST_TYPES.each do |post_type|
+    posts << post_type.constantize.includes(*(post_type == 'Milestone' ? %i(user project) : [ :user ])).where(id: votable_ids)
+  end
+  posts = posts.flatten.sort_by { |post| post.created_at }.reverse
+
+  json.array! posts.each do |post|
     type = post.class.to_s.underscore
-    json.partial! "#{type}s/#{type}", :"#{type}" => post
+    json.partial! "#{type}s/#{type}", :"#{type}" => post, thumbnail: false
   end
 end
 
@@ -34,6 +40,6 @@ json.posts do
   posts = user.resources + user.questions + user.jobs + user.milestones
   json.array! posts.each do |post|
     type = post.class.to_s.underscore
-    json.partial! "#{type}s/#{type}", :"#{type}" => post
+    json.partial! "#{type}s/#{type}", :"#{type}" => post, thumbnail: false
   end
 end
