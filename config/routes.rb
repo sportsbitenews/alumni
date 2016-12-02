@@ -96,6 +96,7 @@ Rails.application.routes.draw do
       post :confirm
       post :delete
       post :offboard
+      patch :update_photo
     end
   end
   get '/offboarding',                  to: 'users#offboarding'

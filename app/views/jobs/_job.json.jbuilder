@@ -1,4 +1,4 @@
-json.partial! "posts/post", post: job
+json.partial! "posts/post", post: job, thumbnail: defined?(thumbnail) ? thumbnail : true
 json.city job.city
 json.company job.company
 json.contact_email job.contact_email
