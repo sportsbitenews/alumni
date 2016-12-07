@@ -23,12 +23,8 @@ json.groups do
         end
         json.extract! city, :twitter_url
         if city.meetup_id
-          groups = Rails.env.development? ? nil : @meetup_client.groups(group_id: city.meetup_id)["results"]
-
-          if groups && !groups.empty?
-            json.extract! city, :meetup_id
-            json.meetup_url groups.first['link']
-          end
+          json.extract! city, :meetup_id
+          json.meetup_url @meetup_client.meetup_url(city.meetup_id)
         end
         json.batches city.open_batches do |batch|
           json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :waiting_list, :price_cents, :price_currency

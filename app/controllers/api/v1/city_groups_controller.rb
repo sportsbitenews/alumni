@@ -8,6 +8,6 @@ class Api::V1::CityGroupsController < Api::V1::BaseController
     else
       @groups = CityGroup.all
     end
-    @meetup_client = MeetupApi.new
+    @meetup_client = MeetupClientCache.new
   end
 end
