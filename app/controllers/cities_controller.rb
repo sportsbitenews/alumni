@@ -67,6 +67,9 @@ class CitiesController < ApplicationController
       :description_fr,
       :description_en,
       :location,
-      :address)
+      :address,
+      :location_picture,
+      :classroom_picture,
+      :city_picture)
   end
 end
