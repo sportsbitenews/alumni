@@ -23,6 +23,13 @@
   </div>
   <div class="banner-gradient"></div>
 </div>
+<div class="container">
+  <%= simple_form_for @city do |f| %>
+    <%= f.input :city_picture, label: false %>
+    <br>
+    <%= f.submit class: 'btn btn-primary', value: 'Update banner' %>
+  <% end %>
+</div>
 
 <div class="container">
   <h3 class="text-center">
@@ -63,6 +70,13 @@
 </div>
 
 <div class="container-fluid" id="city_edit_classroom" style="background-image: url('<%= image_url @city.classroom_picture.url(:cover) %>')"></div>
+<div class="container">
+  <%= simple_form_for @city do |f| %>
+    <%= f.input :classroom_picture, label: false %>
+    <br>
+    <%= f.submit class: 'btn btn-primary', value: 'Update classroom picture' %>
+  <% end %>
+</div>
 
 <div class="container-fluid padded" id="city_edit_reviews">
   <h2 class="text-center">Students Reviews</h2>
@@ -113,6 +127,7 @@
   <%= simple_form_for @city do |f| %>
     <%= f.input :location, label: 'Venue', placeholder: 'Numa, Euratechnology, WeWork ...' %>
     <%= f.input :address %>
+    <%= f.input :location_picture %>
     <br>
     <%= f.submit class: 'btn btn-primary', value: 'Update location' %>
   <% end %>
