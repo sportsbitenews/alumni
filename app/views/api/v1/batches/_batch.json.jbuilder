@@ -1,6 +1,10 @@
 json.extract! batch, :id, :slug, :starts_at, :ends_at, :full, :last_seats, :waiting_list, :price_cents, :price_currency, :trello_inbox_list_id, :youtube_id
 json.cover_image batch.cover_image.url(:large)
 
+json.meta_image do
+  json.facebook @batch.meta_image.exists? ? @batch.meta_image.url(:facebook) : nil
+end
+
 json.city do
   json.name batch.city.name
   json.slug batch.city.slug
