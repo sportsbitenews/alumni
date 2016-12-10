@@ -29,5 +29,6 @@ class Api::V1::CitiesController < Api::V1::BaseController
     else
       @teacher_assistants = @city.teachers.select(&:teacher_assistant)
     end
+    @meetup_client = MeetupClientCache.new
   end
 end
