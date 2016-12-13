@@ -21,6 +21,7 @@ class CitiesController < ApplicationController
     @teaching_assistant_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teacher_assistants", element_type: 'User')
     @teachers = User.where(github_nickname: @teacher_ordered_list.slugs).sort_by {|t| @teacher_ordered_list.slugs.index(t.github_nickname) }
     @teaching_assistants = User.where(github_nickname: @teaching_assistant_ordered_list.slugs).sort_by {|t| @teaching_assistant_ordered_list.slugs.index(t.github_nickname) }
+    @subscribers_count = Mailchimp.new(mailchimp_api_key: @city.mailchimp_api_key, mailchimp_list_id: @city.mailchimp_list_id).count_subscribers
   end
 
   def update
@@ -70,6 +71,8 @@ class CitiesController < ApplicationController
       :address,
       :location_picture,
       :classroom_picture,
-      :city_picture)
+      :city_picture,
+      :mailchimp_api_key,
+      :mailchimp_list_id)
   end
 end

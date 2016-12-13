@@ -77,6 +77,9 @@ class City < ActiveRecord::Base
   has_many :batches
   belongs_to :city_group
 
+  before_validation :check_mailchimp_account, if: :mailchimp_api_key_changed?
+  before_validation :check_mailchimp_account, if: :mailchimp_list_id_changed?
+
   def open_batches
     batches.where(open_for_registration: true).order(:starts_at)
   end
@@ -91,6 +94,19 @@ class City < ActiveRecord::Base
   %i(teachers users projects).each do |method|
     define_method method do
       batches.includes(method).order(starts_at: :desc).map(&method).flatten.uniq
+    end
+  end
+
+  private
+
+  def check_mailchimp_account
+    errors.add :mailchimp_api_key, "can't be blank." if mailchimp_api_key.blank
+    begin
+      gibbon = @gibbon = Gibbon::Request.new(api_key: mailchimp_api_key)
+      gibbon.lists(mailchimp_list_id).retrieve
+    rescue Gibbon::MailChimpError => e
+      errors.add :mailchimp_api_key, e.message
+      errors.add :mailchimp_list_id, e.message
     end
   end
 end
