@@ -21,12 +21,28 @@ class CitiesController < ApplicationController
     @teaching_assistant_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teacher_assistants", element_type: 'User')
     @teachers = User.where(github_nickname: @teacher_ordered_list.slugs).sort_by {|t| @teacher_ordered_list.slugs.index(t.github_nickname) }
     @teaching_assistants = User.where(github_nickname: @teaching_assistant_ordered_list.slugs).sort_by {|t| @teaching_assistant_ordered_list.slugs.index(t.github_nickname) }
-    @subscribers_count = Mailchimp.new(mailchimp_api_key: @city.mailchimp_api_key, mailchimp_list_id: @city.mailchimp_list_id).count_subscribers
+    begin
+      @subscribers_count = Mailchimp.new(mailchimp_api_key: @city.mailchimp_api_key, mailchimp_list_id: @city.mailchimp_list_id).count_subscribers
+    rescue Gibbon::GibbonError => e
+      @subscribers_count = nil
+    rescue Gibbon::MailChimpError => e
+      @subscribers_count = nil
+      flash[:alert] = "Mailchimp error: #{e.message}"
+    end
   end
 
   def update
+    mailchimp = true if !city_params[:mailchimp_api_key].blank? && !city_params[:mailchimp_list_id].blank?
     if @city.update(city_params)
       flash[:notice] = 'Your city has been updated :)'
+      if mailchimp
+        begin
+          subscribers_count = Mailchimp.new(mailchimp_api_key: @city.mailchimp_api_key, mailchimp_list_id: @city.mailchimp_list_id).count_subscribers
+          flash[:notice] = "You have #{subscribers_count} subscribers!"
+        rescue Gibbon::MailChimpError => e
+          flash[:notice] = "Mailchimp error: #{e.message}"
+        end
+      end
       redirect_to city_path(@city)
     else
       render :edit

@@ -70,6 +70,7 @@ class City < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :classroom_picture,
     content_type: /\Aimage\/.*\z/
+  before_validation :check_mailchimp_account, if: :mailchimp_api_key_changed?
 
   geocoded_by :address
   after_validation :geocode, classroom_pictureif: :address_changed?
@@ -77,8 +78,6 @@ class City < ActiveRecord::Base
   has_many :batches
   belongs_to :city_group
 
-  before_validation :check_mailchimp_account, if: :mailchimp_api_key_changed?
-  before_validation :check_mailchimp_account, if: :mailchimp_list_id_changed?
 
   def open_batches
     batches.where(open_for_registration: true).order(:starts_at)
@@ -100,9 +99,10 @@ class City < ActiveRecord::Base
   private
 
   def check_mailchimp_account
-    errors.add :mailchimp_api_key, "can't be blank." if mailchimp_api_key.blank
+    return if mailchimp_api_key.blank?
+    return if mailchimp_list_id.blank?
     begin
-      gibbon = @gibbon = Gibbon::Request.new(api_key: mailchimp_api_key)
+      gibbon = Gibbon::Request.new(api_key: mailchimp_api_key)
       gibbon.lists(mailchimp_list_id).retrieve
     rescue Gibbon::MailChimpError => e
       errors.add :mailchimp_api_key, e.message

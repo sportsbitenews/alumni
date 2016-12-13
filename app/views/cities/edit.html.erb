@@ -156,6 +156,9 @@
 <div class="container">
   <h3 class="text-center">
     Newsletter
+    <% unless @city.mailchimp_api_key.blank? || @city.mailchimp_list_id.blank? || @subscribers_count.nil? %>
+      <small><%= @subscribers_count %> subscribers</small>
+    <% end %>
   </h3>
   <%= simple_form_for @city do |f| %>
     <%= f.input :mailchimp_api_key %>

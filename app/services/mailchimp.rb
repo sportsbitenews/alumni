@@ -1,19 +1,19 @@
 # Batch.find(17).users.each { |u| Mailchimp.new.subscribe_to_alumni_list(u); puts u.email; sleep 1 }
 
 class Mailchimp
-  def initialize(attributes={})
-    @api_key = attributes[:mailchimp_api_key] || ENV['MAILCHIMP_API_KEY']
+  def initialize(attributes = {})
+    @api_key = attributes.keys.include?(:mailchimp_api_key) ? attributes[:mailchimp_api_key] : ENV['MAILCHIMP_API_KEY']
     @gibbon = Gibbon::Request.new(api_key: @api_key)
-    @list_id = attributes[:mailchimp_list_id] || ENV['MAILCHIMP_ALUMNI_LIST_ID']
+    @list_id = attributes.keys.include?(:mailchimp_list_id) ? attributes[:mailchimp_list_id] : ENV['MAILCHIMP_ALUMNI_LIST_ID']
   end
 
   def count_subscribers
     counter = 0
     count = 0
     loop do
-      subcribers_count = @gibbon.lists(@list_id).members.retrieve(params: {"count": "50", "offset": "#{count + 50}", status: "subscribed"})[:members].size
+      subscribers_count = @gibbon.lists(@list_id).members.retrieve(params: {"count": "50", "offset": "#{count}", "status": "subscribed"})["members"].size
       counter += subscribers_count
-      if subcribers_count < 50
+      if subscribers_count < 50
         return counter
       else
         count += 50
