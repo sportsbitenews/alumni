@@ -8,17 +8,7 @@ class Mailchimp
   end
 
   def count_subscribers
-    counter = 0
-    count = 0
-    loop do
-      subscribers_count = @gibbon.lists(@list_id).members.retrieve(params: {"count": "50", "offset": "#{count}", "status": "subscribed"})["members"].size
-      counter += subscribers_count
-      if subscribers_count < 50
-        return counter
-      else
-        count += 50
-      end
-    end
+    subscribers_count = @gibbon.lists(@list_id).retrieve["stats"]["member_count"]
   end
 
   def subscribe_to_alumni_list(user)
