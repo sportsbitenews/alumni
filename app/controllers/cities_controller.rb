@@ -30,10 +30,9 @@ class CitiesController < ApplicationController
   end
 
   def update
-    mailchimp = true if !city_params[:mailchimp_api_key].blank? && !city_params[:mailchimp_list_id].blank?
     if @city.update(city_params)
       flash[:notice] = 'Your city has been updated :)'
-      if mailchimp
+      if !city_params[:mailchimp_api_key].blank? && !city_params[:mailchimp_list_id].blank?
         begin
           subscribers_count = Mailchimp.new(mailchimp_api_key: @city.mailchimp_api_key, mailchimp_list_id: @city.mailchimp_list_id).count_subscribers
           flash[:notice] = "You have #{subscribers_count} subscribers!"

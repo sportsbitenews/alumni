@@ -8,7 +8,7 @@ class Mailchimp
   end
 
   def count_subscribers
-    subscribers_count = @gibbon.lists(@list_id).retrieve["stats"]["member_count"]
+    @gibbon.lists(@list_id).retrieve["stats"]["member_count"]
   end
 
   def subscribe_to_alumni_list(user)

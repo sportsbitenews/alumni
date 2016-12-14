@@ -70,7 +70,7 @@ class City < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :classroom_picture,
     content_type: /\Aimage\/.*\z/
-  before_validation :check_mailchimp_account, if: :mailchimp_api_key_changed?
+  before_validation :check_mailchimp_account, if: 'mailchimp_api_key_changed? || mailchimp_list_id_changed?'
 
   geocoded_by :address
   after_validation :geocode, classroom_pictureif: :address_changed?
