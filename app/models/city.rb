@@ -105,8 +105,13 @@ class City < ActiveRecord::Base
       gibbon = Gibbon::Request.new(api_key: mailchimp_api_key)
       gibbon.lists(mailchimp_list_id).retrieve
     rescue Gibbon::MailChimpError => e
-      errors.add :mailchimp_api_key, e.message
-      errors.add :mailchimp_list_id, e.message
+      if e.title =~ /Key/
+        errors.add :mailchimp_api_key, e.title
+      elsif e.title == "Resource Not Found"
+        errors.add :mailchimp_list_id, "can't be found"
+      else
+        errors.add :mailchimp_api_key, e.message
+      end
     end
   end
 end

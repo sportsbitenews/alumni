@@ -21,17 +21,24 @@ class CitiesController < ApplicationController
     @teaching_assistant_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teacher_assistants", element_type: 'User')
     @teachers = User.where(github_nickname: @teacher_ordered_list.slugs).sort_by {|t| @teacher_ordered_list.slugs.index(t.github_nickname) }
     @teaching_assistants = User.where(github_nickname: @teaching_assistant_ordered_list.slugs).sort_by {|t| @teaching_assistant_ordered_list.slugs.index(t.github_nickname) }
-    begin
-      @subscribers_count = Mailchimp.new(mailchimp_api_key: @city.mailchimp_api_key, mailchimp_list_id: @city.mailchimp_list_id).count_subscribers
-    rescue Gibbon::GibbonError => e
-      @subscribers_count = nil
-    rescue Gibbon::MailChimpError => e
-      @subscribers_count = nil
-      flash[:alert] = "Mailchimp error: #{e.message}"
+    if !@city.mailchimp_api_key.blank? && !@city.mailchimp_list_id.blank?
+      begin
+        @subscribers_count = Mailchimp.new(mailchimp_api_key: @city.mailchimp_api_key, mailchimp_list_id: @city.mailchimp_list_id).count_subscribers
+      rescue Gibbon::GibbonError => e
+        @subscribers_count = nil
+      rescue Gibbon::MailChimpError => e
+        @subscribers_count = nil
+        flash[:alert] = "Mailchimp error: #{e.message}"
+      end
     end
   end
 
   def update
+    @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: @city.slug}).order(:id)
+    @teacher_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teachers", element_type: 'User')
+    @teaching_assistant_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teacher_assistants", element_type: 'User')
+    @teachers = User.where(github_nickname: @teacher_ordered_list.slugs).sort_by {|t| @teacher_ordered_list.slugs.index(t.github_nickname) }
+    @teaching_assistants = User.where(github_nickname: @teaching_assistant_ordered_list.slugs).sort_by {|t| @teaching_assistant_ordered_list.slugs.index(t.github_nickname) }
     mailchimp = true if !city_params[:mailchimp_api_key].blank? && !city_params[:mailchimp_list_id].blank?
     if @city.update(city_params)
       flash[:notice] = 'Your city has been updated :)'
@@ -45,6 +52,7 @@ class CitiesController < ApplicationController
       end
       redirect_to city_path(@city)
     else
+      flash[:alert] = @city.errors.full_messages.join(', ')
       render :edit
     end
   end
