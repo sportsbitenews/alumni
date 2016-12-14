@@ -16,18 +16,34 @@ class CitiesController < ApplicationController
   end
 
   def edit
-    @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: @city.slug}).order(:id)
-    @teacher_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teachers", element_type: 'User')
-    @teaching_assistant_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teacher_assistants", element_type: 'User')
-    @teachers = User.where(github_nickname: @teacher_ordered_list.slugs).sort_by {|t| @teacher_ordered_list.slugs.index(t.github_nickname) }
-    @teaching_assistants = User.where(github_nickname: @teaching_assistant_ordered_list.slugs).sort_by {|t| @teaching_assistant_ordered_list.slugs.index(t.github_nickname) }
+    set_content
+    if !@city.mailchimp_api_key.blank? && !@city.mailchimp_list_id.blank?
+      begin
+        @subscribers_count = Mailchimp.new(mailchimp_api_key: @city.mailchimp_api_key, mailchimp_list_id: @city.mailchimp_list_id).count_subscribers
+      rescue Gibbon::GibbonError => e
+        @subscribers_count = nil
+      rescue Gibbon::MailChimpError => e
+        @subscribers_count = nil
+        flash[:alert] = "Mailchimp error: #{e.message}"
+      end
+    end
   end
 
   def update
     if @city.update(city_params)
       flash[:notice] = 'Your city has been updated :)'
+      if !city_params[:mailchimp_api_key].blank? && !city_params[:mailchimp_list_id].blank?
+        begin
+          subscribers_count = Mailchimp.new(mailchimp_api_key: @city.mailchimp_api_key, mailchimp_list_id: @city.mailchimp_list_id).count_subscribers
+          flash[:notice] = "You have #{subscribers_count} subscribers!"
+        rescue Gibbon::MailChimpError => e
+          flash[:notice] = "Mailchimp error: #{e.message}"
+        end
+      end
       redirect_to city_path(@city)
     else
+      set_content
+      flash[:alert] = @city.errors.full_messages.join(', ')
       render :edit
     end
   end
@@ -52,6 +68,14 @@ class CitiesController < ApplicationController
 
   private
 
+  def set_content
+    @testimonials = Testimonial.includes(user: { batch: :city }).where(cities: { slug: @city.slug}).order(:id)
+    @teacher_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teachers", element_type: 'User')
+    @teaching_assistant_ordered_list = OrderedList.find_or_create_by!(name: "#{params[:id]}_teacher_assistants", element_type: 'User')
+    @teachers = User.where(github_nickname: @teacher_ordered_list.slugs).sort_by {|t| @teacher_ordered_list.slugs.index(t.github_nickname) }
+    @teaching_assistants = User.where(github_nickname: @teaching_assistant_ordered_list.slugs).sort_by {|t| @teaching_assistant_ordered_list.slugs.index(t.github_nickname) }
+  end
+
   def set_city
     @city = City.friendly.find(params[:id])
     authorize @city
@@ -70,6 +94,8 @@ class CitiesController < ApplicationController
       :address,
       :location_picture,
       :classroom_picture,
-      :city_picture)
+      :city_picture,
+      :mailchimp_api_key,
+      :mailchimp_list_id)
   end
 end

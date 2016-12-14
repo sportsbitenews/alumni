@@ -70,12 +70,14 @@ class City < ActiveRecord::Base
     content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :classroom_picture,
     content_type: /\Aimage\/.*\z/
+  before_validation :check_mailchimp_account, if: 'mailchimp_api_key_changed? || mailchimp_list_id_changed?'
 
   geocoded_by :address
   after_validation :geocode, classroom_pictureif: :address_changed?
 
   has_many :batches
   belongs_to :city_group
+
 
   def open_batches
     batches.where(open_for_registration: true).order(:starts_at)
@@ -91,6 +93,25 @@ class City < ActiveRecord::Base
   %i(teachers users projects).each do |method|
     define_method method do
       batches.includes(method).order(starts_at: :desc).map(&method).flatten.uniq
+    end
+  end
+
+  private
+
+  def check_mailchimp_account
+    return if mailchimp_api_key.blank?
+    return if mailchimp_list_id.blank?
+    begin
+      gibbon = Gibbon::Request.new(api_key: mailchimp_api_key)
+      gibbon.lists(mailchimp_list_id).retrieve
+    rescue Gibbon::MailChimpError => e
+      if e.title =~ /Key/
+        errors.add :mailchimp_api_key, e.title
+      elsif e.title == "Resource Not Found"
+        errors.add :mailchimp_list_id, "can't be found"
+      else
+        errors.add :mailchimp_api_key, e.message
+      end
     end
   end
 end
