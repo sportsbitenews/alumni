@@ -12,7 +12,7 @@ json.city do
 end
 json.analytics_slug "#{batch.city.name.downcase.gsub(/\s/, '')}-#{batch.starts_at.strftime("%B").downcase}-#{batch.starts_at.strftime("%Y")}"
 json.students do
-  json.array! batch.users.sort.each do |user|
+  json.array! batch.users.where(noindex: false).sort.each do |user|
     json.first_name user.first_name.capitalize
     json.last_name user.last_name.capitalize
     json.thumbnail user.thumbnail(width: 180, height: 180, crop: :fill)
