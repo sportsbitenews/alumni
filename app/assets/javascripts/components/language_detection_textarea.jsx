@@ -39,7 +39,7 @@ class LanguageDetectionTextarea extends React.Component {
           <hr />
           <a className='answer-form-action answer-form-action-preview' onClick={this.onPreviewClick.bind(this)}>Preview</a>
           <a className="answer-form-action-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
-            <span className="octicon octicon-markdown"></span>
+            assistant:
             Markdown supported
           </a>
         </div>

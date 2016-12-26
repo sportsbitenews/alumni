@@ -2,7 +2,7 @@ class ProjectDetail extends React.Component {
   render() {
     var upVoters = this.props.up_voters;
     var connectedUsersWhoUpvoted = _.sum(upVoters, (upVoter) => upVoter.connected_to_slack ? 1 : 0);
-    var sortedUpVoters = _.sortByAll(
+    var sortedUpVoters = _.sortBy(
       this.props.upVoters,
       (upVoter) => upVoter.connected_to_slack ? 0 : 1,
       (upVoter) => upVoter.github_nickname.toLowerCase()

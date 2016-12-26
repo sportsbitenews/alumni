@@ -85,9 +85,10 @@ class City < ActiveRecord::Base
 
   def encrypted_mailchimp_api_key
     return nil if mailchimp_api_key.blank?
-    key   = ActiveSupport::KeyGenerator.new(ENV['ALUMNI_WWW_ENCRYPING_KEY']).generate_key(self.id.to_s)
-    crypt = ActiveSupport::MessageEncryptor.new(key)
-    crypt.encrypt_and_sign(mailchimp_api_key)
+    salt  = SecureRandom.base64
+    key   = ActiveSupport::KeyGenerator.new(ENV['ALUMNI_WWW_ENCRYPING_KEY']).generate_key(salt)
+    crypt = ActiveSupport::MessageEncryptor.new(key[0..31])
+    salt + "@" + crypt.encrypt_and_sign(mailchimp_api_key)
   end
 
   %i(teachers users projects).each do |method|

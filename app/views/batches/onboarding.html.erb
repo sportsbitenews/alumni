@@ -3,7 +3,7 @@
     <div class="cities-list batches-list">
       <% @batches.each do |batch| %>
         <div class="city-item batch-item">
-          <%= link_to user_omniauth_authorize_path(:github, batch: batch.slug) do %>
+          <%= link_to user_github_omniauth_authorize_path(batch: batch.slug) do %>
 
             <h1>
               Batch #<%= batch.slug %> - <%= batch.city.name %>

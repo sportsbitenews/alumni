@@ -30,7 +30,7 @@
   <%= render "shared/flashes" %>
   <%= render "shared/navbar" %>
   <%= react_component 'ModalSignIn', {
-      github_url: user_omniauth_authorize_path(:github)
+      github_url: user_github_omniauth_authorize_path
     }, {class: 'modal-sign-in-container'} %>
 
   <%= yield %>

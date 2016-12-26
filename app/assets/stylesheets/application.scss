@@ -6,8 +6,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+$mdi-font-path: 'mdi/fonts';
 @import "mdi";
-@import "octicons";
 @import "react-swipe-views";
 @import "pygments/default"; // https://github.com/vicentereig/sass-pygments-rails/tree/master/vendor/assets/stylesheets/pygments
 

@@ -9,8 +9,8 @@ class ResourcesController < ApplicationController
   end
 
   def preview
-    website = LinkThumbnailer.generate(params[:url])
-    render json: website
+    # website = LinkThumbnailer.generate(params[:url])
+    render json: { }
   rescue Exception => e
     render json: { error: e.message }
   end

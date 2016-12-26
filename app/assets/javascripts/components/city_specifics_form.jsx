@@ -15,7 +15,7 @@ var CitySpecificsForm = React.createClass({
                 placeholder={this.props.placeholder}
             />
           </div>
-          <span className="octicon octicon-markdown"></span> Markdown supported
+          assistant: Markdown supported
           <div className="padded-1em form-group">
             <input type="submit" className="btn btn-primary" value="Update" />
           </div>

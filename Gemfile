@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby "2.3.1"
+ruby "2.4.0"
 
-gem "rails", "4.2.7.1"
+gem "rails", "5.0.1"
 gem "pg"
 gem "figaro"
 gem "simple_form"
@@ -16,14 +16,13 @@ gem "pundit"
 gem "paperclip"
 gem "image_optim_pack"
 gem "paperclip-optimizer"
-gem "aws-sdk", "< 2.0"
+gem "aws-sdk"
 gem 'acts_as_list'
 gem 'acts_as_votable', '~> 0.10.0'
 gem "validate_url"
 gem "autoprefixer-rails"
 gem "redis"
 gem "slack-api"
-gem 'octicons-rails'
 gem 'rails_admin'
 gem 'rest-client'
 gem 'raygun4ruby'
@@ -44,7 +43,7 @@ gem 'pygmentize'
 gem 'sass-pygments-rails'
 
 gem "jquery-rails"
-gem "sass-rails", "~> 5.0"
+gem "sass-rails"
 gem "uglifier"
 gem "bootstrap-sass"
 gem "font-awesome-rails"
@@ -55,14 +54,13 @@ gem "jbuilder"
 gem 'font_assets'
 
 gem "rails-i18n"
-gem "link_thumbnailer"
+# gem "link_thumbnailer"  # Does not work on Rails 5
 gem "js-routes"
-
+gem 'json', '> 1.8.3' # Ruby 2.4
 
 gem 'sidekiq'
 gem 'sidekiq_snitch'
 gem 'sidekiq-failures'
-gem 'sinatra'  # Dependency of sidekiq
 gem 'sidekiq-cron'
 
 gem 'prawn'
@@ -88,7 +86,6 @@ group :development, :test do
   gem "annotate"
   gem "binding_of_caller"
   gem "better_errors"
-  gem "quiet_assets"
   gem "pry-byebug"
   gem "pry-rails"
   gem "bullet"
@@ -96,6 +93,5 @@ group :development, :test do
 end
 
 group :production do
-  gem "rails_12factor"
   gem "puma"
 end

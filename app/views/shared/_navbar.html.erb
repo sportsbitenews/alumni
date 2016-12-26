@@ -7,7 +7,7 @@
       </div>
       <% if current_user && current_user.legit? && current_user.slack_uid.blank? %>
         <div class="navbar-link-to-slack">
-          <i class="fa fa-slack"></i> Accept the <strong>Slack</strong> email invitation, then <%= link_to "link your account", user_omniauth_authorize_path(:slack) %>.
+          <i class="fa fa-slack"></i> Accept the <strong>Slack</strong> email invitation, then <%= link_to "link your account", user_slack_omniauth_authorize_path %>.
         </div>
       <% end %>
       <div class='navbar-right'>
@@ -28,7 +28,7 @@
             <i class='mdi mdi-plus'></i>
           <% end %>
         <% elsif params[:controller] != 'devise/sessions' %>
-          <%= link_to user_omniauth_authorize_path(:github), class: 'btn-github' do %>
+          <%= link_to user_github_omniauth_authorize_path, class: 'btn-github' do %>
             <%= fa_icon 'github' %> <%= t ".sign_out", default: "Sign in" %>
           <% end %>
         <% end %>
