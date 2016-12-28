@@ -20,7 +20,7 @@ class NotifyOnboardingRequestInSlackJob < ActiveJob::Base
           "fallback": "#{user.name} wants to join Batch ##{user.batch.slug}",
           "callback_id": "onboarding_#{user.id}",
           "thumb_url": user.gravatar_url,
-          "color": "#3AA3E3",
+          "color": "#DDDDDD",
           "attachment_type": "default",
           "fields": [
             {
