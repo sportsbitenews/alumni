@@ -1,4 +1,4 @@
-class SlackNotifyOnboardingRequestJob < ActiveJob::Base
+class NotifyOnboardingRequestInSlackJob < ActiveJob::Base
   include Rails.application.routes.url_helpers
 
   def perform(user_id)

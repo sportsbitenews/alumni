@@ -33,6 +33,7 @@ class UsersController < ApplicationController
     @user.onboarding = true
     if @user.update_attributes(user_params)
       session[:onboarding] = nil
+      NotifyOnboardingRequestInSlackJob.perform_later(@user.id)
       redirect_to root_path
     else
       render 'batches/register'
