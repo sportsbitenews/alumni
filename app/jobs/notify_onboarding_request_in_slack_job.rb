@@ -14,7 +14,7 @@ class NotifyOnboardingRequestInSlackJob < ActiveJob::Base
     {
       "channel": channel,
       "token": token,
-      "text": "*#{user.name}* wants to join *Batch ##{user.batch.slug}*",
+      "text": "*#{user.name}* wants to join *Batch ##{user.batch.slug} - #{user.batch.city.name}*",
       "attachments": [
         {
           "fallback": "#{user.name} wants to join Batch ##{user.batch.slug}",

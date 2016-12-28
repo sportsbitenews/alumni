@@ -30,7 +30,7 @@ class SlackController < ActionController::Base
         end
 
         {
-          text: "*#{user.name}* has been onboarded",
+          text: "*#{user.name}* has been onboarded in *Batch ##{user.batch.slug} - #{user.batch.city.name}*",
           "attachments": [
             {
               color: "#60C275",
