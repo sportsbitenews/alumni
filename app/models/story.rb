@@ -26,6 +26,11 @@
 #  index_stories_on_slug        (slug) UNIQUE
 #  index_stories_on_user_id     (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_43a76e6e51  (company_id => companies.id)
+#  fk_rails_c53f5feaac  (user_id => users.id)
+#
 
 class Story < ActiveRecord::Base
   include Cacheable

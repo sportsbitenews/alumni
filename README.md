@@ -54,6 +54,26 @@ create a new app. Then create a **developer token**.
 PH_TOKEN: 'aaaaaaaaaaaaaa'
 ```
 
+## Testing Slack Interactive Message
+
+Run this:
+
+```bash
+ngrok http 3000 -subdomain lewagon-alumni-test
+```
+
+Get the slack bot URL:
+
+https://api.slack.com/docs/slack-button
+
+1. Go to https://slack.com/oauth/authorize?scope=chat:write:bot&client_id=???
+1. You should be redirected. Look at the `code` in query string.
+1. Run this:
+
+```bash
+curl https://slack.com/api/oauth.access?client_id=???&client_secret=???&code=???
+```
+
 ## Schema
 
 You can load [db/schema.xml](db/schema.xml) into [db.lewagon.org](http://db.lewagon.org).

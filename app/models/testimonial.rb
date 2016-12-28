@@ -13,6 +13,10 @@
 #
 #  index_testimonials_on_user_id  (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_4d3e46b658  (user_id => users.id)
+#
 
 class Testimonial < ActiveRecord::Base
   include Cacheable

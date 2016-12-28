@@ -34,6 +34,10 @@
 #
 #  index_batches_on_city_id  (city_id)
 #
+# Foreign Keys
+#
+#  fk_rails_e626fc434d  (city_id => cities.id)
+#
 
 class Batch < ActiveRecord::Base
   include Cacheable

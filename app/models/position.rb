@@ -14,6 +14,11 @@
 #  index_positions_on_company_id  (company_id)
 #  index_positions_on_user_id     (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_4e4581e38b  (user_id => users.id)
+#  fk_rails_9d634cdbb9  (company_id => companies.id)
+#
 
 class Position < ActiveRecord::Base
   include Cacheable

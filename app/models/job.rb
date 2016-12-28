@@ -19,6 +19,10 @@
 #
 #  index_jobs_on_user_id  (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_df6238c8a6  (user_id => users.id)
+#
 
 class Job < ActiveRecord::Base
   include Post
