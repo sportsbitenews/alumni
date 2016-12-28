@@ -24,6 +24,10 @@
 #
 #  index_projects_on_batch_id  (batch_id)
 #
+# Foreign Keys
+#
+#  fk_rails_72a7a390d8  (batch_id => batches.id)
+#
 
 class Project < ActiveRecord::Base
   include Cacheable

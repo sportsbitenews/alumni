@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124144659) do
+ActiveRecord::Schema.define(version: 20161228080912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +22,8 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.string   "answerable_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
   end
-
-  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "attachinary_files", force: :cascade do |t|
     t.integer  "attachinariable_id"
@@ -39,9 +37,8 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.string   "resource_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
-
-  add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
 
   create_table "batches", force: :cascade do |t|
     t.string   "slug"
@@ -70,17 +67,15 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.integer  "cover_image_file_size"
     t.datetime "cover_image_updated_at"
     t.boolean  "waiting_list",             default: false,   null: false
+    t.index ["city_id"], name: "index_batches_on_city_id", using: :btree
   end
-
-  add_index "batches", ["city_id"], name: "index_batches_on_city_id", using: :btree
 
   create_table "batches_users", id: false, force: :cascade do |t|
     t.integer "batch_id"
     t.integer "user_id"
+    t.index ["batch_id"], name: "index_batches_users_on_batch_id", using: :btree
+    t.index ["user_id"], name: "index_batches_users_on_user_id", using: :btree
   end
-
-  add_index "batches_users", ["batch_id"], name: "index_batches_users_on_batch_id", using: :btree
-  add_index "batches_users", ["user_id"], name: "index_batches_users_on_user_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -123,18 +118,17 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.boolean  "contact_phone_number_displayed",   default: false, null: false
     t.string   "contact_phone_number_name"
     t.integer  "city_group_id"
+    t.string   "slack_channel_name"
+    t.index ["city_group_id"], name: "index_cities_on_city_group_id", using: :btree
+    t.index ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
   end
-
-  add_index "cities", ["city_group_id"], name: "index_cities_on_city_group_id", using: :btree
-  add_index "cities", ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
 
   create_table "cities_users", id: false, force: :cascade do |t|
     t.integer "city_id"
     t.integer "user_id"
+    t.index ["city_id"], name: "index_cities_users_on_city_id", using: :btree
+    t.index ["user_id"], name: "index_cities_users_on_user_id", using: :btree
   end
-
-  add_index "cities_users", ["city_id"], name: "index_cities_users_on_city_id", using: :btree
-  add_index "cities_users", ["user_id"], name: "index_cities_users_on_user_id", using: :btree
 
   create_table "city_groups", force: :cascade do |t|
     t.string   "name"
@@ -161,12 +155,11 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.string   "sluggable_type", limit: 50
     t.string   "scope"
     t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
-
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "jobs", force: :cascade do |t|
     t.string   "company"
@@ -180,9 +173,8 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "user_id"
+    t.index ["user_id"], name: "index_jobs_on_user_id", using: :btree
   end
-
-  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
   create_table "milestones", force: :cascade do |t|
     t.integer  "project_id"
@@ -191,10 +183,9 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.index ["project_id"], name: "index_milestones_on_project_id", using: :btree
+    t.index ["user_id"], name: "index_milestones_on_user_id", using: :btree
   end
-
-  add_index "milestones", ["project_id"], name: "index_milestones_on_project_id", using: :btree
-  add_index "milestones", ["user_id"], name: "index_milestones_on_user_id", using: :btree
 
   create_table "ordered_lists", force: :cascade do |t|
     t.string   "name"
@@ -210,10 +201,9 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.integer  "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_positions_on_company_id", using: :btree
+    t.index ["user_id"], name: "index_positions_on_user_id", using: :btree
   end
-
-  add_index "positions", ["company_id"], name: "index_positions_on_company_id", using: :btree
-  add_index "positions", ["user_id"], name: "index_positions_on_user_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
@@ -232,9 +222,8 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.integer  "kitt_id"
     t.integer  "demoday_timestamp"
     t.text     "technos",                    default: [],              array: true
+    t.index ["batch_id"], name: "index_projects_on_batch_id", using: :btree
   end
-
-  add_index "projects", ["batch_id"], name: "index_projects_on_batch_id", using: :btree
 
   create_table "projects_users", id: false, force: :cascade do |t|
     t.integer "user_id",    null: false
@@ -248,9 +237,8 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "solved",     default: false, null: false
+    t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
   end
-
-  add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "resources", force: :cascade do |t|
     t.string   "title"
@@ -260,9 +248,8 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.datetime "updated_at",     null: false
     t.string   "tagline"
     t.string   "screenshot_url"
+    t.index ["user_id"], name: "index_resources_on_user_id", using: :btree
   end
-
-  add_index "resources", ["user_id"], name: "index_resources_on_user_id", using: :btree
 
   create_table "stories", force: :cascade do |t|
     t.text     "description_en"
@@ -281,11 +268,10 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.text     "summary_fr"
     t.text     "summary_en"
     t.string   "slug"
+    t.index ["company_id"], name: "index_stories_on_company_id", using: :btree
+    t.index ["slug"], name: "index_stories_on_slug", unique: true, using: :btree
+    t.index ["user_id"], name: "index_stories_on_user_id", using: :btree
   end
-
-  add_index "stories", ["company_id"], name: "index_stories_on_company_id", using: :btree
-  add_index "stories", ["slug"], name: "index_stories_on_slug", unique: true, using: :btree
-  add_index "stories", ["user_id"], name: "index_stories_on_user_id", using: :btree
 
   create_table "testimonials", force: :cascade do |t|
     t.integer  "user_id"
@@ -293,9 +279,8 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.string   "locale"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_testimonials_on_user_id", using: :btree
   end
-
-  add_index "testimonials", ["user_id"], name: "index_testimonials_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -333,11 +318,10 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.string   "twitter_nickname"
     t.boolean  "noindex",                default: false, null: false
     t.text     "private_bio"
+    t.index ["batch_id"], name: "index_users_on_batch_id", using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["batch_id"], name: "index_users_on_batch_id", using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"
@@ -349,10 +333,9 @@ ActiveRecord::Schema.define(version: 20161124144659) do
     t.integer  "vote_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
   end
-
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
   add_foreign_key "answers", "users"
   add_foreign_key "batches", "cities"

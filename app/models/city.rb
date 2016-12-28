@@ -43,11 +43,16 @@
 #  contact_phone_number_displayed   :boolean          default(FALSE), not null
 #  contact_phone_number_name        :string
 #  city_group_id                    :integer
+#  slack_channel_name               :string
 #
 # Indexes
 #
 #  index_cities_on_city_group_id  (city_group_id)
 #  index_cities_on_slug           (slug) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_a3b5ea2ee7  (city_group_id => city_groups.id)
 #
 
 class City < ActiveRecord::Base

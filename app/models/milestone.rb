@@ -15,6 +15,11 @@
 #  index_milestones_on_project_id  (project_id)
 #  index_milestones_on_user_id     (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_56886b3a4d  (user_id => users.id)
+#  fk_rails_9bd0a0c791  (project_id => projects.id)
+#
 
 class Milestone < ActiveRecord::Base
   include Post

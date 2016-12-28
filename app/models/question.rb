@@ -14,6 +14,10 @@
 #
 #  index_questions_on_user_id  (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_047ab75908  (user_id => users.id)
+#
 
 class Question < ActiveRecord::Base
   include Post

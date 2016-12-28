@@ -14,6 +14,10 @@
 #
 #  index_answers_on_user_id  (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_584be190c2  (user_id => users.id)
+#
 
 class Answer < ActiveRecord::Base
   belongs_to :user
