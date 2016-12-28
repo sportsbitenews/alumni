@@ -108,6 +108,8 @@ Rails.application.routes.draw do
     resources :users, only: %i(update)
   end
 
+  post 'slack/interactive_message', to: 'slack#interactive_message'
+
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
