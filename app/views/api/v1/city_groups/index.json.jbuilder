@@ -27,7 +27,7 @@ json.groups do
           json.meetup_url @meetup_client.meetup_url(city.meetup_id)
         end
         json.batches city.open_batches do |batch|
-          json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :waiting_list, :price_cents, :price_currency
+          json.extract! batch, :id, :starts_at, :ends_at, :full, :last_seats, :waiting_list, :price_cents, :price_currency, :force_completed_codecademy_at_apply
           json.analytics_slug "#{batch.city.name.downcase.gsub(/\s/, '')}-#{batch.starts_at.strftime("%B").downcase}-#{batch.starts_at.strftime("%Y")}"
         end
       end

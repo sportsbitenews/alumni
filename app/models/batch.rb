@@ -2,33 +2,34 @@
 #
 # Table name: batches
 #
-#  id                       :integer          not null, primary key
-#  slug                     :string
-#  city_id                  :integer
-#  starts_at                :date
-#  ends_at                  :date
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#  onboarding               :boolean          default(FALSE), not null
-#  slack_id                 :string
-#  youtube_id               :string
-#  live                     :boolean          default(FALSE), not null
-#  meta_image_file_name     :string
-#  meta_image_content_type  :string
-#  meta_image_file_size     :integer
-#  meta_image_updated_at    :datetime
-#  last_seats               :boolean          default(FALSE), not null
-#  full                     :boolean          default(FALSE), not null
-#  time_zone                :string           default("Paris")
-#  open_for_registration    :boolean          default(FALSE), not null
-#  trello_inbox_list_id     :string
-#  price_cents              :integer          default(0), not null
-#  price_currency           :string           default("EUR"), not null
-#  cover_image_file_name    :string
-#  cover_image_content_type :string
-#  cover_image_file_size    :integer
-#  cover_image_updated_at   :datetime
-#  waiting_list             :boolean          default(FALSE), not null
+#  id                                  :integer          not null, primary key
+#  slug                                :string
+#  city_id                             :integer
+#  starts_at                           :date
+#  ends_at                             :date
+#  created_at                          :datetime         not null
+#  updated_at                          :datetime         not null
+#  onboarding                          :boolean          default(FALSE), not null
+#  slack_id                            :string
+#  youtube_id                          :string
+#  live                                :boolean          default(FALSE), not null
+#  meta_image_file_name                :string
+#  meta_image_content_type             :string
+#  meta_image_file_size                :integer
+#  meta_image_updated_at               :datetime
+#  last_seats                          :boolean          default(FALSE), not null
+#  full                                :boolean          default(FALSE), not null
+#  time_zone                           :string           default("Paris")
+#  open_for_registration               :boolean          default(FALSE), not null
+#  trello_inbox_list_id                :string
+#  price_cents                         :integer          default(0), not null
+#  price_currency                      :string           default("EUR"), not null
+#  cover_image_file_name               :string
+#  cover_image_content_type            :string
+#  cover_image_file_size               :integer
+#  cover_image_updated_at              :datetime
+#  waiting_list                        :boolean          default(FALSE), not null
+#  force_completed_codecademy_at_apply :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -45,6 +46,7 @@ class Batch < ActiveRecord::Base
   validates :slug, uniqueness: true, allow_nil: true, allow_blank: true
   validates :city, presence: true
   validates :starts_at, presence: true
+  validates :ends_at, presence: true
   validates :time_zone, presence: true
   validates :price_cents, numericality: { greater_than_or_equal_to: 1_000_00 }  # cents
 
