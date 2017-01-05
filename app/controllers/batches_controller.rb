@@ -17,7 +17,7 @@ class BatchesController < ApplicationController
   def new
     next_monday = Date.today + ((1 - Date.today.wday) % 7)
     @batch = @city.batches.build(starts_at: next_monday)
-    @batch.price = Money.new(590000, 'EUR')
+    @batch.price = Money.new(6000 * 100, 'EUR')
     @batch.open_for_registration = true
     authorize @batch
   end
@@ -38,7 +38,7 @@ class BatchesController < ApplicationController
   def update
     if @batch.update(batch_params)
       flash[:notice] = 'The batch has successfully been updated!'
-      redirect_to edit_batch_path(@batch)
+      redirect_to city_path(@batch.city)
     else
       render :edit
     end
@@ -97,6 +97,7 @@ class BatchesController < ApplicationController
       :price_cents,
       :price_currency,
       :open_for_registration, :last_seats, :waiting_list, :full,
-      :onboarding)
+      :onboarding,
+      :force_completed_codecademy_at_apply)
   end
 end

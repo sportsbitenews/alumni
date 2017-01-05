@@ -79,6 +79,7 @@ source "https://rails-assets.org" do
   gem 'rails-assets-pubsub-js'
   gem 'rails-assets-react-swipe-views'
   gem 'rails-assets-mdi' # material design ico
+  gem 'rails-assets-bootstrap-datepicker'
 end
 
 group :development, :test do

@@ -1,9 +1,7 @@
 <%= simple_form_for(resource) do |f|%>
   <row class="post-submissions-row-in">
-    <%= f.input :starts_at, order: [ :day, :month, :year ] %>
-  </row>
-  <row class="post-submissions-row-in">
-    <%= f.input :ends_at, order: [ :day, :month, :year ] %>
+    <%= f.input :starts_at, as: :date_picker, label_html: { style: 'flex-basis: 110px' } %>
+    <%= f.input :ends_at, as: :date_picker, label_html: { style: 'flex-basis: 110px' } %>
   </row>
   <row class="post-submissions-row-in">
     <%= f.input :time_zone, priority: /Paris/ %>
@@ -13,10 +11,13 @@
     <%= f.input :price_currency, label: "€ / £ / $", placeholder: 'EUR', collection: Money::Currency.table.keys.map(&:upcase), selected: f.object.price_currency, label_html: { style: 'flex-basis: 110px' } %>
   </row>
   <row class="post-submissions-row-in">
-    <%= f.input :open_for_registration, label: 'Apply open' %>
+    <%= f.input :open_for_registration, label: 'displayed on lewagon.com/apply' %>
     <%= f.input :last_seats %>
     <%= f.input :waiting_list %>
     <%= f.input :full %>
+  </row>
+  <row class="post-submissions-row-in">
+    <%= f.input :force_completed_codecademy_at_apply, label: "Force 100% Codecademy completion on lewagon.com/apply" %>
   </row>
   <row class="post-submissions-row-in">
     <%= f.input :onboarding, label: 'Onboarding users (First Day)' %>
