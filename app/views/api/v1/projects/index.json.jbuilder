@@ -14,6 +14,7 @@ json.projects @projects.each do |project|
     end
     if project.batch
       json.batch project.batch.slug
+      json.extract! project.batch, :youtube_id
       json.city do
         json.extract! project.batch.city, :name, :slug
       end
