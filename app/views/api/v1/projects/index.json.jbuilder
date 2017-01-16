@@ -16,6 +16,7 @@ json.projects @projects.each do |project|
       json.batch project.batch.slug
       json.city do
         json.extract! project.batch.city, :name, :slug
+        json.extract! project.batch, :youtube_id
       end
     end
   end
