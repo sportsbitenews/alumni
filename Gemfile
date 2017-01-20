@@ -23,7 +23,7 @@ gem "validate_url"
 gem "autoprefixer-rails"
 gem "redis"
 gem "slack-api"
-gem 'rails_admin'
+gem 'rails_admin', github: 'ssaunier/rails_admin', branch: 'pjax-jquery3-incompatibility'
 gem 'rest-client'
 gem 'raygun4ruby'
 gem 'whatlanguage'

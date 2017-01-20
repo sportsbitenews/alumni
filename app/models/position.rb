@@ -23,6 +23,6 @@
 class Position < ActiveRecord::Base
   include Cacheable
   validates :title, :user, :company, presence: true
-  belongs_to :user
+  belongs_to :user, inverse_of: :positions
   belongs_to :company
 end
