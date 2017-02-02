@@ -6,7 +6,8 @@ class MilestonePolicy < PostPolicy
   end
 
   def new?
-    user.projects.any?
+    # user.projects.any?
+    true
   end
 
   def update?
