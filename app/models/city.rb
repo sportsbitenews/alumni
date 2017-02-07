@@ -44,6 +44,7 @@
 #  contact_phone_number_name        :string
 #  city_group_id                    :integer
 #  slack_channel_name               :string
+#  email                            :string
 #
 # Indexes
 #
