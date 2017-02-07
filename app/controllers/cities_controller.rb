@@ -88,6 +88,7 @@ class CitiesController < ApplicationController
       :contact_phone_number,
       :contact_phone_number_displayed,
       :contact_phone_number_name,
+      :email,
       :description_fr,
       :description_en,
       :location,
