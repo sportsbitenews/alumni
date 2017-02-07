@@ -44,5 +44,15 @@ RailsAdmin.config do |config|
         field :batch
       end
     end
+
+    config.model 'City' do
+      list do
+        field :id
+        field :slug
+        field :location
+        field :address
+        field :city_picture
+      end
+    end
   end
 end
