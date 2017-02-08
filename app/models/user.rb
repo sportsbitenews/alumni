@@ -60,8 +60,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:github, :slack]
 
   validates :github_nickname, presence: true, uniqueness: { allow_nil: false, case_sensitive: false }
-  # validate :github_nickname_exists?
-  validates :email, presence: true, uniqueness: true
+  # validates :email, presence: true, uniqueness: true
 
   attr_accessor :onboarding
   validates :first_name, presence: true, if: ->(u) { u.onboarding }
@@ -167,15 +166,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  private
-
-  def octokit_client
-    @octokit_client ||= Octokit::Client.new(access_token: github_token)
-  end
-
-  def github_nickname_exists?
-    return if Rails.env.test?
-
+  def fetch_github_info
     client = Octokit::Client.new(access_token: User.find_by(github_nickname: 'ssaunier').github_token)
     begin
       github_user = client.user(self.github_nickname)
@@ -183,9 +174,17 @@ class User < ActiveRecord::Base
       self.uid = github_user.id if uid.blank?
       self.gravatar_url = github_user.avatar_url if gravatar_url.blank?
       self.email = github_user.email if email.blank?
+      name_parts = github_user.name.split(" ")
+      self.first_name = name_parts.shift
+      self.last_name = name_parts.join(" ")
     rescue Octokit::NotFound => e
-      errors.add :github_nickname, "This github user does not exist"
     end
+  end
+
+  private
+
+  def octokit_client
+    @octokit_client ||= Octokit::Client.new(access_token: github_token)
   end
 
   def set_default_photo

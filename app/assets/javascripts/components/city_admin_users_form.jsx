@@ -26,6 +26,18 @@ var CityAdminUsersForm = React.createClass({
                 </div>
               </div>
               <div className='bottom-padded-1em form-group'>
+                <div className=''>First name</div>
+                <div className=''>
+                  <input className='form-control' type="text" name='role' defaultValue={this.props.member.first_name} ref='first_name' />
+                </div>
+              </div>
+              <div className='bottom-padded-1em form-group'>
+                <div className=''>Last name</div>
+                <div className=''>
+                  <input className='form-control' type="text" name='role' defaultValue={this.props.member.last_name} ref='last_name' />
+                </div>
+              </div>
+              <div className='bottom-padded-1em form-group'>
                 <div className=''>Role</div>
                 <div className=''>
                   <input className='form-control' type="text" name='role' defaultValue={this.props.member.role} ref='role' />
@@ -73,6 +85,8 @@ var CityAdminUsersForm = React.createClass({
       fd.append('user[photo]', inputPhoto);
     }
     fd.append('user[twitter_nickname]', React.findDOMNode(this.refs.twitter_nickname).value);
+    fd.append('user[first_name]', React.findDOMNode(this.refs.first_name).value);
+    fd.append('user[last_name]', React.findDOMNode(this.refs.last_name).value);
     fd.append('user[role]', React.findDOMNode(this.refs.role).value);
     fd.append('user[bio_en]', React.findDOMNode(this.refs.bio_en).value);
     fd.append('user[bio_fr]', React.findDOMNode(this.refs.bio_fr).value);

@@ -3,6 +3,8 @@ json.members do
     json.full_name member.first_name + ' ' + member.last_name
     json.bio_en member.bio_en
     json.bio_fr member.bio_fr
+    json.first_name member.first_name
+    json.last_name member.last_name
     json.role member.role
     json.github_nickname member.github_nickname
     json.twitter_nickname member.twitter_nickname
