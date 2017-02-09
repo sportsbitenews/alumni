@@ -168,17 +168,14 @@ class User < ActiveRecord::Base
 
   def fetch_github_info
     client = Octokit::Client.new(access_token: User.find_by(github_nickname: 'ssaunier').github_token)
-    begin
-      github_user = client.user(self.github_nickname)
-      self.github_nickname = github_user.login
-      self.uid = github_user.id if uid.blank?
-      self.gravatar_url = github_user.avatar_url if gravatar_url.blank?
-      self.email = github_user.email if email.blank?
-      name_parts = github_user.name.split(" ")
-      self.first_name = name_parts.shift
-      self.last_name = name_parts.join(" ")
-    rescue Octokit::NotFound => e
-    end
+    github_user = client.user(self.github_nickname)
+    self.github_nickname = github_user.login
+    self.uid = github_user.id if uid.blank?
+    self.gravatar_url = github_user.avatar_url if gravatar_url.blank?
+    self.email = github_user.email if email.blank?
+    name_parts = github_user.name.split(" ")
+    self.first_name = name_parts.shift
+    self.last_name = name_parts.join(" ")
   end
 
   private

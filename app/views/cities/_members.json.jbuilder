@@ -1,6 +1,6 @@
 json.members do
   json.array! members do |member|
-    json.full_name member.first_name + ' ' + member.last_name
+    json.full_name "#{member.first_name} #{member.last_name}"
     json.bio_en member.bio_en
     json.bio_fr member.bio_fr
     json.first_name member.first_name

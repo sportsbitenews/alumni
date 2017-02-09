@@ -8,11 +8,15 @@ class OrderedListsController < ApplicationController
       user = User.where('github_nickname ILIKE ?', params[:github_nickname]).first
       unless user
         user = User.new(github_nickname: params[:github_nickname])
-        user.fetch_github_info
-        user.email ||= "contact+#{SecureRandom.hex}@lewagon.org"
-        if user.valid?
-          user.save
-        else
+        begin
+          user.fetch_github_info
+          user.email = "contact+#{SecureRandom.hex}@lewagon.org" if user.email.blank?
+          if user.valid?
+            user.save
+          else
+            user = nil
+          end
+        rescue Octokit::NotFound => e
           user = nil
         end
       end
