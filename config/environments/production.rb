@@ -21,10 +21,6 @@ Rails.application.configure do
   # NGINX, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
-  # Disable serving static files from the `/public` folder by default since
-  # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
-
   # Enable deflate / gzip compression of controller-generated responses
   config.middleware.use Rack::Deflater
 
@@ -62,8 +58,12 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.headers = {
+    'Cache-Control' => 'public, max-age=31536000',
+    'Expires'       => 1.year.from_now.to_formatted_s(:rfc822)
+  }
   config.action_controller.asset_host = 'http://dha02yxy6a3k3.cloudfront.net'
-  config.static_cache_control = "public, max-age=31536000"
   config.font_assets.origin = 'http://alumni.lewagon.org'
 
   # Ignore bad email addresses and do not raise email delivery errors.

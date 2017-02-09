@@ -70,6 +70,7 @@ class City < ActiveRecord::Base
     styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }, processors: [ :thumbnail, :paperclip_optimizer ]
   has_attached_file :classroom_picture,
     styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }, processors: [ :thumbnail, :paperclip_optimizer ]
+
   validates_attachment_content_type :city_picture,
     content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :location_picture,
@@ -77,6 +78,10 @@ class City < ActiveRecord::Base
   validates_attachment_content_type :classroom_picture,
     content_type: /\Aimage\/.*\z/
   before_validation :check_mailchimp_account, if: 'mailchimp_api_key_changed? || mailchimp_list_id_changed?'
+
+  has_attachment :city_background_picture
+  has_attachment :location_background_picture
+  has_attachment :classroom_background_picture
 
   geocoded_by :address
   after_validation :geocode, classroom_pictureif: :address_changed?
