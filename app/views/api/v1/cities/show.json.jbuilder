@@ -4,11 +4,13 @@ json.city do
     json.fr @city.description_fr
     json.en @city.description_en
   end
-  json.extract! @city, :address, :latitude, :longitude
-  json.location_picture @city.location_picture.present? ? @city.location_picture.url(:cover) : nil
-  json.city_picture @city.city_picture.present? ? @city.city_picture.url(:cover) : nil
-  json.classroom_picture @city.classroom_picture.present? ? @city.classroom_picture.url(:cover) : nil
-  json.extract! @city, :meetup_id, :twitter_url
+  json.extract! @city, :address, :latitude, :longitude,:twitter_url
+
+  json.city_background_picture_path @city.city_background_picture.try(:path)
+  json.location_background_picture_path @city.location_background_picture.try(:path)
+  json.classroom_background_picture_path @city.classroom_background_picture.try(:path)
+
+  json.extract! @city, :meetup_id
   if @city.meetup_id
     json.meetup_url @meetup_client.meetup_url(@city.meetup_id)
   end

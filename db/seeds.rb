@@ -10,8 +10,6 @@ cities.each do |c|
   city.description_fr = c['description_fr']
   city.description_en = c['description_en']
   city.address = c['address']
-  city.location_picture = c['location_picture']
-  city.city_picture = c['city_picture']
   city.meetup_id = c['meetup_id']
   city.twitter_url = c['twitter_url']
   city.save

@@ -51,7 +51,6 @@ RailsAdmin.config do |config|
         field :slug
         field :location
         field :address
-        field :city_picture
       end
     end
   end

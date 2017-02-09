@@ -12,21 +12,9 @@
 #  description_en                   :text
 #  meetup_id                        :integer
 #  twitter_url                      :string
-#  city_picture_file_name           :string
-#  city_picture_content_type        :string
-#  city_picture_file_size           :integer
-#  city_picture_updated_at          :datetime
-#  location_picture_file_name       :string
-#  location_picture_content_type    :string
-#  location_picture_file_size       :integer
-#  location_picture_updated_at      :datetime
 #  latitude                         :float
 #  longitude                        :float
 #  slug                             :string
-#  classroom_picture_file_name      :string
-#  classroom_picture_content_type   :string
-#  classroom_picture_file_size      :integer
-#  classroom_picture_updated_at     :datetime
 #  course_locale                    :string
 #  logistic_specifics               :text
 #  company_name                     :string
@@ -64,19 +52,7 @@ class City < ActiveRecord::Base
   validates :slug, presence: true, uniqueness: true
   validates :name, presence: true, uniqueness: true
   validates :course_locale, presence: true, inclusion: { in: %w(en fr pt-BR zh-CN) }
-  has_attached_file :city_picture,
-    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 },  thumbnail: { geometry: "540x360>", format: 'jpg', quality: 70 } }, processors: [ :thumbnail, :paperclip_optimizer ]
-  has_attached_file :location_picture,
-    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }, processors: [ :thumbnail, :paperclip_optimizer ]
-  has_attached_file :classroom_picture,
-    styles: { cover: { geometry: "1400x787>", format: 'jpg', quality: 40 } }, processors: [ :thumbnail, :paperclip_optimizer ]
 
-  validates_attachment_content_type :city_picture,
-    content_type: /\Aimage\/.*\z/
-  validates_attachment_content_type :location_picture,
-    content_type: /\Aimage\/.*\z/
-  validates_attachment_content_type :classroom_picture,
-    content_type: /\Aimage\/.*\z/
   before_validation :check_mailchimp_account, if: 'mailchimp_api_key_changed? || mailchimp_list_id_changed?'
 
   has_attachment :city_background_picture
@@ -84,7 +60,7 @@ class City < ActiveRecord::Base
   has_attachment :classroom_background_picture
 
   geocoded_by :address
-  after_validation :geocode, classroom_pictureif: :address_changed?
+  after_validation :geocode, if: :address_changed?
 
   has_many :batches
   belongs_to :city_group

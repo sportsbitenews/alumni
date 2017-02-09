@@ -5,7 +5,7 @@ json.batches do
       json.name batch.city.name
       json.slug batch.city.slug
       json.course_locale batch.city.course_locale
-      json.city_picture batch.city.city_picture(:thumbnail)
+      json.city_background_picture_path batch.city.city_background_picture.try(:path)
     end
     json.student_count batch.users.size
     json.project_count batch.projects.size
