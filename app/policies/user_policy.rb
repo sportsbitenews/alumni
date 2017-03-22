@@ -38,6 +38,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update_photo?
-    confirm? || record == user
+    confirm? || (record == user && (user.teacher || (user.batch && user.batch.ends_at > DateTime.now)))
   end
 end
