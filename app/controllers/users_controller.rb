@@ -87,9 +87,6 @@ class UsersController < ApplicationController
     client = RestClient::Resource.new("#{ENV['KITT_BASE_URL']}/api/v1/alumni/student/#{@user.uid}", user: 'alumni', password: ENV['ALUMNI_PASSWORD'])
     client.delete
 
-    # Remove from Mailchimp
-    Mailchimp.new.remove_from_alumni_list(@user)
-
     # Remove from Alumni DB
     @user.destroy!
 

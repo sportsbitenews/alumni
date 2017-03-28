@@ -89,8 +89,6 @@ class User < ActiveRecord::Base
   has_attachment :photo
   after_create :set_default_photo
 
-  # after_save ->() { Mailchimp.new.subscribe_to_alumni_list(self) if self.alumni }
-
   before_destroy :clear_from_ordered_lists
 
   # include Devise::Controllers::Helpers
