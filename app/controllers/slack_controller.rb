@@ -30,13 +30,13 @@ class SlackController < ActionController::Base
         end
 
         {
-          text: "*#{user.name}* has been onboarded in *Batch ##{user.batch.slug} - #{user.batch.city.name}*",
+          "text": "*#{user.name}* has been onboarded in *Batch ##{user.batch.slug} - #{user.batch.city.name}*",
           "attachments": [
             {
-              color: "#60C275",
-              thumb_url: user.gravatar_url,
-              attachment_type: "default",
-              fields: [
+              "color": "#60C275",
+              "thumb_url": user.gravatar_url,
+              "attachment_type": "default",
+              "fields": [
                 {
                   "title": "School",
                   "value": user.school,
@@ -55,7 +55,7 @@ class SlackController < ActionController::Base
             },
             {
               "color": "#4484C2",
-              "text": "<http://kitt.lewagon.org/camps/#{user.batch.slug}/classmates|View #{user.batch.users.length} classmates>",
+              "text": "<http://kitt.lewagon.org/camps/#{user.batch.slug}/classmates|View #{user.batch.users.length} classmates>"
             }
           ]
         }
