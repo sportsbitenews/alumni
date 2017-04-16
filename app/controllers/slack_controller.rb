@@ -55,8 +55,7 @@ class SlackController < ActionController::Base
             },
             {
               "color": "#4484C2",
-              "title": "View XX classmates",
-              "title_link": "http://kitt.lewagon.org/camps/XX/classmates"
+              "text": "<http://kitt.lewagon.org/camps/#{user.batch.slug}/classmates|View #{user.batch.users.length} classmates>",
             }
           ]
         }
