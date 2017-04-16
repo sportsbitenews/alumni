@@ -52,6 +52,11 @@ class SlackController < ActionController::Base
                   "value": user.private_bio
                 }
               ]
+            },
+            {
+              "color": "#4484C2",
+              "title": "View XX classmates",
+              "title_link": "http://kitt.lewagon.org/camps/XX/classmates"
             }
           ]
         }
