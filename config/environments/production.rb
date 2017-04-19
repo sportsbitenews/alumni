@@ -63,7 +63,7 @@ Rails.application.configure do
     'Cache-Control' => 'public, max-age=31536000',
     'Expires'       => 1.year.from_now.to_formatted_s(:rfc822)
   }
-  config.action_controller.asset_host = 'http://dha02yxy6a3k3.cloudfront.net'
+  # config.action_controller.asset_host = 'http://dha02yxy6a3k3.cloudfront.net'
   config.font_assets.origin = 'http://alumni.lewagon.org'
 
   # Ignore bad email addresses and do not raise email delivery errors.
