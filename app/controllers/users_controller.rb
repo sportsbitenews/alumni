@@ -95,7 +95,6 @@ class UsersController < ApplicationController
   end
 
   def update_photo
-    authorize current_user
     unless @user.update(user_params)
       @error_message = 'An error occurred while uploading the photo: ' + @user.errors.full_messages.join(", ")
     end
