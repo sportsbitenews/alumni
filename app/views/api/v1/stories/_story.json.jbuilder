@@ -1,5 +1,6 @@
 json.id story.id
 json.slug story.slug
+json.created_at story.created_at
 
 if story.company
   json.company do
