@@ -10,18 +10,12 @@ json.groups do
           json.fr city.description_fr
           json.en city.description_en
         end
-        json.extract! city, :address, :latitude, :longitude, :course_locale
-        json.pictures do
-          json.city do
-            json.cover city.city_picture.url(:cover)
-            json.thumbnail city.city_picture.url(:thumbnail)
-          end
-          json.location do
-            json.cover city.location_picture.url(:cover)
-            json.thumbnail city.location_picture.url(:thumbnail)
-          end
-        end
-        json.extract! city, :twitter_url
+        json.extract! city, :address, :latitude, :longitude, :course_locale, :twitter_url
+
+        json.city_background_picture_path city.city_background_picture.try(:path)
+        json.location_background_picture_path city.location_background_picture.try(:path)
+        json.classroom_background_picture_path city.classroom_background_picture.try(:path)
+
         if city.meetup_id
           json.extract! city, :meetup_id
           json.meetup_url @meetup_client.meetup_url(city.meetup_id)

@@ -40,7 +40,7 @@ class CitiesController < ApplicationController
           flash[:notice] = "Mailchimp error: #{e.message}"
         end
       end
-      redirect_to city_path(@city)
+      redirect_to edit_city_path(@city)
     else
       set_content
       flash[:alert] = @city.errors.full_messages.join(', ')
@@ -88,13 +88,14 @@ class CitiesController < ApplicationController
       :contact_phone_number,
       :contact_phone_number_displayed,
       :contact_phone_number_name,
+      :email,
       :description_fr,
       :description_en,
       :location,
       :address,
-      :location_picture,
-      :classroom_picture,
-      :city_picture,
+      :location_background_picture,
+      :classroom_background_picture,
+      :city_background_picture,
       :mailchimp_api_key,
       :mailchimp_list_id)
   end

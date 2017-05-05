@@ -74,7 +74,7 @@ class PostList extends React.Component {
             {this.renderInfiniteList('Job')}
           </div>
           <div className='col-sm-3 posts-column' title="#milestones">
-            <a href={this.props.current_user.can_post_milestone ? Routes.new_milestone_path() : 'mailto:seb@lewagon.org'}
+            <a href={Routes.new_milestone_path()}
                className={addPostClasses}>
               <div className='posts-column-new'>
                 {this.props.current_user.can_post_milestone ? 'ADD A NEW MILESTONE' : 'SUBMIT A NEW PRODUCT'}

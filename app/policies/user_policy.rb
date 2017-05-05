@@ -6,7 +6,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def confirm?
-    user.admin || (user.cities.any? && user.cities.include?(record.batch.city))
+    user.admin || (user.cities.any? && record.batch && user.cities.include?(record.batch.city))
   end
 
   def delete?
@@ -38,6 +38,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update_photo?
-    confirm? || record == user
+    confirm? || (record == user && (user.teacher || (user.batch && user.batch.ends_at > DateTime.now)))
   end
 end

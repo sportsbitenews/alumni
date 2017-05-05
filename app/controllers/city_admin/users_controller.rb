@@ -9,7 +9,7 @@ class CityAdmin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:role, :twitter_nickname, :bio_en, :bio_fr, :photo)
+    params.require(:user).permit(:first_name, :last_name, :role, :twitter_nickname, :bio_en, :bio_fr, :photo)
   end
 end
 

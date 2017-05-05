@@ -16,16 +16,10 @@
     <br>
   </div>
 </div>
-<div class="container text-center" id="city_edit_banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_url @city.city_picture.url(:cover) %>');">
-  <div class="banner-content">
-    <h1>Change your life: <strong>learn to code</strong></h1>
-    <h2>Join Le Wagon FullStack program in <strong><%= @city.name %></strong></h2>
-  </div>
-  <div class="banner-gradient"></div>
-</div>
+
 <div class="container">
   <%= simple_form_for @city do |f| %>
-    <%= f.input :city_picture, label: false %>
+    <%= f.input :city_background_picture, as: :attachinary, label: false %>
     <br>
     <%= f.submit class: 'btn btn-primary', value: 'Update banner' %>
   <% end %>
@@ -39,8 +33,9 @@
     <%= f.input :contact_phone_number, label: 'Phone Number', placeholder: '+33 612 345 678' %>
     <%= f.input :contact_phone_number_displayed, label: 'Displayed?' %>
     <%= f.input :contact_phone_number_name, label: 'First Name', placeholder: 'George' %>
+    <%= f.input :email, label: 'City email', placeholder: 'contact@lewagon.org' %>
     <br>
-    <%= f.submit class: 'btn btn-primary', value: 'Update contact phone information' %>
+    <%= f.submit class: 'btn btn-primary', value: 'Update contact information' %>
   <% end %>
 </div>
 
@@ -54,25 +49,11 @@
   placeholder: 'Here you can inject any content you want to promote (video of your last Demo-Day, hot press release, ...)'
 }%>
 
-<div class="container text-center" id="city_edit_features">
-  <h2>Code the startup way</h2>
-  <div class="row padded-1em">
-    <div class="col-xs-12 col-sm-4">
-      <div class="feature-icon yellow"><i class="mdi mdi-laptop"></i></div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-      <div class="feature-icon purple"><i class="mdi mdi-keyboard-variant"></i></div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-      <div class="feature-icon green"><i class="mdi mdi-source-pull"></i></div>
-    </div>
-  </div>
-</div>
 
-<div class="container-fluid" id="city_edit_classroom" style="background-image: url('<%= image_url @city.classroom_picture.url(:cover) %>')"></div>
 <div class="container">
+  <h3 class="text-center">Classroom picture</h3>
   <%= simple_form_for @city do |f| %>
-    <%= f.input :classroom_picture, label: false %>
+    <%= f.input :classroom_background_picture, as: :attachinary, label: false %>
     <br>
     <%= f.submit class: 'btn btn-primary', value: 'Update classroom picture' %>
   <% end %>
@@ -127,7 +108,7 @@
   <%= simple_form_for @city do |f| %>
     <%= f.input :location, label: 'Venue', placeholder: 'Numa, Euratechnology, WeWork ...' %>
     <%= f.input :address %>
-    <%= f.input :location_picture %>
+    <%= f.input :location_background_picture, as: :attachinary %>
     <br>
     <%= f.submit class: 'btn btn-primary', value: 'Update location' %>
   <% end %>

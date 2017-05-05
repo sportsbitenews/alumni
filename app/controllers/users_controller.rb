@@ -87,9 +87,6 @@ class UsersController < ApplicationController
     client = RestClient::Resource.new("#{ENV['KITT_BASE_URL']}/api/v1/alumni/student/#{@user.uid}", user: 'alumni', password: ENV['ALUMNI_PASSWORD'])
     client.delete
 
-    # Remove from Mailchimp
-    Mailchimp.new.remove_from_alumni_list(@user)
-
     # Remove from Alumni DB
     @user.destroy!
 
@@ -98,7 +95,6 @@ class UsersController < ApplicationController
   end
 
   def update_photo
-    authorize current_user
     unless @user.update(user_params)
       @error_message = 'An error occurred while uploading the photo: ' + @user.errors.full_messages.join(", ")
     end
