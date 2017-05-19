@@ -4,7 +4,7 @@ class RefreshSlackConnectedJob < ActiveJob::Base
   end
 end
 
-Sidekiq::Cron::Job.create(
-  name: 'Refresh Connected to slack property for each user',
-  cron: '*/10 * * * *',
-  klass: 'RefreshSlackConnectedJob')
+# Sidekiq::Cron::Job.create(
+#   name: 'Refresh Connected to slack property for each user',
+#   cron: '*/10 * * * *',
+#   klass: 'RefreshSlackConnectedJob')
