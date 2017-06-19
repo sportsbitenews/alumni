@@ -1,6 +1,6 @@
 json.projects @projects.each do |project|
   if project
-    json.extract! project, :id, :url, :name, :position, :slug
+    json.extract! project, :id, :url, :name, :position, :slug, :kitt_id, :demoday_timestamp
     json.tagline do
       json.en project.tagline_en
       json.fr project.tagline_fr
