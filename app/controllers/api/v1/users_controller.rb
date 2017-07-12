@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  before_action :check_shared_secret!
+  before_action :check_shared_secret!, only: :picture
 
   class HttpAuthorizationHeaderException < Exception; end
 
@@ -20,6 +20,10 @@ class Api::V1::UsersController < Api::V1::BaseController
     else
       render json: { found: false }
     end
+  end
+
+  def show
+    @user = User.find_by_github_nickname(params[:id])
   end
 
   private

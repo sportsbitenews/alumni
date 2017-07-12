@@ -32,7 +32,7 @@ Rails.application.routes.draw do
         end
       end
       resources :testimonials, only: [ :index ]
-      resources :users,        only: [] do
+      resources :users,        only: [ :show ] do
         put :picture, on: :collection
       end
       resources :positions, only: [ :index ]
