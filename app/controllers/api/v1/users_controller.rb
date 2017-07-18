@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  before_action :check_shared_secret!
+  before_action :check_shared_secret!, only: :picture
 
   class HttpAuthorizationHeaderException < Exception; end
 
