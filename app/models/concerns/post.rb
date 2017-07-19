@@ -14,8 +14,6 @@ module Post
     acts_as_votable
     has_many :answers, as: :answerable
 
-    after_create ->() { NotifyNewPostInSlack.perform_later(self.class.to_s, id) }
-
     scope :list, (lambda do |options = {}|
       page = options.fetch(:page, 1)
       order(created_at: :desc).page(page).limit(PAGE_COUNT).includes(:user)

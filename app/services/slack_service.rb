@@ -51,65 +51,6 @@ class SlackService
     "https://lewagon-alumni.slack.com/messages/@#{username}" if username
   end
 
-  def notify(post)
-    attributes = slack_attributes(post, ENV['SLACK_INCOMING_WEBHOOK_CHANNEL'], :post)
-    send_slack_notif(post, attributes)
-  end
-
-  def notify_upvote(post, upvoter)
-    slack_nickname = slack_username(post.user)
-    if slack_nickname
-      attributes = slack_attributes(post, "@#{slack_nickname}", :upvote, upvoter)
-      send_slack_notif(post, attributes)
-    end
-  end
-
-  def notify_answer(answer)
-    post = answer.answerable
-    answerer = answer.user
-    attributes = slack_attributes(answer, "", :answer)
-    # send slack DM to other answerers
-    other_answerers = post.answers.map(&:user).uniq - [answerer, post.user]
-    other_answerers.each do |other_answerer|
-      other_answerer_slack_nickname = slack_username(other_answerer)
-      if other_answerer_slack_nickname
-        attributes[:channel] = "@#{other_answerer_slack_nickname}"
-        attributes[:author_name] = "#{answerer.name} commented on #{post.user.name}'s #{post.class.to_s.downcase}!"
-        send_slack_notif(post, attributes)
-      end
-    end
-    # send slack DM to upvoters (except answerers and post.user)
-    upvoters = post.votes_for.up.voters.reject { |voter| voter.id == answerer.id || voter.id == post.user.id || other_answerers.map(&:id).include?(voter.id) }
-    upvoters.each do |upvoter|
-      upvoter_slack_nickname = slack_username(upvoter)
-      if upvoter_slack_nickname
-        attributes[:channel] = "@#{upvoter_slack_nickname}"
-        attributes[:pretext] = "<#{profile_url(answerer.github_nickname)}|@#{answerer.github_nickname}> commented on a #{post.class.to_s.downcase} you upvoted, check it out!"
-        attributes[:author_name] = "#{answerer.name} commented on #{post.user.name}'s #{post.class.to_s.downcase}!"
-        send_slack_notif(post, attributes)
-      end
-    end
-    # send slack DM to post owner (unless he answered on his post)
-    post_owner_slack_nickname = slack_username(post.user)
-    if post_owner_slack_nickname && post.user != answerer
-      attributes[:channel] = "@#{post_owner_slack_nickname}"
-      attributes[:author_name] = "#{answerer.name} commented on your #{post.class.to_s.downcase}!"
-      attributes[:pretext] = ""
-      attributes[:title] = ":speech_balloon: #{post.slack_title}"
-      send_slack_notif(post, attributes)
-    end
-  end
-
-  def notify_mention(answer, user)
-    unless user.slack_uid.blank?
-      post = answer.answerable
-      answerer = answer.user
-      channel = "@#{slack_username(user)}"
-      attributes = slack_attributes(answer, channel, :mention)
-      send_slack_notif(post, attributes)
-    end
-  end
-
   private
 
   def send_slack_notif(post, attributes)

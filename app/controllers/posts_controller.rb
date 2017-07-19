@@ -16,7 +16,6 @@ class PostsController < ApplicationController
       current_user.unvote_for @post
     else
       current_user.up_votes @post
-      NotifyUpvoteInSlack.perform_later(@post.id, @post.class.to_s, current_user)
     end
   end
 
