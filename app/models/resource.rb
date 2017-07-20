@@ -33,22 +33,6 @@ class Resource < ActiveRecord::Base
     super as_json(only: [:title, :tagline, :url])
   end
 
-  def slack_fallback
-    "New resource: #{title}, #{tagline}. Posted by #{user.name}"
-  end
-
-  def slack_pretext
-    "A new resource has been posted. Check it out and upvote it!"
-  end
-
-  def slack_title
-    title
-  end
-
-  def slack_text
-    tagline
-  end
-
   private
 
   def normalize_url

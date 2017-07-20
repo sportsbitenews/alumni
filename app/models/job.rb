@@ -40,20 +40,4 @@ class Job < ActiveRecord::Base
   def search_data
     super as_json(only: [:title, :company, :description])
   end
-
-  def slack_fallback
-    "New job: #{slack_title}"
-  end
-
-  def slack_pretext
-    "A new job has been posted."
-  end
-
-  def slack_title
-    "#{title} (#{contract}) @ #{company} #{city.blank? ? 'Remote' : "in #{city}"}"
-  end
-
-  def slack_text
-    description
-  end
 end
