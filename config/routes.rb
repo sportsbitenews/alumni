@@ -119,5 +119,5 @@ Rails.application.routes.draw do
   get '/stop_impersonating', to: 'users#stop_impersonating', as: :stop_impersonating
 
   # Keep this route at the bottom.
-  get '/:github_nickname', to: 'users#show', as: :profile
+  get '/:github_nickname', as: :profile, to: redirect { |params, _| "https://kitt.lewagon.com/alumni/#{params[:github_nickname]}" }
 end
