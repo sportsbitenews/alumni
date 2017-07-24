@@ -14,6 +14,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    return redirect_to "https://kitt.lewagon.com/alumni/#{params[:github_nickname]}" unless user_signed_in?
+
     respond_to do |format|
       format.html do
         @user = User.includes(:resources, :jobs, :questions, :milestones).where('lower(github_nickname) = ?', params[:github_nickname].downcase).first
