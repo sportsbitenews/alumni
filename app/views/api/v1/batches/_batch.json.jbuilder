@@ -2,7 +2,7 @@ json.extract! batch, :id, :slug, :starts_at, :ends_at, :full, :last_seats, :wait
 json.cover_image batch.cover_image.url(:large)
 
 json.meta_image do
-  json.facebook @batch.meta_image.exists? ? @batch.meta_image.url(:facebook) : nil
+  json.facebook @batch.meta_image.present? ? @batch.meta_image.url(:facebook) : nil
 end
 
 json.city do
