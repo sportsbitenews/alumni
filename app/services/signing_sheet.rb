@@ -16,8 +16,9 @@ class SigningSheet < Prawn::Document
     end
 
     font_size(14) do
+      move_up 20
       text "Feuille d'émargement"
-      move_down 10
+      move_down 5
     end
 
     # TODO: Move this to DB
@@ -40,7 +41,7 @@ class SigningSheet < Prawn::Document
     end
 
     table = make_table(data, column_widths: [ 125, 70, 70, 125, 70, 70 ]) do
-      cells.style padding_top: 7, padding_bottom: 7
+      cells.style padding_top: 6, padding_bottom: 6
       row(0).font_style = :bold
     end
     table.draw
@@ -89,7 +90,7 @@ class SigningSheet < Prawn::Document
     font_size(10)
 
     draw_header
-    move_down 20
+    move_down 10
 
     draw_context
     move_down 5
