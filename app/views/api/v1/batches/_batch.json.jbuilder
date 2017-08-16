@@ -1,4 +1,4 @@
-json.extract! batch, :id, :slug, :starts_at, :ends_at, :full, :last_seats, :waiting_list, :price_cents, :price_currency, :trello_inbox_list_id, :youtube_id, :force_completed_codecademy_at_apply
+json.extract! batch, :id, :slug, :starts_at, :ends_at, :full, :last_seats, :waiting_list, :price_cents, :price_currency, :trello_inbox_list_id, :youtube_id, :live, :force_completed_codecademy_at_apply
 json.cover_image batch.cover_image.url(:large)
 
 json.meta_image do
