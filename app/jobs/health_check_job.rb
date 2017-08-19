@@ -14,5 +14,5 @@ end
 
 Sidekiq::Cron::Job.create(
   name: 'Notify healthchecks.io that a sidekiq worker is running',
-  cron: '0/5 * * * *',
+  cron: '*/5 * * * *',
   klass: 'HealthCheckJob')
