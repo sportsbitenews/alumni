@@ -59,7 +59,6 @@ gem "js-routes"
 gem 'json', '> 1.8.3' # Ruby 2.4
 
 gem 'sidekiq'
-gem 'sidekiq_snitch'
 gem 'sidekiq-failures'
 gem 'sidekiq-cron'
 
